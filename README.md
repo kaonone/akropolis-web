@@ -18,6 +18,9 @@ If you want to test new components inside your project locally you'll need:
 
 * run `yarn link-all` inside akropolis-web to add symlinks to them
 * add symlinks to the packages in your project through `yarn link {package-name here}`, for example `yarn link @akropolis-web/components @akropolis-web/styles`.
+* use `"preserveSymlinks": true` in `tsconfig.js` in your project
 * build your project
 
-To remove symlinks from your project use `yarn unlink`
+After testing locally:
+* remove symlinks from your project using `yarn unlink`
+* run `yarn install --force`
