@@ -1,0 +1,51 @@
+{
+  "name": "@akropolis-web/components",
+  "version": "0.1.0",
+  "description": "Package with shared components",
+  "keywords": [
+    "ethereum",
+    "web3",
+    "dapp"
+  ],
+  "author": "Akropolis",
+  "homepage": "https://github.com/akropolisio/akropolis-web/tree/master/packages/components#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/components.esm.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akropolisio/akropolis-web.git"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "jest -c ../../jest.config.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc --noEmit --pretty",
+    "prepare": "yarn build"
+  },
+  "bugs": {
+    "url": "https://github.com/akropolisio/akropolis-web/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@akropolis-web/styles": "0.1.0",
+    "@types/classnames": "^2.2.9",
+    "classnames": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/styles": "^4.10.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  }
+}
