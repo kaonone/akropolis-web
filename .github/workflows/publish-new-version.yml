@@ -1,0 +1,80 @@
+name: Bump Version and Publish to NPM
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - run: yarn
+      - run: yarn build
+      - run: yarn test
+      - run: yarn lint
+
+  release:
+    if: "!contains(github.event.head_commit.message, '[SKIP-CI]') && !contains(github.event.head_commit.message, '[SKIP CI]')"
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Set up global git config
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Bump Version"
+
+      - name: Share PUSH_BRANCH between all steps in job
+        run: echo "::set-env name=PUSH_BRANCH::`echo "$GITHUB_REF" | awk -F / '{ print $3 }'`"
+
+      - name: Checkout to PUSH_BRANCH
+        run: git checkout $PUSH_BRANCH
+
+      - name: Set up .netrc file with GitHub credentials
+        run: |
+          cat <<- EOF > $HOME/.netrc
+          machine github.com
+          login $GITHUB_ACTOR
+          password $GITHUB_TOKEN
+          EOF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump version (for build and publish)
+        run: HUSKY_SKIP_HOOKS=1 npx lerna version --yes --conventional-commits --no-push --no-git-tag-version
+
+      - name: Commit versions (for publish)
+        run: |
+          git add .
+          HUSKY_SKIP_HOOKS=1 git commit -m "temp commit for publish"
+
+      - name: Build package
+        run: yarn build
+
+      - name: Publish to NPM
+        run: npx lerna publish from-package --yes
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Discard temp commit
+        run: git reset HEAD^ --hard
+
+      - name: Bump version (for github)
+        run: HUSKY_SKIP_HOOKS=1 npx lerna version --yes --conventional-commits --create-release github
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
