@@ -1,3 +1,5 @@
-describe('components package tests', (): void => {
-  expect(true).toBe(true);
+describe('package tests', (): void => {
+  it('test mock', () => {
+    expect(true).toBe(true);
+  });
 });
