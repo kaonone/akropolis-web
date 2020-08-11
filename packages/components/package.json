@@ -36,9 +36,13 @@
   "dependencies": {
     "@akropolis-web/styles": "^0.3.0",
     "@types/classnames": "^2.2.9",
+    "@types/color": "^3.0.1",
+    "@types/mersenne-twister": "^1.1.2",
     "classnames": "^2.0.0",
     "@types/ramda": "^0.27.14",
-    "ramda": "^0.27.1"
+    "ramda": "^0.27.1",
+    "mersenne-twister": "^1.1.0",
+    "color": "^3.1.2"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
