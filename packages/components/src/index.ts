@@ -8,3 +8,4 @@ export * from './ComingSoon/ComingSoon';
 export * from './Label/Label';
 export * from './AddressIcon/AddressIcon';
 export * from './ShortAddress/ShortAddress';
+export * from './Card/Card';
