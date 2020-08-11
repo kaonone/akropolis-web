@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Tab from '@material-ui/core/Tab';
+import Tab, { TabTypeMap } from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabPanel from '@material-ui/lab/TabPanel';
 import TabsList from '@material-ui/lab/TabList';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { useStyles } from './Tabs.style';
+
+type DefaultTabComponent = TabTypeMap['defaultComponent'];
 
 type TabContent = {
   value: string;
@@ -23,12 +24,12 @@ type Props<T extends React.ElementType> = {
   currentValue: string;
   tabs: TabItem<T>[];
   onChange: (_: React.ChangeEvent<{}>, tab: string) => void;
-  component?: T;
+  tabComponent?: T;
   children?: React.ReactNode;
 };
 
-export function Tabs<T extends React.ElementType = typeof Link>(props: Props<T>) {
-  const { tabs, currentValue, children, onChange, component = Link } = props;
+export function Tabs<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
+  const { tabs, currentValue, children, onChange, tabComponent } = props;
 
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
@@ -67,7 +68,7 @@ export function Tabs<T extends React.ElementType = typeof Link>(props: Props<T>)
         classes={{ root: classes.tab, selected: classes.selected }}
         value={value}
         key={value}
-        component={component}
+        component={tabComponent}
       />
     );
   }
