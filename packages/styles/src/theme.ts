@@ -1,5 +1,6 @@
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
 import { mergeDeepRight } from 'ramda';
+import { Object } from 'ts-toolbelt';
 
 import { colors } from './colors';
 import { makeGradient } from './makeGradient';
@@ -253,7 +254,13 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
   );
 }
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+export interface ThemeOverrides {}
+
+export interface ThemeOptionsOverrides {}
+
+export interface TypeBackgroundOverrides {}
+
+declare module PackageOverrides {
   interface Theme {
     colors: typeof colors;
     gradients: ReturnType<typeof getGradients>;
@@ -263,12 +270,22 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     colors?: Partial<typeof colors>;
     gradients?: Partial<ReturnType<typeof getGradients>>;
   }
-}
 
-declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground {
     hint: string;
     tableHeader: string;
     paperSecondary: string;
   }
+}
+
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme extends Object.Merge<PackageOverrides.Theme, ThemeOverrides, 'deep'> {}
+
+  interface ThemeOptions
+    extends Object.Merge<PackageOverrides.ThemeOptions, ThemeOptionsOverrides, 'deep'> {}
+}
+
+declare module '@material-ui/core/styles/createPalette' {
+  interface TypeBackground
+    extends Object.Merge<PackageOverrides.TypeBackground, TypeBackgroundOverrides, 'deep'> {}
 }
