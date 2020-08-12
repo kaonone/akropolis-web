@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.3.0...@akropolis-web/styles@0.4.0) (2020-08-12)
+
+
+### Features
+
+* **styles:** add ability to extend theme ([9e505f9](https://github.com/akropolisio/akropolis-web/commit/9e505f98a0e77b59244408af4ac56b93b4c35b57))
+
+
+
+
+
 # [0.3.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.2.0...@akropolis-web/styles@0.3.0) (2020-08-11)
 
 
