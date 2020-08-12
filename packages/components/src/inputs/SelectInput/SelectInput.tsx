@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { MenuProps } from '@material-ui/core/Menu';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
-import { AngleArrow } from '../../temp23/icons';
+import { Arrow } from '../../icons/Arrow';
 import { TextInput } from '..';
 import { useStyles } from './SelectInput.style';
 
@@ -99,7 +99,7 @@ export function SelectInput(props: SelectInputProps) {
   function renderArrowIcon() {
     return (
       <div className={classes.arrowIcon}>
-        <AngleArrow fontSize="inherit" />
+        <Arrow fontSize="inherit" />
       </div>
     );
   }

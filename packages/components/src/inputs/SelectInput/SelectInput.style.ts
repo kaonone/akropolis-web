@@ -10,7 +10,7 @@ export const useStyles = makeStyles(
         borderBottomRightRadius: 0,
 
         '& $arrowIcon': {
-          transform: 'rotate(-90deg)',
+          transform: 'rotate(180deg)',
         },
       },
 
@@ -37,7 +37,6 @@ export const useStyles = makeStyles(
       right: 0,
       padding: 8,
       fontSize: 18,
-      transform: 'rotate(90deg)',
       pointerEvents: 'none',
       transition: '1s',
     },
