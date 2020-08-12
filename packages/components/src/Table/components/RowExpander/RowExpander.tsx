@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import cn from 'classnames';
 
-import { Arrow } from './icons';
+import { Arrow } from '../../../icons';
 import { useStyles } from './RowExpander.style';
 
 type Props = {

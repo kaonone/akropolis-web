@@ -1,1 +1,2 @@
-export { InfoIcon as InfoIconV2 } from './InfoIconV2';
+export { InfoIcon as InfoIconV2 } from './InfoIcon';
+export { Arrow } from './Arrow';
