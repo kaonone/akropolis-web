@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.4.0...@akropolis-web/styles@0.5.0) (2020-08-12)
+
+
+### Features
+
+* add Card component, add InheritBackgrounHack ([9efd916](https://github.com/akropolisio/akropolis-web/commit/9efd916aee9a371f0af67edf77c4eecd82f4c3c9))
+
+
+
+
+
 # [0.4.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.3.0...@akropolis-web/styles@0.4.0) (2020-08-12)
 
 
