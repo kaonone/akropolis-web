@@ -58,16 +58,16 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
-    "import/extensions": [
-      "error",
+    'import/extensions': [
+      'error',
       {
-        "js": "never",
-        "mjs": "never",
-        "jsx": "never",
-        "ts": "never",
-        "d.ts": "never",
-        "tsx": "never"
-      }
+        js: 'never',
+        mjs: 'never',
+        jsx: 'never',
+        ts: 'never',
+        'd.ts': 'never',
+        tsx: 'never',
+      },
     ],
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/type-annotation-spacing': [
@@ -78,12 +78,17 @@ module.exports = {
         overrides: { arrow: { before: true, after: true } },
       },
     ],
-    '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
+    '@typescript-eslint/no-unused-expressions': [
+      'error',
+      { allowShortCircuit: true, allowTernary: true },
+    ],
     'no-restricted-imports': ['error', '@material-ui/core', '@material-ui/icons'],
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
     'no-dupe-class-members': 'off',
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'no-undef': 'off',
+    'consistent-return': 'off',
+    'default-case': 'off',
   },
 };
