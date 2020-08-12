@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@akropolis-web/styles';
 
 import { ComingSoon } from '../ComingSoon/ComingSoon';
-import { InfoIconV2 } from '../icons';
+import { InfoIcon } from '../icons';
 
 type Props = {
   hint?: React.ReactNode;
@@ -32,7 +32,7 @@ export const Label: React.FC<Props> = props => {
           &nbsp;
           <Tooltip title={hint} placement="right">
             <span>
-              <InfoIconV2 fontSize="small" />
+              <InfoIcon fontSize="small" />
             </span>
           </Tooltip>
         </>
