@@ -5,7 +5,6 @@ export { makeStyles, useTheme, lighten, darken } from '@material-ui/core/styles'
 
 export * from './theme';
 export * from './colors';
-export * from './fonts';
 export * from './WithDarkTheme';
 export { makeGradient } from './makeGradient';
 export { generateGridSpacingOverrides } from './generateGridSpacingOverrides';

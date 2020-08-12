@@ -1,1 +1,1 @@
-import './fonts/HelveticaNeue/stylesheet.css';
+import '../assets/fonts/HelveticaNeue/stylesheet.css';
