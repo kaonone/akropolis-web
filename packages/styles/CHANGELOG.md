@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.5.0...@akropolis-web/styles@0.6.0) (2020-08-13)
+
+
+### Bug Fixes
+
+* update fonts folder ([4959c5a](https://github.com/akropolisio/akropolis-web/commit/4959c5a3bbce9b828eb74667d401decced33d026))
+
+
+### Features
+
+* add fonts ([0048969](https://github.com/akropolisio/akropolis-web/commit/0048969d75cd804a07d746e3b8dfcd8d0b13e395))
+* changed fonts ([a07aacf](https://github.com/akropolisio/akropolis-web/commit/a07aacfa07c708aea2ed35208f4d5ae7e142f944))
+
+
+
+
+
 # [0.5.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.4.0...@akropolis-web/styles@0.5.0) (2020-08-12)
 
 
