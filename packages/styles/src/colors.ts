@@ -106,5 +106,6 @@ export const colors = {
   independence: '#4d4b6c',
   darkSpace: '#1c1c2a',
   stateBlue: '#494972',
+  darkMist: '#40404b',
   steelGray: '#1c1c2a',
 };

@@ -23,7 +23,7 @@ export const RowExpander: React.FC<Props> = props => {
       })}
       onClick={() => onToggle(!expanded)}
     >
-      <Arrow />
+      <Arrow fontSize="inherit" />
     </Button>
   );
 };
