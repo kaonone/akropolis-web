@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.6.0...@akropolis-web/styles@0.7.0) (2020-08-13)
+
+
+### Features
+
+* add inputs ([97e2d51](https://github.com/akropolisio/akropolis-web/commit/97e2d519a413e272b685388df8b8b7c96c42df33))
+
+
+
+
+
 # [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.5.0...@akropolis-web/styles@0.6.0) (2020-08-13)
 
 
