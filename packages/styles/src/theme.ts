@@ -35,17 +35,6 @@ function getGradients(type: 'dark' | 'light') {
       { color: colors.royalBlue, offset: '33.3%' },
       { color: colors.heliotrope, offset: '100%' },
     ]),
-    spartaIcon: makeGradient(
-      type === 'dark'
-        ? [colors.northWesternPurple, colors.darkPurple]
-        : [colors.lilac, colors.iris],
-    ),
-    spartaText: makeGradient([colors.blueViolet, colors.lavenderBlue]),
-    linearChart: [
-      makeGradient(['#fc87e2', '#f24cb6']),
-      makeGradient(['#63afdd', '#574cf2']),
-      makeGradient(['#c43ff0', '#574cf2']),
-    ] as const,
     poolCompositionChart: [
       makeGradient(['#63f8b3', '#dcff9c']),
       makeGradient(['#e323ff', '#7517f8']),
@@ -124,6 +113,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         gradients: getGradients(type),
         palette: type === 'light' ? lightPalette : darkPalette,
         typography: {
+          fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
           h6: {
             fontSize: 16,
             fontWeight: 400,
@@ -133,6 +123,14 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           borderRadius: 4,
         },
         overrides: {
+          MuiDrawer: {
+            paper: {
+              display: 'block',
+              width: defaultTheme.spacing(60),
+              padding: defaultTheme.spacing(4, 5),
+              backgroundColor: type === 'dark' ? colors.blackCurrant : colors.white,
+            },
+          },
           MuiPaper: {
             root: {
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
@@ -179,6 +177,16 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                   backgroundColor: '#fff',
                 },
               },
+
+              '#root': {
+                zIndex: 1,
+                position: 'relative',
+              },
+
+              '#walletconnect-wrapper': {
+                zIndex: defaultTheme.zIndex.modal,
+                position: 'relative',
+              },
             },
           },
 
@@ -192,6 +200,20 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             startIcon: {
               '&:empty': {
                 display: 'none',
+              },
+            },
+          },
+
+          MuiExpansionPanelSummary: {
+            root: {
+              '&$expanded': {
+                minHeight: defaultTheme.spacing(6),
+              },
+            },
+
+            content: {
+              '&$expanded': {
+                margin: defaultTheme.spacing(1.5, 0),
               },
             },
           },
@@ -211,7 +233,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiFormControlLabel: {
-            // TODO: research if MuiFormControlLabel is used or not
             root: {
               marginRight: 0,
             },
