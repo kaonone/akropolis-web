@@ -1,21 +1,21 @@
 {
-  "name": "@akropolis-web/styles",
-  "version": "0.7.0",
-  "description": "Package with shared css-related stuff like colors, fonts, themes, etc.",
+  "name": "@akropolis-web/primitives",
+  "version": "0.2.0",
+  "description": "Abstractions used across Akropolis web services.",
   "keywords": [
     "ethereum",
     "web3",
-    "dapp"
+    "dapp",
+    "akropolis"
   ],
   "author": "Akropolis",
-  "homepage": "https://github.com/akropolisio/akropolis-web/tree/master/packages/styles#readme",
+  "homepage": "https://github.com/akropolisio/akropolis-web/tree/master/packages/primitives#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "module": "dist/styles.esm.js",
+  "module": "dist/primitives.esm.js",
   "files": [
-    "dist",
-    "assets"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -34,17 +34,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@types/ramda": "^0.26.43",
-    "ramda": "^0.27.0"
-  },
   "peerDependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/styles": "^4.10.0",
-    "@types/react": "^16.9.5",
-    "react": "^16.10.2",
-    "ts-toolbelt": "6.3.6"
+    "@types/bn.js": "^4.11.6",
+    "bn.js": "^5.0.0"
   }
 }

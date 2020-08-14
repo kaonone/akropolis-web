@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.1...@akropolis-web/components@0.5.2) (2020-08-14)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## [0.5.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.0...@akropolis-web/components@0.5.1) (2020-08-14)
+
+
+### Bug Fixes
+
+* fix TabItem type ([74670bf](https://github.com/akropolisio/akropolis-web/commit/74670bfba9ba50d4b13a854a747751de5c97075b))
+
+
+
+
+
+# [0.5.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.4.1...@akropolis-web/components@0.5.0) (2020-08-13)
+
+
+### Bug Fixes
+
+* export RadioButton ([5710212](https://github.com/akropolisio/akropolis-web/commit/5710212c3433bb6fe6b295f2a1b39b2c313316f3))
+
+
+### Features
+
+* add inputs ([97e2d51](https://github.com/akropolisio/akropolis-web/commit/97e2d519a413e272b685388df8b8b7c96c42df33))
+
+
+
+
+
 ## [0.4.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.4.0...@akropolis-web/components@0.4.1) (2020-08-13)
 
 **Note:** Version bump only for package @akropolis-web/components

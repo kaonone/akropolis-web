@@ -15,9 +15,7 @@ type TabContent = {
   renderContent: () => React.ReactNode;
 };
 
-type TabItem<T extends React.ElementType> = Partial<
-  Omit<React.ComponentProps<T>, keyof TabContent>
-> &
+type TabItem<T extends React.ElementType> = Omit<React.ComponentProps<T>, keyof TabContent> &
   TabContent;
 
 type Props<T extends React.ElementType> = {
