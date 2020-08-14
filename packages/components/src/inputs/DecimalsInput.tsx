@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useState, useMemo, ComponentPropsWithoutRef } from 'react';
 import BN from 'bn.js';
 import { makeStyles } from '@akropolis-web/styles';
+import { IToBN, fromBaseUnit, toBaseUnit } from '@akropolis-web/primitives';
 
 import { Button } from '../Button/Button';
 import { useOnChangeState } from '../temp23/utils/react';
-import { fromBaseUnit, toBaseUnit } from '../temp23/utils/bn';
-import { IToBN } from '../temp23/model/types';
 
 import { TextInput } from '.';
 
