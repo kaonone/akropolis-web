@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@akropolis-web/styles": "^0.7.0",
+    "@akropolis-web/primitives": "^0.1.0",
     "@types/color": "^3.0.1",
     "@types/mersenne-twister": "^1.1.2",
     "@types/react-copy-to-clipboard": "^4.3.0",
