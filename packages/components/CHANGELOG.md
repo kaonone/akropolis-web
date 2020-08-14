@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.0...@akropolis-web/components@0.5.1) (2020-08-14)
+
+
+### Bug Fixes
+
+* fix TabItem type ([74670bf](https://github.com/akropolisio/akropolis-web/commit/74670bfba9ba50d4b13a854a747751de5c97075b))
+
+
+
+
+
 # [0.5.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.4.1...@akropolis-web/components@0.5.0) (2020-08-13)
 
 
