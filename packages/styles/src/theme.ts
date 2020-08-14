@@ -4,7 +4,6 @@ import { Object } from 'ts-toolbelt';
 
 import { colors } from './colors';
 import { makeGradient } from './makeGradient';
-import { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
 
 export { Theme };
 
@@ -96,7 +95,7 @@ export const darkPalette = {
   background: {
     hint: colors.darkSpace,
     default: colors.obsidian,
-    paper: colors.foggyNight,
+    paper: colors.cinder,
     paperSecondary: colors.darkBlueMagenta,
   },
   type: 'dark' as const,
@@ -125,17 +124,30 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         overrides: {
           MuiDrawer: {
             paper: {
-              display: 'block',
-              width: defaultTheme.spacing(60),
-              padding: defaultTheme.spacing(4, 5),
               backgroundColor: type === 'dark' ? colors.blackCurrant : colors.white,
             },
           },
+
+          MuiExpansionPanelSummary: {
+            root: {
+              '&$expanded': {
+                minHeight: defaultTheme.spacing(6),
+              },
+            },
+
+            content: {
+              '&$expanded': {
+                margin: defaultTheme.spacing(1.5, 0),
+              },
+            },
+          },
+
           MuiPaper: {
             root: {
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
             },
           },
+
           MuiLink: {
             underlineHover: {
               textDecoration: 'underline',
@@ -147,6 +159,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               },
             },
           },
+
           MuiCssBaseline: {
             '@global': {
               html: {
@@ -161,7 +174,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 margin: 0,
                 fontSize: '1rem',
                 transition: defaultTheme.transitions.create('background-color'),
-                overflow: 'hidden',
               },
 
               'html, body, #root': {
@@ -202,24 +214,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 display: 'none',
               },
             },
-          },
-
-          MuiExpansionPanelSummary: {
-            root: {
-              '&$expanded': {
-                minHeight: defaultTheme.spacing(6),
-              },
-            },
-
-            content: {
-              '&$expanded': {
-                margin: defaultTheme.spacing(1.5, 0),
-              },
-            },
-          },
-
-          MuiGrid: {
-            ...generateGridSpacingOverrides(defaultTheme.spacing),
           },
 
           MuiSnackbarContent: {
@@ -268,6 +262,83 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: 0,
             },
           },
+
+          MuiOutlinedInput: {
+            root: {
+              borderColor: colors.darkMist,
+              borderRadius: 8,
+              minHeight: 36,
+
+              '&$focused': {
+                background: colors.blackRussian,
+              },
+
+              '&$disabled': {
+                color: 'rgba(255, 255, 255, 0.2)',
+              },
+
+              '&$error': {
+                borderColor: '#643d3d',
+              },
+            },
+
+            adornedEnd: {
+              paddingRight: 0,
+            },
+
+            input: {
+              fontWeight: 300,
+              padding: '8px 11px',
+
+              '&::placeholder': {
+                color: 'rgba(255, 255, 255, 0.5)',
+              },
+            },
+
+            notchedOutline: {
+              borderColor: 'inherit !important',
+              borderWidth: '1px !important',
+            },
+          },
+
+          MuiFormHelperText: {
+            root: {
+              fontWeight: 300,
+
+              '&$error': {
+                margin: '5px 0 0',
+              },
+            },
+          },
+
+          MuiMenuItem: {
+            root: {
+              fontWeight: 300,
+              padding: '10px 9px',
+
+              '&$selected, &$selected:hover': {
+                backgroundColor: colors.blackRussian,
+              },
+
+              '&:hover': {
+                backgroundColor: colors.darkMist,
+              },
+            },
+          },
+
+          MuiSelect: {
+            root: {
+              overflow: 'hidden',
+
+              '&$select:focus': {
+                backgroundColor: colors.blackRussian,
+              },
+
+              '&:hover:not($disabled)': {
+                backgroundColor: colors.blackRussian,
+              },
+            },
+          },
         },
       },
       overrides || {},
@@ -299,6 +370,7 @@ declare module PackageOverrides {
   }
 }
 
+// TODO: Object.Merge cannot merge optional objects deeply. Need to implement custom Merge helper.
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme extends Object.Merge<PackageOverrides.Theme, ThemeOverrides, 'deep'> {}
 

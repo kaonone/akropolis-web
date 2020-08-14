@@ -65,7 +65,7 @@ export function Card(props: CardProps) {
 function getActiveBackgroundColor(currentTheme: Theme) {
   return currentTheme.palette.type === 'light'
     ? currentTheme.colors.zumthor
-    : currentTheme.colors.steelGray;
+    : currentTheme.colors.darkSpace;
 }
 
 const useStyles = makeStyles(theme => ({
