@@ -20,7 +20,7 @@ export const colors = {
   athensGray: '#eff1f5',
   royalBlue: '#544CF2',
   royalBlue2: '#594cf2',
-  heliotrope: '#D93CEF',
+  heliotrope: '#d93cef',
   heliotrope2: '#E965FF',
   zumthor: '#eaf1ff',
   scarpaFlow: '#555466',
@@ -44,7 +44,6 @@ export const colors = {
   anakiwa: '#7cd7ff',
   melrose: '#a38cff',
   blushPink: '#ff79ff',
-  heliotrope3: '#d93cef',
   pictonBlue: '#4cadf2',
   turquoise: '#3cefaf',
 
