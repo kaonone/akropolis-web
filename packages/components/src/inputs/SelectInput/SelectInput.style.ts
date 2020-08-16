@@ -35,8 +35,8 @@ export const useStyles = makeStyles(
     arrowIcon: {
       position: 'absolute',
       right: 0,
-      padding: 8,
-      fontSize: 18,
+      padding: 12,
+      fontSize: 12,
       pointerEvents: 'none',
       transition: '1s',
     },

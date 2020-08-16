@@ -35,17 +35,6 @@ function getGradients(type: 'dark' | 'light') {
       { color: colors.royalBlue, offset: '33.3%' },
       { color: colors.heliotrope, offset: '100%' },
     ]),
-    spartaIcon: makeGradient(
-      type === 'dark'
-        ? [colors.northWesternPurple, colors.darkPurple]
-        : [colors.lilac, colors.iris],
-    ),
-    spartaText: makeGradient([colors.blueViolet, colors.lavenderBlue]),
-    linearChart: [
-      makeGradient(['#fc87e2', '#f24cb6']),
-      makeGradient(['#63afdd', '#574cf2']),
-      makeGradient(['#c43ff0', '#574cf2']),
-    ] as const,
     poolCompositionChart: [
       makeGradient(['#63f8b3', '#dcff9c']),
       makeGradient(['#e323ff', '#7517f8']),
@@ -107,7 +96,7 @@ export const darkPalette = {
   background: {
     hint: colors.darkSpace,
     default: colors.obsidian,
-    paper: colors.foggyNight,
+    paper: colors.cinder,
     paperSecondary: colors.darkBlueMagenta,
   },
   type: 'dark' as const,
@@ -124,6 +113,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         gradients: getGradients(type),
         palette: type === 'light' ? lightPalette : darkPalette,
         typography: {
+          fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
           h6: {
             fontSize: 16,
             fontWeight: 400,
@@ -138,6 +128,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
             },
           },
+
           MuiLink: {
             underlineHover: {
               textDecoration: 'underline',
@@ -149,6 +140,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               },
             },
           },
+
           MuiCssBaseline: {
             '@global': {
               html: {
@@ -163,7 +155,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 margin: 0,
                 fontSize: '1rem',
                 transition: defaultTheme.transitions.create('background-color'),
-                overflow: 'hidden',
               },
 
               'html, body, #root': {
@@ -178,6 +169,16 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 body: {
                   backgroundColor: '#fff',
                 },
+              },
+
+              '#root': {
+                zIndex: 1,
+                position: 'relative',
+              },
+
+              '#walletconnect-wrapper': {
+                zIndex: defaultTheme.zIndex.modal,
+                position: 'relative',
               },
             },
           },
@@ -211,7 +212,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiFormControlLabel: {
-            // TODO: research if MuiFormControlLabel is used or not
             root: {
               marginRight: 0,
             },
@@ -247,6 +247,89 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: 0,
             },
           },
+
+          MuiOutlinedInput: {
+            root: {
+              borderColor: colors.darkMist,
+              borderRadius: 8,
+              minHeight: 36,
+
+              '&$focused': {
+                background: colors.blackRussian,
+              },
+
+              '&$disabled': {
+                color: 'rgba(255, 255, 255, 0.2)',
+              },
+
+              '&$error': {
+                borderColor: '#643d3d',
+              },
+            },
+
+            adornedEnd: {
+              paddingRight: 0,
+            },
+
+            input: {
+              fontWeight: 300,
+              padding: '8px 11px',
+
+              '&::placeholder': {
+                color: 'rgba(255, 255, 255, 0.5)',
+              },
+            },
+
+            notchedOutline: {
+              borderColor: 'inherit !important',
+              borderWidth: '1px !important',
+            },
+          },
+
+          MuiFormHelperText: {
+            root: {
+              fontWeight: 300,
+
+              '&$error': {
+                margin: '5px 0 0',
+              },
+            },
+          },
+
+          MuiMenuItem: {
+            root: {
+              fontWeight: 300,
+              padding: '10px 9px',
+
+              '&$selected, &$selected:hover': {
+                backgroundColor: colors.blackRussian,
+              },
+
+              '&:hover': {
+                backgroundColor: colors.darkMist,
+              },
+            },
+          },
+
+          MuiSelect: {
+            root: {
+              overflow: 'hidden',
+
+              '&$select:focus': {
+                backgroundColor: colors.blackRussian,
+              },
+
+              '&:hover:not($disabled)': {
+                backgroundColor: colors.blackRussian,
+              },
+            },
+          },
+
+          MuiBackdrop: {
+            root: {
+              backgroundColor: 'rgba(0, 0, 0, 0.15)',
+            },
+          },
         },
       },
       overrides || {},
@@ -278,14 +361,23 @@ declare module PackageOverrides {
   }
 }
 
+type MergeThemeOptions<A extends object, B extends object> = Object.Partial<
+  Object.Merge<
+    Object.Required<A, keyof any, 'deep'>,
+    Object.Required<B, keyof any, 'deep'>,
+    'deep'
+  >,
+  'deep'
+>;
+
 declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme extends Object.Merge<PackageOverrides.Theme, ThemeOverrides, 'deep'> {}
+  interface Theme extends Object.Merge<ThemeOverrides, PackageOverrides.Theme, 'deep'> {}
 
   interface ThemeOptions
-    extends Object.Merge<PackageOverrides.ThemeOptions, ThemeOptionsOverrides, 'deep'> {}
+    extends MergeThemeOptions<ThemeOptionsOverrides, PackageOverrides.ThemeOptions> {}
 }
 
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground
-    extends Object.Merge<PackageOverrides.TypeBackground, TypeBackgroundOverrides, 'deep'> {}
+    extends Object.Merge<TypeBackgroundOverrides, PackageOverrides.TypeBackground, 'deep'> {}
 }
