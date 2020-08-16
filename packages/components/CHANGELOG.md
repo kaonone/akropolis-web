@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.2...@akropolis-web/components@0.5.3) (2020-08-16)
+
+
+### Bug Fixes
+
+* extend theme with styles for Select component and outlined input ([c24729a](https://github.com/akropolisio/akropolis-web/commit/c24729aadef135753207c114f5995910854b69a1))
+
+
+
+
+
 ## [0.5.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.1...@akropolis-web/components@0.5.2) (2020-08-14)
 
 **Note:** Version bump only for package @akropolis-web/components
