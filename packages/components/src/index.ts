@@ -1,5 +1,21 @@
 import * as Table from './Table';
 
+export { default as Box } from '@material-ui/core/Box';
+export { default as ButtonBase } from '@material-ui/core/ButtonBase';
+export { default as CircularProgress } from '@material-ui/core/CircularProgress';
+export { default as CssBaseline } from '@material-ui/core/CssBaseline';
+export { default as Grid } from '@material-ui/core/Grid';
+export { default as Typography, TypographyProps } from '@material-ui/core/Typography';
+export { default as IconButton } from '@material-ui/core/IconButton';
+export { default as Link, LinkProps } from '@material-ui/core/Link';
+export { default as Divider } from '@material-ui/core/Divider';
+export { default as Skeleton } from '@material-ui/lab/Skeleton';
+
+// TODO: refactor AuthModal and remove below exports
+export { default as Dialog } from '@material-ui/core/Dialog';
+export { default as DialogContent } from '@material-ui/core/DialogContent';
+export { default as DialogTitle } from '@material-ui/core/DialogTitle';
+
 export { Table };
 export { Button, ButtonProps } from './Button/Button';
 export * from './TabList/TabList';
