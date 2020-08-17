@@ -1,8 +1,4 @@
-export {
-  default as TextInput,
-  TextFieldProps as TextInputProps,
-} from '@material-ui/core/TextField';
-
+export { TextInput, TextInputProps } from './TextInput';
 export { NumberInput } from './NumberInput';
 export { DecimalsInput } from './DecimalsInput';
 export { CheckboxInput } from './CheckboxInput';

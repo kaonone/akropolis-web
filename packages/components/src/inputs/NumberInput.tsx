@@ -4,7 +4,7 @@ import NumberFormat, { NumberFormatProps, NumberFormatValues } from 'react-numbe
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { Object as O } from 'ts-toolbelt';
 
-import { TextInput, TextInputProps } from '.';
+import { TextInput, TextInputProps } from './TextInput';
 
 type CustomProps = {
   value: number;

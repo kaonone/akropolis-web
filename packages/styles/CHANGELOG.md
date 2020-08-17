@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.7.0...@akropolis-web/styles@0.8.0) (2020-08-16)
+
+
+### Bug Fixes
+
+* extend theme with styles for Select component and outlined input ([c24729a](https://github.com/akropolisio/akropolis-web/commit/c24729aadef135753207c114f5995910854b69a1))
+
+
+### Features
+
+* add general theme options ([75d98ae](https://github.com/akropolisio/akropolis-web/commit/75d98aeb036f95fe7b582009c8d03202a8cbe736))
+
+
+
+
+
 # [0.7.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.6.0...@akropolis-web/styles@0.7.0) (2020-08-13)
 
 

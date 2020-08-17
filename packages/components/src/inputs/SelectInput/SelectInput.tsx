@@ -5,7 +5,7 @@ import { MenuProps } from '@material-ui/core/Menu';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { Arrow } from '../../icons/Arrow';
-import { TextInput } from '..';
+import { TextInput } from '../TextInput';
 import { useStyles } from './SelectInput.style';
 
 type Option = {

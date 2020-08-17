@@ -4,6 +4,7 @@ import { Object } from 'ts-toolbelt';
 
 import { colors } from './colors';
 import { makeGradient } from './makeGradient';
+import { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
 
 export { Theme };
 
@@ -131,26 +132,6 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           borderRadius: 4,
         },
         overrides: {
-          MuiDrawer: {
-            paper: {
-              backgroundColor: type === 'dark' ? colors.blackCurrant : colors.white,
-            },
-          },
-
-          MuiExpansionPanelSummary: {
-            root: {
-              '&$expanded': {
-                minHeight: defaultTheme.spacing(6),
-              },
-            },
-
-            content: {
-              '&$expanded': {
-                margin: defaultTheme.spacing(1.5, 0),
-              },
-            },
-          },
-
           MuiPaper: {
             root: {
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
@@ -226,6 +207,10 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 display: 'none',
               },
             },
+          },
+
+          MuiGrid: {
+            ...generateGridSpacingOverrides(defaultTheme.spacing),
           },
 
           MuiSnackbarContent: {
@@ -440,6 +425,11 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           root: {
             padding: 0,
           },
+          MuiBackdrop: {
+            root: {
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            },
+          },
         },
       },
       overrides || {},
@@ -471,15 +461,23 @@ declare module PackageOverrides {
   }
 }
 
-// TODO: Object.Merge cannot merge optional objects deeply. Need to implement custom Merge helper.
+type MergeThemeOptions<A extends object, B extends object> = Object.Partial<
+  Object.Merge<
+    Object.Required<A, keyof any, 'deep'>,
+    Object.Required<B, keyof any, 'deep'>,
+    'deep'
+  >,
+  'deep'
+>;
+
 declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme extends Object.Merge<PackageOverrides.Theme, ThemeOverrides, 'deep'> {}
+  interface Theme extends Object.Merge<ThemeOverrides, PackageOverrides.Theme, 'deep'> {}
 
   interface ThemeOptions
-    extends Object.Merge<PackageOverrides.ThemeOptions, ThemeOptionsOverrides, 'deep'> {}
+    extends MergeThemeOptions<ThemeOptionsOverrides, PackageOverrides.ThemeOptions> {}
 }
 
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground
-    extends Object.Merge<PackageOverrides.TypeBackground, TypeBackgroundOverrides, 'deep'> {}
+    extends Object.Merge<TypeBackgroundOverrides, PackageOverrides.TypeBackground, 'deep'> {}
 }

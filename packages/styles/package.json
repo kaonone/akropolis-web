@@ -1,6 +1,6 @@
 {
   "name": "@akropolis-web/styles",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Package with shared css-related stuff like colors, fonts, themes, etc.",
   "keywords": [
     "ethereum",
@@ -34,17 +34,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@types/ramda": "^0.26.43",
-    "ramda": "^0.27.0"
-  },
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/styles": "^4.10.0",
+    "@types/ramda": "^0.27.14",
     "@types/react": "^16.9.5",
+    "ramda": "^0.27.1",
     "react": "^16.10.2",
-    "ts-toolbelt": "6.3.6"
+    "ts-toolbelt": "^6.15.0"
   }
 }

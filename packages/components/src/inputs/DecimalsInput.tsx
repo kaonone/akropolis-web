@@ -5,8 +5,7 @@ import { IToBN, fromBaseUnit, toBaseUnit } from '@akropolis-web/primitives';
 
 import { Button } from '../Button/Button';
 import { useOnChangeState } from '../temp23/utils/react';
-
-import { TextInput } from '.';
+import { TextInput } from './TextInput';
 
 interface OwnProps {
   baseDecimals: number;
