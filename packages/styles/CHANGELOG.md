@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.0...@akropolis-web/styles@0.8.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* replace link underline with thin border-bottom ([df76c93](https://github.com/akropolisio/akropolis-web/commit/df76c93839230b3a6fa8629de00e285af484f106))
+* small button border-radius, change outlined button hover color ([252888e](https://github.com/akropolisio/akropolis-web/commit/252888e67bc444b1d844fdce002f815ab3464d9e))
+
+
+
+
+
 # [0.8.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.7.0...@akropolis-web/styles@0.8.0) (2020-08-16)
 
 

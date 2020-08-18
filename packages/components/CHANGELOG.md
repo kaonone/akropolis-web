@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.3...@akropolis-web/components@0.6.0) (2020-08-18)
+
+
+### Bug Fixes
+
+* hide header row if table doesn't contain titles ([3830672](https://github.com/akropolisio/akropolis-web/commit/3830672fd643edc1322a50c8737b9846fc323cfd))
+* small button border-radius, change outlined button hover color ([252888e](https://github.com/akropolisio/akropolis-web/commit/252888e67bc444b1d844fdce002f815ab3464d9e))
+
+
+### Features
+
+* add titleSize: 'small' prop to Metric component ([5a197e3](https://github.com/akropolisio/akropolis-web/commit/5a197e39b04e8205e453d633814bfc75f41cb02a))
+
+
+
+
+
 ## [0.5.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.2...@akropolis-web/components@0.5.3) (2020-08-16)
 
 
