@@ -11,11 +11,6 @@ export { default as Link, LinkProps } from '@material-ui/core/Link';
 export { default as Divider } from '@material-ui/core/Divider';
 export { default as Skeleton } from '@material-ui/lab/Skeleton';
 
-// TODO: refactor AuthModal and remove below exports
-export { default as Dialog } from '@material-ui/core/Dialog';
-export { default as DialogContent } from '@material-ui/core/DialogContent';
-export { default as DialogTitle } from '@material-ui/core/DialogTitle';
-
 export { Table };
 export { Button, ButtonProps } from './Button/Button';
 export * from './TabList/TabList';
