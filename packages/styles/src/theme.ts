@@ -102,6 +102,15 @@ export const darkPalette = {
   type: 'dark' as const,
 };
 
+const sizes = {
+  tabs: {
+    height: 36,
+    indicatorSpace: 3,
+    borderWidth: 1,
+    minWidth: 112,
+  },
+};
+
 export const lightTheme = getTheme('light');
 export const darkTheme = getTheme('dark');
 
@@ -131,12 +140,15 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiLink: {
             underlineHover: {
-              textDecoration: 'underline',
-              textDecorationColor:
-                type === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+              paddingBottom: 2,
+              borderWidth: '0 0 1px 0',
+              borderStyle: 'solid',
+              borderColor: type === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+              textDecoration: 'none',
 
               '&:hover': {
-                textDecorationColor: 'inherit',
+                textDecoration: 'none',
+                borderColor: 'currentColor',
               },
             },
           },
@@ -325,9 +337,97 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             },
           },
 
+          MuiTabs: {
+            root: {
+              position: 'relative',
+              display: 'inline-flex',
+              overflow: 'hidden',
+              minHeight: sizes.tabs.height,
+              borderRadius: sizes.tabs.height / 2,
+              padding: sizes.tabs.indicatorSpace,
+              background: 'linear-gradient(to left, #544cf2, #d93cef)',
+
+              '&::before': {
+                content: "''",
+                position: 'absolute',
+                top: 1,
+                left: 1,
+                right: 1,
+                bottom: 1,
+                borderRadius: sizes.tabs.height / 2,
+              },
+            },
+
+            indicator: {
+              top: 0,
+              bottom: 0,
+              height: '100%',
+              borderRadius:
+                sizes.tabs.height / 2 - sizes.tabs.indicatorSpace - sizes.tabs.borderWidth,
+              zIndex: -1,
+              background: 'linear-gradient(to left, #544cf2, #d93cef)',
+            },
+
+            scroller: {
+              zIndex: 1,
+              overflow: 'hidden',
+              borderRadius:
+                sizes.tabs.height / 2 - sizes.tabs.indicatorSpace - sizes.tabs.borderWidth,
+            },
+
+            flexContainer: {
+              height: '100%',
+            },
+          },
+
+          MuiTab: {
+            root: {
+              minWidth: sizes.tabs.minWidth,
+              position: 'relative',
+              overflow: 'visible',
+              minHeight: 'unset',
+              padding: defaultTheme.spacing(0.2, 1.5),
+              textTransform: 'unset',
+              fontSize: '1rem',
+              fontWeight: 300,
+              lineHeight: 1.5,
+              borderRadius:
+                sizes.tabs.height / 2 - sizes.tabs.indicatorSpace - sizes.tabs.borderWidth,
+
+              '&::after': {
+                content: "''",
+                position: 'absolute',
+                left: 0,
+                width: 1,
+                top: 3,
+                bottom: 3,
+                background: 'currentColor',
+                opacity: 0,
+                transition: defaultTheme.transitions.create('opacity'),
+              },
+
+              '&:not($selected)': {
+                '& + &::after': {
+                  opacity: 0.2,
+                },
+              },
+
+              '&$selected': {
+                color: colors.white,
+              },
+            },
+          },
+        },
+
+        // TODO: enable @material-ui/lab overrides
+        // @ts-ignore
+        MuiTabPanel: {
+          root: {
+            padding: 0,
+          },
           MuiBackdrop: {
             root: {
-              backgroundColor: 'rgba(0, 0, 0, 0.15)',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
             },
           },
         },

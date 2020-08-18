@@ -1,12 +1,10 @@
-import { makeStyles } from '@akropolis-web/styles';
-
-import { OwnProps } from './Button';
+import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
 
 const shadowOffset = 3;
 const largeShadowOffset = 3;
 const backgroundGradientSize = '300%';
 
-const smallHeightTabletXS = 3.5;
+const smallHeightTabletXS = 3.75;
 
 const heightTabletXS = 4.5;
 
@@ -57,6 +55,7 @@ export const useStyles = makeStyles(theme => ({
     '&$disabled': {
       background: `rgba(255, 255, 255, 0.2)`,
       color: `rgba(255, 255, 255, 0.5)`,
+      border: 'none',
     },
 
     '&:before': {
@@ -69,8 +68,7 @@ export const useStyles = makeStyles(theme => ({
       right: 1,
       bottom: 1,
       left: 1,
-      backgroundColor: ({ backgroundColor }: OwnProps) =>
-        backgroundColor || theme.palette.background.default,
+      backgroundColor: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
       transition: theme.transitions.create(['opacity', 'background-color']),
 
       borderRadius: theme.spacing(heightTabletXS / 2) - 1,
@@ -86,7 +84,7 @@ export const useStyles = makeStyles(theme => ({
 
     '&:hover:not(:active), &$focusVisible': {
       border: 'none',
-      color: theme.colors.royalBlue2,
+      color: theme.colors.heliotrope,
     },
 
     '&:active': {
