@@ -6,15 +6,11 @@ export const useStyles = makeStyles(
     title: {
       fontSize: 16,
       marginBottom: 12,
-    },
-    sizeSmall: {
-      '& $title': {
+
+      '$sizeSmall &': {
         fontSize: 12,
         fontWeight: 300,
         marginBottom: 0,
-      },
-      '& $value': {
-        fontSize: 22,
       },
     },
     value: {
@@ -23,6 +19,10 @@ export const useStyles = makeStyles(
       fontSize: 32,
       fontWeight: 300,
       lineHeight: 'normal',
+
+      '$sizeSmall &': {
+        fontSize: 22,
+      },
     },
     subValue: {
       marginTop: 8,
@@ -33,6 +33,7 @@ export const useStyles = makeStyles(
       marginLeft: 10,
       alignSelf: 'flex-end',
     },
+    sizeSmall: {},
   }),
   { name: 'Metric' },
 );
