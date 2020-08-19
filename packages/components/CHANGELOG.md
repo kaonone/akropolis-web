@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.6.0...@akropolis-web/components@0.7.0) (2020-08-19)
+
+
+### Features
+
+* extend Button and Metric components ([7066d53](https://github.com/akropolisio/akropolis-web/commit/7066d530178a52e16b0a9d1dded02f7260e3ab6a))
+
+
+
+
+
 # [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.5.3...@akropolis-web/components@0.6.0) (2020-08-18)
 
 
