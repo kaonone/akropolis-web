@@ -38,6 +38,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
         focusVisible: cn(classes.focusVisible, muiClasses.focusVisible),
         containedPrimary: cn(classes.containedPrimary, muiClasses.containedPrimary),
         outlinedPrimary: cn(classes.outlinedPrimary, muiClasses.outlinedPrimary),
+        textPrimary: cn(classes.textPrimary, muiClasses.textPrimary),
         ...rest.classes,
       }}
       disableRipple

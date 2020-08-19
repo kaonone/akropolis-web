@@ -1,29 +1,39 @@
-import { makeStyles, Theme, colors } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  root: {},
+export const useStyles = makeStyles(
+  () => ({
+    root: {},
+    title: {
+      fontSize: 16,
+      marginBottom: 12,
 
-  title: {
-    lineHeight: `${theme.spacing(3.5)}px`,
-    textTransform: 'uppercase',
-    opacity: 0.8,
-  },
+      '$sizeSmall &': {
+        fontSize: 12,
+        fontWeight: 300,
+        marginBottom: 0,
+      },
+    },
+    value: {
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: 32,
+      fontWeight: 300,
+      lineHeight: 'normal',
 
-  values: {
-    whiteSpace: 'nowrap',
-  },
-
-  value: {
-    display: 'inline-block',
-    verticalAlign: 'baseline',
-    lineHeight: `${theme.spacing(4)}px`,
-    fontWeight: 500,
-  },
-
-  subValue: {
-    display: 'inline-block',
-    verticalAlign: 'baseline',
-    marginLeft: theme.spacing(1),
-    color: colors.frenchGray,
-  },
-}));
+      '$sizeSmall &': {
+        fontSize: 22,
+      },
+    },
+    subValue: {
+      marginTop: 8,
+      fontSize: 16,
+    },
+    chart: {
+      marginBottom: 5,
+      marginLeft: 10,
+      alignSelf: 'flex-end',
+    },
+    sizeSmall: {},
+  }),
+  { name: 'Metric' },
+);

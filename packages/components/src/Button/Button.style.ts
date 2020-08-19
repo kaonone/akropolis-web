@@ -151,6 +151,28 @@ export const useStyles = makeStyles(theme => ({
     },
   },
 
+  textPrimary: {
+    padding: 0,
+    color: theme.colors.heliotrope,
+    minWidth: 'unset',
+    minHeight: 'unset',
+    justifyContent: 'flex-start',
+    background: theme.gradients.button.linear('to right'),
+    backgroundSize: backgroundGradientSize,
+    '-webkit-text-fill-color': 'transparent',
+    '-webkit-background-clip': 'text',
+    backgroundClip: 'text',
+
+    '&:hover:not(:active), &$focusVisible': {
+      animation: '$animate 8s linear infinite',
+      backgroundColor: 'transparent',
+    },
+
+    '&:active': {
+      backgroundPosition: '60%',
+    },
+  },
+
   disabled: {},
   focusVisible: {},
 
