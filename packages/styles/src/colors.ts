@@ -39,4 +39,6 @@ export const colors = {
   white: '#fff',
   zumthor2: '#e6eeff',
   zumthor: '#eaf1ff',
+  midnightBlue2: '#373765',
+  midnightBlue: '#3b3b7a',
 };
