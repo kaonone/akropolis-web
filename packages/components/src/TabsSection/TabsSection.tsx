@@ -20,7 +20,7 @@ type TabItem<T extends React.ElementType> = Omit<React.ComponentProps<T>, keyof 
 type Props<T extends React.ElementType> = {
   currentValue: string;
   tabs: TabItem<T>[];
-  onChange: (event: React.ChangeEvent<{}>, tab?: string) => void;
+  onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
   tabComponent?: T;
   children?: React.ReactNode;
 };
