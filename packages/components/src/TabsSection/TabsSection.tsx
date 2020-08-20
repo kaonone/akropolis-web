@@ -39,7 +39,7 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
         {children}
       </div>
       {tabs.map(({ value, renderContent }) => (
-        <TabPanel value={value} key={value}>
+        <TabPanel classes={{ root: classes.tabPanel }} value={value} key={value}>
           {renderContent()}
         </TabPanel>
       ))}
@@ -49,7 +49,14 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
   function renderTab(tabItem: TabItem<T>) {
     const { value, label, renderContent, ...restTabProps } = tabItem;
     return (
-      <Tab {...restTabProps} label={label} value={value} key={value} component={tabComponent} />
+      <Tab
+        {...restTabProps}
+        className={classes.tab}
+        label={label}
+        value={value}
+        key={value}
+        component={tabComponent}
+      />
     );
   }
 }
