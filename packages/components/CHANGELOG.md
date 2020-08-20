@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.0...@akropolis-web/components@0.7.1) (2020-08-20)
+
+
+### Bug Fixes
+
+* change text button hover styles ([ef06f7a](https://github.com/akropolisio/akropolis-web/commit/ef06f7a06ea457e64661c476a4ff4a02050ef141))
+* make OnChange prop optional in TabsSection ([225b588](https://github.com/akropolisio/akropolis-web/commit/225b5882c62480149ba1b1039dcf789e88f9d929))
+
+
+
+
+
 # [0.7.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.6.0...@akropolis-web/components@0.7.0) (2020-08-19)
 
 
