@@ -11,7 +11,7 @@ type Input = {
  */
 export function calcAvg(...rest: Input[]): Fraction {
   if (rest.length <= 1) {
-    return toFraction(rest[0].value || 0);
+    return toFraction((rest.length && rest[0].value) || 0);
   }
 
   const avg = rest.reduce((x1, x2) => {

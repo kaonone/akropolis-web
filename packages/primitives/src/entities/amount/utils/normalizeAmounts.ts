@@ -2,6 +2,10 @@ import { decimalsToWei } from '../../../bnHexWei';
 import { Amount, NormalizedAmount } from '../Amount';
 
 export function normalizeAmounts<T extends Amount>(amounts: T[]): NormalizedAmount<T>[] {
+  if (amounts.length < 1) {
+    return [];
+  }
+
   const maxDecimal = amounts
     .map(amount => amount.currency.decimals)
     .reduce((max, current) => (current > max ? current : max));
