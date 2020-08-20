@@ -157,19 +157,17 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 'unset',
     minHeight: 'unset',
     justifyContent: 'flex-start',
-    background: theme.gradients.button.linear('to right'),
-    backgroundSize: backgroundGradientSize,
+    background: theme.gradients.outlinedButton.linear('to right'),
+    backgroundSize: '150%',
     '-webkit-text-fill-color': 'transparent',
     '-webkit-background-clip': 'text',
     backgroundClip: 'text',
+    borderRadius: 0,
+    transition: 'background-size 1s',
 
-    '&:hover:not(:active), &$focusVisible': {
-      animation: '$animate 8s linear infinite',
+    '&:hover, &$focusVisible': {
       backgroundColor: 'transparent',
-    },
-
-    '&:active': {
-      backgroundPosition: '60%',
+      backgroundSize: '500%',
     },
   },
 
