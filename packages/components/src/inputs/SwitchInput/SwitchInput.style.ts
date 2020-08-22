@@ -79,6 +79,9 @@ export const useStyles = makeStyles(
         transition: theme.transitions.create(['opacity']),
       },
     },
+    label: {
+      fontSize: 'inherit',
+    },
     checked: {},
   }),
   { name: 'SwitchInput' },

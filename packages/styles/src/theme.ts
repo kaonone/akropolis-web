@@ -302,9 +302,9 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiFormHelperText: {
             root: {
               fontWeight: 300,
-
               '&$error': {
                 margin: '5px 0 0',
+                color: '#FE5A59',
               },
             },
           },
