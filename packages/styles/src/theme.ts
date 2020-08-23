@@ -43,6 +43,7 @@ function getGradients(type: 'dark' | 'light') {
       makeGradient(['#f985f5', '#f863dd']),
     ] as const,
     progressChart: makeGradient(['#7d40ff', '#02a4ff']),
+    cardTitleInactive: makeGradient([colors.midnightBlue, colors.midnightBlue2]),
   };
 }
 
@@ -301,9 +302,9 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiFormHelperText: {
             root: {
               fontWeight: 300,
-
               '&$error': {
                 margin: '5px 0 0',
+                color: '#FE5A59',
               },
             },
           },

@@ -35,6 +35,7 @@ function SwitchInput(props: Props) {
   return (
     <FormControl {...formControlProps}>
       <FormControlLabel
+        classes={{ label: classes.label }}
         control={
           <Switch
             {...switchProps}
