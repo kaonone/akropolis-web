@@ -5,15 +5,14 @@ export const useStyles = makeStyles(
     navigationBar: {
       display: 'flex',
       alignItems: 'flex-start',
-      marginBottom: 40,
+      marginBottom: 45,
     },
     tab: {
       padding: '0 20px',
       minWidth: 'initial',
     },
     tabPanel: {
-      paddingLeft: 0,
-      paddingRight: 0,
+      padding: 0,
     },
   }),
   { name: 'TabsSection' },
