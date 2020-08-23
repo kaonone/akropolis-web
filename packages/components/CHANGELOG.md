@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.1...@akropolis-web/components@0.7.2) (2020-08-23)
+
+
+### Bug Fixes
+
+* add inactive label background gradient ([b2a3cf9](https://github.com/akropolisio/akropolis-web/commit/b2a3cf90919685d130477d3650a0fcb3ad5dec9b))
+* remove tab min size, add padding ([0063a4e](https://github.com/akropolisio/akropolis-web/commit/0063a4ea89a5f8437c35c115e2cce6a6bfb803f7))
+* set switch label inherit font size, override error hint color ([de64b02](https://github.com/akropolisio/akropolis-web/commit/de64b02db5478896853be4f9d7eb96538a04c664))
+
+
+
+
+
 ## [0.7.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.0...@akropolis-web/components@0.7.1) (2020-08-20)
 
 

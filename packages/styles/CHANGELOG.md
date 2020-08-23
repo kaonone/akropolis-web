@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.1...@akropolis-web/styles@0.8.2) (2020-08-23)
+
+
+### Bug Fixes
+
+* add inactive label background gradient ([b2a3cf9](https://github.com/akropolisio/akropolis-web/commit/b2a3cf90919685d130477d3650a0fcb3ad5dec9b))
+* set switch label inherit font size, override error hint color ([de64b02](https://github.com/akropolisio/akropolis-web/commit/de64b02db5478896853be4f9d7eb96538a04c664))
+
+
+
+
+
 ## [0.8.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.0...@akropolis-web/styles@0.8.1) (2020-08-18)
 
 
