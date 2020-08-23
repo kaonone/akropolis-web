@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.2...@akropolis-web/components@0.7.3) (2020-08-23)
+
+
+### Bug Fixes
+
+* **components:** fix TabsSection styles ([159c77f](https://github.com/akropolisio/akropolis-web/commit/159c77f9fd4fa80995183581475a838f199d965f))
+
+
+
+
+
 ## [0.7.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.1...@akropolis-web/components@0.7.2) (2020-08-23)
 
 
