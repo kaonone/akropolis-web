@@ -115,8 +115,8 @@ export const useStyles = makeStyles(
         '&:not($rowWithExpandedContent) $cell': {
           borderBottom: crossRowBorder,
 
-          '&:first-child': crossRowBorderStyleForFirstCell,
-          '&:last-child': crossRowBorderStyleForLastCell,
+          '$withOuterPadding &:first-child': crossRowBorderStyleForFirstCell,
+          '$withOuterPadding &:last-child': crossRowBorderStyleForLastCell,
         },
       },
 
