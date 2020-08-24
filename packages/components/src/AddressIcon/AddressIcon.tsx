@@ -19,11 +19,16 @@ function AddressIcon(props: Props) {
   const shiftedColors = makeHueShift(baseColors.slice(), generator);
 
   return (
-    <div style={{ backgroundColor: generateColor(shiftedColors, generator) }}>
-      <SvgIcon {...props} viewBox="0 0 40 40" x="0" y="0" className={classes.root}>
-        {shapesArr.map((_, i) => renderShape(shiftedColors, generator, i, shapeCount - 1))}
-      </SvgIcon>
-    </div>
+    <SvgIcon
+      {...props}
+      viewBox="0 0 40 40"
+      x="0"
+      y="0"
+      className={classes.root}
+      style={{ backgroundColor: generateColor(shiftedColors, generator) }}
+    >
+      {shapesArr.map((_, i) => renderShape(shiftedColors, generator, i, shapeCount - 1))}
+    </SvgIcon>
   );
 }
 
