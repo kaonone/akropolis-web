@@ -74,7 +74,7 @@ const lightPalette = {
     primary: colors.black,
   },
   error: {
-    main: colors.monza,
+    main: colors.persimmon,
   },
   background: {
     hint: colors.charade,
@@ -102,7 +102,7 @@ export const darkPalette = {
     primary: colors.white,
   },
   error: {
-    main: colors.monza,
+    main: colors.persimmon,
   },
   background: {
     hint: colors.darkSpace,
