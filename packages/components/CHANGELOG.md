@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.4...@akropolis-web/components@0.7.5) (2020-08-24)
+
+
+### Bug Fixes
+
+* jazz icon generating fix ([75c8596](https://github.com/akropolisio/akropolis-web/commit/75c8596a7ec0b6d2026e2692cbe4f27cb8bea64f))
+* remove div container ([beb1162](https://github.com/akropolisio/akropolis-web/commit/beb1162feb1bd5ae57a0cf9cf8c0b29c90b465bb))
+
+
+
+
+
 ## [0.7.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.3...@akropolis-web/components@0.7.4) (2020-08-24)
 
 
