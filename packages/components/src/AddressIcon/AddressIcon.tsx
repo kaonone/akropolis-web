@@ -16,7 +16,7 @@ function AddressIcon(props: Props) {
 
   const generator = new MersenneTwister(jsNumberForAddress(address));
   const shapesArr: number[] = Array(shapeCount).fill(0);
-  const shiftedColors = makeHueShift(baseColors, generator);
+  const shiftedColors = makeHueShift(baseColors.slice(), generator);
 
   return (
     <SvgIcon
@@ -27,7 +27,7 @@ function AddressIcon(props: Props) {
       className={classes.root}
       style={{ backgroundColor: generateColor(shiftedColors, generator) }}
     >
-      {shapesArr.map((_, i) => getShape(shiftedColors, generator, i, shapeCount - 1))}
+      {shapesArr.map((_, i) => renderShape(shiftedColors, generator, i, shapeCount - 1))}
     </SvgIcon>
   );
 }
@@ -40,6 +40,10 @@ function jsNumberForAddress(address: string) {
 }
 
 function generateColor(colors: string[], generator: MersenneTwister) {
+  // unused variable to keep the order of generation like in original library https://github.com/marcusmolchany/react-jazzicon/blob/2db7299d58892909dc6aafdd0ed8771a3ef644a1/src/Jazzicon.js#L15
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const rand = generator.random();
   const idx = Math.floor(colors.length * generator.random());
   const color = colors.splice(idx, 1)[0];
   return color;
@@ -48,13 +52,13 @@ function generateColor(colors: string[], generator: MersenneTwister) {
 function makeHueShift(colors: string[], generator: MersenneTwister) {
   const amount = generator.random() * 30 - wobble / 2;
   return colors.map(hex => {
-    const color = Color(hex);
+    const color = new Color(hex);
     color.rotate(amount);
-    return color.hex();
+    return color.hexString();
   });
 }
 
-function getShape(colors: string[], generator: MersenneTwister, i: number, total: number) {
+function renderShape(colors: string[], generator: MersenneTwister, i: number, total: number) {
   const center = diameter / 2;
   const firstRot = generator.random();
   const angle = Math.PI * 2 * firstRot;
