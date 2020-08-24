@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.3...@akropolis-web/styles@0.8.4) (2020-08-24)
+
+
+### Bug Fixes
+
+* update palette.error color ([cca0525](https://github.com/akropolisio/akropolis-web/commit/cca0525f9dde8e425ba54078892c0d6a2bf9623d))
+
+
+
+
+
 ## [0.8.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.2...@akropolis-web/styles@0.8.3) (2020-08-24)
 
 **Note:** Version bump only for package @akropolis-web/styles
