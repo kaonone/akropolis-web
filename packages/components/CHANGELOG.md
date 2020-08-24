@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.3...@akropolis-web/components@0.7.4) (2020-08-24)
+
+
+### Bug Fixes
+
+* fix summary row border ([9e5d58d](https://github.com/akropolisio/akropolis-web/commit/9e5d58df1d289967ee98cc4fa1e951154b78af54))
+
+
+
+
+
 ## [0.7.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.2...@akropolis-web/components@0.7.3) (2020-08-23)
 
 
