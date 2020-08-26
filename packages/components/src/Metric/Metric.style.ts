@@ -12,6 +12,10 @@ export const useStyles = makeStyles(
         fontWeight: 300,
         marginBottom: 0,
       },
+
+      '$variantCondensed &': {
+        marginBottom: 0,
+      },
     },
     value: {
       display: 'flex',
@@ -22,6 +26,10 @@ export const useStyles = makeStyles(
 
       '$sizeSmall &': {
         fontSize: 22,
+      },
+
+      '$variantCondensed &': {
+        lineHeight: 1.2,
       },
     },
     subValue: {
@@ -34,6 +42,7 @@ export const useStyles = makeStyles(
       alignSelf: 'flex-end',
     },
     sizeSmall: {},
+    variantCondensed: {},
   }),
   { name: 'Metric' },
 );

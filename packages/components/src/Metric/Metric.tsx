@@ -9,14 +9,20 @@ type Props = {
   subValue?: React.ReactNode;
   chart?: React.ReactNode;
   size?: 'small' | 'medium';
+  variant?: 'condensed' | 'default';
 };
 
 export function Metric(props: Props) {
-  const { title, value, subValue, chart, size = 'medium' } = props;
+  const { title, value, subValue, chart, size = 'medium', variant = 'default' } = props;
   const classes = useStyles();
 
   return (
-    <div className={cn(classes.root, { [classes.sizeSmall]: size === 'small' })}>
+    <div
+      className={cn(classes.root, {
+        [classes.sizeSmall]: size === 'small',
+        [classes.variantCondensed]: variant === 'condensed',
+      })}
+    >
       <div className={classes.title}>{title}</div>
       <div className={classes.value}>
         {value}
