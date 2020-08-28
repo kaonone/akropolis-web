@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.8...@akropolis-web/components@0.8.0) (2020-08-28)
+
+
+### Features
+
+* @akropolis-web/components: add token icons ([a6af3b3](https://github.com/akropolisio/akropolis-web/commit/a6af3b3c2eea80e68ca1c1055e55ad8e9f2e6e26))
+* add amount inputs, TokenIcon, TokenName, TokenIcons ([a23a5c8](https://github.com/akropolisio/akropolis-web/commit/a23a5c85aaba9e4d9f26e3636eaecf984a7250b4))
+* add DependencyContext and DependencyProvider component ([ffe6bb5](https://github.com/akropolisio/akropolis-web/commit/ffe6bb55843f0ce1e8522d08ff666481a4e37c43))
+* add styles for SwitchInput disabled state ([bb630fa](https://github.com/akropolisio/akropolis-web/commit/bb630fa6be5a68c70b827345c5655621dae7a17c))
+
+
+
+
+
 ## [0.7.8](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.7...@akropolis-web/components@0.7.8) (2020-08-26)
 
 **Note:** Version bump only for package @akropolis-web/components
