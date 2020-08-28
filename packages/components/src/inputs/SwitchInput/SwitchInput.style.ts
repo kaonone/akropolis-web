@@ -16,12 +16,17 @@ export const useStyles = makeStyles(
     },
     switchBase: {
       padding: borderOffset,
+
       '&$checked': {
         transform: 'translateX(14px)',
 
         '& + $track, & + $track:after, & $thumb:after': {
           opacity: 1,
         },
+      },
+
+      '&$disabled': {
+        opacity: 0.4,
       },
     },
     thumb: {
@@ -78,11 +83,16 @@ export const useStyles = makeStyles(
         background: theme.gradients.main.linear('to right'),
         transition: theme.transitions.create(['opacity']),
       },
+
+      '$disabled + &': {
+        opacity: 0.4,
+      },
     },
     label: {
       fontSize: 'inherit',
     },
     checked: {},
+    disabled: {},
   }),
   { name: 'SwitchInput' },
 );
