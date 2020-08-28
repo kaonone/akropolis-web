@@ -13,7 +13,7 @@ export function TokenName({ token }: Props) {
   const classes = useStyles();
 
   return (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" wrap="nowrap">
       <TokenIcon tokenAddress={token.address} className={classes.icon} />
       {token.symbol}
     </Grid>

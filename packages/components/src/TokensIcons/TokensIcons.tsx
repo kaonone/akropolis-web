@@ -29,10 +29,11 @@ const useStyles = makeStyles(
   () => ({
     root: {
       display: 'flex',
-      marginLeft: 7,
     },
     icon: {
-      marginLeft: -7,
+      '& + &': {
+        marginLeft: -7,
+      },
     },
   }),
   { name: 'TokensIcons' },
