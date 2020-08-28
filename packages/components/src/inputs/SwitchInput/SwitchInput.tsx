@@ -43,6 +43,7 @@ function SwitchInput(props: Props) {
               root: classes.root,
               switchBase: classes.switchBase,
               checked: classes.checked,
+              disabled: classes.disabled,
               thumb: classes.thumb,
               track: classes.track,
             }}
