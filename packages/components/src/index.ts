@@ -13,12 +13,18 @@ export { default as Skeleton } from '@material-ui/lab/Skeleton';
 
 export { Table };
 export { Button, ButtonProps } from './Button/Button';
-export * from './TabList/TabList';
-export * from './TabsSection/TabsSection';
+export { TabList } from './TabList/TabList';
+export { TabsSection } from './TabsSection/TabsSection';
+export { Metric } from './Metric/Metric';
+export { ComingSoon } from './ComingSoon/ComingSoon';
+export { Label } from './Label/Label';
+export { AddressIcon } from './AddressIcon/AddressIcon';
+export { ShortAddress } from './ShortAddress/ShortAddress';
+export { Card } from './Card/Card';
+export { TokenName } from './TokenName/TokenName';
+export { TokenIcon } from './TokenIcon/TokenIcon';
+export { TokensIcons } from './TokensIcons/TokensIcons';
+export { DependencyProvider } from './DependencyProvider/DependencyProvider';
+
 export * from './inputs';
-export * from './Metric/Metric';
-export * from './ComingSoon/ComingSoon';
-export * from './Label/Label';
-export * from './AddressIcon/AddressIcon';
-export * from './ShortAddress/ShortAddress';
-export * from './Card/Card';
+export * from './icons';
