@@ -252,10 +252,10 @@ export function Table<T, U = null>(props: Props<T, U>) {
         })}
       >
         {columns
-          .reduce<M.RowCellsRenderer>(makeRowCellsRenderer(entry, rowIndex), {
+          .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, rowIndex), {
             cells: [],
             cellsToSkip: 0,
-          } as M.RowCellsRenderer)
+          } as M.RowCellsRendererAccumulator)
           .cells.map(cell => cell)}
       </tr>
     );
@@ -263,19 +263,19 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
   function makeRowCellsRenderer(entry: T, rowIndex: number) {
     return (
-      cellsAccumulator: M.RowCellsRenderer,
+      cellsAccumulator: M.RowCellsRendererAccumulator,
       column: M.Column<T, U>,
       columnIndex: number,
-    ): M.RowCellsRenderer => {
+    ): M.RowCellsRendererAccumulator => {
       const { cells: previousCells, cellsToSkip } = cellsAccumulator;
       const shouldSkipCurrentCell = cellsToSkip > 0;
-      const colSpanValue = getColSpan(column.cellContent, columnIndex, entry);
 
       const nextSkipCounter = () => {
         if (shouldSkipCurrentCell) {
           return cellsToSkip - 1;
         }
-        return colSpanValue && colSpanValue > 1 ? colSpanValue - 1 : 0;
+        const colSpanValue = getColSpan(column.cellContent, columnIndex, entry) || 1;
+        return Math.max(0, colSpanValue - 1);
       };
 
       return {

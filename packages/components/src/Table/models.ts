@@ -49,7 +49,7 @@ export type Summary = {
   renderValue(): React.ReactNode;
 };
 
-export type RowCellsRenderer = {
+export type RowCellsRendererAccumulator = {
   cells: React.ReactNode[];
   cellsToSkip: number;
 };
