@@ -25,6 +25,7 @@ export { TokenName } from './TokenName/TokenName';
 export { TokenIcon } from './TokenIcon/TokenIcon';
 export { TokensIcons } from './TokensIcons/TokensIcons';
 export { DependencyProvider } from './DependencyProvider/DependencyProvider';
+export { HiddenSvgDefs } from './HiddenSvgDefs/HiddenSvgDefs';
 
 export * from './inputs';
 export * from './icons';

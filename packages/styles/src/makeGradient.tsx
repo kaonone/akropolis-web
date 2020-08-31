@@ -57,13 +57,11 @@ function getSvgGradient(
 ) {
   const { x1 = '0%', x2 = '100%', y1 = '50%', y2 = '50%' } = direction;
   return (
-    <defs>
-      <linearGradient id={id} x1={x1} x2={x2} y1={y1} y2={y2}>
-        {points.map((point, index) => {
-          const { color, offset } = toGradientPoint(point, index, points);
-          return <stop key={index} offset={offset} stopColor={color} />;
-        })}
-      </linearGradient>
-    </defs>
+    <linearGradient id={id} x1={x1} x2={x2} y1={y1} y2={y2}>
+      {points.map((point, index) => {
+        const { color, offset } = toGradientPoint(point, index, points);
+        return <stop key={index} offset={offset} stopColor={color} />;
+      })}
+    </linearGradient>
   );
 }
