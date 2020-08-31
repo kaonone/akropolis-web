@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.8.0...@akropolis-web/components@0.9.0) (2020-08-31)
+
+
+### Features
+
+* add text prop to ComingSoon component ([b7906b0](https://github.com/akropolisio/akropolis-web/commit/b7906b06bfb245a59dad1419c48ad2390ae80104))
+* support colspan in table cells ([50bc118](https://github.com/akropolisio/akropolis-web/commit/50bc118628961148c11a9a63ee2b884c9516117f))
+
+
+
+
+
 # [0.8.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.7.8...@akropolis-web/components@0.8.0) (2020-08-28)
 
 
