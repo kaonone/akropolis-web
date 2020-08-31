@@ -232,6 +232,16 @@ export function Table<T, U = null>(props: Props<T, U>) {
     };
   }
 
+  function getColSpan(
+    { colSpan }: M.SimpleCellContent<T> | M.CellContentForRowExpander<T, U>,
+    columnIndex: number,
+    entry: T,
+  ) {
+    const colSpanValue = typeof colSpan === 'function' ? colSpan(entry) : colSpan;
+
+    return colSpanValue === 'end' ? columns.length - columnIndex : colSpanValue;
+  }
+
   function renderEntryRow(entry: T, rowIndex: number, beforeSummary?: boolean) {
     return (
       <tr
@@ -241,9 +251,40 @@ export function Table<T, U = null>(props: Props<T, U>) {
           [classes.rowWithExpandedContent]: rowToExpanded[rowIndex],
         })}
       >
-        {columns.map(makeCellRenderer(entry, rowIndex))}
+        {columns
+          .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, rowIndex), {
+            cells: [],
+            cellsToSkip: 0,
+          } as M.RowCellsRendererAccumulator)
+          .cells.map(cell => cell)}
       </tr>
     );
+  }
+
+  function makeRowCellsRenderer(entry: T, rowIndex: number) {
+    return (
+      cellsAccumulator: M.RowCellsRendererAccumulator,
+      column: M.Column<T, U>,
+      columnIndex: number,
+    ): M.RowCellsRendererAccumulator => {
+      const { cells: previousCells, cellsToSkip } = cellsAccumulator;
+      const shouldSkipCurrentCell = cellsToSkip > 0;
+
+      const nextSkipCounter = () => {
+        if (shouldSkipCurrentCell) {
+          return cellsToSkip - 1;
+        }
+        const colSpanValue = getColSpan(column.cellContent, columnIndex, entry) || 1;
+        return Math.max(0, colSpanValue - 1);
+      };
+
+      return {
+        cells: shouldSkipCurrentCell
+          ? previousCells
+          : [...previousCells, makeCellRenderer(entry, rowIndex)(column, columnIndex)],
+        cellsToSkip: nextSkipCounter(),
+      };
+    };
   }
 
   function makeCellRenderer(entry: T, rowIndex: number) {
@@ -253,7 +294,13 @@ export function Table<T, U = null>(props: Props<T, U>) {
           return renderCellWithSimpleContent(entry, column.cellContent, columnIndex, column);
 
         case 'for-row-expander':
-          return renderCellWithContentForRowExpander(rowIndex, column);
+          return renderCellWithContentForRowExpander(
+            rowIndex,
+            entry,
+            column.cellContent,
+            columnIndex,
+            column,
+          );
       }
     };
   }
@@ -273,13 +320,20 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getPaddingClass(rowPadding),
         )}
         key={columnIndex}
+        colSpan={getColSpan(content, columnIndex, entry)}
       >
         {content.render(entry)}
       </td>
     );
   }
 
-  function renderCellWithContentForRowExpander(rowIndex: number, column: M.Column<T, U>) {
+  function renderCellWithContentForRowExpander(
+    rowIndex: number,
+    entry: T,
+    content: M.CellContentForRowExpander<T, U>,
+    columnIndex: number,
+    column: M.Column<T, U>,
+  ) {
     const handleToggle = (newValue: boolean) =>
       setRowToExpanded({ ...rowToExpanded, [rowIndex]: newValue });
 
@@ -292,6 +346,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getPaddingClass(rowPadding),
         )}
         key="row-expander"
+        colSpan={getColSpan(content, columnIndex, entry)}
       >
         <views.RowExpander expanded={rowToExpanded[rowIndex]} onToggle={handleToggle} />
       </td>

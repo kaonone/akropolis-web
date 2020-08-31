@@ -4,11 +4,12 @@ import { makeStyles } from '@akropolis-web/styles';
 
 type Props = {
   variant?: 'label' | 'default';
+  text?: string;
 };
 
 export function ComingSoon(props: Props) {
   const classes = useStyles();
-  const { variant = 'default' } = props;
+  const { variant = 'default', text = 'Coming soon' } = props;
 
   return (
     <div
@@ -16,7 +17,7 @@ export function ComingSoon(props: Props) {
         [classes.isLabel]: variant === 'label',
       })}
     >
-      <span className={classes.text}>Coming soon</span>
+      <span className={classes.text}>{text}</span>
     </div>
   );
 }
@@ -31,7 +32,9 @@ const useStyles = makeStyles(
       background: theme.palette.background.hint,
       borderRadius: 4,
     },
+
     isLabel: {
+      display: 'inline-flex',
       minWidth: 86,
       padding: '6px 8px',
       borderRadius: 12.5,
@@ -43,6 +46,7 @@ const useStyles = makeStyles(
         fontStyle: 'italic',
       },
     },
+
     text: {
       whiteSpace: 'nowrap',
     },

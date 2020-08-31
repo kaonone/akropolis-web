@@ -4,6 +4,8 @@ export type AlignProperty = 'left' | 'right' | 'center';
 
 export type RowPaddingSize = 'medium' | 'small';
 
+export type ColSpanProperty = number | 'end' | undefined;
+
 export type Column<T, U = null> = {
   cellContent: CellContent<T, U>;
   align?: AlignProperty;
@@ -15,11 +17,13 @@ export type CellContent<T, U> = SimpleCellContent<T> | CellContentForRowExpander
 export type SimpleCellContent<T> = {
   kind: 'simple';
   render(entry: T): React.ReactNode;
+  colSpan?: ColSpanProperty | ((entry: T) => ColSpanProperty);
 };
 
 export type CellContentForRowExpander<T, U> = {
   kind: 'for-row-expander';
   expandedArea: ExpandedArea<T, U>;
+  colSpan?: ColSpanProperty | ((entry: T) => ColSpanProperty);
 };
 
 export type ExpandedArea<T, U> = ExpandedAreaWithinSingleCell<T> | ExpandedAreaWithinSubtable<T, U>;
@@ -43,4 +47,9 @@ export type SubtableColumn<T> = {
 export type Summary = {
   renderLabel(): React.ReactNode;
   renderValue(): React.ReactNode;
+};
+
+export type RowCellsRendererAccumulator = {
+  cells: React.ReactNode[];
+  cellsToSkip: number;
 };
