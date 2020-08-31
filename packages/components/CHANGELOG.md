@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.9.0...@akropolis-web/components@0.10.0) (2020-08-31)
+
+
+### Features
+
+* add HiddenSvgDefs component ([c885c4b](https://github.com/akropolisio/akropolis-web/commit/c885c4bec6190b4a32acf53eea95a6826e57f66b))
+
+
+
+
+
 # [0.9.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.8.0...@akropolis-web/components@0.9.0) (2020-08-31)
 
 
