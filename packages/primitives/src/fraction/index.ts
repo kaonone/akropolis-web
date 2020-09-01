@@ -112,7 +112,12 @@ export class Fraction implements IToBN {
 
     const integer = this.numerator.div(this.denominator);
     const remainder = this.numerator.sub(this.denominator.mul(integer));
-    const fractional = remainder.mul(fractionalPrecisionMultiplier).div(this.denominator);
+    const fractional = remainder
+      .add(this.denominator) // add one denominator so that after division we get result: `fractionalPrecisionMultiplier + fractional = 100023` (1.00023 without fractionalPrecisionMultiplier multiplying)
+      .mul(fractionalPrecisionMultiplier)
+      .div(this.denominator)
+      .toString()
+      .slice(1); // remove the first digit to take a fraction with padding 100023 -> 00023
 
     return parseFloat(`${integer}.${fractional}`);
   }
