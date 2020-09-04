@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.2.3...@akropolis-web/primitives@0.3.0) (2020-09-04)
+
+
+### Features
+
+* **normalizeamounts:** add decimals arg for normalizeAmounts ([1040476](https://github.com/akropolisio/akropolis-web/commit/1040476050f43727ec0f6199ce9b2f705dc27b7f))
+
+
+
+
+
 ## [0.2.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.2.2...@akropolis-web/primitives@0.2.3) (2020-09-01)
 
 
