@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     position: 'absolute',
     top: 0,
-    left: theme.spacing(2),
+    left: theme.spacing(2.5),
     transform: 'translateY(-50%)',
     display: 'flex',
     alignItems: 'center',
@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
   icons: {
     position: 'absolute',
     top: 0,
-    right: theme.spacing(1.5),
+    right: theme.spacing(2.5),
     transform: 'translateY(-50%)',
     display: 'flex',
     fontSize: theme.spacing(3.75),
