@@ -22,9 +22,9 @@ export function normalizeAmounts<T extends Amount>(
       decimals: maxDecimal,
       original: amount,
       value:
-        diff > 0
+        diff >= 0
           ? amount.toFraction().mul(decimalsToWei(diff))
-          : amount.toFraction().div(decimalsToWei(diff)),
+          : amount.toFraction().div(decimalsToWei(-diff)),
     };
   });
 }
