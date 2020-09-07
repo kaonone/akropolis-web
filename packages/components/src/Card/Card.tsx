@@ -14,7 +14,7 @@ interface CardProps {
   className?: string;
   variant?: 'outlined' | 'contained';
   isActive?: boolean;
-  label?: string;
+  label?: React.ReactNode;
   children: React.ReactNode;
   icons?: React.ReactNode[];
 }
