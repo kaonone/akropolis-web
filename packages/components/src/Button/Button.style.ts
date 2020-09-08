@@ -4,6 +4,8 @@ const shadowOffset = 3;
 const largeShadowOffset = 3;
 const backgroundGradientSize = '300%';
 
+const extraSmallHeightTabletXS = 2.75;
+
 const smallHeightTabletXS = 3.75;
 
 const heightTabletXS = 4.5;
@@ -21,6 +23,18 @@ export const useStyles = makeStyles(theme => ({
     minWidth: theme.spacing(8.25),
     minHeight: theme.spacing(heightTabletXS),
     borderRadius: theme.spacing(heightTabletXS / 2),
+  },
+
+  sizeExtraSmall: {
+    padding: theme.spacing(0.5, 1),
+    fontSize: theme.spacing(1.5),
+    minWidth: theme.spacing(13.25),
+    minHeight: theme.spacing(extraSmallHeightTabletXS),
+    borderRadius: theme.spacing(extraSmallHeightTabletXS / 2),
+
+    '&$outlinedPrimary': {
+      minWidth: theme.spacing(12.25),
+    },
   },
 
   sizeSmall: {
@@ -72,6 +86,10 @@ export const useStyles = makeStyles(theme => ({
       transition: theme.transitions.create(['opacity', 'background-color']),
 
       borderRadius: theme.spacing(heightTabletXS / 2) - 1,
+
+      '$sizeExtraSmall&': {
+        borderRadius: theme.spacing(smallHeightTabletXS / 2) - 1,
+      },
 
       '$sizeSmall&': {
         borderRadius: theme.spacing(smallHeightTabletXS / 2) - 1,

@@ -8,8 +8,14 @@ import { useStyles } from './Button.style';
 
 type ButtonClassKey = keyof ReturnType<typeof useStyles>;
 
+type ButtonSizes = 'medium' | 'large' | 'small' | 'extra-small';
+
+type MuiButtonTypeProps = Omit<MuiButtonTypeMap['props'], 'size'> & {
+  size?: ButtonSizes;
+};
+
 interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & MuiButtonTypeMap['props'];
+  props: P & MuiButtonTypeProps;
   defaultComponent: D;
   classKey: ButtonClassKey;
 }
@@ -25,25 +31,51 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
 >(props: ButtonProps<D, P>) {
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
-  const { classes: muiClasses = {}, ...rest } = props;
+  const { classes: muiClasses = {}, size, ...rest } = props;
 
   return (
     <MuiButton
       {...rest}
+      size={getSizeTypeToDefault(size)}
       classes={{
         root: cn(classes.root, muiClasses.root),
         disabled: cn(classes.disabled, muiClasses.disabled),
-        sizeLarge: cn(classes.sizeLarge, muiClasses.sizeLarge),
-        sizeSmall: cn(classes.sizeSmall, muiClasses.sizeSmall),
         focusVisible: cn(classes.focusVisible, muiClasses.focusVisible),
         containedPrimary: cn(classes.containedPrimary, muiClasses.containedPrimary),
         outlinedPrimary: cn(classes.outlinedPrimary, muiClasses.outlinedPrimary),
         textPrimary: cn(classes.textPrimary, muiClasses.textPrimary),
+        ...getSizeClasses(),
         ...rest.classes,
       }}
       disableRipple
     />
   );
+
+  function getSizeClasses() {
+    switch (size) {
+      case 'large':
+        return { sizeLarge: cn(classes.sizeLarge, muiClasses.sizeLarge) };
+      case 'small':
+        return { sizeSmall: cn(classes.sizeSmall, muiClasses.sizeSmall) };
+      case 'extra-small':
+        return { sizeSmall: cn(classes.sizeExtraSmall, muiClasses.sizeSmall) };
+      case 'medium':
+      default:
+        return null;
+    }
+  }
 };
+
+function getSizeTypeToDefault(size: ButtonSizes | undefined) {
+  switch (size) {
+    case 'extra-small':
+      return 'small';
+    case 'small':
+    case 'large':
+    case 'medium':
+    default:
+      return size;
+  }
+}
 
 export { Button };
