@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.10.3...@akropolis-web/components@0.10.4) (2020-09-08)
+
+
+### Bug Fixes
+
+* refactor button sizes, card label ([6b1210a](https://github.com/akropolisio/akropolis-web/commit/6b1210aee8437ec15beebdd1feeeb56007d8c818))
+
+
+
+
+
 ## [0.10.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.10.2...@akropolis-web/components@0.10.3) (2020-09-04)
 
 **Note:** Version bump only for package @akropolis-web/components
