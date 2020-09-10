@@ -36,26 +36,121 @@ function getGradients(type: 'dark' | 'light') {
       { color: colors.heliotrope, offset: '100%' },
     ]),
     poolCompositionChart: [
-      makeGradient(['#699FF8', '#62BDFB']),
-      makeGradient(['#85F9E1', '#639FF8']),
-      makeGradient(['#E323FF', '#7517F8']),
-      makeGradient(['#02A4FF', '#7D40FF']),
-      makeGradient(['#F997F6', '#F863DD']),
-      makeGradient(['#81F9BE', '#A1FFDF']),
-      makeGradient(['#F8C563', '#FFD99C']),
-      makeGradient(['#FF2382', '#F5C0D4']),
-      makeGradient(['#C523FF', '#EBC0F5']),
-      makeGradient(['#A381F9', '#A1FFB2']),
-      makeGradient(['#FFC2A0', '#FFA17B']),
-      makeGradient(['#DAFF5F', '#F8FFE5']),
-      makeGradient(['#283EF0', '#96D9FF']),
-      makeGradient(['#634DC9', '#FF74A8']),
-      makeGradient(['#FDDE63', '#5EF3CD']),
+      makeGradient(['#A88BEB', '#F8CEEC']),
+      makeGradient(['#647DEE', '#7F53AC']),
+      makeGradient(['#F53844', '#42378F']),
+      makeGradient(['#0652C5', '#D4418E']),
+      makeGradient(['#B621FE', '#1FD1F9']),
+      makeGradient(['#5F72BE', '#9921E8']),
+      makeGradient(['#05D6D9', '#F907FC']),
+      makeGradient(['#AD1DEB', '#6E72FC']),
+      makeGradient(['#E975A8', '#726CF8']),
+      makeGradient(['#A1BAFE', '#8D5185']),
+      makeGradient(['#AA4465', '#861657']),
+      makeGradient(['#000000', '#923CB5']),
+      makeGradient(['#000000', '#E056FD']),
+      makeGradient(['#746CC0', '#58427C']),
+      makeGradient(['#8241B8', '#6C33A3']),
+      makeGradient(['#EE696B', '#523A78']),
+      makeGradient(['#A594F9', '#6247AA']),
     ] as const,
     progressChart: makeGradient(['#7d40ff', '#02a4ff']),
     cardTitleInactive: makeGradient([colors.midnightBlue, colors.midnightBlue2]),
   };
 }
+
+const tokensPalette: {
+  [token: string]: { gradient: ReturnType<typeof makeGradient>; hex: string };
+} = {
+  AKRO: {
+    gradient: makeGradient(['#ff2382', '#f5c0d4']),
+    hex: '#f79dc2',
+  },
+  BAL: {
+    gradient: makeGradient(['#c4b2db', '#594097']),
+    hex: '#c4b2db',
+  },
+  COMP: {
+    gradient: makeGradient(['#85f9e1', '#639ff8']),
+    hex: '#85f9e1',
+  },
+  CRV: {
+    gradient: makeGradient(['#daff5f', '#f8ffe5']),
+    hex: '#daff5f',
+  },
+  SNX: {
+    gradient: makeGradient(['#6a2db9', '#7543f6']),
+    hex: '#4940b2',
+  },
+  MTA: {
+    gradient: makeGradient(['#fdde63', '#5ef3cd']),
+    hex: '#fdde63',
+  },
+  YFI: {
+    gradient: makeGradient(['#96d9ff', '#283ef0']),
+    hex: '#96d9ff',
+  },
+  BTC: {
+    gradient: makeGradient(['#ffc2a0', '#ffa17b']),
+    hex: '#ffc2a0',
+  },
+  ETH: {
+    gradient: makeGradient(['#96d9ff', '#283ef0']),
+    hex: '#96d9ff',
+  },
+  wBTC: {
+    gradient: makeGradient(['#fdde63', '#5ef3cd']),
+    hex: '#fdde63',
+  },
+  renBTC: {
+    gradient: makeGradient(['#c523ff', '#ebc0f5']),
+    hex: '#c523ff',
+  },
+  sBTC: {
+    gradient: makeGradient(['#81a7ff', '#639ff8']),
+    hex: '#81a7ff',
+  },
+  mUSD: {
+    gradient: makeGradient(['#ffc2a0', '#ffa17b']),
+    hex: '#ffc2a0',
+  },
+  TUSD: {
+    gradient: makeGradient(['#4987e3', '#dfb2ff']),
+    hex: '#4987e3',
+  },
+  DAI: {
+    gradient: makeGradient(['#ffd99c', '#f8c563']),
+    hex: '#fed89a',
+  },
+  USDC: {
+    gradient: makeGradient(['#699ff8', '#62bdfb']),
+    hex: '#699ff8',
+  },
+  USDT: {
+    gradient: makeGradient(['#81f9be', '#a1ffdf']),
+    hex: '#81f9be',
+  },
+  REN: {
+    gradient: makeGradient(['#634dc9', '#ff74a8']),
+    hex: '#634dc9',
+  },
+  sUSD: {
+    gradient: makeGradient(['#6a2db9', '#7543f6']),
+    hex: '#4940b2',
+  },
+  ADEL: {
+    gradient: makeGradient(['#02a4ff', '#7d40ff']),
+    hex: '#02a4ff',
+  },
+  BUSD: {
+    gradient: makeGradient(['#fdde63', '#5ef3cd']),
+    hex: '#fdde63',
+  },
+  AAVE: {
+    gradient: makeGradient(['#a381f9', '#a1ffb2']),
+    hex: '#a381f9',
+  },
+};
 
 const lightPalette = {
   primary: {
@@ -131,6 +226,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
       {
         colors,
         gradients: getGradients(type),
+        tokensPalette,
         palette: type === 'light' ? lightPalette : darkPalette,
         typography: {
           fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
@@ -458,11 +554,13 @@ declare module PackageOverrides {
   interface Theme {
     colors: typeof colors;
     gradients: ReturnType<typeof getGradients>;
+    tokensPalette: typeof tokensPalette;
   }
 
   interface ThemeOptions {
     colors?: Partial<typeof colors>;
     gradients?: Partial<ReturnType<typeof getGradients>>;
+    tokensPalette?: Partial<typeof tokensPalette>;
   }
 
   interface TypeBackground {
