@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.9.0...@akropolis-web/styles@0.10.0) (2020-09-10)
+
+
+### Features
+
+* **theme.ts:** add new colors and gradients for tokens ([6934161](https://github.com/akropolisio/akropolis-web/commit/6934161b4741e2bd5cb4e6610254145f435f4248))
+
+
+
+
+
 # [0.9.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.8.4...@akropolis-web/styles@0.9.0) (2020-08-31)
 
 
