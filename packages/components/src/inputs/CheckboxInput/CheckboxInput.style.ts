@@ -35,29 +35,21 @@ export const useStyles = makeStyles(
       '$disabled &': {
         background: 'rgba(255, 255, 255, 0.1)',
       },
-    },
 
-    iconChecked: {
-      '&:before': {
-        opacity: 0,
-      },
+      '$checked &': {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 14,
 
-      // TODO: use SVG icon from UI kit
-      '&:after': {
-        width: 14,
-        height: 7,
-        display: 'block',
-        content: "''",
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -75%) rotate(-45deg)',
-        borderLeft: '2px solid #fff',
-        borderBottom: '2px solid #fff',
+        '&:before': {
+          opacity: 0,
+        },
       },
     },
 
     disabled: {},
+    checked: {},
   }),
-  { name: 'SwitchInput' },
+  { name: 'CheckboxInput' },
 );

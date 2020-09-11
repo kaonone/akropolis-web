@@ -1,5 +1,4 @@
 import * as React from 'react';
-import cn from 'classnames';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,6 +6,7 @@ import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import { A, B } from 'ts-toolbelt';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
+import { CheckmarkIcon } from '../../icons';
 import { useStyles } from './CheckboxInput.style';
 
 type Props = CheckboxProps &
@@ -42,9 +42,14 @@ function CheckboxInput(props: Props) {
             classes={{
               root: classes.root,
               disabled: classes.disabled,
+              checked: classes.checked,
             }}
             icon={<span className={classes.icon} />}
-            checkedIcon={<span className={cn(classes.icon, classes.iconChecked)} />}
+            checkedIcon={
+              <span className={classes.icon}>
+                <CheckmarkIcon fontSize="inherit" />
+              </span>
+            }
           />
         }
         label={
