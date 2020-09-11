@@ -16,3 +16,6 @@ export { USDCIcon } from './USDCIcon';
 export { USDTIcon } from './USDTIcon';
 export { WBTCIcon } from './WBTCIcon';
 export { YFIIcon } from './YFIIcon';
+export { mUSDIcon } from './mUSDIcon';
+export { AAVEIcon } from './AAVEIcon';
+export { RENIcon } from './RENIcon';
