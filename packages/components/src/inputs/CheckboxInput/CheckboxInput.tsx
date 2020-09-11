@@ -1,9 +1,13 @@
 import * as React from 'react';
+import cn from 'classnames';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import { A, B } from 'ts-toolbelt';
+import { useAncestorBackgroundHack } from '@akropolis-web/styles';
+
+import { useStyles } from './CheckboxInput.style';
 
 type Props = CheckboxProps &
   Pick<FormControlProps, 'error' | 'required' | 'fullWidth'> & {
@@ -26,11 +30,33 @@ function CheckboxInput(props: Props) {
   const { formControlProps, formHelperTextProps, checkboxProps, other } = normalizeProps(props);
   const { label, helperText } = other;
 
+  const backgroundColor = useAncestorBackgroundHack();
+  const classes = useStyles({ backgroundColor });
+
   return (
     <FormControl {...formControlProps}>
       <FormControlLabel
-        control={<Checkbox {...checkboxProps} />}
-        label={label + (checkboxProps.required ? ' *' : '')}
+        control={
+          <Checkbox
+            {...checkboxProps}
+            classes={{
+              root: classes.root,
+              disabled: classes.disabled,
+            }}
+            icon={<span className={classes.icon} />}
+            checkedIcon={<span className={cn(classes.icon, classes.iconChecked)} />}
+          />
+        }
+        label={
+          checkboxProps.required ? (
+            <>
+              {label}
+              {' *'}
+            </>
+          ) : (
+            label
+          )
+        }
       />
       {helperText && <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>}
     </FormControl>
