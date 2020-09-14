@@ -19,3 +19,4 @@ export { YFIIcon } from './YFIIcon';
 export { mUSDIcon } from './mUSDIcon';
 export { AAVEIcon } from './AAVEIcon';
 export { RENIcon } from './RENIcon';
+export { delphiPoolIcon } from './delphiPoolIcon';

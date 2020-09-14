@@ -48,7 +48,10 @@ export function Card(props: CardProps) {
         {label && (
           <Typography
             component="div"
-            className={cn(classes.label, { [classes.isActive]: isActive })}
+            className={cn(classes.label, {
+              [classes.isActive]: isActive,
+              [classes.isWithIcon]: labelIcon,
+            })}
           >
             <span>{label}</span>
           </Typography>
@@ -110,7 +113,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     position: 'absolute',
     top: 0,
-    left: theme.spacing(7.5),
+    left: theme.spacing(2.5),
     transform: 'translateY(-50%)',
     display: 'flex',
     alignItems: 'center',
@@ -129,6 +132,10 @@ const useStyles = makeStyles(theme => ({
 
     '&$isActive': {
       background: theme.gradients.main.linear('to right'),
+    },
+
+    '&$isWithIcon': {
+      left: theme.spacing(7.5),
     },
   },
 
@@ -151,4 +158,5 @@ const useStyles = makeStyles(theme => ({
   outlined: {},
   contained: {},
   isActive: {},
+  isWithIcon: {},
 }));

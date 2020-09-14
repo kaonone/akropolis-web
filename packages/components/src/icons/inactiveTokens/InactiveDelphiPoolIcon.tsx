@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-function InactiveDelphiPoolIcon(props: React.ComponentProps<typeof SvgIcon>) {
+export function InactiveDelphiPoolIcon(props: React.ComponentProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
@@ -144,5 +144,3 @@ function InactiveDelphiPoolIcon(props: React.ComponentProps<typeof SvgIcon>) {
     </SvgIcon>
   );
 }
-
-export { InactiveDelphiPoolIcon };
