@@ -19,3 +19,4 @@ export { InactiveYFIIcon } from './InactiveYFIIcon';
 export { InactiveMUSDIcon } from './InactiveMUSDIcon';
 export { InactiveAAVEIcon } from './InactiveAAVEIcon';
 export { InactiveRENIcon } from './InactiveRENIcon';
+export { InactiveDelphiPoolIcon } from './InactiveDelphiPoolIcon';
