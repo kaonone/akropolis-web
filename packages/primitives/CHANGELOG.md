@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.3.0...@akropolis-web/primitives@0.4.0) (2020-09-15)
+
+
+### Features
+
+* **primitives:** add formatShortBalance ([bd98108](https://github.com/akropolisio/akropolis-web/commit/bd981084dc33607ed30ebbff6a50f56107b2caed))
+* **primitives:** add toShortString method to amounts ([73c3ca5](https://github.com/akropolisio/akropolis-web/commit/73c3ca5cfe4692a2c80bbaa9519b6136694a1182))
+
+
+
+
+
 # [0.3.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.2.3...@akropolis-web/primitives@0.3.0) (2020-09-04)
 
 

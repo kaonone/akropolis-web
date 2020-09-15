@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.12.0...@akropolis-web/components@0.12.1) (2020-09-15)
+
+
+### Bug Fixes
+
+* **amountinput:** remove disabling input when maxValue is zero ([acc39de](https://github.com/akropolisio/akropolis-web/commit/acc39de46a10767f90ce9311b73b4650d2619c64))
+
+
+
+
+
 # [0.12.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.11.1...@akropolis-web/components@0.12.0) (2020-09-15)
 
 
