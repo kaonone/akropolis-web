@@ -59,15 +59,26 @@ export function SelectInput(props: SelectInputProps) {
     setToTopDistance(
       Number(selectInputRef.current?.getBoundingClientRect().top) - MENU_SHIFT_HEIGHT,
     );
-  }, [setToBottomDistance, currentWindowHeight, selectInputRef]);
+  }, [currentWindowHeight]);
   const selectHeight =
     Number(selectInputRef.current?.offsetHeight) * options.length + MENU_PADDINGS_HEIGHT;
 
   const hasBottomSpace = toBottomDistance > selectHeight;
   const hasTopSpace = toTopDistance > selectHeight;
 
-  const menuPositionProps = useMemo<Partial<MenuProps>>(
-    () => ({
+  const menuPositionProps = useMemo<Partial<MenuProps>>(() => {
+    function getVerticalPosition(type: 'anchor' | 'transform') {
+      if (hasBottomSpace) {
+        return type === 'anchor' ? 'bottom' : 'top';
+      }
+      if (hasTopSpace) {
+        return type === 'anchor' ? 'top' : 'bottom';
+      }
+
+      return 'center';
+    }
+
+    return {
       elevation: 0,
       anchorOrigin: {
         vertical: getVerticalPosition('anchor'),
@@ -78,9 +89,8 @@ export function SelectInput(props: SelectInputProps) {
         horizontal: 'center',
       },
       getContentAnchorEl: null,
-    }),
-    [toBottomDistance, toTopDistance, selectHeight],
-  );
+    };
+  }, [hasBottomSpace, hasTopSpace]);
 
   return (
     <TextInput
@@ -146,17 +156,6 @@ export function SelectInput(props: SelectInputProps) {
         <Arrow fontSize="inherit" />
       </div>
     );
-  }
-
-  function getVerticalPosition(type: 'anchor' | 'transform') {
-    if (hasBottomSpace) {
-      return type === 'anchor' ? 'bottom' : 'top';
-    }
-    if (hasTopSpace) {
-      return type === 'anchor' ? 'top' : 'bottom';
-    }
-
-    return 'center';
   }
 
   function useWindowHeight() {
