@@ -5,9 +5,16 @@ export const useStyles = makeStyles(
     root: {
       minWidth: 129,
 
-      '&$isOpen $input': {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
+      '&$isOpen': {
+        '&$hasBottomSpace $input': {
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+        },
+
+        '&$hasTopSpace $input': {
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
+        },
 
         '& $arrowIcon': {
           transform: 'rotate(180deg)',
@@ -28,9 +35,16 @@ export const useStyles = makeStyles(
       },
     },
     paper: {
-      borderRadius: '0 0 8px 8px',
       borderColor: theme.colors.darkMist,
-      borderTop: 'none',
+      '&$hasBottomSpace': {
+        borderRadius: '0 0 8px 8px',
+        borderTop: 'none',
+      },
+
+      '&$hasTopSpace': {
+        borderRadius: '8px 8px 0 0',
+        borderBottom: 'none',
+      },
     },
     arrowIcon: {
       position: 'absolute',
@@ -42,6 +56,8 @@ export const useStyles = makeStyles(
     },
     isOpen: {},
     withSingleOption: {},
+    hasBottomSpace: {},
+    hasTopSpace: {},
     input: {},
   }),
   { name: 'SelectInput' },
