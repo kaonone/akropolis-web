@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import BN from 'bn.js';
 import cn from 'classnames';
-import { Amount, IToBN, bnToBn } from '@akropolis-web/primitives';
+import { Amount, IToBN } from '@akropolis-web/primitives';
 
 import { SelectInput } from '../SelectInput/SelectInput';
 import { TextInput } from '../TextInput';
@@ -59,7 +59,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
   const isSingleOptionSelect = Boolean(currencies.length <= 1 && currentCurrency);
 
-  const isDisabled = disabled !== undefined ? disabled : maxValue && bnToBn(maxValue).isZero();
+  const isDisabled = Boolean(disabled);
 
   // initialize or update value if currencies is not contain current currency
   useEffect(() => {
