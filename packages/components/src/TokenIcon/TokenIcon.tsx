@@ -3,12 +3,14 @@ import cn from 'classnames';
 import { makeStyles } from '@akropolis-web/styles';
 
 import * as icons from '../icons/tokens';
+import * as inactiveIcons from '../icons/inactiveTokens';
 import { AddressIcon } from '../AddressIcon/AddressIcon';
 import { useDependencyContext } from '../DependencyProvider';
 
 type Props = {
   tokenAddress: string;
   className?: string;
+  isInactive?: boolean;
 };
 
 type CoinComponent = typeof icons.DAIIcon;
@@ -22,10 +24,10 @@ const tokenIcons: Record<string, CoinComponent> = {
   CRV: icons.CRVIcon,
   DAI: icons.DAIIcon,
   MTA: icons.MTAIcon,
-  renBTC: icons.renBTCIcon,
-  sBTC: icons.sBTCIcon,
+  renBTC: icons.RenBTCIcon,
+  sBTC: icons.SBTCIcon,
   SNX: icons.SNXIcon,
-  sUSD: icons.sUSDIcon,
+  sUSD: icons.SUSDIcon,
   TUSD: icons.TUSDIcon,
   USDC: icons.USDCIcon,
   USDT: icons.USDTIcon,
@@ -34,7 +36,28 @@ const tokenIcons: Record<string, CoinComponent> = {
   YFI: icons.YFIIcon,
 };
 
-export function TokenIcon({ tokenAddress, className }: Props) {
+const inactiveTokenIcons: Record<string, CoinComponent> = {
+  ADEL: inactiveIcons.InactiveADELIcon,
+  AKRO: inactiveIcons.InactiveAKROIcon,
+  BAL: inactiveIcons.InactiveBALIcon,
+  bUSD: inactiveIcons.InactiveBUSDIcon,
+  COMP: inactiveIcons.InactiveCOMPIcon,
+  CRV: inactiveIcons.InactiveCRVIcon,
+  DAI: inactiveIcons.InactiveDAIIcon,
+  MTA: inactiveIcons.InactiveMTAIcon,
+  renBTC: inactiveIcons.InactiveRenBTCIcon,
+  sBTC: inactiveIcons.InactiveSBTCIcon,
+  SNX: inactiveIcons.InactiveSNXIcon,
+  sUSD: inactiveIcons.InactiveSUSDIcon,
+  TUSD: inactiveIcons.InactiveTUSDIcon,
+  USDC: inactiveIcons.InactiveUSDCIcon,
+  USDT: inactiveIcons.InactiveUSDTIcon,
+  WBTC: inactiveIcons.InactiveWBTCIcon,
+  WETH: inactiveIcons.InactiveETHIcon,
+  YFI: inactiveIcons.InactiveYFIIcon,
+};
+
+export function TokenIcon({ tokenAddress, className, isInactive }: Props) {
   const classes = useStyles();
   const { supportedTokens } = useDependencyContext();
 
@@ -43,7 +66,7 @@ export function TokenIcon({ tokenAddress, className }: Props) {
       key => supportedTokens[key].toLowerCase() === tokenAddress.toLowerCase(),
     );
 
-    return tokenSymbol && tokenIcons[tokenSymbol];
+    return tokenSymbol && (isInactive ? inactiveTokenIcons[tokenSymbol] : tokenIcons[tokenSymbol]);
   }, [tokenAddress, supportedTokens]);
 
   return Icon ? (

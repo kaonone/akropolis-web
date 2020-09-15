@@ -14,13 +14,14 @@ interface CardProps {
   className?: string;
   variant?: 'outlined' | 'contained';
   isActive?: boolean;
+  labelIcon?: React.ReactNode;
   label?: React.ReactNode;
   children: React.ReactNode;
   icons?: React.ReactNode[];
 }
 
 export function Card(props: CardProps) {
-  const { label, variant = 'outlined', isActive, children, icons, className } = props;
+  const { labelIcon, label, variant = 'outlined', isActive, children, icons, className } = props;
 
   const theme = useTheme();
   const classes = useStyles();
@@ -43,10 +44,14 @@ export function Card(props: CardProps) {
         })}
       >
         {children}
+        {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
         {label && (
           <Typography
             component="div"
-            className={cn(classes.label, { [classes.isActive]: isActive })}
+            className={cn(classes.label, {
+              [classes.isActive]: isActive,
+              [classes.isWithIcon]: labelIcon,
+            })}
           >
             <span>{label}</span>
           </Typography>
@@ -95,6 +100,16 @@ const useStyles = makeStyles(theme => ({
     },
   },
 
+  labelIcon: {
+    position: 'absolute',
+    top: 0,
+    left: theme.spacing(2.5),
+    transform: 'translateY(-50%)',
+    display: 'flex',
+    backgroundColor: '#191925',
+    borderRadius: '50%',
+  },
+
   label: {
     position: 'absolute',
     top: 0,
@@ -103,10 +118,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: theme.spacing(2.5),
+    height: theme.spacing(2.75),
     borderRadius: theme.spacing(1.25),
     color: theme.colors.white,
-    background: theme.gradients.cardTitleInactive.linear('to right'),
+    backgroundColor: '#13131b',
 
     padding: theme.spacing(0.125, 0.75, 0.375),
     fontSize: theme.spacing(1.25),
@@ -118,6 +133,10 @@ const useStyles = makeStyles(theme => ({
     '&$isActive': {
       background: theme.gradients.main.linear('to right'),
     },
+
+    '&$isWithIcon': {
+      left: theme.spacing(7.5),
+    },
   },
 
   icons: {
@@ -126,7 +145,6 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2.5),
     transform: 'translateY(-50%)',
     display: 'flex',
-    fontSize: theme.spacing(3.75),
   },
 
   icon: {
@@ -140,4 +158,5 @@ const useStyles = makeStyles(theme => ({
   outlined: {},
   contained: {},
   isActive: {},
+  isWithIcon: {},
 }));
