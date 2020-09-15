@@ -76,7 +76,7 @@ function getActiveBackgroundColor(currentTheme: Theme) {
     : currentTheme.colors.darkSpace;
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -149,7 +149,10 @@ const useStyles = makeStyles(theme => ({
 
   icon: {
     display: 'flex',
-    marginRight: theme.spacing(1.5),
+    marginRight: '-15px',
+    [theme.breakpoints.up('tabletSM')]: {
+      marginRight: theme.spacing(1.5),
+    },
 
     '&:last-child': {
       marginRight: 0,
