@@ -23,5 +23,5 @@ export function getDecimal(value: string, baseDecimals: number, precision: numbe
     mid < 0 ? 0 : mid,
   )}000`.substr(0, decimalsZerosLength);
 
-  return { fractional, integer: `${isNegative ? '-' : ''}${integer}` };
+  return { fractional, integer: `${isNegative ? '-' : ''}${integer || '0'}` };
 }
