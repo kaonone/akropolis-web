@@ -1,4 +1,4 @@
-import { formatBalance } from '../bnHexWei';
+import { formatBalance, formatShortBalance } from '../bnHexWei';
 import { Value } from '../fraction';
 import { Token } from './Token';
 import { Amount } from './amount/Amount';
@@ -19,6 +19,15 @@ export class TokenAmount extends Amount<Token> {
       tokenSymbol: withSymbol ? this.currency.symbol : undefined,
       baseDecimals: this.currency.decimals,
       precision,
+      symbolPosition: 'end-space',
+    });
+  }
+
+  public toShortString(withSymbol = true): string {
+    return formatShortBalance({
+      amountInBaseUnits: this.toBN(),
+      tokenSymbol: withSymbol ? this.currency.symbol : undefined,
+      baseDecimals: this.currency.decimals,
       symbolPosition: 'end-space',
     });
   }
