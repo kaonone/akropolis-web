@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.13.0...@akropolis-web/components@0.14.0) (2020-09-15)
+
+
+### Features
+
+* **card:** token icons adaptive ([998d056](https://github.com/akropolisio/akropolis-web/commit/998d056d68e646a3dc820b4d1d4469c89b461e52))
+
+
+
+
+
 # [0.13.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.12.1...@akropolis-web/components@0.13.0) (2020-09-15)
 
 
