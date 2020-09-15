@@ -59,10 +59,9 @@ export const useStyles = makeStyles(theme => ({
 
   outlinedPrimary: {
     borderWidth: 0,
-    zIndex: 1,
-    position: 'relative',
     backgroundImage: theme.gradients.outlinedButton.linear('to right'),
     backgroundSize: backgroundGradientSize,
+    opacity: 0.99,
     color: theme.palette.text.primary,
     transition: 'background-position 1s',
 
