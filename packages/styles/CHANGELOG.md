@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.10.0...@akropolis-web/styles@0.11.0) (2020-09-15)
+
+
+### Features
+
+* add theme breakpoint overrides ([5b1532e](https://github.com/akropolisio/akropolis-web/commit/5b1532e8cb64eea88657a444ce5dc48bc43889f9))
+
+
+
+
+
 # [0.10.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.9.0...@akropolis-web/styles@0.10.0) (2020-09-10)
 
 

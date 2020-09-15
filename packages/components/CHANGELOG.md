@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.12.1...@akropolis-web/components@0.13.0) (2020-09-15)
+
+
+### Features
+
+* adaptive TokenAmountInput, add breakpoint overrides, DialogContent ([0f17eb9](https://github.com/akropolisio/akropolis-web/commit/0f17eb959ea584c6883e13ed7341e2717a8b0bdb))
+
+
+
+
+
 ## [0.12.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.12.0...@akropolis-web/components@0.12.1) (2020-09-15)
 
 
