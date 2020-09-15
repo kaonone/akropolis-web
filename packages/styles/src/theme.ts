@@ -1,6 +1,6 @@
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
 import { mergeDeepRight } from 'ramda';
-import { Object } from 'ts-toolbelt';
+import { Object as O } from 'ts-toolbelt';
 
 import { colors } from './colors';
 import { makeGradient } from './makeGradient';
@@ -152,6 +152,32 @@ const tokensPalette: {
   },
 };
 
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920,
+  desktopXL: 2560,
+  desktopLG: 1920,
+  desktopMD: 1440,
+  desktopSM: 1360,
+  desktopXS: 1280,
+  tabletSM: 1024,
+  tabletXS: 768,
+  mobileLG: 640,
+  mobileMD: 480,
+  mobileSM: 320,
+  mobileXS: 0,
+};
+
+function getBreakpoints() {
+  return {
+    keys: Object.keys(breakpoints) as Array<keyof typeof breakpoints>,
+    values: breakpoints,
+  };
+}
+
 const lightPalette = {
   primary: {
     main: colors.purpleHeart,
@@ -228,6 +254,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         gradients: getGradients(type),
         tokensPalette,
         palette: type === 'light' ? lightPalette : darkPalette,
+        breakpoints: getBreakpoints(),
         typography: {
           fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
           h6: {
@@ -550,17 +577,21 @@ export interface ThemeOptionsOverrides {}
 
 export interface TypeBackgroundOverrides {}
 
+export interface TypeBreakpointOverrides {}
+
 declare module PackageOverrides {
   interface Theme {
     colors: typeof colors;
     gradients: ReturnType<typeof getGradients>;
     tokensPalette: typeof tokensPalette;
+    breakpoints: ReturnType<typeof getBreakpoints>;
   }
 
   interface ThemeOptions {
     colors?: Partial<typeof colors>;
     gradients?: Partial<ReturnType<typeof getGradients>>;
     tokensPalette?: Partial<typeof tokensPalette>;
+    breakpoints?: ReturnType<typeof getBreakpoints>;
   }
 
   interface TypeBackground {
@@ -568,19 +599,29 @@ declare module PackageOverrides {
     tableHeader: string;
     paperSecondary: string;
   }
+
+  interface TypeBreakpoint {
+    desktopXL: true;
+    desktopLG: true;
+    desktopMD: true;
+    desktopSM: true;
+    desktopXS: true;
+    tabletSM: true;
+    tabletXS: true;
+    mobileLG: true;
+    mobileMD: true;
+    mobileSM: true;
+    mobileXS: true;
+  }
 }
 
-type MergeThemeOptions<A extends object, B extends object> = Object.Partial<
-  Object.Merge<
-    Object.Required<A, keyof any, 'deep'>,
-    Object.Required<B, keyof any, 'deep'>,
-    'deep'
-  >,
+type MergeThemeOptions<A extends object, B extends object> = O.Partial<
+  O.Merge<O.Required<A, keyof any, 'deep'>, O.Required<B, keyof any, 'deep'>, 'deep'>,
   'deep'
 >;
 
 declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme extends Object.Merge<ThemeOverrides, PackageOverrides.Theme, 'deep'> {}
+  interface Theme extends O.Merge<ThemeOverrides, PackageOverrides.Theme, 'deep'> {}
 
   interface ThemeOptions
     extends MergeThemeOptions<ThemeOptionsOverrides, PackageOverrides.ThemeOptions> {}
@@ -588,5 +629,10 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground
-    extends Object.Merge<TypeBackgroundOverrides, PackageOverrides.TypeBackground, 'deep'> {}
+    extends O.Merge<TypeBackgroundOverrides, PackageOverrides.TypeBackground, 'deep'> {}
+}
+
+declare module '@material-ui/core/styles/createBreakpoints' {
+  interface BreakpointOverrides
+    extends O.Merge<TypeBreakpointOverrides, PackageOverrides.TypeBreakpoint, 'deep'> {}
 }
