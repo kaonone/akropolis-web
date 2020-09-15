@@ -51,18 +51,17 @@ export function SelectInput(props: SelectInputProps) {
   }, []);
 
   useEffect(() => {
-    setToBottomDistance(
-      currentWindowHeight -
-        Number(selectInputRef.current?.getBoundingClientRect().bottom) -
-        MENU_SHIFT_HEIGHT,
-    );
-    setToTopDistance(
-      Number(selectInputRef.current?.getBoundingClientRect().top) - MENU_SHIFT_HEIGHT,
-    );
+    const inputRect = selectInputRef.current?.getBoundingClientRect();
+
+    if (inputRect) {
+      const { bottom, top } = inputRect;
+      setToBottomDistance(currentWindowHeight - bottom - MENU_SHIFT_HEIGHT);
+      setToTopDistance(top - MENU_SHIFT_HEIGHT);
+    }
   }, [currentWindowHeight]);
+
   const selectHeight =
     Number(selectInputRef.current?.offsetHeight) * options.length + MENU_PADDINGS_HEIGHT;
-
   const hasBottomSpace = toBottomDistance > selectHeight;
   const hasTopSpace = toTopDistance > selectHeight;
 
