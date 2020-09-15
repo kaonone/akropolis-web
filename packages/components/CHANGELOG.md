@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.11.1...@akropolis-web/components@0.12.0) (2020-09-15)
+
+
+### Bug Fixes
+
+* fix card label indent if dont have label icon ([154cfd0](https://github.com/akropolisio/akropolis-web/commit/154cfd045a7ef656f7c05ef74cbbb68ad2cabbfe))
+* remove useless translate ([1cdb547](https://github.com/akropolisio/akropolis-web/commit/1cdb547c9974d516be62364afdced8dec8ea830f))
+
+
+### Features
+
+* token icons update, add inactive token icons ([6a65608](https://github.com/akropolisio/akropolis-web/commit/6a65608cbaeb33ec112de44e6557e674e331b71a))
+
+
+
+
+
 ## [0.11.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.11.0...@akropolis-web/components@0.11.1) (2020-09-15)
 
 
