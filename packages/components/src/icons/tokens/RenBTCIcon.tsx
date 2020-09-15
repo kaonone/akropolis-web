@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-function renBTCIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function RenBTCIcon(props: React.ComponentProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
@@ -22,4 +22,4 @@ function renBTCIcon(props: React.ComponentProps<typeof SvgIcon>) {
   );
 }
 
-export { renBTCIcon };
+export { RenBTCIcon };

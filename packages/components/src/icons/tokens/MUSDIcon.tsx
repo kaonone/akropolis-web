@@ -1,11 +1,11 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export function InactiveMUSDIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function MUSDIcon(props: React.ComponentProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
-        <ellipse cx="10" cy="10" fill="#191924" fillRule="nonzero" rx="10" ry="9.818" />
+        <ellipse cx="10" cy="10" fill="#000" fillRule="nonzero" rx="10" ry="9.818" />
         <g fill="#FFF">
           <path
             fillRule="nonzero"
@@ -21,3 +21,5 @@ export function InactiveMUSDIcon(props: React.ComponentProps<typeof SvgIcon>) {
     </SvgIcon>
   );
 }
+
+export { MUSDIcon };
