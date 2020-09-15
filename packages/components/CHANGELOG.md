@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.11.0...@akropolis-web/components@0.11.1) (2020-09-15)
+
+
+### Bug Fixes
+
+* **selectinput:** fix getBoundingClientRect calls ([6b1b8fe](https://github.com/akropolisio/akropolis-web/commit/6b1b8fe19e76bde16e12ef7a13ec00c71ebb3a97))
+* **selectinput:** fix hooks deps in selectInput ([fe3e9f0](https://github.com/akropolisio/akropolis-web/commit/fe3e9f02da4230c9cb940c86c2b4acfd7ff54ba8))
+* **selectinput:** fix select styles with a lack of space below or higher ([f0c5fdc](https://github.com/akropolisio/akropolis-web/commit/f0c5fdc70861a25c66f4e94a4505124e475f0ad3))
+
+
+
+
+
 # [0.11.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.10.5...@akropolis-web/components@0.11.0) (2020-09-11)
 
 
