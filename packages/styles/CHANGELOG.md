@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.11.0...@akropolis-web/styles@0.12.0) (2020-09-16)
+
+
+### Bug Fixes
+
+* add additional hook import ([230f3ef](https://github.com/akropolisio/akropolis-web/commit/230f3efb0354f48b6033157a09fd893a02cf89bb))
+
+
+### Features
+
+* add adaptive for tabsProps, fix styles, add additional props ([d64879f](https://github.com/akropolisio/akropolis-web/commit/d64879f8568ae5769dbd07ff64a5457aaee64f61))
+
+
+
+
+
 # [0.11.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.10.0...@akropolis-web/styles@0.11.0) (2020-09-15)
 
 

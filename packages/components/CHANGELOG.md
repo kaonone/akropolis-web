@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.14.2...@akropolis-web/components@0.15.0) (2020-09-16)
+
+
+### Features
+
+* add adaptive for tabsProps, fix styles, add additional props ([d64879f](https://github.com/akropolisio/akropolis-web/commit/d64879f8568ae5769dbd07ff64a5457aaee64f61))
+
+
+
+
+
 ## [0.14.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.14.1...@akropolis-web/components@0.14.2) (2020-09-16)
 
 
