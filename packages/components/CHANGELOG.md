@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.14.1...@akropolis-web/components@0.14.2) (2020-09-16)
+
+
+### Bug Fixes
+
+* **button:** remove gradien from text ([054bb1f](https://github.com/akropolisio/akropolis-web/commit/054bb1fadcfdcebf70ab7a2baf041bd7c64a76a8))
+
+
+
+
+
 ## [0.14.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.14.0...@akropolis-web/components@0.14.1) (2020-09-15)
 
 
