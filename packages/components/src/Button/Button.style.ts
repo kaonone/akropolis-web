@@ -175,6 +175,7 @@ export const useStyles = makeStyles(theme => ({
     minHeight: 'unset',
     justifyContent: 'flex-start',
     borderRadius: 0,
+    transition: theme.transitions.create('color'),
 
     '&:hover, &$focusVisible': {
       color: '#EB67FE',
