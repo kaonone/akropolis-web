@@ -6,9 +6,11 @@ export { makeStyles, useTheme, lighten, darken } from '@material-ui/core/styles'
 export * from './theme';
 export * from './colors';
 export * from './WithDarkTheme';
+export * from './ancestorBackgroundHack';
 export { makeGradient } from './makeGradient';
 export { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
-export * from './ancestorBackgroundHack';
+export { useBreakpointsMatch } from './useBreakpointsMatch';
+export { useFromToQuery } from './useFromToQuery';
 
 export function rgba(hex: string, alfa: number) {
   const rgb = hexToRgb(hex).replace(/^rgb\((.+?)\)$/, '$1');

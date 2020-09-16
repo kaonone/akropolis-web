@@ -1,7 +1,9 @@
 import React from 'react';
 import Tab, { TabTypeMap } from '@material-ui/core/Tab';
+import { TabListProps } from '@material-ui/lab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabPanel from '@material-ui/lab/TabPanel';
+import { useBreakpointsMatch } from '@akropolis-web/styles';
 
 import { TabList } from '../TabList/TabList';
 import { useStyles } from './TabsSection.style';
@@ -20,20 +22,27 @@ type TabItem<T extends React.ElementType> = Omit<React.ComponentProps<T>, keyof 
 type Props<T extends React.ElementType> = {
   currentValue: string;
   tabs: TabItem<T>[];
-  onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
+  tabListProps?: Partial<TabListProps>;
   tabComponent?: T;
   children?: React.ReactNode;
+  onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
 };
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
-  const { tabs, currentValue, children, onChange, tabComponent } = props;
-
+  const { tabs, currentValue, children, onChange, tabComponent, tabListProps } = props;
+  const isSmallMobile = useBreakpointsMatch({ to: 375 });
   const classes = useStyles();
 
   return (
     <TabContext value={currentValue}>
       <div className={classes.navigationBar}>
-        <TabList value={currentValue} onChange={onChange}>
+        <TabList
+          {...tabListProps}
+          value={currentValue}
+          onChange={onChange}
+          variant={isSmallMobile ? 'fullWidth' : 'standard'}
+          className={classes.tabList}
+        >
           {tabs.map(tabItem => renderTab(tabItem))}
         </TabList>
         {children}
