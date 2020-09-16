@@ -174,17 +174,11 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 'unset',
     minHeight: 'unset',
     justifyContent: 'flex-start',
-    background: theme.gradients.outlinedButton.linear('to right'),
-    backgroundSize: '150%',
-    '-webkit-text-fill-color': 'transparent',
-    '-webkit-background-clip': 'text',
-    backgroundClip: 'text',
     borderRadius: 0,
-    transition: 'background-size 1s',
+    transition: theme.transitions.create('color'),
 
     '&:hover, &$focusVisible': {
-      backgroundColor: 'transparent',
-      backgroundSize: '500%',
+      color: '#EB67FE',
     },
   },
 
