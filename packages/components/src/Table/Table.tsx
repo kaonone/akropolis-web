@@ -14,6 +14,8 @@ type Props<T, U> = {
   withOuterPadding?: boolean;
   summary?: M.Summary;
   rowPadding?: M.RowPaddingSize;
+  titlePadding?: M.RowPaddingSize;
+  indentFromHeader?: M.RowPaddingSize;
 };
 
 type RowToExpandedState = Record<number, boolean>;
@@ -30,9 +32,31 @@ export function Table<T, U = null>(props: Props<T, U>) {
   const rowPaddingToClass: Record<M.RowPaddingSize, string> = {
     medium: classes.cellPaddingMedium,
     small: classes.cellPaddingSmall,
+    'extra-small': classes.cellPaddingExtraSmall,
   };
 
-  const { columns, entries, summary, withStripes, withOuterPadding, rowPadding = 'medium' } = props;
+  const titlePaddingToClass: Record<M.RowPaddingSize, string> = {
+    medium: classes.titlePaddingMedium,
+    small: classes.titlePaddingSmall,
+    'extra-small': classes.titlePaddingExtraSmall,
+  };
+
+  const indentFromHeaderClass: Record<M.RowPaddingSize, string> = {
+    medium: classes.paddingFromTitleMedium,
+    small: classes.paddingFromTitleSmall,
+    'extra-small': classes.paddingFromTitleExtraSmall,
+  };
+
+  const {
+    columns,
+    entries,
+    summary,
+    withStripes,
+    withOuterPadding,
+    rowPadding = 'medium',
+    titlePadding = 'medium',
+    indentFromHeader,
+  } = props;
 
   const [rowToExpanded, setRowToExpanded] = React.useState<RowToExpandedState>(() =>
     entries.reduce(
@@ -66,7 +90,9 @@ export function Table<T, U = null>(props: Props<T, U>) {
           <tr>{columns.map(renderTitle)}</tr>
         </thead>
       )}
-      <tbody>{renderEntriesAndSummary()}</tbody>
+      <tbody className={cn(getPaddingFromTitleClass(indentFromHeader))}>
+        {renderEntriesAndSummary()}
+      </tbody>
     </table>
   );
 
@@ -101,10 +127,24 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return paddingSize && rowPaddingToClass[paddingSize];
   }
 
+  function getTitlePaddingClass(paddingSize: M.RowPaddingSize) {
+    return paddingSize && titlePaddingToClass[paddingSize];
+  }
+
+  function getPaddingFromTitleClass(paddingSize: M.RowPaddingSize | undefined) {
+    return paddingSize && indentFromHeaderClass[paddingSize];
+  }
+
   function renderTitle(column: M.Column<T, U>, columnIndex: number) {
     return (
       <th
-        className={cn(classes.title, classes.cell, classes.topLevelTitle, getAlignClass(column))}
+        className={cn(
+          classes.title,
+          classes.cell,
+          classes.topLevelTitle,
+          getAlignClass(column),
+          getTitlePaddingClass(titlePadding),
+        )}
         key={columnIndex}
       >
         {column.renderTitle && column.renderTitle()}

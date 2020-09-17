@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type AlignProperty = 'left' | 'right' | 'center';
 
-export type RowPaddingSize = 'medium' | 'small';
+export type RowPaddingSize = 'medium' | 'small' | 'extra-small';
 
 export type ColSpanProperty = number | 'end' | undefined;
 
