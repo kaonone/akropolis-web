@@ -153,22 +153,22 @@ const tokensPalette: {
 };
 
 const breakpoints = {
+  mobileXS: 0,
+  mobileSM: 320,
+  mobileMD: 480,
+  mobileLG: 640,
+  tabletXS: 768,
+  tabletSM: 1024,
+  desktopXS: 1280,
+  desktopSM: 1360,
+  desktopMD: 1440,
+  desktopLG: 1920,
+  desktopXL: 2560,
   xs: 0,
   sm: 600,
   md: 960,
   lg: 1280,
   xl: 1920,
-  desktopXL: 2560,
-  desktopLG: 1920,
-  desktopMD: 1440,
-  desktopSM: 1360,
-  desktopXS: 1280,
-  tabletSM: 1024,
-  tabletXS: 768,
-  mobileLG: 640,
-  mobileMD: 480,
-  mobileSM: 320,
-  mobileXS: 0,
 };
 
 function getBreakpoints() {
