@@ -27,6 +27,7 @@ export { TokensIcons } from './TokensIcons/TokensIcons';
 export { DependencyProvider } from './DependencyProvider/DependencyProvider';
 export { HiddenSvgDefs } from './HiddenSvgDefs/HiddenSvgDefs';
 export { DialogContent } from './DialogContent/DialogContent';
+export { AdaptiveGrid } from './AdaptiveGrid/AdaptiveGrid';
 
 export * from './inputs';
 export * from './icons';
