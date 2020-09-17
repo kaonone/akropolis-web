@@ -17,13 +17,18 @@ export const useStyles = makeStyles(
     },
     tabList: {
       width: '100%',
+
       [theme.breakpoints.up(375)]: {
         width: 'initial',
       },
     },
     tab: {
-      padding: '0 20px',
+      padding: '0 10px',
       minWidth: 'initial',
+
+      [theme.breakpoints.up('mobileMD')]: {
+        padding: '0 20px',
+      },
     },
     tabPanel: {
       padding: 0,
