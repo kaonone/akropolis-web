@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.15.0...@akropolis-web/components@0.16.0) (2020-09-17)
+
+
+### Features
+
+* **card:** icons adaptive ([6c06fcb](https://github.com/akropolisio/akropolis-web/commit/6c06fcb32ff96664c06a50ec6cda9076c745b320))
+* **tabssection:** add addaptive styles to tabs section and tab list ([195ed03](https://github.com/akropolisio/akropolis-web/commit/195ed0326acbe2f7b74f05a7bc2955766f421644))
+
+
+
+
+
 # [0.15.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.14.2...@akropolis-web/components@0.15.0) (2020-09-16)
 
 
