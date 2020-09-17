@@ -58,10 +58,39 @@ export const useStyles = makeStyles(
 
       cell: {},
 
+      paddingFromTitleMedium: {
+        '& tr:first-child > td': {
+          paddingTop: 32,
+        },
+      },
+
+      paddingFromTitleSmall: {
+        '& tr:first-child > td': {
+          paddingTop: 20,
+        },
+      },
+
+      paddingFromTitleExtraSmall: {
+        '& tr:first-child > td': {
+          paddingTop: 12,
+        },
+      },
+
       title: {
         textAlign: 'left',
         fontWeight: 'normal',
+      },
+
+      titlePaddingMedium: {
         padding: '0 10px 20px',
+      },
+
+      titlePaddingSmall: {
+        padding: '0 10px 20px',
+      },
+
+      titlePaddingExtraSmall: {
+        padding: '0 10px 10px',
       },
 
       cellAlignLeft: {
@@ -100,6 +129,10 @@ export const useStyles = makeStyles(
 
       cellPaddingSmall: {
         padding: '13px 10px',
+      },
+
+      cellPaddingExtraSmall: {
+        padding: '6px 10px',
       },
 
       singleCellExpandedArea: {
