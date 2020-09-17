@@ -108,6 +108,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     backgroundColor: '#191925',
     borderRadius: '50%',
+    fontSize: 25, // svg icon width: 1em, height: 1em,
+    [theme.breakpoints.up('tabletXS')]: {
+      fontSize: 30,
+    },
   },
 
   label: {
