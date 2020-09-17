@@ -15,8 +15,13 @@ export function AdaptiveGrid<C extends React.ElementType>(props: GridProps<C, { 
     return breakpointValue ? [...mqClasses, `MuiGrid-grid-${key}-${breakpointValue}`] : mqClasses;
   }, [] as string[]);
 
+  const gridProps = Object.keys(rest).reduce(
+    (acc, key) => (breakpoints.includes(key) ? acc : { ...acc, [key]: rest[key] }),
+    {},
+  );
+
   return (
-    <Grid className={cn(className, breakpointClasses)} {...rest}>
+    <Grid className={cn(className, breakpointClasses)} {...gridProps}>
       {children}
     </Grid>
   );
