@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.17.0...@akropolis-web/components@0.18.0) (2020-09-17)
+
+
+### Features
+
+* **button:** no wrap text ([77742a0](https://github.com/akropolisio/akropolis-web/commit/77742a06cc71ab5bccd3da8efcedc666b604ed18))
+
+
+
+
+
 # [0.17.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.16.0...@akropolis-web/components@0.17.0) (2020-09-17)
 
 
