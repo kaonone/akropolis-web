@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.16.0...@akropolis-web/components@0.17.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* fix unknown Grid props warning ([06e5536](https://github.com/akropolisio/akropolis-web/commit/06e5536079c96af92c393f09c59bc2dd9c62f35a))
+* **card:** fix pool icon adaptive ([b36bd0e](https://github.com/akropolisio/akropolis-web/commit/b36bd0e58b9d636ed4c4c92db3bdd99d8d458605))
+
+
+### Features
+
+* add classes for custom breakpoints in Grid ([d054f26](https://github.com/akropolisio/akropolis-web/commit/d054f26306d43be90ca335db36bdd54287c2bb83))
+* add table header padding prop, indent from header ([257114e](https://github.com/akropolisio/akropolis-web/commit/257114e046a55e71daedba515dfe6bb2b523396a))
+
+
+
+
+
 # [0.16.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.15.0...@akropolis-web/components@0.16.0) (2020-09-17)
 
 

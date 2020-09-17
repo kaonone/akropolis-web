@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.12.0...@akropolis-web/styles@0.13.0) (2020-09-17)
+
+
+### Features
+
+* add classes for custom breakpoints in Grid ([d054f26](https://github.com/akropolisio/akropolis-web/commit/d054f26306d43be90ca335db36bdd54287c2bb83))
+
+
+
+
+
 # [0.12.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.11.0...@akropolis-web/styles@0.12.0) (2020-09-16)
 
 
