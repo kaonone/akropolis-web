@@ -149,7 +149,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   icon: {
     display: 'flex',
-    marginRight: '-15px',
+    marginRight: '-12.5px',
+    fontSize: 25, // svg icon width: 1rem, height: 1rem,
+    [theme.breakpoints.up('tabletXS')]: {
+      marginRight: '-15px',
+      fontSize: 30,
+    },
     [theme.breakpoints.up('tabletSM')]: {
       marginRight: theme.spacing(1.5),
     },
