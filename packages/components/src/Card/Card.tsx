@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   icon: {
     display: 'flex',
     marginRight: '-12.5px',
-    fontSize: 25, // svg icon width: 1rem, height: 1rem,
+    fontSize: 25, // svg icon width: 1em, height: 1em,
     [theme.breakpoints.up('tabletXS')]: {
       marginRight: '-15px',
       fontSize: 30,
