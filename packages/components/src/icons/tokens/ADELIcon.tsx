@@ -1,11 +1,15 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
+import { makeRandomID } from '../../temp23/makeRandomID';
+
 export function ADELIcon(props: React.ComponentProps<typeof SvgIcon>) {
+  const gradientId = React.useMemo(() => makeRandomID('ADELIcon'), []);
+
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
-        <linearGradient id="r1o0u8e67a" x1="91.693%" x2="0%" y1="50%" y2="50%">
+        <linearGradient id={gradientId} x1="91.693%" x2="0%" y1="50%" y2="50%">
           <stop offset="0%" stopColor="#4136DE" />
           <stop offset="100%" stopColor="#8183FF" />
         </linearGradient>
@@ -15,7 +19,7 @@ export function ADELIcon(props: React.ComponentProps<typeof SvgIcon>) {
           <g>
             <path d="M0 0H20V20H0z" />
             <path
-              fill="url(#r1o0u8e67a)"
+              fill={`url(#${gradientId})`}
               d="M9.991.015c.347 0 .724.091 1.04.274l7.147 3.99c.63.365 1.04 1.005 1.04 1.735v8.009c0 .7-.41 1.37-1.04 1.736l-7.148 3.958c-.314.183-.673.277-1.039.274-.365 0-.723-.095-1.039-.274l-7.147-3.989c-.63-.366-1.04-1.005-1.04-1.736V6.014c0-.7.41-1.37 1.04-1.735L8.984.289C9.288.111 9.636.016 9.99.015z"
             />
             <path

@@ -2,18 +2,21 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { useTheme } from '@akropolis-web/styles';
 
+import { makeRandomID } from '../../temp23/makeRandomID';
+
 function AKROIcon(props: React.ComponentProps<typeof SvgIcon>) {
   const theme = useTheme();
+  const gradientId = React.useMemo(() => makeRandomID('AKROIcon'), []);
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
-      {theme.gradients.main.svgLinear('AKROIconGradient')}
+      {theme.gradients.main.svgLinear(gradientId)}
       <g fill="none" fillRule="evenodd">
         <g>
           <g>
             <path d="M0 0H20V20H0z" />
             <path
-              fill="url(#AKROIconGradient)"
+              fill={`url(#${gradientId})`}
               d="M9.972 0c.346 0 .724.091 1.038.274l7.145 3.99c.629.366 1.038 1.005 1.038 1.736v8.01c0 .7-.409 1.371-1.038 1.737l-7.145 3.959c-.314.182-.673.277-1.038.274-.365 0-.723-.095-1.039-.274l-7.144-3.99C1.159 15.35.75 14.711.75 13.98V6c0-.7.41-1.37 1.039-1.736L8.964.274C9.27.096 9.617.001 9.972 0z"
             />
             <path
