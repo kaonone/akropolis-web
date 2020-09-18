@@ -10,6 +10,8 @@ import {
   AncestorBackgroundHackProvider,
 } from '@akropolis-web/styles';
 
+import { ResizeObserverComponent } from './ResizeObserverComponent';
+
 interface CardProps {
   className?: string;
   variant?: 'outlined' | 'contained';
@@ -43,28 +45,40 @@ export function Card(props: CardProps) {
           [classes.isActive]: isActive,
         })}
       >
-        {children}
-        {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
-        {label && (
-          <Typography
-            component="div"
-            className={cn(classes.label, {
-              [classes.isActive]: isActive,
-              [classes.isWithIcon]: labelIcon,
-            })}
-          >
-            <span>{label}</span>
-          </Typography>
-        )}
-        {icons && (
-          <div className={classes.icons}>
-            {icons.map((icon, index) => (
-              <div className={classes.icon} key={index}>
-                {icon}
-              </div>
-            ))}
+        <div className={classes.paddingContainer}>
+          {children}
+          <div className={classes.header}>
+            {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
+            {label && (
+              <Typography
+                component="div"
+                className={cn(classes.label, {
+                  [classes.isActive]: isActive,
+                })}
+              >
+                <span>{label}</span>
+              </Typography>
+            )}
+            {icons && (
+              <ResizeObserverComponent>
+                {size => (
+                  <div className={classes.icons}>
+                    {icons.map((icon, index) => (
+                      <div
+                        className={cn(classes.icon, {
+                          [classes.compressed]: size === 'compressed',
+                        })}
+                        key={index}
+                      >
+                        {icon}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </ResizeObserverComponent>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </AncestorBackgroundHackProvider>
   );
@@ -76,99 +90,119 @@ function getActiveBackgroundColor(currentTheme: Theme) {
     : currentTheme.colors.darkSpace;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    borderRadius: theme.spacing(0.5),
-    transition: theme.transitions.create(['border-color', 'background-color']),
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
 
-    '&$outlined': {
-      border: `1px solid ${rgba(
-        theme.palette.type === 'light' ? theme.colors.shark : theme.colors.white,
-        theme.palette.type === 'light' ? 0.2 : 0.25,
-      )}`,
-      WebkitBackgroundClip: 'padding-box',
-      backgroundClip: 'padding-box',
-    },
-    '&$contained': {
-      backgroundColor: theme.palette.background.paper,
-    },
-    '&$contained$isActive': {
-      backgroundColor: getActiveBackgroundColor(theme),
-    },
-  },
+      borderRadius: theme.spacing(0.5),
+      transition: theme.transitions.create(['border-color', 'background-color']),
+      padding: '0 10px',
+      [theme.breakpoints.up(375)]: {
+        padding: '0 15px',
+      },
+      [theme.breakpoints.up('tabletSM')]: {
+        padding: '0 20px',
+      },
 
-  labelIcon: {
-    position: 'absolute',
-    top: 0,
-    left: theme.spacing(2.5),
-    transform: 'translateY(-50%)',
-    display: 'flex',
-    backgroundColor: '#191925',
-    borderRadius: '50%',
-    fontSize: 25, // svg icon width: 1em, height: 1em,
-    [theme.breakpoints.up('tabletXS')]: {
-      fontSize: 30,
-    },
-  },
-
-  label: {
-    position: 'absolute',
-    top: 0,
-    left: theme.spacing(2.5),
-    transform: 'translateY(-50%)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: theme.spacing(2.75),
-    borderRadius: theme.spacing(1.25),
-    color: theme.colors.white,
-    backgroundColor: '#13131b',
-
-    padding: theme.spacing(0.125, 0.75, 0.375),
-    fontSize: theme.spacing(1.25),
-    [theme.breakpoints.up('xs')]: {
-      padding: theme.spacing(0.25, 1.25),
-      fontSize: theme.spacing(1.5),
+      '&$outlined': {
+        border: `1px solid ${rgba(
+          theme.palette.type === 'light' ? theme.colors.shark : theme.colors.white,
+          theme.palette.type === 'light' ? 0.2 : 0.25,
+        )}`,
+        WebkitBackgroundClip: 'padding-box',
+        backgroundClip: 'padding-box',
+      },
+      '&$contained': {
+        backgroundColor: theme.palette.background.paper,
+      },
+      '&$contained$isActive': {
+        backgroundColor: getActiveBackgroundColor(theme),
+      },
     },
 
-    '&$isActive': {
-      background: theme.gradients.main.linear('to right'),
+    paddingContainer: {
+      position: 'relative',
+      padding: '30px 0 20px',
+      [theme.breakpoints.up(375)]: {
+        padding: '30px 0 20px',
+      },
+      [theme.breakpoints.up('tabletSM')]: {
+        padding: '50px 0 20px',
+      },
     },
 
-    '&$isWithIcon': {
-      left: theme.spacing(7.5),
-    },
-  },
-
-  icons: {
-    position: 'absolute',
-    top: 0,
-    right: theme.spacing(2.5),
-    transform: 'translateY(-50%)',
-    display: 'flex',
-  },
-
-  icon: {
-    display: 'flex',
-    marginRight: '-12.5px',
-    fontSize: 25, // svg icon width: 1em, height: 1em,
-    [theme.breakpoints.up('tabletXS')]: {
-      marginRight: '-15px',
-      fontSize: 30,
-    },
-    [theme.breakpoints.up('tabletSM')]: {
-      marginRight: theme.spacing(1.5),
+    header: {
+      position: 'absolute',
+      width: '100%',
+      top: 0,
+      left: 0,
+      transform: 'translateY(-50%)',
+      display: 'flex',
+      alignItems: 'center',
     },
 
-    '&:last-child': {
-      marginRight: 0,
+    labelIcon: {
+      backgroundColor: '#191925',
+      borderRadius: '50%',
+      fontSize: 25, // svg icon width: 1em, height: 1em,
+      [theme.breakpoints.up('tabletXS')]: {
+        fontSize: 30,
+      },
+      marginRight: 5,
     },
-  },
-  outlined: {},
-  contained: {},
-  isActive: {},
-  isWithIcon: {},
-}));
+
+    label: {
+      height: theme.spacing(2.75),
+      borderRadius: theme.spacing(1.25),
+      color: theme.colors.white,
+      backgroundColor: '#13131b',
+
+      padding: theme.spacing(0.125, 0.75, 0.375),
+      fontSize: theme.spacing(1.25),
+      [theme.breakpoints.up('xs')]: {
+        padding: theme.spacing(0.25, 1.25),
+        fontSize: theme.spacing(1.5),
+      },
+
+      '&$isActive': {
+        background: theme.gradients.main.linear('to right'),
+      },
+    },
+
+    icons: {
+      display: 'flex',
+      marginLeft: 'auto',
+    },
+
+    icon: {
+      display: 'flex',
+      fontSize: 25, // svg icon width: 1em, height: 1em,
+      marginRight: theme.spacing(1),
+      [theme.breakpoints.up('tabletXS')]: {
+        fontSize: 30,
+        marginRight: theme.spacing(1.5),
+      },
+      '&:last-child': {
+        marginRight: 0,
+      },
+
+      '&$compressed': {
+        marginRight: '-12.5px',
+        [theme.breakpoints.up('tabletXS')]: {
+          marginRight: '-15px',
+        },
+        '&:last-child': {
+          marginRight: 0,
+        },
+      },
+    },
+    outlined: {},
+    contained: {},
+    isActive: {},
+    isWithIcon: {},
+    compressed: {},
+  }),
+  { name: 'Card' },
+);
