@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.0...@akropolis-web/components@0.19.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* fix duplicate SVG id collision in Status browser ([509466a](https://github.com/akropolisio/akropolis-web/commit/509466a686bafae62348091eff50a6cf80001476))
+
+
+
+
+
 # [0.19.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.18.1...@akropolis-web/components@0.19.0) (2020-09-18)
 
 
