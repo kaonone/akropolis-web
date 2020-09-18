@@ -1,17 +1,21 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
+import { makeRandomID } from '../../temp23/makeRandomID';
+
 function RenBTCIcon(props: React.ComponentProps<typeof SvgIcon>) {
+  const gradientId = React.useMemo(() => makeRandomID('RenBTCIcon'), []);
+
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
-        <linearGradient id="oorue8108a" x1="50%" x2="50%" y1="0%" y2="100%">
+        <linearGradient id={gradientId} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#9B9B9B" />
           <stop offset="100%" stopColor="#626262" />
         </linearGradient>
       </defs>
       <g fill="none" fillRule="evenodd">
-        <circle cx="10" cy="10" r="10" fill="url(#oorue8108a)" />
+        <circle cx="10" cy="10" r="10" fill={`url(#${gradientId})`} />
         <path
           fill="#FFF"
           fillRule="nonzero"

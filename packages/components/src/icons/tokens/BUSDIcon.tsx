@@ -1,18 +1,22 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
+import { makeRandomID } from '../../temp23/makeRandomID';
+
 export function BUSDIcon(props: React.ComponentProps<typeof SvgIcon>) {
+  const gradientId = React.useMemo(() => makeRandomID('BUSDIcon'), []);
+
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
-        <linearGradient id="1twusdtxfa" x1="50%" x2="50%" y1="0%" y2="100%">
+        <linearGradient id={gradientId} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#FFEEB8" />
           <stop offset="100%" stopColor="#FECB27" />
         </linearGradient>
       </defs>
       <g fill="none">
         <path
-          fill="url(#1twusdtxfa)"
+          fill={`url(#${gradientId})`}
           d="M9.987 0c5.517 0 9.988 4.472 9.988 9.987 0 5.517-4.471 9.988-9.988 9.988C4.472 19.975 0 15.503 0 9.987 0 4.472 4.472 0 9.987 0z"
         />
         <g fill="#000">

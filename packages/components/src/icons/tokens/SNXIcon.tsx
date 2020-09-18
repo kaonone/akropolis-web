@@ -1,18 +1,22 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
+import { makeRandomID } from '../../temp23/makeRandomID';
+
 export function SNXIcon(props: React.ComponentProps<typeof SvgIcon>) {
+  const gradientId = React.useMemo(() => makeRandomID('SNXIcon'), []);
+
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
-        <linearGradient id="dtxyvbmyga" x1="50%" x2="50%" y1="0%" y2="100%">
+        <linearGradient id={gradientId} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#40385F" />
           <stop offset="100%" stopColor="#1E1A31" />
         </linearGradient>
       </defs>
       <g fill="none" fillRule="evenodd">
         <path
-          fill="url(#dtxyvbmyga)"
+          fill={`url(#${gradientId})`}
           d="M19.984 9.992C19.984 4.474 15.51 0 9.992 0 4.474 0 0 4.474 0 9.992c0 5.518 4.474 9.992 9.992 9.992 5.518 0 9.992-4.474 9.992-9.992z"
         />
         <g fill="#FFF">
