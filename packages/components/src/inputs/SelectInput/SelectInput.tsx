@@ -141,7 +141,7 @@ export function SelectInput(props: SelectInputProps) {
     >
       {options.map(({ id, label }) => {
         return (
-          <MenuItem key={id} value={id}>
+          <MenuItem key={id} value={id} className={classes.menuItem}>
             {label}
           </MenuItem>
         );

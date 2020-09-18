@@ -5,6 +5,10 @@ export const useStyles = makeStyles(
     root: {
       minWidth: 129,
 
+      [theme.breakpoints.up('tabletSM')]: {
+        minWidth: 144,
+      },
+
       '&$isOpen': {
         '&$hasBottomSpace $input': {
           borderBottomLeftRadius: 0,
@@ -45,6 +49,9 @@ export const useStyles = makeStyles(
         borderRadius: '8px 8px 0 0',
         borderBottom: 'none',
       },
+    },
+    menuItem: {
+      minHeight: 'auto',
     },
     arrowIcon: {
       position: 'absolute',
