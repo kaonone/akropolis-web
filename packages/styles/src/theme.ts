@@ -1,4 +1,5 @@
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { ZIndex as MUIZIndex } from '@material-ui/core/styles/zIndex';
 import { mergeDeepRight } from 'ramda';
 import { Object as O } from 'ts-toolbelt';
 
@@ -243,6 +244,16 @@ const sizes = {
   },
 };
 
+const zIndex = {
+  ...defaultTheme.zIndex,
+  sidebarTemporary: defaultTheme.zIndex.modal + 1,
+  sidebarBackdrop: defaultTheme.zIndex.modal,
+  allocateFormFixed: defaultTheme.zIndex.modal + 1,
+  header: defaultTheme.zIndex.modal + 3,
+  pageHeader: defaultTheme.zIndex.modal - 1,
+  pageContentMobile: defaultTheme.zIndex.modal - 2,
+};
+
 export const lightTheme = getTheme('light');
 export const darkTheme = getTheme('dark');
 
@@ -253,6 +264,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         colors,
         gradients: getGradients(type),
         tokensPalette,
+        zIndex,
         palette: type === 'light' ? lightPalette : darkPalette,
         breakpoints: getBreakpoints(),
         typography: {
@@ -579,12 +591,15 @@ export interface TypeBackgroundOverrides {}
 
 export interface TypeBreakpointOverrides {}
 
+export interface TypeZIndex {}
+
 declare module PackageOverrides {
   interface Theme {
     colors: typeof colors;
     gradients: ReturnType<typeof getGradients>;
     tokensPalette: typeof tokensPalette;
     breakpoints: ReturnType<typeof getBreakpoints>;
+    zIndex: ZIndex;
   }
 
   interface ThemeOptions {
@@ -592,12 +607,22 @@ declare module PackageOverrides {
     gradients?: Partial<ReturnType<typeof getGradients>>;
     tokensPalette?: Partial<typeof tokensPalette>;
     breakpoints?: ReturnType<typeof getBreakpoints>;
+    zIndex?: Partial<ZIndex>;
   }
 
   interface TypeBackground {
     hint: string;
     tableHeader: string;
     paperSecondary: string;
+  }
+
+  interface ZIndex extends MUIZIndex {
+    sidebarTemporary: number;
+    sidebarBackdrop: number;
+    allocateFormFixed: number;
+    header: number;
+    pageHeader: number;
+    pageContentMobile: number;
   }
 
   interface TypeBreakpoint {
@@ -635,4 +660,8 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides
     extends O.Merge<TypeBreakpointOverrides, PackageOverrides.TypeBreakpoint, 'deep'> {}
+}
+
+declare module '@material-ui/core/styles/zIndex' {
+  interface ZIndex extends O.Merge<TypeZIndex, PackageOverrides.ZIndex, 'deep'> {}
 }
