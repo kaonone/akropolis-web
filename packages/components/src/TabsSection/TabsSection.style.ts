@@ -18,7 +18,7 @@ export const useStyles = makeStyles(
     tabList: {
       width: '100%',
 
-      [theme.breakpoints.up(375)]: {
+      [theme.breakpoints.up('mobileMD')]: {
         width: 'initial',
       },
     },

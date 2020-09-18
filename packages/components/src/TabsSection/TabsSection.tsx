@@ -30,7 +30,7 @@ type Props<T extends React.ElementType> = {
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
   const { tabs, currentValue, children, onChange, tabComponent, tabListProps } = props;
-  const isSmallMobile = useBreakpointsMatch({ to: 375 });
+  const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
   const classes = useStyles();
 
   return (
