@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.18.0...@akropolis-web/components@0.18.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **selectinput:** fix display of select input with all coins option ([6f0b589](https://github.com/akropolisio/akropolis-web/commit/6f0b58977e2c8f1f9b2da865ba8f70d8f238a384))
+* **tabssection:** add fullWidth till 480 px ([eab2781](https://github.com/akropolisio/akropolis-web/commit/eab2781a6162c395a0aa10ba8b7aa3ccfbd86d6a))
+
+
+
+
+
 # [0.18.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.17.0...@akropolis-web/components@0.18.0) (2020-09-17)
 
 
