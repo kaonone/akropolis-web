@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.18.1...@akropolis-web/components@0.19.0) (2020-09-18)
+
+
+### Features
+
+* **card:** add resize observer ([540fa97](https://github.com/akropolisio/akropolis-web/commit/540fa973b5973ace66dbfab159ae418a5b4b4779))
+
+
+
+
+
 ## [0.18.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.18.0...@akropolis-web/components@0.18.1) (2020-09-18)
 
 
