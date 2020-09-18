@@ -158,7 +158,8 @@ const breakpoints = {
   mobileMD: 480,
   mobileLG: 640,
   tabletXS: 768,
-  tabletSM: 1024,
+  tabletSM: 960,
+  tabletMD: 1024,
   desktopXS: 1280,
   desktopSM: 1360,
   desktopMD: 1440,
@@ -606,6 +607,7 @@ declare module PackageOverrides {
     desktopMD: true;
     desktopSM: true;
     desktopXS: true;
+    tabletMD: true;
     tabletSM: true;
     tabletXS: true;
     mobileLG: true;
