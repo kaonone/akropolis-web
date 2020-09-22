@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.13.0...@akropolis-web/styles@0.13.1) (2020-09-22)
+
+
+### Bug Fixes
+
+* **styles:** fix WBTC token name in tokens pallete ([9c0b2c8](https://github.com/akropolisio/akropolis-web/commit/9c0b2c869668be4d6b223c2f496022cd7d4d3141))
+
+
+
+
+
 # [0.13.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.12.0...@akropolis-web/styles@0.13.0) (2020-09-17)
 
 
