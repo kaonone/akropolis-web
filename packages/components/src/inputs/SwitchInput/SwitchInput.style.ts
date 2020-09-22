@@ -13,6 +13,7 @@ export const useStyles = makeStyles(
       padding: 0,
       marginRight: 10,
       marginLeft: 11,
+      overflow: 'visible',
     },
     switchBase: {
       padding: borderOffset,
@@ -55,9 +56,10 @@ export const useStyles = makeStyles(
       position: 'relative',
       opacity: 1,
       background: theme.colors.independence,
+      zIndex: 0,
 
       '&:before': {
-        zIndex: -1,
+        zIndex: 1,
         display: 'block',
         content: "''",
         position: 'absolute',
@@ -70,7 +72,7 @@ export const useStyles = makeStyles(
       },
 
       '&:after': {
-        zIndex: -2,
+        zIndex: 0,
         display: 'block',
         content: "''",
         position: 'absolute',
