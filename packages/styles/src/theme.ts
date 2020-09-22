@@ -98,7 +98,7 @@ const tokensPalette: {
     gradient: makeGradient(['#96d9ff', '#283ef0']),
     hex: '#96d9ff',
   },
-  wBTC: {
+  WBTC: {
     gradient: makeGradient(['#fdde63', '#5ef3cd']),
     hex: '#fdde63',
   },
