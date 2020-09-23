@@ -96,7 +96,7 @@ type SI = {
 export const precisions: Record<string, SI> = {
   thousand: {
     power: 3,
-    value: 'k',
+    value: 'K',
   },
   million: {
     power: 6,
