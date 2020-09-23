@@ -79,6 +79,7 @@ export const useStyles = makeStyles(
       title: {
         textAlign: 'left',
         fontWeight: 'normal',
+        whiteSpace: 'nowrap',
       },
 
       titlePaddingMedium: {
