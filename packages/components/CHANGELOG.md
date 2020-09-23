@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.2...@akropolis-web/components@0.19.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* fix switch input cropped border on mobile devices ([a013b7c](https://github.com/akropolisio/akropolis-web/commit/a013b7c8295c54cca1e17b36fe5de16b605e2d7c))
+* prohibite table header text wrap ([a490606](https://github.com/akropolisio/akropolis-web/commit/a490606500bec640288673ee04d5b2743ab686bc))
+
+
+
+
+
 ## [0.19.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.1...@akropolis-web/components@0.19.2) (2020-09-22)
 
 **Note:** Version bump only for package @akropolis-web/components
