@@ -72,7 +72,7 @@ describe.only('formatShortBalance', (): void => {
         baseDecimals: 8,
         tokenSymbol: 'Unit',
       }),
-    ).toEqual('1.23k Unit');
+    ).toEqual('1.23K Unit');
   });
 
   it('formats 123,456,789,000 (decimals=8) without symbol', (): void => {
@@ -81,7 +81,7 @@ describe.only('formatShortBalance', (): void => {
         amountInBaseUnits: TESTVAL,
         baseDecimals: 8,
       }),
-    ).toEqual('1.23k');
+    ).toEqual('1.23K');
   });
 
   it('formats 123,456,789,000 (decimals=7)', (): void => {
@@ -91,7 +91,7 @@ describe.only('formatShortBalance', (): void => {
         baseDecimals: 7,
         tokenSymbol: 'Unit',
       }),
-    ).toEqual('12.34k Unit');
+    ).toEqual('12.34K Unit');
   });
 
   it('formats 123,456,789,000 (decimals=6)', (): void => {
