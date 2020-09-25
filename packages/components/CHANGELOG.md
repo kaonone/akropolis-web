@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.3...@akropolis-web/components@0.19.4) (2020-09-25)
+
+
+### Bug Fixes
+
+* **resizeobserver:** add ResizeObserverPolyfill ([3b93155](https://github.com/akropolisio/akropolis-web/commit/3b93155ea5d0c16f03d0ec4fbf0610704b60d576))
+
+
+
+
+
 ## [0.19.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.2...@akropolis-web/components@0.19.3) (2020-09-23)
 
 

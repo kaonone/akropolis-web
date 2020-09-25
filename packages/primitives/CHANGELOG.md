@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.4.0...@akropolis-web/primitives@0.4.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* fix digits naming ([5f674f8](https://github.com/akropolisio/akropolis-web/commit/5f674f826fe114e695dcceaecc99ebd8a0500e8c))
+
+
+
+
+
 # [0.4.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.3.0...@akropolis-web/primitives@0.4.0) (2020-09-15)
 
 
