@@ -5,6 +5,8 @@ export const useStyles = makeStyles(
     navigationBar: {
       display: 'flex',
       alignItems: 'flex-start',
+    },
+    withMargin: {
       marginBottom: 20,
 
       [theme.breakpoints.up('mobileLG')]: {
