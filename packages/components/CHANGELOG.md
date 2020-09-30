@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.4...@akropolis-web/components@0.20.0) (2020-09-30)
+
+
+### Features
+
+* **tabssection:** add optional disabling margin ([6d864a3](https://github.com/akropolisio/akropolis-web/commit/6d864a3a0712580826da964dec3a9600f8e559e6))
+* add vertical align property to table column ([8ba7b25](https://github.com/akropolisio/akropolis-web/commit/8ba7b25b0a1e658995105fa30f393ab54cc36961))
+
+
+
+
+
 ## [0.19.4](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.19.3...@akropolis-web/components@0.19.4) (2020-09-25)
 
 
