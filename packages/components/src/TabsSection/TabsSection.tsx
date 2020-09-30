@@ -4,7 +4,6 @@ import { TabListProps } from '@material-ui/lab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabPanel from '@material-ui/lab/TabPanel';
 import { useBreakpointsMatch } from '@akropolis-web/styles';
-import cn from 'classnames';
 
 import { TabList } from '../TabList/TabList';
 import { useStyles } from './TabsSection.style';
@@ -25,27 +24,18 @@ type Props<T extends React.ElementType> = {
   tabs: TabItem<T>[];
   tabListProps?: Partial<TabListProps>;
   tabComponent?: T;
-  withoutMargin?: boolean;
   children?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
 };
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
-  const {
-    withoutMargin,
-    tabs,
-    currentValue,
-    children,
-    onChange,
-    tabComponent,
-    tabListProps,
-  } = props;
+  const { tabs, currentValue, children, onChange, tabComponent, tabListProps } = props;
   const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
   const classes = useStyles();
 
   return (
     <TabContext value={currentValue}>
-      <div className={cn(classes.navigationBar, { [classes.withMargin]: !withoutMargin })}>
+      <div className={classes.navigationBar}>
         <TabList
           {...tabListProps}
           value={currentValue}
