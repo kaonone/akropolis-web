@@ -106,6 +106,18 @@ export const useStyles = makeStyles(
         textAlign: 'center',
       },
 
+      cellVerticalAlignCenter: {
+        verticalAlign: 'middle',
+      },
+
+      cellVerticalAlignTop: {
+        verticalAlign: 'top',
+      },
+
+      cellVerticalAlignBottom: {
+        verticalAlign: 'bottom',
+      },
+
       topLevelTitle: {
         borderBottom: crossRowBorder,
       },

@@ -4,11 +4,14 @@ export type AlignProperty = 'left' | 'right' | 'center';
 
 export type RowPaddingSize = 'medium' | 'small' | 'extra-small';
 
+export type VerticalAlignProperty = 'center' | 'top' | 'bottom';
+
 export type ColSpanProperty = number | 'end' | undefined;
 
 export type Column<T, U = null> = {
   cellContent: CellContent<T, U>;
   align?: AlignProperty;
+  verticalAlign?: VerticalAlignProperty;
   renderTitle?(): React.ReactNode;
 };
 

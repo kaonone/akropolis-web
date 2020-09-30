@@ -29,6 +29,12 @@ export function Table<T, U = null>(props: Props<T, U>) {
     right: classes.cellAlignRight,
   };
 
+  const verticalAlignPropertyClass: Record<M.VerticalAlignProperty, string> = {
+    center: classes.cellVerticalAlignCenter,
+    top: classes.cellVerticalAlignTop,
+    bottom: classes.cellVerticalAlignBottom,
+  };
+
   const rowPaddingToClass: Record<M.RowPaddingSize, string> = {
     medium: classes.cellPaddingMedium,
     small: classes.cellPaddingSmall,
@@ -123,6 +129,10 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return align && alignPropertyToClass[align];
   }
 
+  function getVerticalAlignClass({ verticalAlign }: M.Column<T, U>) {
+    return verticalAlign && verticalAlignPropertyClass[verticalAlign];
+  }
+
   function getPaddingClass(paddingSize: M.RowPaddingSize) {
     return paddingSize && rowPaddingToClass[paddingSize];
   }
@@ -144,6 +154,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           classes.topLevelTitle,
           getAlignClass(column),
           getTitlePaddingClass(titlePadding),
+          getVerticalAlignClass(column),
         )}
         key={columnIndex}
       >
@@ -358,6 +369,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           classes.cellData,
           getAlignClass(column),
           getPaddingClass(rowPadding),
+          getVerticalAlignClass(column),
         )}
         key={columnIndex}
         colSpan={getColSpan(content, columnIndex, entry)}
@@ -384,6 +396,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           classes.cellData,
           getAlignClass(column),
           getPaddingClass(rowPadding),
+          getVerticalAlignClass(column),
         )}
         key="row-expander"
         colSpan={getColSpan(content, columnIndex, entry)}
