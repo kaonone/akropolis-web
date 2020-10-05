@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.1...@akropolis-web/components@0.20.2) (2020-10-05)
+
+
+### Bug Fixes
+
+* add adaptive to row expander button ([a319d2f](https://github.com/akropolisio/akropolis-web/commit/a319d2fe03c6bae457f6714f1b8bc49d9bc1ab7d))
+* remove excess prop ([ffff130](https://github.com/akropolisio/akropolis-web/commit/ffff13045314a0c419ed549a4bdcd0c82c2f29d6))
+
+
+
+
+
 ## [0.20.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.0...@akropolis-web/components@0.20.1) (2020-09-30)
 
 **Note:** Version bump only for package @akropolis-web/components
