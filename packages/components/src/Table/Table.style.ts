@@ -19,17 +19,15 @@ export const useStyles = makeStyles(
         width: '100%',
         borderSpacing: 0,
 
-        '& tr:not($subtableRow) + $subtableRow $cell': {
-          paddingTop: 30,
-        },
-
-        '& $cell:first-child': {
+        '& $cell:first-child:not($subtableCell)': {
           paddingLeft: 0,
         },
-        '& $cell:last-child': {
+        '& $cell:last-child:not($subtableCell)': {
           paddingRight: 0,
         },
       },
+
+      subtableCell: {},
 
       withOuterPadding: {
         '& $cell:first-child': {
@@ -57,6 +55,10 @@ export const useStyles = makeStyles(
       },
 
       cell: {},
+
+      subtablePaddingFromTitleMedium: {
+        paddingTop: 30,
+      },
 
       paddingFromTitleMedium: {
         '& tr:first-child > td': {

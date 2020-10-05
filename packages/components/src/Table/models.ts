@@ -4,6 +4,8 @@ export type AlignProperty = 'left' | 'right' | 'center';
 
 export type RowPaddingSize = 'medium' | 'small' | 'extra-small';
 
+export type SubtablePaddingFromTitle = 'medium' | 'unset';
+
 export type VerticalAlignProperty = 'center' | 'top' | 'bottom';
 
 export type ColSpanProperty = number | 'end' | undefined;
@@ -38,6 +40,7 @@ export type ExpandedAreaWithinSingleCell<T> = {
 
 export type ExpandedAreaWithinSubtable<T, U> = {
   kind: 'subtable';
+  paddingFromTitle?: SubtablePaddingFromTitle;
   getSubtableEntries(entry: T): U[];
   subtableColumns: Array<SubtableColumn<U>>;
 };
@@ -45,6 +48,7 @@ export type ExpandedAreaWithinSubtable<T, U> = {
 export type SubtableColumn<T> = {
   renderTitle?(): React.ReactNode;
   renderCell(subtableEntry: T): React.ReactNode;
+  align?: AlignProperty;
 };
 
 export type Summary = {

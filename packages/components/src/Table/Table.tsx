@@ -6,6 +6,7 @@ import cn from 'classnames';
 import { useStyles } from './Table.style';
 import * as views from './components';
 import * as M from './models';
+import { SubtableColumn } from './models';
 
 type Props<T, U> = {
   entries: T[];
@@ -51,6 +52,11 @@ export function Table<T, U = null>(props: Props<T, U>) {
     medium: classes.paddingFromTitleMedium,
     small: classes.paddingFromTitleSmall,
     'extra-small': classes.paddingFromTitleExtraSmall,
+  };
+
+  const subtableIndentFromHeaderClass: Record<M.SubtablePaddingFromTitle, string> = {
+    medium: classes.subtablePaddingFromTitleMedium,
+    unset: '',
   };
 
   const {
@@ -125,7 +131,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     );
   }
 
-  function getAlignClass({ align }: M.Column<T, U>) {
+  function getAlignClass({ align }: M.Column<T, U> | SubtableColumn<U>) {
     return align && alignPropertyToClass[align];
   }
 
@@ -143,6 +149,12 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
   function getPaddingFromTitleClass(paddingSize: M.RowPaddingSize | undefined) {
     return paddingSize && indentFromHeaderClass[paddingSize];
+  }
+
+  function getSubtablePaddingFromTitleClass(
+    paddingSize: M.SubtablePaddingFromTitle | undefined = 'medium',
+  ) {
+    return paddingSize && subtableIndentFromHeaderClass[paddingSize];
   }
 
   function renderTitle(column: M.Column<T, U>, columnIndex: number) {
@@ -234,15 +246,19 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
     return (
       <>
-        <tr key="subtable-header" className={classes.subtableRow}>
-          {adjustedSubtableColumns.map(renderSubtableHeader)}
-        </tr>
+        {adjustedSubtableColumns.find(x => x.renderTitle) ? (
+          <tr key="subtable-header" className={classes.subtableRow}>
+            {adjustedSubtableColumns.map(renderSubtableHeader)}
+          </tr>
+        ) : null}
         {subtableEntries.map((x, index) =>
           renderSubtableEntry(
             adjustedSubtableColumns,
             x,
             index,
             index === subtableEntries.length - 1,
+            index === 0,
+            area.paddingFromTitle,
           ),
         )}
       </>
@@ -262,10 +278,18 @@ export function Table<T, U = null>(props: Props<T, U>) {
     subtableEntry: U,
     subtableRowIndex: number,
     last: boolean,
+    first: boolean,
+    paddingFromTitle: M.SubtablePaddingFromTitle | undefined,
   ) {
     return (
       <tr
-        className={cn([classes.subtableRow, { [classes.lastSubtableRow]: last }])}
+        className={cn([
+          classes.subtableRow,
+          {
+            [classes.lastSubtableRow]: last,
+            [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
+          },
+        ])}
         key={subtableRowIndex}
       >
         {subtableColumns.map(makeSubtableCellRenderer(subtableEntry))}
@@ -276,7 +300,16 @@ export function Table<T, U = null>(props: Props<T, U>) {
   function makeSubtableCellRenderer(entry: U) {
     return (column: M.SubtableColumn<U>, columnIndex: number) => {
       return (
-        <td className={cn(classes.cell, classes.cellData)} key={columnIndex}>
+        <td
+          className={cn(
+            classes.cell,
+            classes.cellData,
+            classes.subtableCell,
+            getAlignClass(column),
+            getPaddingClass(rowPadding),
+          )}
+          key={columnIndex}
+        >
           <div>{column.renderCell(entry)}</div>
         </td>
       );
