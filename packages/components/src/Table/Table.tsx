@@ -246,7 +246,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
     return (
       <>
-        {!area.withoutHeader ? (
+        {adjustedSubtableColumns.find(x => x.renderTitle) ? (
           <tr key="subtable-header" className={classes.subtableRow}>
             {adjustedSubtableColumns.map(renderSubtableHeader)}
           </tr>

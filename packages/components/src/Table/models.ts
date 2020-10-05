@@ -40,7 +40,6 @@ export type ExpandedAreaWithinSingleCell<T> = {
 
 export type ExpandedAreaWithinSubtable<T, U> = {
   kind: 'subtable';
-  withoutHeader?: boolean;
   paddingFromTitle?: SubtablePaddingFromTitle;
   getSubtableEntries(entry: T): U[];
   subtableColumns: Array<SubtableColumn<U>>;
