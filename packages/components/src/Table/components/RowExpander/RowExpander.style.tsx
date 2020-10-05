@@ -3,10 +3,19 @@ import { makeStyles } from '@akropolis-web/styles';
 export const useStyles = makeStyles(theme => {
   return {
     root: {
-      width: '58px',
-      height: '30px',
-      borderRadius: '23px',
       backgroundColor: theme.colors.blackRussian,
+      minWidth: 0,
+      fontSize: 9,
+
+      width: 30,
+      height: 20,
+      borderRadius: 18,
+      [theme.breakpoints.up('tabletSM')]: {
+        width: 58,
+        height: 30,
+        borderRadius: 23,
+        fontSize: 'inherit',
+      },
     },
 
     expanded: {
