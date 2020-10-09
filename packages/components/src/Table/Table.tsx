@@ -187,17 +187,17 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return (
       <React.Fragment key={rowIndex}>
         {renderEntryRow(entry, rowIndex, beforeSummary)}
-        {rowToExpanded[rowIndex] && renderEntryExpandedArea(entry, expandedArea)}
+        {renderEntryExpandedArea(entry, expandedArea, rowIndex)}
       </React.Fragment>
     );
   }
 
-  function renderEntryExpandedArea(entry: T, area: M.ExpandedArea<T, U>) {
+  function renderEntryExpandedArea(entry: T, area: M.ExpandedArea<T, U>, rowIndex: number) {
     switch (area.kind) {
       case 'single-cell':
         return renderAreaWithinSingleCell(entry, area);
       case 'subtable':
-        return renderAreaWithinSubtable(entry, area);
+        return renderAreaWithinSubtable(entry, area, rowIndex);
     }
   }
 
@@ -214,7 +214,11 @@ export function Table<T, U = null>(props: Props<T, U>) {
     );
   }
 
-  function renderAreaWithinSubtable(entry: T, area: M.ExpandedAreaWithinSubtable<T, U>) {
+  function renderAreaWithinSubtable(
+    entry: T,
+    area: M.ExpandedAreaWithinSubtable<T, U>,
+    rowIndex: number,
+  ) {
     const subtableEntries = area.getSubtableEntries(entry);
 
     const adjustedSubtableColumns = (() => {
@@ -247,7 +251,12 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return (
       <>
         {adjustedSubtableColumns.find(x => x.renderTitle) ? (
-          <tr key="subtable-header" className={classes.subtableRow}>
+          <tr
+            key="subtable-header"
+            className={cn(classes.subtableRow, {
+              [classes.subtableRowInactive]: !rowToExpanded[rowIndex],
+            })}
+          >
             {adjustedSubtableColumns.map(renderSubtableHeader)}
           </tr>
         ) : null}
@@ -259,6 +268,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
             index === subtableEntries.length - 1,
             index === 0,
             area.paddingFromTitle,
+            rowIndex,
           ),
         )}
       </>
@@ -280,17 +290,19 @@ export function Table<T, U = null>(props: Props<T, U>) {
     last: boolean,
     first: boolean,
     paddingFromTitle: M.SubtablePaddingFromTitle | undefined,
+    rowIndex: number,
   ) {
     return (
       <tr
+        key={subtableRowIndex}
         className={cn([
           classes.subtableRow,
           {
             [classes.lastSubtableRow]: last,
             [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
+            [classes.subtableRowInactive]: !rowToExpanded[rowIndex],
           },
         ])}
-        key={subtableRowIndex}
       >
         {subtableColumns.map(makeSubtableCellRenderer(subtableEntry))}
       </tr>

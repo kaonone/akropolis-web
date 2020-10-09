@@ -40,11 +40,15 @@ export const useStyles = makeStyles(
     },
 
     sizeSmall: {
-      padding: theme.spacing(0.875, 2),
       fontSize: theme.spacing(2),
       minWidth: theme.spacing(13.25),
       minHeight: theme.spacing(smallHeightTabletXS),
       borderRadius: theme.spacing(smallHeightTabletXS / 2),
+
+      padding: '7px 16px',
+      [theme.breakpoints.up('desktopXS')]: {
+        padding: '7px 20px',
+      },
 
       '&$outlinedPrimary': {
         minWidth: theme.spacing(12.25),
