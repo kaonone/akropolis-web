@@ -140,6 +140,19 @@ export const useStyles = makeStyles(
 
       subtableRowInactive: {},
 
+      divideDown: {
+        '& $cell': {
+          paddingBottom: 25,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        },
+      },
+
+      divideUp: {
+        '& $cell': {
+          paddingTop: 25,
+        },
+      },
+
       lastSubtableRow: {
         '& $cell': {
           paddingBottom: 30,

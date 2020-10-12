@@ -17,6 +17,7 @@ type Props<T, U> = {
   rowPadding?: M.RowPaddingSize;
   titlePadding?: M.RowPaddingSize;
   indentFromHeader?: M.RowPaddingSize;
+  divideBy?: (entry: T, index: number, entries: T[]) => boolean;
 };
 
 type RowToExpandedState = Record<number, boolean>;
@@ -68,6 +69,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     rowPadding = 'medium',
     titlePadding = 'medium',
     indentFromHeader,
+    divideBy,
   } = props;
 
   const [rowToExpanded, setRowToExpanded] = React.useState<RowToExpandedState>(() =>
@@ -345,6 +347,8 @@ export function Table<T, U = null>(props: Props<T, U>) {
         className={cn({
           [classes.rowBeforeSummary]: beforeSummary,
           [classes.rowWithExpandedContent]: rowToExpanded[rowIndex],
+          [classes.divideDown]: divideBy?.(entry, rowIndex, entries),
+          [classes.divideUp]: divideBy?.(entries?.[rowIndex - 1], rowIndex - 1, entries),
         })}
       >
         {columns
@@ -432,7 +436,10 @@ export function Table<T, U = null>(props: Props<T, U>) {
     column: M.Column<T, U>,
   ) {
     const handleToggle = (newValue: boolean) =>
-      setRowToExpanded({ ...rowToExpanded, [rowIndex]: newValue });
+      setRowToExpanded({
+        ...Object.fromEntries(R.keys(rowToExpanded).map(key => [key, false])),
+        [rowIndex]: newValue,
+      });
 
     return (
       <td
