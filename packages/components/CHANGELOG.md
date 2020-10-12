@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.2...@akropolis-web/components@0.20.3) (2020-10-12)
+
+
+### Bug Fixes
+
+* get back multiple row expand ([54c6eab](https://github.com/akropolisio/akropolis-web/commit/54c6eab2bef3786b412316dd4be99b3e9fddd7c6))
+* table minor fixes ([d0b42c4](https://github.com/akropolisio/akropolis-web/commit/d0b42c44da33453dcba6898c796006c1e98da613))
+
+
+
+
+
 ## [0.20.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.1...@akropolis-web/components@0.20.2) (2020-10-05)
 
 
