@@ -159,6 +159,10 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return paddingSize && subtableIndentFromHeaderClass[paddingSize];
   }
 
+  function getSubtableRowInactiveClass(rowIndex: number) {
+    return !rowToExpanded[rowIndex] ? classes.subtableRowInactive : null;
+  }
+
   function renderTitle(column: M.Column<T, U>, columnIndex: number) {
     return (
       <th
@@ -255,9 +259,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
         {adjustedSubtableColumns.find(x => x.renderTitle) ? (
           <tr
             key="subtable-header"
-            className={cn(classes.subtableRow, {
-              [classes.subtableRowInactive]: !rowToExpanded[rowIndex],
-            })}
+            className={cn(classes.subtableRow, getSubtableRowInactiveClass(rowIndex))}
           >
             {adjustedSubtableColumns.map(renderSubtableHeader)}
           </tr>
@@ -299,10 +301,10 @@ export function Table<T, U = null>(props: Props<T, U>) {
         key={subtableRowIndex}
         className={cn([
           classes.subtableRow,
+          getSubtableRowInactiveClass(rowIndex),
           {
             [classes.lastSubtableRow]: last,
             [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
-            [classes.subtableRowInactive]: !rowToExpanded[rowIndex],
           },
         ])}
       >
@@ -348,7 +350,8 @@ export function Table<T, U = null>(props: Props<T, U>) {
           [classes.rowBeforeSummary]: beforeSummary,
           [classes.rowWithExpandedContent]: rowToExpanded[rowIndex],
           [classes.divideDown]: divideBy?.(entry, rowIndex, entries),
-          [classes.divideUp]: divideBy?.(entries?.[rowIndex - 1], rowIndex - 1, entries),
+          [classes.divideUp]:
+            rowIndex > 0 && divideBy?.(entries[rowIndex - 1], rowIndex - 1, entries),
         })}
       >
         {columns
