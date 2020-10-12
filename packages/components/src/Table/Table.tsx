@@ -437,7 +437,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
   ) {
     const handleToggle = (newValue: boolean) =>
       setRowToExpanded({
-        ...Object.fromEntries(R.keys(rowToExpanded).map(key => [key, false])),
+        ...rowToExpanded,
         [rowIndex]: newValue,
       });
 
