@@ -126,6 +126,31 @@ export const useStyles = makeStyles(
 
       subtableRow: {
         backgroundColor: theme.colors.jaguar,
+
+        '&$subtableRowInactive': {
+          opacity: 0,
+          lineHeight: '0.001px',
+
+          '& $cell': {
+            paddingTop: '0px',
+            paddingBottom: '0px',
+          },
+        },
+      },
+
+      subtableRowInactive: {},
+
+      divideDown: {
+        '& $cell': {
+          paddingBottom: 25,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        },
+      },
+
+      divideUp: {
+        '& $cell': {
+          paddingTop: 25,
+        },
       },
 
       lastSubtableRow: {

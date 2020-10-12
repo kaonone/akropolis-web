@@ -5,8 +5,9 @@ export const useStyles = makeStyles(theme => {
     root: {
       backgroundColor: theme.colors.blackRussian,
       minWidth: 0,
-      fontSize: 9,
+      opacity: 0.7,
 
+      fontSize: 9,
       width: 30,
       height: 20,
       borderRadius: 18,
@@ -14,7 +15,7 @@ export const useStyles = makeStyles(theme => {
         width: 58,
         height: 30,
         borderRadius: 23,
-        fontSize: 'inherit',
+        fontSize: 13,
       },
     },
 
