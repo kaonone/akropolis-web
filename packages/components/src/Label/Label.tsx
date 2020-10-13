@@ -45,8 +45,9 @@ export const Label: React.FC<Props> = props => {
       setIsOpen(false);
     }, []);
 
-    const handleTooltipOpen = useCallback(() => {
+    const handleTooltipOpen = useCallback((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       setIsOpen(true);
+      event.preventDefault();
     }, []);
 
     return (
