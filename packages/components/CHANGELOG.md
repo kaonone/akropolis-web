@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.3...@akropolis-web/components@0.21.0) (2020-10-13)
+
+
+### Bug Fixes
+
+* add useCallback on handlers ([ca154b6](https://github.com/akropolisio/akropolis-web/commit/ca154b6c696a3945ad222bdc62ef41c3c122f1df))
+* prevent label click event on tooltip icon click ([7fa599a](https://github.com/akropolisio/akropolis-web/commit/7fa599a6a5bf62851c1c54bc9b0ad4c936459ec8))
+
+
+### Features
+
+* use updated InfoIcon ([2804bd6](https://github.com/akropolisio/akropolis-web/commit/2804bd6b903305cb69074aa64d2943ae324bd6bd))
+
+
+
+
+
 ## [0.20.3](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.20.2...@akropolis-web/components@0.20.3) (2020-10-12)
 
 
