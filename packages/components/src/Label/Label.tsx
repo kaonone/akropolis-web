@@ -66,7 +66,6 @@ export const Label: React.FC<Props> = props => {
             >
               <span>
                 <InfoIcon
-                  fontSize="small"
                   onMouseOver={handleTooltipOpen}
                   onMouseLeave={handleTooltipClose}
                   onClick={handleTooltipOpen}
