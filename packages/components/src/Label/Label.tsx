@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import cn from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@akropolis-web/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import { ComingSoon } from '../ComingSoon/ComingSoon';
 import { InfoIcon } from '../icons';
@@ -27,16 +29,7 @@ export const Label: React.FC<Props> = props => {
     >
       {icon && <>{icon}&nbsp;</>}
       {children}
-      {hint && (
-        <>
-          &nbsp;
-          <Tooltip title={hint} placement="right">
-            <span>
-              <InfoIcon fontSize="small" />
-            </span>
-          </Tooltip>
-        </>
-      )}
+      {renderTooltip()}
       {withComingSoon && (
         <span className={classes.comingSoonLabel}>
           <ComingSoon variant="label" />
@@ -44,6 +37,47 @@ export const Label: React.FC<Props> = props => {
       )}
     </Typography>
   );
+
+  function renderTooltip() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const handleTooltipClose = useCallback(() => {
+      setIsOpen(false);
+    }, []);
+
+    const handleTooltipOpen = useCallback((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+      setIsOpen(true);
+      event.preventDefault();
+    }, []);
+
+    return (
+      hint && (
+        <>
+          &nbsp;
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <Tooltip
+              onClose={handleTooltipClose}
+              open={isOpen}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title={hint}
+              placement="right"
+            >
+              <span>
+                <InfoIcon
+                  fontSize="small"
+                  onMouseOver={handleTooltipOpen}
+                  onMouseLeave={handleTooltipClose}
+                  onClick={handleTooltipOpen}
+                />
+              </span>
+            </Tooltip>
+          </ClickAwayListener>
+        </>
+      )
+    );
+  }
 };
 
 const useStyles = makeStyles(
