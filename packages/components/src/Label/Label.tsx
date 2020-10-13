@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import cn from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -40,13 +41,13 @@ export const Label: React.FC<Props> = props => {
   function renderTooltip() {
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const handleTooltipClose = () => {
+    const handleTooltipClose = useCallback(() => {
       setIsOpen(false);
-    };
+    }, []);
 
-    const handleTooltipOpen = () => {
+    const handleTooltipOpen = useCallback(() => {
       setIsOpen(true);
-    };
+    }, []);
 
     return (
       hint && (
