@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.5.0...@akropolis-web/primitives@0.5.1) (2020-10-15)
+
+
+### Bug Fixes
+
+* pass options to next LiquidityAmount in makeAmount method ([ac6eb75](https://github.com/akropolisio/akropolis-web/commit/ac6eb75ec930802ee2d7b22cb40675e12b76600d))
+
+
+
+
+
 # [0.5.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.4.1...@akropolis-web/primitives@0.5.0) (2020-10-13)
 
 
