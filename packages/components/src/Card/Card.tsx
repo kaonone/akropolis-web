@@ -26,7 +26,6 @@ export function Card(props: CardProps) {
   const { labelIcon, label, variant = 'outlined', isActive, children, icons, className } = props;
 
   const theme = useTheme();
-  const classes = useStyles();
 
   const backgroundColor = useMemo(() => {
     if (variant === 'contained') {
@@ -35,6 +34,8 @@ export function Card(props: CardProps) {
 
     return null;
   }, [variant, isActive, theme]);
+
+  const classes = useStyles({ backgroundColor });
 
   return (
     <AncestorBackgroundHackProvider backgroundColor={backgroundColor}>
@@ -48,17 +49,15 @@ export function Card(props: CardProps) {
         <div className={classes.paddingContainer}>
           {children}
           <div className={classes.header}>
-            {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
-            {label && (
-              <Typography
-                component="div"
-                className={cn(classes.label, {
-                  [classes.isActive]: isActive,
-                })}
-              >
-                <span>{label}</span>
-              </Typography>
-            )}
+            <div className={classes.labelContainer}>
+              {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
+              {label && (
+                <Typography component="div" className={classes.label}>
+                  <span>{label}</span>
+                </Typography>
+              )}
+            </div>
+
             {icons && (
               <ResizeObserverComponent>
                 {size => (
@@ -95,13 +94,14 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
       flexDirection: 'column',
-
       borderRadius: theme.spacing(0.5),
       transition: theme.transitions.create(['border-color', 'background-color']),
       padding: '0 10px',
+
       [theme.breakpoints.up(375)]: {
         padding: '0 15px',
       },
+
       [theme.breakpoints.up('tabletSM')]: {
         padding: '0 20px',
       },
@@ -114,9 +114,11 @@ const useStyles = makeStyles(
         WebkitBackgroundClip: 'padding-box',
         backgroundClip: 'padding-box',
       },
+
       '&$contained': {
         backgroundColor: theme.palette.background.paper,
       },
+
       '&$contained$isActive': {
         backgroundColor: getActiveBackgroundColor(theme),
       },
@@ -124,10 +126,8 @@ const useStyles = makeStyles(
 
     paddingContainer: {
       position: 'relative',
-      padding: '30px 0 20px',
-      [theme.breakpoints.up(375)]: {
-        padding: '30px 0 20px',
-      },
+      padding: '40px 0 20px',
+
       [theme.breakpoints.up('tabletSM')]: {
         padding: '50px 0 20px',
       },
@@ -143,31 +143,29 @@ const useStyles = makeStyles(
       alignItems: 'center',
     },
 
+    labelContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      height: 30,
+      borderRadius: 15,
+      backgroundColor: ({ backgroundColor }: { backgroundColor: string | null }) =>
+        backgroundColor || 'transparent',
+    },
+
     labelIcon: {
-      backgroundColor: '#191925',
       borderRadius: '50%',
-      fontSize: 25, // svg icon width: 1em, height: 1em,
-      [theme.breakpoints.up('tabletXS')]: {
-        fontSize: 30,
-      },
-      marginRight: 5,
+      fontSize: 30,
+      marginRight: 10,
     },
 
     label: {
-      height: theme.spacing(2.75),
-      borderRadius: theme.spacing(1.25),
+      padding: theme.spacing(0.25, 1.25, 0.25, 0),
+      fontSize: theme.spacing(2),
+      lineHeight: 1,
       color: theme.colors.white,
-      backgroundColor: '#13131b',
 
-      padding: theme.spacing(0.125, 0.75, 0.375),
-      fontSize: theme.spacing(1.25),
-      [theme.breakpoints.up('xs')]: {
-        padding: theme.spacing(0.25, 1.25),
+      [theme.breakpoints.up('tabletXS')]: {
         fontSize: theme.spacing(1.5),
-      },
-
-      '&$isActive': {
-        background: theme.gradients.main.linear('to right'),
       },
     },
 
@@ -178,21 +176,24 @@ const useStyles = makeStyles(
 
     icon: {
       display: 'flex',
-      fontSize: 25, // svg icon width: 1em, height: 1em,
+      fontSize: 30,
       marginRight: theme.spacing(1),
+
       [theme.breakpoints.up('tabletXS')]: {
-        fontSize: 30,
         marginRight: theme.spacing(1.5),
       },
+
       '&:last-child': {
         marginRight: 0,
       },
 
       '&$compressed': {
         marginRight: '-12.5px',
+
         [theme.breakpoints.up('tabletXS')]: {
           marginRight: '-15px',
         },
+
         '&:last-child': {
           marginRight: 0,
         },
