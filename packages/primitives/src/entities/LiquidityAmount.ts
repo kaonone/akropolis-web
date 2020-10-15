@@ -22,7 +22,7 @@ export class LiquidityAmount extends Amount<Currency> {
 
   // eslint-disable-next-line class-methods-use-this
   public makeAmount(amount: Value, currency: Currency): this {
-    return new LiquidityAmount(amount, currency) as this;
+    return new LiquidityAmount(amount, currency, this.options) as this;
   }
 
   public toFormattedString(precision: number = this.defaultPrecision, withSymbol = true): string {
