@@ -63,7 +63,7 @@ const tokensPalette: {
   [token: string]: { gradient: ReturnType<typeof makeGradient>; hex: string };
 } = {
   AKRO: {
-    gradient: makeGradient(['#ff2382', '#f5c0d4']),
+    gradient: makeGradient(['#ff2382', '#5c45e2']),
     hex: '#f79dc2',
   },
   BAL: {

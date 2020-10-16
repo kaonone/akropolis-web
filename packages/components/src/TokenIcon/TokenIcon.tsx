@@ -32,7 +32,7 @@ const tokenIcons: Record<string, CoinComponent> = {
   USDC: icons.USDCIcon,
   USDT: icons.USDTIcon,
   WBTC: icons.WBTCIcon,
-  WETH: icons.ETHIcon,
+  WETH: icons.WETHIcon,
   YFI: icons.YFIIcon,
 };
 
@@ -53,7 +53,7 @@ const inactiveTokenIcons: Record<string, CoinComponent> = {
   USDC: inactiveIcons.InactiveUSDCIcon,
   USDT: inactiveIcons.InactiveUSDTIcon,
   WBTC: inactiveIcons.InactiveWBTCIcon,
-  WETH: inactiveIcons.InactiveETHIcon,
+  WETH: inactiveIcons.InactiveWETHIcon,
   YFI: inactiveIcons.InactiveYFIIcon,
 };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export function InactiveETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
+export function InactiveWETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none">
