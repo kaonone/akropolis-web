@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.21.2...@akropolis-web/components@0.22.0) (2020-10-16)
+
+
+### Features
+
+* update Card styles on mobile and tablet screens ([fe96bc3](https://github.com/akropolisio/akropolis-web/commit/fe96bc3e026a520ef7d1aaacaf85b163c89496e1))
+
+
+
+
+
 ## [0.21.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.21.1...@akropolis-web/components@0.21.2) (2020-10-15)
 
 **Note:** Version bump only for package @akropolis-web/components
