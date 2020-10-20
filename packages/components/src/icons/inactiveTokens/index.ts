@@ -5,7 +5,7 @@ export { InactiveBUSDIcon } from './InactiveBUSDIcon';
 export { InactiveCOMPIcon } from './InactiveCOMPIcon';
 export { InactiveCRVIcon } from './InactiveCRVIcon';
 export { InactiveDAIIcon } from './InactiveDAIIcon';
-export { InactiveETHIcon } from './InactiveETHIcon';
+export { InactiveWETHIcon } from './InactiveWETHIcon';
 export { InactiveMTAIcon } from './InactiveMTAIcon';
 export { InactiveRenBTCIcon } from './InactiveRenBTCIcon';
 export { InactiveSBTCIcon } from './InactiveSBTCIcon';

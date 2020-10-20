@@ -27,6 +27,7 @@ export { DependencyProvider } from './DependencyProvider/DependencyProvider';
 export { HiddenSvgDefs } from './HiddenSvgDefs/HiddenSvgDefs';
 export { DialogContent } from './DialogContent/DialogContent';
 export { AdaptiveGrid as Grid } from './AdaptiveGrid/AdaptiveGrid';
+export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 
 export * from './inputs';
 export * from './icons';
