@@ -11,6 +11,7 @@ export { makeGradient } from './makeGradient';
 export { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
 export { useBreakpointsMatch } from './useBreakpointsMatch';
 export { useFromToQuery } from './useFromToQuery';
+export { getBreakpoints } from './getBreakpoints';
 
 export function rgba(hex: string, alfa: number) {
   const rgb = hexToRgb(hex).replace(/^rgb\((.+?)\)$/, '$1');

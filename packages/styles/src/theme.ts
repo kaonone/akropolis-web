@@ -5,6 +5,7 @@ import { Object as O } from 'ts-toolbelt';
 import { colors } from './colors';
 import { makeGradient } from './makeGradient';
 import { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
+import { getBreakpoints } from './getBreakpoints';
 
 export { Theme };
 
@@ -171,13 +172,6 @@ const breakpoints = {
   xl: 1920,
 };
 
-function getBreakpoints() {
-  return {
-    keys: Object.keys(breakpoints) as Array<keyof typeof breakpoints>,
-    values: breakpoints,
-  };
-}
-
 const lightPalette = {
   primary: {
     main: colors.purpleHeart,
@@ -254,7 +248,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         gradients: getGradients(type),
         tokensPalette,
         palette: type === 'light' ? lightPalette : darkPalette,
-        breakpoints: getBreakpoints(),
+        breakpoints: getBreakpoints(breakpoints),
         typography: {
           fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
           h6: {
