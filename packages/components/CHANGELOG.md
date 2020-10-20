@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.23.0...@akropolis-web/components@0.24.0) (2020-10-20)
+
+
+### Features
+
+* add currency icons, CurrencyIcon component, AKRO gradient update ([30f8150](https://github.com/akropolisio/akropolis-web/commit/30f8150e6cc179e22872f2ae8baca01a3c8c44cc))
+
+
+
+
+
 # [0.23.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.22.0...@akropolis-web/components@0.23.0) (2020-10-20)
 
 
