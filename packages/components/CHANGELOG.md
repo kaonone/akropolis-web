@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.22.0...@akropolis-web/components@0.23.0) (2020-10-20)
+
+
+### Features
+
+* **components/table:** pass entryIndex to methods in columns config ([237ad05](https://github.com/akropolisio/akropolis-web/commit/237ad056050fab9bbf4c93bdf7f375fe51a2d780))
+
+
+
+
+
 # [0.22.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.21.2...@akropolis-web/components@0.22.0) (2020-10-16)
 
 
