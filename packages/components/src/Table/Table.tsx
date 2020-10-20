@@ -17,7 +17,7 @@ type Props<T, U> = {
   rowPadding?: M.RowPaddingSize;
   titlePadding?: M.RowPaddingSize;
   indentFromHeader?: M.RowPaddingSize;
-  divideBy?: (entry: T, index: number, entries: T[]) => boolean;
+  divideBy?: (entry: T, entryIndex: number, entries: T[]) => boolean;
 };
 
 type RowToExpandedState = Record<number, boolean>;
@@ -114,13 +114,15 @@ export function Table<T, U = null>(props: Props<T, U>) {
     if (summary) {
       return (
         <>
-          {entries.map((x, index) => renderEntry(x, index, index === entries.length - 1))}
+          {entries.map((entry, entryIndex) =>
+            renderEntry(entry, entryIndex, entryIndex === entries.length - 1),
+          )}
           {renderSummary(summary)}
         </>
       );
     }
 
-    return entries.map((x, index) => renderEntry(x, index));
+    return entries.map((entry, entryIndex) => renderEntry(entry, entryIndex));
   }
 
   function renderSummary(x: M.Summary) {
@@ -159,8 +161,8 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return paddingSize && subtableIndentFromHeaderClass[paddingSize];
   }
 
-  function getSubtableRowInactiveClass(rowIndex: number) {
-    return !rowToExpanded[rowIndex] ? classes.subtableRowInactive : null;
+  function getSubtableRowInactiveClass(entryIndex: number) {
+    return !rowToExpanded[entryIndex] ? classes.subtableRowInactive : null;
   }
 
   function renderTitle(column: M.Column<T, U>, columnIndex: number) {
@@ -181,51 +183,55 @@ export function Table<T, U = null>(props: Props<T, U>) {
     );
   }
 
-  function renderEntry(entry: T, rowIndex: number, beforeSummary?: boolean) {
+  function renderEntry(entry: T, entryIndex: number, beforeSummary?: boolean) {
     if (expandedArea === null) {
       return (
-        <React.Fragment key={rowIndex}>
-          {renderEntryRow(entry, rowIndex, beforeSummary)}
+        <React.Fragment key={entryIndex}>
+          {renderEntryRow(entry, entryIndex, beforeSummary)}
         </React.Fragment>
       );
     }
 
     return (
-      <React.Fragment key={rowIndex}>
-        {renderEntryRow(entry, rowIndex, beforeSummary)}
-        {renderEntryExpandedArea(entry, expandedArea, rowIndex)}
+      <React.Fragment key={entryIndex}>
+        {renderEntryRow(entry, entryIndex, beforeSummary)}
+        {renderEntryExpandedArea(expandedArea, entry, entryIndex)}
       </React.Fragment>
     );
   }
 
-  function renderEntryExpandedArea(entry: T, area: M.ExpandedArea<T, U>, rowIndex: number) {
+  function renderEntryExpandedArea(area: M.ExpandedArea<T, U>, entry: T, entryIndex: number) {
     switch (area.kind) {
       case 'single-cell':
-        return renderAreaWithinSingleCell(entry, area);
+        return renderAreaWithinSingleCell(area, entry, entryIndex);
       case 'subtable':
-        return renderAreaWithinSubtable(entry, area, rowIndex);
+        return renderAreaWithinSubtable(area, entry, entryIndex);
     }
   }
 
-  function renderAreaWithinSingleCell(entry: T, area: M.ExpandedAreaWithinSingleCell<T>) {
+  function renderAreaWithinSingleCell(
+    area: M.ExpandedAreaWithinSingleCell<T>,
+    entry: T,
+    entryIndex: number,
+  ) {
     return (
       <tr>
         <td
           className={cn(classes.singleCellExpandedArea, classes.cellData, classes.cell)}
           colSpan={columns.length}
         >
-          {area.renderContent(entry)}
+          {area.renderContent(entry, entryIndex, entries)}
         </td>
       </tr>
     );
   }
 
   function renderAreaWithinSubtable(
-    entry: T,
     area: M.ExpandedAreaWithinSubtable<T, U>,
-    rowIndex: number,
+    entry: T,
+    entryIndex: number,
   ) {
-    const subtableEntries = area.getSubtableEntries(entry);
+    const subtableEntries = area.getSubtableEntries(entry, entryIndex, entries);
 
     const adjustedSubtableColumns = (() => {
       const subtableCols = area.subtableColumns;
@@ -259,20 +265,19 @@ export function Table<T, U = null>(props: Props<T, U>) {
         {adjustedSubtableColumns.find(x => x.renderTitle) ? (
           <tr
             key="subtable-header"
-            className={cn(classes.subtableRow, getSubtableRowInactiveClass(rowIndex))}
+            className={cn(classes.subtableRow, getSubtableRowInactiveClass(entryIndex))}
           >
             {adjustedSubtableColumns.map(renderSubtableHeader)}
           </tr>
         ) : null}
-        {subtableEntries.map((x, index) =>
+        {subtableEntries.map((subtableEntry, subtableEntryIndex) =>
           renderSubtableEntry(
             adjustedSubtableColumns,
-            x,
-            index,
-            index === subtableEntries.length - 1,
-            index === 0,
+            subtableEntry,
+            subtableEntryIndex,
+            subtableEntries,
             area.paddingFromTitle,
-            rowIndex,
+            entryIndex,
           ),
         )}
       </>
@@ -290,30 +295,36 @@ export function Table<T, U = null>(props: Props<T, U>) {
   function renderSubtableEntry(
     subtableColumns: Array<M.SubtableColumn<U>>,
     subtableEntry: U,
-    subtableRowIndex: number,
-    last: boolean,
-    first: boolean,
+    subtableEntryIndex: number,
+    subtableEntries: U[],
     paddingFromTitle: M.SubtablePaddingFromTitle | undefined,
-    rowIndex: number,
+    entryIndex: number,
   ) {
+    const last = subtableEntryIndex === subtableEntries.length - 1;
+    const first = subtableEntryIndex === 0;
+
     return (
       <tr
-        key={subtableRowIndex}
+        key={subtableEntryIndex}
         className={cn([
           classes.subtableRow,
-          getSubtableRowInactiveClass(rowIndex),
+          getSubtableRowInactiveClass(entryIndex),
           {
             [classes.lastSubtableRow]: last,
             [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
           },
         ])}
       >
-        {subtableColumns.map(makeSubtableCellRenderer(subtableEntry))}
+        {subtableColumns.map(makeSubtableCellRenderer(subtableEntry, entryIndex, subtableEntries))}
       </tr>
     );
   }
 
-  function makeSubtableCellRenderer(entry: U) {
+  function makeSubtableCellRenderer(
+    subtableEntry: U,
+    subtableEntryIndex: number,
+    subtableEntries: U[],
+  ) {
     return (column: M.SubtableColumn<U>, columnIndex: number) => {
       return (
         <td
@@ -326,7 +337,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           )}
           key={columnIndex}
         >
-          <div>{column.renderCell(entry)}</div>
+          <div>{column.renderCell(subtableEntry, subtableEntryIndex, subtableEntries)}</div>
         </td>
       );
     };
@@ -336,26 +347,28 @@ export function Table<T, U = null>(props: Props<T, U>) {
     { colSpan }: M.SimpleCellContent<T> | M.CellContentForRowExpander<T, U>,
     columnIndex: number,
     entry: T,
+    entryIndex: number,
   ) {
-    const colSpanValue = typeof colSpan === 'function' ? colSpan(entry) : colSpan;
+    const colSpanValue =
+      typeof colSpan === 'function' ? colSpan(entry, entryIndex, entries) : colSpan;
 
     return colSpanValue === 'end' ? columns.length - columnIndex : colSpanValue;
   }
 
-  function renderEntryRow(entry: T, rowIndex: number, beforeSummary?: boolean) {
+  function renderEntryRow(entry: T, entryIndex: number, beforeSummary?: boolean) {
     return (
       <tr
-        key={rowIndex}
+        key={entryIndex}
         className={cn({
           [classes.rowBeforeSummary]: beforeSummary,
-          [classes.rowWithExpandedContent]: rowToExpanded[rowIndex],
-          [classes.divideDown]: divideBy?.(entry, rowIndex, entries),
+          [classes.rowWithExpandedContent]: rowToExpanded[entryIndex],
+          [classes.divideDown]: divideBy?.(entry, entryIndex, entries),
           [classes.divideUp]:
-            rowIndex > 0 && divideBy?.(entries[rowIndex - 1], rowIndex - 1, entries),
+            entryIndex > 0 && divideBy?.(entries[entryIndex - 1], entryIndex - 1, entries),
         })}
       >
         {columns
-          .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, rowIndex), {
+          .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, entryIndex), {
             cells: [],
             cellsToSkip: 0,
           } as M.RowCellsRendererAccumulator)
@@ -364,7 +377,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     );
   }
 
-  function makeRowCellsRenderer(entry: T, rowIndex: number) {
+  function makeRowCellsRenderer(entry: T, entryIndex: number) {
     return (
       cellsAccumulator: M.RowCellsRendererAccumulator,
       column: M.Column<T, U>,
@@ -377,29 +390,35 @@ export function Table<T, U = null>(props: Props<T, U>) {
         if (shouldSkipCurrentCell) {
           return cellsToSkip - 1;
         }
-        const colSpanValue = getColSpan(column.cellContent, columnIndex, entry) || 1;
+        const colSpanValue = getColSpan(column.cellContent, columnIndex, entry, entryIndex) || 1;
         return Math.max(0, colSpanValue - 1);
       };
 
       return {
         cells: shouldSkipCurrentCell
           ? previousCells
-          : [...previousCells, makeCellRenderer(entry, rowIndex)(column, columnIndex)],
+          : [...previousCells, makeCellRenderer(entry, entryIndex)(column, columnIndex)],
         cellsToSkip: nextSkipCounter(),
       };
     };
   }
 
-  function makeCellRenderer(entry: T, rowIndex: number) {
+  function makeCellRenderer(entry: T, entryIndex: number) {
     return (column: M.Column<T, U>, columnIndex: number) => {
       switch (column.cellContent.kind) {
         case 'simple':
-          return renderCellWithSimpleContent(entry, column.cellContent, columnIndex, column);
+          return renderCellWithSimpleContent(
+            entry,
+            entryIndex,
+            column.cellContent,
+            columnIndex,
+            column,
+          );
 
         case 'for-row-expander':
           return renderCellWithContentForRowExpander(
-            rowIndex,
             entry,
+            entryIndex,
             column.cellContent,
             columnIndex,
             column,
@@ -410,6 +429,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
   function renderCellWithSimpleContent(
     entry: T,
+    entryIndex: number,
     content: M.SimpleCellContent<T>,
     columnIndex: number,
     column: M.Column<T, U>,
@@ -424,16 +444,16 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getVerticalAlignClass(column),
         )}
         key={columnIndex}
-        colSpan={getColSpan(content, columnIndex, entry)}
+        colSpan={getColSpan(content, columnIndex, entry, entryIndex)}
       >
-        {content.render(entry)}
+        {content.render(entry, entryIndex, entries)}
       </td>
     );
   }
 
   function renderCellWithContentForRowExpander(
-    rowIndex: number,
     entry: T,
+    entryIndex: number,
     content: M.CellContentForRowExpander<T, U>,
     columnIndex: number,
     column: M.Column<T, U>,
@@ -441,7 +461,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     const handleToggle = (newValue: boolean) =>
       setRowToExpanded({
         ...rowToExpanded,
-        [rowIndex]: newValue,
+        [entryIndex]: newValue,
       });
 
     return (
@@ -454,9 +474,9 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getVerticalAlignClass(column),
         )}
         key="row-expander"
-        colSpan={getColSpan(content, columnIndex, entry)}
+        colSpan={getColSpan(content, columnIndex, entry, entryIndex)}
       >
-        <views.RowExpander expanded={rowToExpanded[rowIndex]} onToggle={handleToggle} />
+        <views.RowExpander expanded={rowToExpanded[entryIndex]} onToggle={handleToggle} />
       </td>
     );
   }

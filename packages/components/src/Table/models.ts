@@ -21,33 +21,33 @@ export type CellContent<T, U> = SimpleCellContent<T> | CellContentForRowExpander
 
 export type SimpleCellContent<T> = {
   kind: 'simple';
-  render(entry: T): React.ReactNode;
-  colSpan?: ColSpanProperty | ((entry: T) => ColSpanProperty);
+  render(entry: T, entryIndex: number, entries: T[]): React.ReactNode;
+  colSpan?: ColSpanProperty | ((entry: T, entryIndex: number, entries: T[]) => ColSpanProperty);
 };
 
 export type CellContentForRowExpander<T, U> = {
   kind: 'for-row-expander';
   expandedArea: ExpandedArea<T, U>;
-  colSpan?: ColSpanProperty | ((entry: T) => ColSpanProperty);
+  colSpan?: ColSpanProperty | ((entry: T, entryIndex: number, entries: T[]) => ColSpanProperty);
 };
 
 export type ExpandedArea<T, U> = ExpandedAreaWithinSingleCell<T> | ExpandedAreaWithinSubtable<T, U>;
 
 export type ExpandedAreaWithinSingleCell<T> = {
   kind: 'single-cell';
-  renderContent(entry: T): React.ReactNode;
+  renderContent(entry: T, entryIndex: number, entries: T[]): React.ReactNode;
 };
 
 export type ExpandedAreaWithinSubtable<T, U> = {
   kind: 'subtable';
   paddingFromTitle?: SubtablePaddingFromTitle;
-  getSubtableEntries(entry: T): U[];
+  getSubtableEntries(entry: T, entryIndex: number, entries: T[]): U[];
   subtableColumns: Array<SubtableColumn<U>>;
 };
 
 export type SubtableColumn<T> = {
   renderTitle?(): React.ReactNode;
-  renderCell(subtableEntry: T): React.ReactNode;
+  renderCell(subtableEntry: T, subtableEntryIndex: number, subtableEntries: T[]): React.ReactNode;
   align?: AlignProperty;
 };
 
