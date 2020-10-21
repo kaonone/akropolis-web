@@ -1,28 +1,40 @@
 import React from 'react';
 import cn from 'classnames';
-import Grid, { GridProps } from '@material-ui/core/Grid';
+import Grid, { GridProps, GridSpacing } from '@material-ui/core/Grid';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { useTheme } from '@akropolis-web/styles';
 
-export function AdaptiveGrid<C extends React.ElementType>(props: GridProps<C, { component?: C }>) {
+import { useAdapativeSpacing, AdaptiveSpacing } from './useAdaptiveSpacing';
+
+type Props = {
+  spacing?: GridSpacing | AdaptiveSpacing;
+};
+
+export function AdaptiveGrid<C extends React.ElementType>(
+  props: Props & Omit<GridProps<C, { component?: C }>, 'spacing'>,
+) {
   const theme = useTheme();
-  const breakpoints = Object.keys(theme.breakpoints.values);
+  const breakpointKeys = Object.keys(theme.breakpoints.values);
+  const { className, children, spacing: spacingProp, ...rest } = props;
+  const spacing = useAdapativeSpacing(spacingProp);
 
-  const { className, children, ...rest } = props;
-
-  const breakpointClasses = breakpoints.reduce((mqClasses, key) => {
-    const breakpointValue = props[key as Breakpoint];
-    return breakpointValue ? [...mqClasses, `MuiGrid-grid-${key}-${breakpointValue}`] : mqClasses;
+  // MUI generates css for custom breakpoints, but doesn't add classes to support them in Grids
+  const breakpointClasses = (breakpointKeys as Breakpoint[]).reduce((classes, breakpointKey) => {
+    const breakpointValue = props[breakpointKey];
+    return breakpointValue
+      ? [...classes, `MuiGrid-grid-${breakpointKey}-${breakpointValue}`]
+      : classes;
   }, [] as string[]);
 
-  const gridProps = Object.keys(rest).reduce(
-    (acc, key) => (breakpoints.includes(key) ? acc : { ...acc, [key]: rest[key] }),
-    {},
-  );
+  const gridProps = Object.entries(rest).reduce(excludeBreakpointProps, {});
 
   return (
-    <Grid className={cn(className, breakpointClasses)} {...gridProps}>
+    <Grid className={cn(className, breakpointClasses)} spacing={spacing} {...gridProps}>
       {children}
     </Grid>
   );
+
+  function excludeBreakpointProps(restProps: {}, [key, value]: [string, any]) {
+    return breakpointKeys.includes(key) ? restProps : { ...restProps, [key]: value };
+  }
 }
