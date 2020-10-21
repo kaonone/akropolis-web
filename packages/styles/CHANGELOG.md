@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.14.0...@akropolis-web/styles@0.15.0) (2020-10-21)
+
+
+### Features
+
+* support adaptive spacing in Grids, fix breakpoints override ([6273c27](https://github.com/akropolisio/akropolis-web/commit/6273c274e40db45e685c1e75f1f7f8918ddebc98))
+
+
+
+
+
 # [0.14.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.13.1...@akropolis-web/styles@0.14.0) (2020-10-20)
 
 
