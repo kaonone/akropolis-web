@@ -15,14 +15,19 @@ export function useAdapativeSpacing(spacing?: GridSpacing | AdaptiveSpacing) {
     typeof spacing === 'object' ? spacing : null,
   ).current;
 
+  const prevSpacingRef = useRef<GridSpacing | AdaptiveSpacing | null | undefined>(null);
+  useEffect(() => {
+    prevSpacingRef.current = spacing;
+  }, [spacing]);
+
   const spacingString = R.toString(spacing);
 
   useEffect(() => {
-    if (
-      typeof spacing === 'object' &&
-      adaptiveSpacing &&
-      R.toString(adaptiveSpacing) !== spacingString
-    ) {
+    const isChangedAdaptiveSpacing =
+      adaptiveSpacing && R.toString(adaptiveSpacing) !== spacingString;
+    const gridSpacingBecameAdaptive = !adaptiveSpacing && typeof spacing === 'object';
+
+    if (isChangedAdaptiveSpacing || gridSpacingBecameAdaptive) {
       console.error('Error: Cannot update spacing prop in AdaptiveGrid. Object must be immutable.');
     }
   }, [spacingString, adaptiveSpacing]);
