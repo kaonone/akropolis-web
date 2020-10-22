@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import BN from 'bn.js';
 import Grid from '@material-ui/core/Grid';
 import { TokenAmount, Token, AllCoinsToken } from '@akropolis-web/primitives';
-import { makeStyles } from '@akropolis-web/styles';
 
 import { TokensIcons } from '../TokensIcons/TokensIcons';
 import { TokenName } from '../TokenName/TokenName';
@@ -15,7 +14,6 @@ export type TokenAmountInputProps = Omit<
 
 export function TokenAmountInput(props: TokenAmountInputProps) {
   const { allowSelectAllToken, currencies, ...rest } = props;
-  const classes = useStyles();
 
   const tokens = useMemo(
     () =>
@@ -40,12 +38,10 @@ export function TokenAmountInput(props: TokenAmountInputProps) {
       <Grid container alignItems="center" wrap="nowrap">
         <TokensIcons tokens={currency.tokens} />
         &nbsp;
-        <span className={classes.tokenSymbol}>{currency.symbol}</span>
+        {currency.symbol}
       </Grid>
     ) : (
-      <span className={classes.tokenSymbol}>
-        <TokenName token={currency} />
-      </span>
+      <TokenName token={currency} />
     );
   }
 }
@@ -57,16 +53,3 @@ function getCurrencyIdentifier(currency: Token) {
 function makeAmount(value: BN, currency: Token) {
   return new TokenAmount(value, currency);
 }
-
-const useStyles = makeStyles(
-  theme => ({
-    tokenSymbol: {
-      fontSize: 12,
-
-      [theme.breakpoints.up('tabletSM')]: {
-        fontSize: 16,
-      },
-    },
-  }),
-  { name: 'TokenAmountInput' },
-);

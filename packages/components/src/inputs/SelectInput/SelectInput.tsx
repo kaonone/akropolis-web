@@ -30,8 +30,9 @@ const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
 
 export function SelectInput(props: SelectInputProps) {
-  const { options, InputProps = {}, ...restProps } = props;
+  const { options, InputProps = {}, SelectProps = {}, ...restProps } = props;
   const { className: inputClassName, ...restInputProps } = InputProps;
+  const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
   const classes = useStyles();
   const backgroundColor = useAncestorBackgroundHack();
   const currentWindowHeight = useWindowHeight();
@@ -99,6 +100,7 @@ export function SelectInput(props: SelectInputProps) {
       variant="outlined"
       disabled={hasSingleOption}
       className={cn(
+        selectClassName,
         classes.root,
         {
           [classes.isOpen]: isMenuOpen,
@@ -118,7 +120,9 @@ export function SelectInput(props: SelectInputProps) {
         className: cn(inputClassName, classes.input),
       }}
       SelectProps={{
+        ...restSelectProps,
         MenuProps: {
+          ...menuProps,
           PaperProps: {
             variant: 'outlined',
             className: cn(

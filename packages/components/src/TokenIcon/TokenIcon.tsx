@@ -82,6 +82,7 @@ const useStyles = makeStyles(
   {
     addressIcon: {
       display: 'inline-flex',
+      fontSize: 20,
     },
   },
   { name: 'TokenIcon' },

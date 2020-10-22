@@ -38,6 +38,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     disabled,
     currencies,
     hideCurrencySelect,
+    SelectProps = {},
     makeAmount,
     getCurrencyIdentifier,
     getCurrencyLabel,
@@ -128,6 +129,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
             onChange={handleCurrencyChange}
             value={currentCurrency && getCurrencyIdentifier(currentCurrency)}
             InputProps={{ className: classes.selectInput }}
+            SelectProps={SelectProps}
           />
         </div>
       )}

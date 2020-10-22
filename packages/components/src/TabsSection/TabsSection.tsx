@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import Tab, { TabTypeMap } from '@material-ui/core/Tab';
 import { TabListProps } from '@material-ui/lab';
 import TabContext from '@material-ui/lab/TabContext';
@@ -30,8 +31,11 @@ type Props<T extends React.ElementType> = {
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
   const { tabs, currentValue, children, onChange, tabComponent, tabListProps } = props;
-  const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
   const classes = useStyles();
+  const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
+  const defaultVariant = isSmallMobile ? 'fullWidth' : 'standard';
+
+  const variant = tabListProps?.variant || defaultVariant;
 
   return (
     <TabContext value={currentValue}>
@@ -40,8 +44,10 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
           {...tabListProps}
           value={currentValue}
           onChange={onChange}
-          variant={isSmallMobile ? 'fullWidth' : 'standard'}
-          className={classes.tabList}
+          variant={variant}
+          className={cn(classes.tabList, {
+            [classes.fullWidth]: variant === 'fullWidth',
+          })}
         >
           {tabs.map(tabItem => renderTab(tabItem))}
         </TabList>
