@@ -16,6 +16,12 @@ export const useStyles = makeStyles(
       },
     },
     tabList: {
+      fontSize: 13,
+
+      [theme.breakpoints.up('mobileMD')]: {
+        fontSize: 16,
+      },
+
       '&$fullWidth': {
         width: '100%',
       },

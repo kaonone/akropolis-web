@@ -30,22 +30,26 @@ type Props<T extends React.ElementType> = {
 };
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
-  const { tabs, currentValue, children, onChange, tabComponent, tabListProps } = props;
-  const classes = useStyles();
+  const { tabs, currentValue, children, onChange, tabComponent, tabListProps = {} } = props;
   const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
   const defaultVariant = isSmallMobile ? 'fullWidth' : 'standard';
 
-  const variant = tabListProps?.variant || defaultVariant;
+  const {
+    className: tabListClassName,
+    variant = defaultVariant,
+    ...restTabListProps
+  } = tabListProps;
+  const classes = useStyles();
 
   return (
     <TabContext value={currentValue}>
       <div className={classes.navigationBar}>
         <TabList
-          {...tabListProps}
+          {...restTabListProps}
           value={currentValue}
           onChange={onChange}
           variant={variant}
-          className={cn(classes.tabList, {
+          className={cn(tabListClassName, classes.tabList, {
             [classes.fullWidth]: variant === 'fullWidth',
           })}
         >

@@ -20,6 +20,7 @@ interface IOwnProps<A extends Amount> {
   value: A | null | '';
   maxValue?: BN | IToBN;
   hideCurrencySelect?: boolean;
+  displayVariant?: 'default' | 'table-cell';
   onChange: (value: A) => void;
   makeAmount(value: BN, currency: A['currency']): A;
   getCurrencyIdentifier: (currency: A['currency']) => string;
@@ -38,12 +39,14 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     disabled,
     currencies,
     hideCurrencySelect,
+    displayVariant = 'default',
     SelectProps = {},
     makeAmount,
     getCurrencyIdentifier,
     getCurrencyLabel,
     ...restInputProps
   } = props;
+  const { className: selectClassName, ...restSelectProps } = SelectProps;
   const classes = useStyles();
 
   const tokenAmount = value || null;
@@ -103,8 +106,20 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     [currencies, hideCurrencySelect],
   );
 
-  return (
+  return displayVariant === 'table-cell' ? (
+    <>
+      <td className={cn(classes.tableCell, classes.tableCellForInput)}>{renderDecimalInput()}</td>
+      {!hideCurrencySelect && <td className={classes.tableCell}>{renderSelectInput()}</td>}
+    </>
+  ) : (
     <div className={classes.root}>
+      {renderDecimalInput()}
+      {renderSelectInput()}
+    </div>
+  );
+
+  function renderDecimalInput() {
+    return (
       <div
         className={cn(classes.decimalInputWrapper, {
           [classes.withCurrencySelect]: !hideCurrencySelect && !isSingleOptionSelect,
@@ -122,19 +137,25 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           }}
         />
       </div>
-      {!hideCurrencySelect && (
-        <div className={classes.select}>
-          <SelectInput
-            options={currencySelectOptions}
-            onChange={handleCurrencyChange}
-            value={currentCurrency && getCurrencyIdentifier(currentCurrency)}
-            InputProps={{ className: classes.selectInput }}
-            SelectProps={SelectProps}
-          />
-        </div>
-      )}
-    </div>
-  );
+    );
+  }
+
+  function renderSelectInput() {
+    return (
+      <div className={classes.select}>
+        <SelectInput
+          options={currencySelectOptions}
+          onChange={handleCurrencyChange}
+          value={currentCurrency && getCurrencyIdentifier(currentCurrency)}
+          InputProps={{ className: classes.selectInput }}
+          SelectProps={{
+            ...restSelectProps,
+            className: cn(classes.selectRoot, selectClassName),
+          }}
+        />
+      </div>
+    );
+  }
 }
 
 function useUpdatingTrigger<V>(deps: V, isEquals: (prev: V, cur: V) => boolean) {
