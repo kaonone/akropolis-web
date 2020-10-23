@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.1...@akropolis-web/components@0.26.0) (2020-10-23)
+
+
+### Bug Fixes
+
+* allow fontSize changing in TabList ([e7335ac](https://github.com/akropolisio/akropolis-web/commit/e7335ac5f033d9b40f8d162259d24c6a8d743420))
+
+
+### Features
+
+* return table cells from AmountInput ([75594d7](https://github.com/akropolisio/akropolis-web/commit/75594d7fb1d5bfaa7b2089812735a4af1cebf0e7))
+
+
+
+
+
 ## [0.25.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.0...@akropolis-web/components@0.25.1) (2020-10-23)
 
 

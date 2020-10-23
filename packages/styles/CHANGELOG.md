@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.15.0...@akropolis-web/styles@0.15.1) (2020-10-23)
+
+
+### Bug Fixes
+
+* allow fontSize changing in TabList ([e7335ac](https://github.com/akropolisio/akropolis-web/commit/e7335ac5f033d9b40f8d162259d24c6a8d743420))
+
+
+
+
+
 # [0.15.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.14.0...@akropolis-web/styles@0.15.0) (2020-10-21)
 
 
