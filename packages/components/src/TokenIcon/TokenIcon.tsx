@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import cn from 'classnames';
 import { makeStyles } from '@akropolis-web/styles';
+import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import * as icons from '../icons/tokens';
 import * as inactiveIcons from '../icons/inactiveTokens';
@@ -9,7 +9,6 @@ import { useDependencyContext } from '../DependencyProvider';
 
 type Props = {
   tokenAddress: string;
-  className?: string;
   isInactive?: boolean;
 };
 
@@ -57,9 +56,10 @@ const inactiveTokenIcons: Record<string, CoinComponent> = {
   YFI: inactiveIcons.InactiveYFIIcon,
 };
 
-export function TokenIcon({ tokenAddress, className, isInactive }: Props) {
+export function TokenIcon(props: Props & SvgIconProps) {
   const classes = useStyles();
   const { supportedTokens } = useDependencyContext();
+  const { tokenAddress, isInactive, ...rest } = props;
 
   const Icon = useMemo(() => {
     const tokenSymbol = Object.keys(supportedTokens).find(
@@ -70,10 +70,10 @@ export function TokenIcon({ tokenAddress, className, isInactive }: Props) {
   }, [tokenAddress, supportedTokens]);
 
   return Icon ? (
-    <Icon className={className} />
+    <Icon {...rest} />
   ) : (
-    <div className={cn(classes.addressIcon, className)}>
-      <AddressIcon address={tokenAddress} />
+    <div className={classes.addressIcon}>
+      <AddressIcon address={tokenAddress} {...rest} />
     </div>
   );
 }
@@ -82,7 +82,6 @@ const useStyles = makeStyles(
   {
     addressIcon: {
       display: 'inline-flex',
-      fontSize: 20,
     },
   },
   { name: 'TokenIcon' },

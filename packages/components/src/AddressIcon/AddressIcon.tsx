@@ -11,7 +11,7 @@ type Props = React.ComponentProps<typeof SvgIcon> & {
 };
 
 function AddressIcon(props: Props) {
-  const { address } = props;
+  const { address, ...rest } = props;
   const classes = useStyles();
 
   const generator = new MersenneTwister(jsNumberForAddress(address));
@@ -20,11 +20,11 @@ function AddressIcon(props: Props) {
 
   return (
     <SvgIcon
-      {...props}
+      {...rest}
       viewBox="0 0 40 40"
       x="0"
       y="0"
-      className={classes.root}
+      classes={{ root: classes.root }}
       style={{ backgroundColor: generateColor(shiftedColors, generator) }}
     >
       {shapesArr.map((_, i) => renderShape(shiftedColors, generator, i, shapeCount - 1))}
@@ -90,7 +90,6 @@ function renderShape(colors: string[], generator: MersenneTwister, i: number, to
 const useStyles = makeStyles(
   {
     root: {
-      fontSize: 'inherit',
       borderRadius: '0.5em',
     },
   },

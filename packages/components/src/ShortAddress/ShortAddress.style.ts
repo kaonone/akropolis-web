@@ -16,7 +16,6 @@ export const useStyles = makeStyles(() => {
     icon: {
       width: 'auto',
       height: 'auto',
-      fontSize: 'inherit',
       marginRight: 10,
     },
   };
