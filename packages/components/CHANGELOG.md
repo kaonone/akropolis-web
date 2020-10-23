@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.0...@akropolis-web/components@0.25.1) (2020-10-23)
+
+
+### Bug Fixes
+
+* support changing fontSize in SelectInput and TabsSection variant ([1b70438](https://github.com/akropolisio/akropolis-web/commit/1b70438d8120c952ae894c4510ed5a9e9d56bdca))
+* support SvgIconProps in TokenIcon, remove fixed fontSize ([4488e8d](https://github.com/akropolisio/akropolis-web/commit/4488e8daa3dea476e3f363680a2eb8517fbca329))
+
+
+
+
+
 # [0.25.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.24.0...@akropolis-web/components@0.25.0) (2020-10-21)
 
 
