@@ -121,6 +121,9 @@ export function SelectInput(props: SelectInputProps) {
       }}
       SelectProps={{
         ...restSelectProps,
+        classes: {
+          select: classes.select,
+        },
         MenuProps: {
           ...menuProps,
           PaperProps: {

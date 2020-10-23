@@ -35,6 +35,10 @@ export const useStyles = makeStyles(
           color: '#fff',
         },
 
+        '& $select': {
+          paddingRight: 0,
+        },
+
         '& $arrowIcon': {
           display: 'none',
         },
@@ -76,6 +80,7 @@ export const useStyles = makeStyles(
     withSingleOption: {},
     hasBottomSpace: {},
     hasTopSpace: {},
+    select: {},
   }),
   { name: 'SelectInput' },
 );

@@ -5,6 +5,13 @@ export const useStyles = makeStyles(
     root: {
       display: 'flex',
     },
+    tableCell: {
+      border: 'none',
+      padding: 0,
+    },
+    tableCellForInput: {
+      width: '100%',
+    },
     decimalInputWrapper: {
       flexGrow: 1,
       position: 'relative',
@@ -25,6 +32,11 @@ export const useStyles = makeStyles(
     selectInput: {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
+    },
+    selectRoot: {
+      '$tableCell &': {
+        minWidth: 'unset',
+      },
     },
     decimalInput: {},
   },
