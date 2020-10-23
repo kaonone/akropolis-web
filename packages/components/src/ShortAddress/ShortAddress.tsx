@@ -47,7 +47,7 @@ function ShortAddress(props: Props) {
       {withIcon && (
         <Grid item>
           <Avatar className={classes.icon}>
-            <AddressIcon address={address} />
+            <AddressIcon address={address} fontSize="inherit" />
           </Avatar>
         </Grid>
       )}

@@ -4,9 +4,11 @@ export const useStyles = makeStyles(
   theme => ({
     root: {
       minWidth: 129,
+      fontSize: 12,
 
       [theme.breakpoints.up('tabletSM')]: {
         minWidth: 144,
+        fontSize: 16,
       },
 
       '&$isOpen': {
@@ -38,7 +40,11 @@ export const useStyles = makeStyles(
         },
       },
     },
+    input: {
+      fontSize: 'inherit',
+    },
     paper: {
+      fontSize: 12,
       borderColor: theme.colors.darkMist,
       '&$hasBottomSpace': {
         borderRadius: '0 0 8px 8px',
@@ -49,9 +55,14 @@ export const useStyles = makeStyles(
         borderRadius: '8px 8px 0 0',
         borderBottom: 'none',
       },
+
+      [theme.breakpoints.up('tabletSM')]: {
+        fontSize: 16,
+      },
     },
     menuItem: {
       minHeight: 'auto',
+      fontSize: 'inherit',
     },
     arrowIcon: {
       position: 'absolute',
@@ -65,7 +76,6 @@ export const useStyles = makeStyles(
     withSingleOption: {},
     hasBottomSpace: {},
     hasTopSpace: {},
-    input: {},
   }),
   { name: 'SelectInput' },
 );

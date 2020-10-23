@@ -16,10 +16,8 @@ export const useStyles = makeStyles(
       },
     },
     tabList: {
-      width: '100%',
-
-      [theme.breakpoints.up('mobileMD')]: {
-        width: 'initial',
+      '&$fullWidth': {
+        width: '100%',
       },
     },
     tab: {
@@ -33,6 +31,7 @@ export const useStyles = makeStyles(
     tabPanel: {
       padding: 0,
     },
+    fullWidth: {},
   }),
   { name: 'TabsSection' },
 );
