@@ -516,7 +516,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               minHeight: 'unset',
               padding: defaultTheme.spacing(0.2, 1.5),
               textTransform: 'unset',
-              fontSize: '1rem',
+              fontSize: 'inherit',
               fontWeight: 300,
               lineHeight: 1.5,
               borderRadius:
