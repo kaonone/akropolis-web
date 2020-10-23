@@ -2,8 +2,18 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
+import { TUSDIcon } from './TUSDIcon';
+import { TokenIconProps } from './types';
 
-function USDTIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function USDTIcon(props: TokenIconProps) {
+  const { isInactive } = props;
+
+  const Icon = isInactive ? TUSDIcon : ActiveUSDTIcon;
+
+  return <Icon {...props} />;
+}
+
+function ActiveUSDTIcon(props: TokenIconProps) {
   const gradientId = React.useMemo(() => makeRandomID('USDTIcon'), []);
 
   return (

@@ -2,9 +2,13 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
+import { TokenIconProps } from './types';
 
-function DAIIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function DAIIcon(props: TokenIconProps) {
+  const { isInactive } = props;
+
   const gradientId = React.useMemo(() => makeRandomID('DAIIcon'), []);
+  const fillColor = isInactive ? '#191924' : `url(#${gradientId})`;
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
@@ -14,9 +18,9 @@ function DAIIcon(props: React.ComponentProps<typeof SvgIcon>) {
           <stop offset="100%" stopColor="#F5AC37" />
         </linearGradient>
       </defs>
-      <g fill="none">
+      <g fill="none" fillRule="evenodd">
         <path
-          fill={`url(#${gradientId})`}
+          fill={fillColor}
           d="M9.987 0c5.517 0 9.988 4.472 9.988 9.987 0 5.517-4.471 9.988-9.988 9.988C4.472 19.975 0 15.503 0 9.987 0 4.472 4.472 0 9.987 0z"
         />
         <path

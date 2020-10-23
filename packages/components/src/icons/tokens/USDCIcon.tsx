@@ -2,9 +2,13 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
+import { TokenIconProps } from './types';
 
-function USDCIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function USDCIcon(props: TokenIconProps) {
+  const { isInactive } = props;
+
   const gradientId = React.useMemo(() => makeRandomID('USDCIcon'), []);
+  const fillColor = isInactive ? '#191924' : `url(#${gradientId})`;
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
@@ -16,7 +20,7 @@ function USDCIcon(props: React.ComponentProps<typeof SvgIcon>) {
       </defs>
       <g fill="none">
         <path
-          fill={`url(#${gradientId})`}
+          fill={fillColor}
           d="M10 20c5.542 0 10-4.458 10-10S15.542 0 10 0 0 4.458 0 10s4.458 10 10 10z"
         />
         <path

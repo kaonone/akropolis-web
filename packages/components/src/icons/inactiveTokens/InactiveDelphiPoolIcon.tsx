@@ -15,6 +15,7 @@ export function InactiveDelphiPoolIcon(props: React.ComponentProps<typeof SvgIco
         </linearGradient>
         <circle id={svgIds[1]} cx="10.313" cy="10.375" r="9.375" />
       </defs>
+
       <g fill="none" fillRule="evenodd">
         <path d="M0 0H20V20H0z" />
         <path
