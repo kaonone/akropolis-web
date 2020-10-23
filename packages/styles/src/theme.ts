@@ -545,6 +545,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               },
             },
           },
+
+          MuiTooltip: {
+            tooltip: {
+              margin: '8px 0 !important',
+            },
+          },
         },
 
         // TODO: enable @material-ui/lab overrides
