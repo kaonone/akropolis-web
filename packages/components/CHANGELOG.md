@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.0...@akropolis-web/components@0.26.1) (2020-10-24)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
 # [0.26.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.1...@akropolis-web/components@0.26.0) (2020-10-23)
 
 
