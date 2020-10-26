@@ -14,7 +14,7 @@ type WidthSize = 'default' | 'none';
 
 type MuiButtonTypeProps = Omit<MuiButtonTypeMap['props'], 'size'> & {
   size?: ButtonSizes;
-  minWidthOnSize?: WidthSize;
+  minWidthSize?: WidthSize;
 };
 
 interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -34,7 +34,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
 >(props: ButtonProps<D, P>) {
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
-  const { classes: muiClasses = {}, size, minWidthOnSize = 'default', ...rest } = props;
+  const { classes: muiClasses = {}, size, minWidthSize = 'default', ...rest } = props;
 
   return (
     <MuiButton
@@ -71,7 +71,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
   }
 
   function getMinWidthClasses() {
-    switch (minWidthOnSize) {
+    switch (minWidthSize) {
       case 'none':
         return null;
       case 'default':
