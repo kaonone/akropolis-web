@@ -10,12 +10,17 @@ export type VerticalAlignProperty = 'center' | 'top' | 'bottom';
 
 export type ColSpanProperty = number | 'end' | undefined;
 
+export type ColumnWithClassName<T> = {
+  className?: string | ((entry: T, entryIndex: number, entries: T[]) => string);
+};
+
 export type Column<T, U = null> = {
   cellContent: CellContent<T, U>;
   align?: AlignProperty;
   verticalAlign?: VerticalAlignProperty;
   renderTitle?(): React.ReactNode;
-};
+  titleClassName?: string;
+} & ColumnWithClassName<T>;
 
 export type CellContent<T, U> = SimpleCellContent<T> | CellContentForRowExpander<T, U>;
 
@@ -36,7 +41,7 @@ export type ExpandedArea<T, U> = ExpandedAreaWithinSingleCell<T> | ExpandedAreaW
 export type ExpandedAreaWithinSingleCell<T> = {
   kind: 'single-cell';
   renderContent(entry: T, entryIndex: number, entries: T[]): React.ReactNode;
-};
+} & ColumnWithClassName<T>;
 
 export type ExpandedAreaWithinSubtable<T, U> = {
   kind: 'subtable';
@@ -49,11 +54,13 @@ export type SubtableColumn<T> = {
   renderTitle?(): React.ReactNode;
   renderCell(subtableEntry: T, subtableEntryIndex: number, subtableEntries: T[]): React.ReactNode;
   align?: AlignProperty;
-};
+  titleClassName?: string;
+} & ColumnWithClassName<T>;
 
 export type Summary = {
   renderLabel(): React.ReactNode;
   renderValue(): React.ReactNode;
+  className?: string;
 };
 
 export type RowCellsRendererAccumulator = {

@@ -4,7 +4,7 @@ import * as M from '../../models';
 import { useStyles } from './Summary.style';
 
 type Props = {
-  summary: M.Summary;
+  summary: Omit<M.Summary, 'className'>;
 };
 
 export const Summary: React.FC<Props> = props => {
