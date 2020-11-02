@@ -1,3 +1,2 @@
-export * from './formatBalance';
-export * from './formatShortBalance';
+export * from './balance';
 export * from './formatInteger';

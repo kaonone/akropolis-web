@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.5.1...@akropolis-web/primitives@0.6.0) (2020-10-26)
+
+
+### Features
+
+* refactor amounts formatting, add detailed to formatBalance return ([22fb2ad](https://github.com/akropolisio/akropolis-web/commit/22fb2adde9303332963cdf004ce5aeb6db692e12))
+
+
+
+
+
 ## [0.5.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.5.0...@akropolis-web/primitives@0.5.1) (2020-10-15)
 
 

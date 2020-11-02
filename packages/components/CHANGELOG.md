@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.2...@akropolis-web/components@0.27.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* rename new prop ([3174078](https://github.com/akropolisio/akropolis-web/commit/3174078af8b0451f7d6eaacb68b14ca356f02c78))
+
+
+### Features
+
+* add button min width property ([b56a9fd](https://github.com/akropolisio/akropolis-web/commit/b56a9fd8f05e7b89a40c5166319e92cf7bfe6838))
+
+
+
+
+
+## [0.26.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.1...@akropolis-web/components@0.26.2) (2020-10-26)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## [0.26.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.0...@akropolis-web/components@0.26.1) (2020-10-24)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
 # [0.26.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.1...@akropolis-web/components@0.26.0) (2020-10-23)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.15.1...@akropolis-web/styles@0.16.0) (2020-10-24)
+
+
+### Features
+
+* add tooltip margin override ([4fa068d](https://github.com/akropolisio/akropolis-web/commit/4fa068d66a60b16a5ecdd8cdd175305a7b4acdca))
+
+
+
+
+
 ## [0.15.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.15.0...@akropolis-web/styles@0.15.1) (2020-10-23)
 
 
