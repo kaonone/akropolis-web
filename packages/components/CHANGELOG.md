@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.27.2 (2020-11-03)
+
+
+### Bug Fixes
+
+* fix TabList fullWidth ([4df28c2](https://github.com/akropolisio/akropolis-web/commit/4df28c2acfdbeb31345ac0e44149b4910eb146b1))
+
+
+
+
+
 ## 0.27.1 (2020-11-03)
 
 **Note:** Version bump only for package @akropolis-web/components
