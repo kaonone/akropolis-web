@@ -9,8 +9,6 @@ import { getBreakpoints } from './getBreakpoints';
 
 export { Theme };
 
-const defaultTheme = createMuiTheme();
-
 function getGradients(type: 'dark' | 'light') {
   return {
     main: makeGradient([colors.heliotrope, colors.royalBlue]),
@@ -233,9 +231,12 @@ const sizes = {
     height: 36,
     indicatorSpace: 3,
     borderWidth: 1,
-    minWidth: 112,
   },
 };
+
+const defaultTheme = createMuiTheme({
+  breakpoints: getBreakpoints(breakpoints),
+});
 
 export const lightTheme = getTheme('light');
 export const darkTheme = getTheme('dark');
@@ -510,17 +511,20 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiTab: {
             root: {
-              minWidth: sizes.tabs.minWidth,
               position: 'relative',
               overflow: 'visible',
               minHeight: 'unset',
-              padding: defaultTheme.spacing(0.2, 1.5),
               textTransform: 'unset',
               fontSize: 'inherit',
               fontWeight: 300,
               lineHeight: 1.5,
               borderRadius:
                 sizes.tabs.height / 2 - sizes.tabs.indicatorSpace - sizes.tabs.borderWidth,
+              padding: defaultTheme.spacing(0.2, 1.25),
+
+              [defaultTheme.breakpoints.up('mobileMD')]: {
+                padding: defaultTheme.spacing(0.2, 2.5),
+              },
 
               '&::after': {
                 content: "''",

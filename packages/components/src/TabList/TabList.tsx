@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { TabList as MuiTabList, TabListProps as MuiTabListProps } from '@material-ui/lab';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
@@ -12,7 +13,8 @@ export function TabList(props: MuiTabListProps) {
     <MuiTabList
       {...props}
       classes={{
-        root: classes.tabs,
+        // eslint-disable-next-line react/destructuring-assignment
+        root: cn(classes.tabs, { [classes.fullWidth]: props.variant === 'fullWidth' }),
       }}
     />
   );
