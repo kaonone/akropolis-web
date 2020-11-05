@@ -392,7 +392,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiOutlinedInput: {
             root: {
               borderColor: colors.darkMist,
-              borderRadius: 8,
+              borderRadius: 6,
               minHeight: 36,
 
               '&$focused': {
