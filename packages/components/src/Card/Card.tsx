@@ -127,6 +127,9 @@ const useStyles = makeStyles(
     paddingContainer: {
       position: 'relative',
       padding: '40px 0 20px',
+      display: 'flex',
+      flexGrow: 1,
+      flexDirection: 'column',
 
       [theme.breakpoints.up('tabletSM')]: {
         padding: '50px 0 20px',
