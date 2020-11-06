@@ -46,37 +46,35 @@ export function Card(props: CardProps) {
           [classes.isActive]: isActive,
         })}
       >
-        <div className={classes.paddingContainer}>
-          {children}
-          <div className={classes.header}>
-            <div className={classes.labelContainer}>
-              {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
-              {label && (
-                <Typography component="div" className={classes.label}>
-                  <span>{label}</span>
-                </Typography>
-              )}
-            </div>
-
-            {icons && (
-              <ResizeObserverComponent>
-                {size => (
-                  <div className={classes.icons}>
-                    {icons.map((icon, index) => (
-                      <div
-                        className={cn(classes.icon, {
-                          [classes.compressed]: size === 'compressed',
-                        })}
-                        key={index}
-                      >
-                        {icon}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </ResizeObserverComponent>
+        {children}
+        <div className={classes.header}>
+          <div className={classes.labelContainer}>
+            {labelIcon && <span className={classes.labelIcon}>{labelIcon}</span>}
+            {label && (
+              <Typography component="div" className={classes.label}>
+                <span>{label}</span>
+              </Typography>
             )}
           </div>
+
+          {icons && (
+            <ResizeObserverComponent>
+              {size => (
+                <div className={classes.icons}>
+                  {icons.map((icon, index) => (
+                    <div
+                      className={cn(classes.icon, {
+                        [classes.compressed]: size === 'compressed',
+                      })}
+                      key={index}
+                    >
+                      {icon}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </ResizeObserverComponent>
+          )}
         </div>
       </div>
     </AncestorBackgroundHackProvider>
@@ -92,18 +90,17 @@ function getActiveBackgroundColor(currentTheme: Theme) {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      display: 'flex',
-      flexDirection: 'column',
+      position: 'relative',
       borderRadius: theme.spacing(0.5),
       transition: theme.transitions.create(['border-color', 'background-color']),
-      padding: '0 10px',
+      padding: '40px 10px 20px',
 
       [theme.breakpoints.up(375)]: {
-        padding: '0 15px',
+        padding: '40px 15px 20px',
       },
 
       [theme.breakpoints.up('tabletSM')]: {
-        padding: '0 20px',
+        padding: '50px 20px 20px',
       },
 
       '&$outlined': {
@@ -121,18 +118,6 @@ const useStyles = makeStyles(
 
       '&$contained$isActive': {
         backgroundColor: getActiveBackgroundColor(theme),
-      },
-    },
-
-    paddingContainer: {
-      position: 'relative',
-      padding: '40px 0 20px',
-      display: 'flex',
-      flexGrow: 1,
-      flexDirection: 'column',
-
-      [theme.breakpoints.up('tabletSM')]: {
-        padding: '50px 0 20px',
       },
     },
 
