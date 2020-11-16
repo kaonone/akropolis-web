@@ -126,6 +126,8 @@ const useStyles = makeStyles(
       width: '100%',
       top: 0,
       left: 0,
+      paddingLeft: 'inherit',
+      paddingRight: 'inherit',
       transform: 'translateY(-50%)',
       display: 'flex',
       alignItems: 'center',
