@@ -4,6 +4,8 @@ import { getDecimal, bnToBn, IToBN, Decimal } from '../bnHexWei';
 
 export type Value = number | string | BN | IToBN | Fraction | IToFraction;
 
+const NUMERATOR_NUMBER_MAX_LENGTH = 100;
+
 export interface IToFraction {
   toFraction(): Fraction;
 }
@@ -16,8 +18,13 @@ export class Fraction implements IToBN {
     numerator: string | number | BN | IToBN,
     denominator: string | number | BN | IToBN = new BN(1),
   ) {
-    this.numerator = bnToBn(numerator);
-    this.denominator = bnToBn(denominator);
+    const divNumberToRound = getDividerToRound(
+      bnToBn(numerator),
+      bnToBn(denominator),
+      NUMERATOR_NUMBER_MAX_LENGTH,
+    );
+    this.numerator = bnToBn(numerator).div(divNumberToRound);
+    this.denominator = bnToBn(denominator).div(divNumberToRound);
   }
 
   static isFraction(value: unknown): value is Fraction {
@@ -135,4 +142,15 @@ export function toFraction(value: Value): Fraction {
     return value.toFraction();
   }
   return new Fraction(value);
+}
+
+function getDividerToRound(numerator: BN, denominator: BN, numeratorMaxLength: number) {
+  const numeratorLength = numerator.toString().length;
+  const degreeDiff = numeratorLength - numeratorMaxLength;
+
+  if (degreeDiff > 0) {
+    const numberToDiv = new BN(10).pow(new BN(degreeDiff));
+    return numberToDiv.gt(denominator) ? new BN(1) : numberToDiv;
+  }
+  return new BN(1);
 }
