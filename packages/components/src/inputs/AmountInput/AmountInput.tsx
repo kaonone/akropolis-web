@@ -13,6 +13,7 @@ import { Amount, IToBN } from '@akropolis-web/primitives';
 import { SelectInput } from '../SelectInput/SelectInput';
 import { TextInput } from '../TextInput';
 import { DecimalsInput } from '../DecimalsInput';
+import { AlertIcon } from '../../icons';
 import { useStyles } from './AmountInput.style';
 
 interface IOwnProps<A extends Amount> {
@@ -21,10 +22,11 @@ interface IOwnProps<A extends Amount> {
   maxValue?: BN | IToBN;
   hideCurrencySelect?: boolean;
   displayVariant?: 'default' | 'table-cell';
+  disabledAlert?: string;
   onChange: (value: A) => void;
   makeAmount(value: BN, currency: A['currency']): A;
-  getCurrencyIdentifier: (currency: A['currency']) => string;
-  getCurrencyLabel: (currency: A['currency']) => JSX.Element | string;
+  getCurrencyIdentifier(currency: A['currency']): string;
+  getCurrencyLabel(currency: A['currency']): JSX.Element | string;
 }
 
 export type AmountInputProps<A extends Amount> = IOwnProps<A> &
@@ -40,6 +42,8 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     currencies,
     hideCurrencySelect,
     displayVariant = 'default',
+    disabledAlert,
+    InputProps = {},
     SelectProps = {},
     makeAmount,
     getCurrencyIdentifier,
@@ -62,8 +66,6 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
   );
 
   const isSingleOptionSelect = Boolean(currencies.length <= 1 && currentCurrency);
-
-  const isDisabled = Boolean(disabled);
 
   // initialize or update value if currencies is not contain current currency
   useEffect(() => {
@@ -106,6 +108,21 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     [currencies, hideCurrencySelect],
   );
 
+  const disabledInputProps = useMemo(
+    () =>
+      disabled && disabledAlert
+        ? {
+            startAdornment: <AlertIcon color="secondary" fontSize="small" />,
+            endAdornment: <></>,
+            value: disabledAlert,
+            classes: {
+              inputAdornedStart: classes.inputAdornedStart,
+            },
+          }
+        : {},
+    [disabled, disabledAlert],
+  );
+
   return displayVariant === 'table-cell' ? (
     <>
       <td className={cn(classes.tableCell, classes.tableCellForInput)}>{renderDecimalInput()}</td>
@@ -131,9 +148,11 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           value={currentValue.toString()}
           maxValue={maxValue}
           onChange={handleInputChange}
-          disabled={isDisabled}
+          disabled={disabled}
           InputProps={{
             className: classes.decimalInput,
+            ...disabledInputProps,
+            ...InputProps,
           }}
         />
       </div>

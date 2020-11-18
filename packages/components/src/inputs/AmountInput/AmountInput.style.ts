@@ -1,7 +1,7 @@
 import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  {
+  theme => ({
     root: {
       display: 'flex',
     },
@@ -23,6 +23,16 @@ export const useStyles = makeStyles(
         borderBottomRightRadius: 0,
       },
     },
+    inputAdornedStart: {
+      fontSize: 13,
+      fontWeight: 'normal',
+      color: theme.palette.text.primary,
+      paddingLeft: 10,
+
+      [theme.breakpoints.up(767)]: {
+        fontSize: 12,
+      },
+    },
     select: {
       flexShrink: 0,
 
@@ -39,6 +49,6 @@ export const useStyles = makeStyles(
       },
     },
     decimalInput: {},
-  },
+  }),
   { name: 'AmountInput' },
 );
