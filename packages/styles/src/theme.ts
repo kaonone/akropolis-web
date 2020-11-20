@@ -556,7 +556,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '15px',
               border: '1px solid #373740',
               borderRadius: '6px',
-              backgroundColor: '#191924',
+              backgroundColor: colors.blackRussian,
             },
           },
         },
