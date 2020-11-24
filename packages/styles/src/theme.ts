@@ -558,16 +558,16 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               backgroundColor: colors.blackRussian,
             },
             tooltipPlacementTop: {
-              margin: '8px 0',
+              margin: '8px 0 !important',
             },
             tooltipPlacementBottom: {
-              margin: '8px 0',
+              margin: '8px 0 !important',
             },
             tooltipPlacementRight: {
-              margin: '0 8px',
+              margin: '0 8px !important',
             },
             tooltipPlacementLeft: {
-              margin: '0 8px',
+              margin: '0 8px !important',
             },
           },
         },
