@@ -552,11 +552,22 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiTooltip: {
             tooltip: {
-              margin: '8px 0 !important',
               padding: '15px',
               border: '1px solid #373740',
               borderRadius: '6px',
               backgroundColor: colors.blackRussian,
+            },
+            tooltipPlacementTop: {
+              margin: '8px 0',
+            },
+            tooltipPlacementBottom: {
+              margin: '8px 0',
+            },
+            tooltipPlacementRight: {
+              margin: '0 8px',
+            },
+            tooltipPlacementLeft: {
+              margin: '0 8px',
             },
           },
         },
