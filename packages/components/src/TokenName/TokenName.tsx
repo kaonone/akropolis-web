@@ -7,7 +7,7 @@ import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIcon } from '../TokenIcon/TokenIcon';
 
-type IconSizes = 'small' | 'inherit' | 'default' | 'large';
+type IconSizes = 'small' | 'inherit' | 'default' | 'large' | 'extra-large';
 
 type Props = {
   token: Token;
@@ -31,7 +31,12 @@ export function TokenName({ token, iconSize = 'default', iconProps = {} }: Props
   );
 
   function getIconSizeClass(size?: IconSizes) {
-    return size && classes[size];
+    switch (size) {
+      case 'extra-large':
+        return size && classes.extraLarge;
+      default:
+        return size && classes[size];
+    }
   }
 }
 
@@ -41,12 +46,15 @@ const useStyles = makeStyles(
       marginRight: 8,
     },
     default: {
-      fontSize: 24,
-    },
-    small: {
       fontSize: 20,
     },
+    small: {
+      fontSize: 16,
+    },
     large: {
+      fontSize: 24,
+    },
+    extraLarge: {
       fontSize: 30,
     },
     inherit: {
