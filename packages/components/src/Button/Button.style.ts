@@ -91,6 +91,12 @@ export const useStyles = makeStyles(
         background: `rgba(255, 255, 255, 0.2)`,
         color: `rgba(255, 255, 255, 0.5)`,
         border: 'none',
+
+        '&:hover:not(:active), &$focusVisible': {
+          background: `rgba(255, 255, 255, 0.2)`,
+          color: `rgba(255, 255, 255, 0.5)`,
+          border: 'none',
+        },
       },
 
       '&:before': {
@@ -145,6 +151,11 @@ export const useStyles = makeStyles(
       '&$disabled': {
         background: `rgba(255, 255, 255, 0.1)`,
         color: `rgba(255, 255, 255, 0.5)`,
+
+        '&:hover:not(:active), &$focusVisible': {
+          background: `rgba(255, 255, 255, 0.1)`,
+          color: `rgba(255, 255, 255, 0.5)`,
+        },
       },
 
       '&:before': {
