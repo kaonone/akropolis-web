@@ -33,7 +33,7 @@ export function TokenName({ token, iconSize = 'default', iconProps = {} }: Props
   function getIconSizeClass(size?: IconSizes) {
     switch (size) {
       case 'extra-large':
-        return size && classes.extraLarge;
+        return classes.extraLarge;
       default:
         return size && classes[size];
     }
