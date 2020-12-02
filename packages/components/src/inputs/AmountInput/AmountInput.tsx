@@ -131,7 +131,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
   ) : (
     <div className={classes.root}>
       {renderDecimalInput()}
-      {renderSelectInput()}
+      {!hideCurrencySelect && renderSelectInput()}
     </div>
   );
 
