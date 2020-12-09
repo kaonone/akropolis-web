@@ -125,11 +125,11 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return entries.map((entry, entryIndex) => renderEntry(entry, entryIndex));
   }
 
-  function renderSummary(x: M.Summary) {
+  function renderSummary({ className, ...rest }: M.Summary) {
     return (
       <tr key="summary">
-        <td colSpan={columns.length} className={cn(classes.cell, classes.summaryCell)}>
-          <views.Summary summary={x} />
+        <td colSpan={columns.length} className={cn(classes.cell, classes.summaryCell, className)}>
+          <views.Summary summary={rest} />
         </td>
       </tr>
     );
@@ -141,6 +141,15 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
   function getVerticalAlignClass({ verticalAlign }: M.Column<T, U>) {
     return verticalAlign && verticalAlignPropertyClass[verticalAlign];
+  }
+
+  function getClassName<C>(
+    { className }: M.ColumnWithClassName<C>,
+    entry: C,
+    entryIndex: number,
+    entryArray: C[],
+  ) {
+    return typeof className === 'function' ? className(entry, entryIndex, entryArray) : className;
   }
 
   function getPaddingClass(paddingSize: M.RowPaddingSize) {
@@ -175,6 +184,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getAlignClass(column),
           getTitlePaddingClass(titlePadding),
           getVerticalAlignClass(column),
+          column.titleClassName,
         )}
         key={columnIndex}
       >
@@ -217,7 +227,12 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return (
       <tr>
         <td
-          className={cn(classes.singleCellExpandedArea, classes.cellData, classes.cell)}
+          className={cn(
+            classes.singleCellExpandedArea,
+            classes.cellData,
+            classes.cell,
+            getClassName(area, entry, entryIndex, entries),
+          )}
           colSpan={columns.length}
         >
           {area.renderContent(entry, entryIndex, entries)}
@@ -286,7 +301,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
   function renderSubtableHeader(x: M.SubtableColumn<U>, columnIndex: number) {
     return (
-      <th className={cn(classes.title, classes.cell)} key={columnIndex}>
+      <th className={cn(classes.title, classes.cell, x.titleClassName)} key={columnIndex}>
         {x.renderTitle && x.renderTitle()}
       </th>
     );
@@ -334,6 +349,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
             classes.subtableCell,
             getAlignClass(column),
             getPaddingClass(rowPadding),
+            getClassName(column, subtableEntry, subtableEntryIndex, subtableEntries),
           )}
           key={columnIndex}
         >
@@ -442,6 +458,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getAlignClass(column),
           getPaddingClass(rowPadding),
           getVerticalAlignClass(column),
+          getClassName(column, entry, entryIndex, entries),
         )}
         key={columnIndex}
         colSpan={getColSpan(content, columnIndex, entry, entryIndex)}
@@ -472,6 +489,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           getAlignClass(column),
           getPaddingClass(rowPadding),
           getVerticalAlignClass(column),
+          getClassName(column, entry, entryIndex, entries),
         )}
         key="row-expander"
         colSpan={getColSpan(content, columnIndex, entry, entryIndex)}

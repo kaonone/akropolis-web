@@ -99,22 +99,12 @@ export function SelectInput(props: SelectInputProps) {
       select
       variant="outlined"
       disabled={hasSingleOption}
-      className={cn(
-        selectClassName,
-        classes.root,
-        {
-          [classes.isOpen]: isMenuOpen,
-        },
-        {
-          [classes.withSingleOption]: hasSingleOption,
-        },
-        {
-          [classes.hasBottomSpace]: hasBottomSpace,
-        },
-        {
-          [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-        },
-      )}
+      className={cn(selectClassName, classes.root, {
+        [classes.isOpen]: isMenuOpen,
+        [classes.withSingleOption]: hasSingleOption,
+        [classes.hasBottomSpace]: hasBottomSpace,
+        [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+      })}
       InputProps={{
         ...restInputProps,
         className: cn(inputClassName, classes.input),
@@ -128,15 +118,10 @@ export function SelectInput(props: SelectInputProps) {
           ...menuProps,
           PaperProps: {
             variant: 'outlined',
-            className: cn(
-              classes.paper,
-              {
-                [classes.hasBottomSpace]: hasBottomSpace,
-              },
-              {
-                [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-              },
-            ),
+            className: cn(classes.paper, {
+              [classes.hasBottomSpace]: hasBottomSpace,
+              [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+            }),
             style: { backgroundColor },
           },
           ...menuPositionProps,

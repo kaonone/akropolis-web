@@ -1,6 +1,6 @@
 import BN from 'bn.js';
 
-import { IToBN, Decimal } from '../../bnHexWei';
+import { IToBN, Decimal, FormattedBalance, getSignificantValue } from '../../bnHexWei';
 import { Fraction, toFraction, Value, IToFraction } from '../../fraction';
 import { ICurrency } from '../Currency';
 
@@ -19,7 +19,19 @@ export abstract class Amount<C extends ICurrency = ICurrency> implements IToBN, 
   }
 
   public abstract makeAmount(amount: Value, currency: C): this;
-  public abstract toFormattedString(precision?: number, withSymbol?: boolean): string;
+  public abstract toFormattedBalance(
+    precision?: number,
+    withSymbol?: boolean,
+    withSI?: boolean,
+  ): FormattedBalance;
+
+  public toFormattedString(precision?: number, withSymbol?: boolean): string {
+    return this.toFormattedBalance(precision, withSymbol).formatted;
+  }
+
+  public toShortString(precision?: number, withSymbol?: boolean): string {
+    return this.toFormattedBalance(precision, withSymbol, true).formatted;
+  }
 
   public withValue(newValue: Value): this {
     return this.makeAmount(toFraction(newValue), this.currency);
@@ -104,5 +116,10 @@ export abstract class Amount<C extends ICurrency = ICurrency> implements IToBN, 
 
   public valueOf(): number {
     return this.value.valueOf();
+  }
+
+  public toSignificantValue(significantFractionalDigits?: number): this {
+    const minSignificantValue = getSignificantValue(this.currency, significantFractionalDigits);
+    return this.gte(minSignificantValue) ? this : this.makeAmount(0, this.currency);
   }
 }

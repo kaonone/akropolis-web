@@ -6,7 +6,12 @@ export const useStyles = makeStyles(
       '&::before': {
         background: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
       },
+
+      '&$fullWidth': {
+        display: 'flex',
+      },
     },
+    fullWidth: {},
   }),
   { name: 'TabList' },
 );

@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.16.10 (2020-12-02)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.9 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.8 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.7 (2020-11-25)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.6 (2020-11-23)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.5 (2020-11-18)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.4 (2020-11-06)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.3 (2020-11-05)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+## 0.16.2 (2020-11-03)
+
+
+### Bug Fixes
+
+* fix TabList fullWidth ([4df28c2](https://github.com/akropolisio/akropolis-web/commit/4df28c2acfdbeb31345ac0e44149b4910eb146b1))
+
+
+
+
+
+## 0.16.1 (2020-11-03)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
+# [0.16.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.15.1...@akropolis-web/styles@0.16.0) (2020-10-24)
+
+
+### Features
+
+* add tooltip margin override ([4fa068d](https://github.com/akropolisio/akropolis-web/commit/4fa068d66a60b16a5ecdd8cdd175305a7b4acdca))
+
+
+
+
+
 ## [0.15.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/styles@0.15.0...@akropolis-web/styles@0.15.1) (2020-10-23)
 
 

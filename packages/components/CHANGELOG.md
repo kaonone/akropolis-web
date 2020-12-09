@@ -3,6 +3,121 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.27.10 (2020-12-02)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.9 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.8 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.7 (2020-11-25)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.6 (2020-11-23)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.5 (2020-11-18)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.4 (2020-11-06)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.3 (2020-11-05)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## 0.27.2 (2020-11-03)
+
+
+### Bug Fixes
+
+* fix TabList fullWidth ([4df28c2](https://github.com/akropolisio/akropolis-web/commit/4df28c2acfdbeb31345ac0e44149b4910eb146b1))
+
+
+
+
+
+## 0.27.1 (2020-11-03)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+# [0.27.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.2...@akropolis-web/components@0.27.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* rename new prop ([3174078](https://github.com/akropolisio/akropolis-web/commit/3174078af8b0451f7d6eaacb68b14ca356f02c78))
+
+
+### Features
+
+* add button min width property ([b56a9fd](https://github.com/akropolisio/akropolis-web/commit/b56a9fd8f05e7b89a40c5166319e92cf7bfe6838))
+
+
+
+
+
+## [0.26.2](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.1...@akropolis-web/components@0.26.2) (2020-10-26)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
+## [0.26.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.26.0...@akropolis-web/components@0.26.1) (2020-10-24)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
 # [0.26.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/components@0.25.1...@akropolis-web/components@0.26.0) (2020-10-23)
 
 

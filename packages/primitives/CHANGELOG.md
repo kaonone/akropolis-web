@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.10 (2020-12-02)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.9 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.8 (2020-12-01)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.7 (2020-11-25)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.6 (2020-11-23)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.5 (2020-11-18)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.4 (2020-11-06)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.3 (2020-11-05)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+## 0.6.2 (2020-11-03)
+
+
+### Bug Fixes
+
+* fix TabList fullWidth ([4df28c2](https://github.com/akropolisio/akropolis-web/commit/4df28c2acfdbeb31345ac0e44149b4910eb146b1))
+
+
+
+
+
+## 0.6.1 (2020-11-03)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
+# [0.6.0](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.5.1...@akropolis-web/primitives@0.6.0) (2020-10-26)
+
+
+### Features
+
+* refactor amounts formatting, add detailed to formatBalance return ([22fb2ad](https://github.com/akropolisio/akropolis-web/commit/22fb2adde9303332963cdf004ce5aeb6db692e12))
+
+
+
+
+
 ## [0.5.1](https://github.com/akropolisio/akropolis-web/compare/@akropolis-web/primitives@0.5.0...@akropolis-web/primitives@0.5.1) (2020-10-15)
 
 

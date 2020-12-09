@@ -1,4 +1,4 @@
-import { formatBalance, formatShortBalance } from '../bnHexWei';
+import { formatBalance, FormattedBalance } from '../bnHexWei';
 import { Value } from '../fraction';
 import { Token } from './Token';
 import { Amount } from './amount/Amount';
@@ -13,21 +13,17 @@ export class TokenAmount extends Amount<Token> {
     return new TokenAmount(amount, token) as this;
   }
 
-  public toFormattedString(precision: number = 2, withSymbol = true): string {
+  public toFormattedBalance(
+    precision: number = 2,
+    withSymbol = true,
+    withSI?: boolean,
+  ): FormattedBalance {
     return formatBalance({
+      withSI,
       amountInBaseUnits: this.toBN(),
       tokenSymbol: withSymbol ? this.currency.symbol : undefined,
       baseDecimals: this.currency.decimals,
       precision,
-      symbolPosition: 'end-space',
-    });
-  }
-
-  public toShortString(withSymbol = true): string {
-    return formatShortBalance({
-      amountInBaseUnits: this.toBN(),
-      tokenSymbol: withSymbol ? this.currency.symbol : undefined,
-      baseDecimals: this.currency.decimals,
       symbolPosition: 'end-space',
     });
   }

@@ -26,14 +26,6 @@ export const useStyles = makeStyles(
         width: '100%',
       },
     },
-    tab: {
-      padding: '0 10px',
-      minWidth: 'initial',
-
-      [theme.breakpoints.up('mobileMD')]: {
-        padding: '0 20px',
-      },
-    },
     tabPanel: {
       padding: 0,
     },

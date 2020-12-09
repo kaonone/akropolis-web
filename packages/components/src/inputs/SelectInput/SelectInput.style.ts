@@ -50,13 +50,15 @@ export const useStyles = makeStyles(
     paper: {
       fontSize: 12,
       borderColor: theme.colors.darkMist,
+      borderRadius: 6,
+
       '&$hasBottomSpace': {
-        borderRadius: '0 0 8px 8px',
+        borderRadius: '0 0 6px 6px',
         borderTop: 'none',
       },
 
       '&$hasTopSpace': {
-        borderRadius: '8px 8px 0 0',
+        borderRadius: '6px 6px 0 0',
         borderBottom: 'none',
       },
 
