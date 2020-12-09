@@ -4,5 +4,4 @@ export { CheckmarkIcon } from './CheckmarkIcon';
 export { AlertIcon } from './AlertIcon';
 
 export * from './tokens';
-export * from './inactiveTokens';
 export * from './currencies';

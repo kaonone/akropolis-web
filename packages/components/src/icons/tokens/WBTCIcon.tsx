@@ -2,15 +2,15 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 function WBTCIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
   const gradientIds = React.useMemo(() => [1, 2].map(() => makeRandomID('WBTCIcon')), []);
-  const fillColor0 = isInactive ? '#FFF' : `url(#${gradientIds[0]})`;
-  const fillColor1 = isInactive ? '#FFF' : `url(#${gradientIds[1]})`;
-  const fillColor2 = isInactive ? '#191924' : '#FFF';
+  const fillColor0 = inactive ? '#FFF' : `url(#${gradientIds[0]})`;
+  const fillColor1 = inactive ? '#FFF' : `url(#${gradientIds[1]})`;
+  const fillColor2 = inactive ? '#191924' : '#FFF';
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

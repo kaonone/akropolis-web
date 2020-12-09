@@ -2,12 +2,12 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 function WETHIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
-  const Icon = isInactive ? InactiveWETHIcon : ActiveWETHIcon;
+  const Icon = inactive ? InactiveWETHIcon : ActiveWETHIcon;
 
   return <Icon {...props} />;
 }

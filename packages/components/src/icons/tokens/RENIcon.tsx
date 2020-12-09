@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function RENIcon(props: TokenIconProps) {
   return (

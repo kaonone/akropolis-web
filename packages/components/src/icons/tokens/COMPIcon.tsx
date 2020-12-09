@@ -1,12 +1,12 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function COMPIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
-  const Icon = isInactive ? InactiveCOMPIcon : ActiveCOMPIcon;
+  const Icon = inactive ? InactiveCOMPIcon : ActiveCOMPIcon;
 
   return <Icon {...props} />;
 }

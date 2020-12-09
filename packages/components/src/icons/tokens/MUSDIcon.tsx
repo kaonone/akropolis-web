@@ -1,12 +1,12 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 function MUSDIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
-  const fillColor = isInactive ? '#191924' : '#000';
+  const fillColor = inactive ? '#191924' : '#000';
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

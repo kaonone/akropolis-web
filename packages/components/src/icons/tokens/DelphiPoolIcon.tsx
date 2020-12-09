@@ -2,10 +2,10 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function DelphiPoolIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
   const svgIds = React.useMemo(() => [1, 2, 3, 4, 5].map(() => makeRandomID('DelphiPoolIcon')), []);
   const inactiveSvgIds = React.useMemo(
@@ -13,11 +13,11 @@ export function DelphiPoolIcon(props: TokenIconProps) {
     [],
   );
 
-  const fillColorID = isInactive ? inactiveSvgIds[0] : svgIds[0];
-  const fillColor = isInactive ? '#FFF' : `url(#${fillColorID})`;
-  const maskID = isInactive ? inactiveSvgIds[2] : svgIds[3];
-  const circleID = isInactive ? inactiveSvgIds[1] : svgIds[4];
-  const circleFillColorID = isInactive ? inactiveSvgIds[0] : svgIds[2];
+  const fillColorID = inactive ? inactiveSvgIds[0] : svgIds[0];
+  const fillColor = inactive ? '#FFF' : `url(#${fillColorID})`;
+  const maskID = inactive ? inactiveSvgIds[2] : svgIds[3];
+  const circleID = inactive ? inactiveSvgIds[1] : svgIds[4];
+  const circleFillColorID = inactive ? inactiveSvgIds[0] : svgIds[2];
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

@@ -3,15 +3,15 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { useTheme } from '@akropolis-web/styles';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function AKROIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
   const theme = useTheme();
 
   const gradientId = React.useMemo(() => makeRandomID('AKROIcon'), []);
-  const fillColor = isInactive ? '#191924' : `url(#${gradientId})`;
+  const fillColor = inactive ? '#191924' : `url(#${gradientId})`;
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

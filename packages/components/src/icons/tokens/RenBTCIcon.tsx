@@ -2,13 +2,13 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 function RenBTCIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
   const gradientId = React.useMemo(() => makeRandomID('RenBTCIcon'), []);
-  const fillColor = isInactive ? '#191924' : `url(#${gradientId})`;
+  const fillColor = inactive ? '#191924' : `url(#${gradientId})`;
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

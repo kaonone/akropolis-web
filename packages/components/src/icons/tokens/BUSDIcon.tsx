@@ -2,14 +2,14 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function BUSDIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
   const gradientId = React.useMemo(() => makeRandomID('BUSDIcon'), []);
-  const fillColor0 = isInactive ? '#191924' : `url(#${gradientId})`;
-  const fillColor1 = isInactive ? '#FFF' : '#000';
+  const fillColor0 = inactive ? '#191924' : `url(#${gradientId})`;
+  const fillColor1 = inactive ? '#FFF' : '#000';
 
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">

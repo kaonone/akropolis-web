@@ -1,12 +1,12 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 export function BALIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
-  const Icon = isInactive ? InactiveBALIcon : ActiveBALIcon;
+  const Icon = inactive ? InactiveBALIcon : ActiveBALIcon;
 
   return <Icon {...props} />;
 }

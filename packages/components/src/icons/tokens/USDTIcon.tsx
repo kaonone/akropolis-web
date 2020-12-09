@@ -3,12 +3,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
 import { TUSDIcon } from './TUSDIcon';
-import { TokenIconProps } from './types';
+import { TokenIconProps } from '../types';
 
 function USDTIcon(props: TokenIconProps) {
-  const { isInactive } = props;
+  const { inactive } = props;
 
-  const Icon = isInactive ? TUSDIcon : ActiveUSDTIcon;
+  const Icon = inactive ? TUSDIcon : ActiveUSDTIcon;
 
   return <Icon {...props} />;
 }
