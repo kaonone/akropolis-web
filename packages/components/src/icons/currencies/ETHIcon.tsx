@@ -6,9 +6,9 @@ import { CurrencyIconProps } from '../types';
 import { WETHIcon } from '../tokens';
 
 function ETHIcon(props: CurrencyIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
-  return inactive ? <WETHIcon {...props} inactive /> : <ActiveETHIcon {...props} />;
+  return inactive ? <WETHIcon {...props} inactive /> : <ActiveETHIcon {...svgProps} />;
 }
 
 function ActiveETHIcon(props: CurrencyIconProps) {

@@ -4,12 +4,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 
 function MUSDIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const fillColor = inactive ? '#191924' : '#000';
 
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
         <ellipse cx="10" cy="10" fill={fillColor} fillRule="nonzero" rx="10" ry="9.818" />
         <g fill="#FFF">

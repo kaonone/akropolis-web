@@ -5,11 +5,11 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
 
 export function TUSDIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const Icon = inactive ? InactiveTUSDIcon : ActiveTUSDIcon;
 
-  return <Icon {...props} />;
+  return <Icon {...svgProps} />;
 }
 
 function ActiveTUSDIcon(props: TokenIconProps) {

@@ -4,8 +4,10 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 
 export function RENIcon(props: TokenIconProps) {
+  const { inactive, ...svgProps } = props;
+
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
         <path d="M0 0H20V20H0z" />
         <path

@@ -5,11 +5,11 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
 
 function WETHIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const Icon = inactive ? InactiveWETHIcon : ActiveWETHIcon;
 
-  return <Icon {...props} />;
+  return <Icon {...svgProps} />;
 }
 
 function ActiveWETHIcon(props: React.ComponentProps<typeof SvgIcon>) {

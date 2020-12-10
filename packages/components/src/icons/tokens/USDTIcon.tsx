@@ -6,11 +6,11 @@ import { TUSDIcon } from './TUSDIcon';
 import { TokenIconProps } from '../types';
 
 function USDTIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const Icon = inactive ? TUSDIcon : ActiveUSDTIcon;
 
-  return <Icon {...props} />;
+  return <Icon {...svgProps} />;
 }
 
 function ActiveUSDTIcon(props: TokenIconProps) {

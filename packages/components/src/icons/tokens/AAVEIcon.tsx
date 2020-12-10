@@ -5,13 +5,13 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
 
 export function AAVEIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const gradientId = React.useMemo(() => makeRandomID('AAVEIcon'), []);
   const fillColor = inactive ? '#191924' : `url(#${gradientId})`;
 
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <defs>
         <linearGradient id={gradientId} x1="8.586%" x2="100%" y1="96.414%" y2="26.414%">
           <stop offset="0%" stopColor="#50B5AC" />

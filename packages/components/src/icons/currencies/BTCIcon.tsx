@@ -5,9 +5,9 @@ import { CurrencyIconProps } from '../types';
 import { RenBTCIcon } from '../tokens';
 
 export function BTCIcon(props: CurrencyIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
-  return inactive ? <RenBTCIcon {...props} inactive /> : <ActiveBTCIcon {...props} />;
+  return inactive ? <RenBTCIcon {...props} /> : <ActiveBTCIcon {...svgProps} />;
 }
 
 function ActiveBTCIcon(props: CurrencyIconProps) {

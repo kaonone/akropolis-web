@@ -5,7 +5,7 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
 
 export function DelphiPoolIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const svgIds = React.useMemo(() => [1, 2, 3, 4, 5].map(() => makeRandomID('DelphiPoolIcon')), []);
   const inactiveSvgIds = React.useMemo(
@@ -20,7 +20,7 @@ export function DelphiPoolIcon(props: TokenIconProps) {
   const circleFillColorID = inactive ? inactiveSvgIds[0] : svgIds[2];
 
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <defs>
         <linearGradient id={inactiveSvgIds[0]} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#181820" />

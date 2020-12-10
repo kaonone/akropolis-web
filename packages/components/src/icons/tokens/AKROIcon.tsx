@@ -6,7 +6,7 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
 
 export function AKROIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const theme = useTheme();
 
@@ -14,7 +14,7 @@ export function AKROIcon(props: TokenIconProps) {
   const fillColor = inactive ? '#191924' : `url(#${gradientId})`;
 
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       {theme.gradients.main.svgLinear(gradientId)}
       <g fill="none" fillRule="evenodd">
         <path d="M0 0H20V20H0z" />

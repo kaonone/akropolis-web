@@ -4,13 +4,13 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 
 function YFIIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const circleFillColor = inactive ? '#FFF' : '#191924';
   const fillColor = inactive ? '#000' : '#FFF';
 
   return (
-    <SvgIcon {...props} viewBox="0 0 20 20">
+    <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
         <circle cx="10" cy="10" r="10" fill={circleFillColor} />
         <path fill={fillColor} fillRule="nonzero" d="M9.565 5.718H10.565V14.166H9.565z" />

@@ -4,11 +4,11 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 
 export function BALIcon(props: TokenIconProps) {
-  const { inactive } = props;
+  const { inactive, ...svgProps } = props;
 
   const Icon = inactive ? InactiveBALIcon : ActiveBALIcon;
 
-  return <Icon {...props} />;
+  return <Icon {...svgProps} />;
 }
 
 function ActiveBALIcon(props: TokenIconProps) {
