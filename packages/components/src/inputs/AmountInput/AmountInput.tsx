@@ -20,6 +20,7 @@ interface IOwnProps<A extends Amount> {
   currencies: Array<A['currency']>;
   value: A | null | '';
   maxValue?: BN | IToBN;
+  allowedMax?: BN;
   hideCurrencySelect?: boolean;
   displayVariant?: 'default' | 'table-cell';
   disabledAlert?: string;
@@ -38,6 +39,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     onChange,
     value,
     maxValue,
+    allowedMax,
     disabled,
     currencies,
     hideCurrencySelect,
@@ -80,7 +82,12 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
   const handleInputChange = useCallback(
     (nextValue: string) => {
-      currentCurrency && onChange(makeAmount(new BN(nextValue), currentCurrency));
+      const value =
+        allowedMax && new BN(nextValue).gt(new BN(allowedMax))
+          ? new BN(currentValue) 
+          : new BN(nextValue);
+
+      currentCurrency && onChange(makeAmount(value, currentCurrency));
     },
     [onChange, currentCurrencyUpdatingTrigger],
   );
