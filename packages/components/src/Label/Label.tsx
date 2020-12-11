@@ -61,7 +61,7 @@ export const Label: React.FC<Props> = props => {
               disableFocusListener
               disableHoverListener
               disableTouchListener
-              title={hint}
+              title={<div className={classes.hint}>{hint}</div>}
               placement="right"
             >
               <span>
@@ -107,6 +107,10 @@ const useStyles = makeStyles(
 
     comingSoonLabel: {
       marginLeft: 10,
+    },
+
+    hint: {
+      fontSize: 12,
     },
 
     inherit: {},
