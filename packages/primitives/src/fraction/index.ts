@@ -1,10 +1,11 @@
 import BN from 'bn.js';
 
-import { getDecimal, bnToBn, IToBN, Decimal } from '../bnHexWei';
+import { getDecimal, bnToBn, IToBN, Decimal, decimalsToWei } from '../bnHexWei';
 
 export type Value = number | string | BN | IToBN | Fraction | IToFraction;
 
-const NUMERATOR_NUMBER_MAX_LENGTH = 100;
+const NUMBER_MAX_LENGTH = 100;
+const MINIMUM_ACCURACY_DECIMALS = 50;
 
 export interface IToFraction {
   toFraction(): Fraction;
@@ -17,14 +18,22 @@ export class Fraction implements IToBN {
   constructor(
     numerator: string | number | BN | IToBN,
     denominator: string | number | BN | IToBN = new BN(1),
+    disableRound?: boolean,
   ) {
-    const divNumberToRound = getDividerToRound(
-      bnToBn(numerator),
-      bnToBn(denominator),
-      NUMERATOR_NUMBER_MAX_LENGTH,
-    );
-    this.numerator = bnToBn(numerator).div(divNumberToRound);
-    this.denominator = bnToBn(denominator).div(divNumberToRound);
+    if (disableRound) {
+      this.numerator = bnToBn(numerator);
+      this.denominator = bnToBn(denominator);
+    } else {
+      const roundedFraction = disableRound
+        ? new Fraction(numerator, denominator, true)
+        : getRoundedFraction(
+            new Fraction(numerator, denominator, true),
+            NUMBER_MAX_LENGTH,
+            MINIMUM_ACCURACY_DECIMALS,
+          );
+      this.numerator = bnToBn(roundedFraction.numerator);
+      this.denominator = bnToBn(roundedFraction.denominator);
+    }
   }
 
   static isFraction(value: unknown): value is Fraction {
@@ -144,13 +153,44 @@ export function toFraction(value: Value): Fraction {
   return new Fraction(value);
 }
 
-function getDividerToRound(numerator: BN, denominator: BN, numeratorMaxLength: number) {
+function getRoundedFraction(
+  fraction: Fraction,
+  maxLength: number,
+  minimumAccuracyDecimals: number,
+) {
+  const { numerator, denominator } = fraction;
   const numeratorLength = numerator.toString().length;
-  const degreeDiff = numeratorLength - numeratorMaxLength;
+  const denominatorLength = denominator.toString().length;
+  const numeratorDegreeDiff = numeratorLength - maxLength;
 
-  if (degreeDiff > 0) {
-    const numberToDiv = new BN(10).pow(new BN(degreeDiff));
-    return numberToDiv.gt(denominator) ? new BN(1) : numberToDiv;
+  if (numeratorLength < denominatorLength && numeratorDegreeDiff > 0) {
+    const numberToDiv = decimalsToWei(numeratorDegreeDiff);
+    return new Fraction(numerator.div(numberToDiv), denominator.div(numberToDiv), true);
   }
-  return new BN(1);
+
+  return divFraction(fraction);
+
+  function divFraction(fractionToRound: Fraction): Fraction {
+    const roundDegree = decimalsToWei(
+      fractionToRound.denominator.toString().length.toString().length - 1,
+    );
+    const roundedFraction = new Fraction(
+      fractionToRound.numerator.div(roundDegree),
+      fractionToRound.denominator.div(roundDegree),
+      true,
+    );
+
+    const doNotNeedToRound =
+      fraction
+        .sub(roundedFraction)
+        .abs()
+        .mul(decimalsToWei(minimumAccuracyDecimals))
+        .gt(1) || roundedFraction.denominator.toString().length <= maxLength;
+
+    if (doNotNeedToRound) {
+      return fractionToRound;
+    }
+
+    return divFraction(roundedFraction);
+  }
 }
