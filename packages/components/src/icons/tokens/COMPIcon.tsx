@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIconProps } from '../types';
 
@@ -11,7 +11,7 @@ export function COMPIcon(props: TokenIconProps) {
   return <Icon {...svgProps} />;
 }
 
-function ActiveCOMPIcon(props: TokenIconProps) {
+function ActiveCOMPIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
@@ -25,7 +25,7 @@ function ActiveCOMPIcon(props: TokenIconProps) {
   );
 }
 
-function InactiveCOMPIcon(props: TokenIconProps) {
+function InactiveCOMPIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g>

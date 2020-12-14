@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
@@ -12,7 +12,7 @@ function WETHIcon(props: TokenIconProps) {
   return <Icon {...svgProps} />;
 }
 
-function ActiveWETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function ActiveWETHIcon(props: SvgIconProps) {
   const gradientId = React.useMemo(() => makeRandomID('ETHIcon'), []);
 
   return (
@@ -54,7 +54,7 @@ function ActiveWETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
   );
 }
 
-function InactiveWETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function InactiveWETHIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none">

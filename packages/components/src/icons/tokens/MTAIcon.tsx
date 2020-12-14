@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIconProps } from '../types';
 
@@ -11,7 +11,7 @@ export function MTAIcon(props: TokenIconProps) {
   return <Icon {...svgProps} />;
 }
 
-function ActiveMTAIcon(props: TokenIconProps) {
+function ActiveMTAIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">
@@ -26,7 +26,7 @@ function ActiveMTAIcon(props: TokenIconProps) {
   );
 }
 
-function InactiveMTAIcon(props: TokenIconProps) {
+function InactiveMTAIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none" fillRule="evenodd">

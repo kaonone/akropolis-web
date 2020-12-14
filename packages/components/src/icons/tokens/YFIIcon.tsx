@@ -6,8 +6,8 @@ import { TokenIconProps } from '../types';
 function YFIIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
 
-  const circleFillColor = inactive ? '#FFF' : '#191924';
-  const fillColor = inactive ? '#000' : '#FFF';
+  const circleFillColor = inactive ? '#191924' : '#FFF';
+  const fillColor = inactive ? '#FFF' : '#000';
 
   return (
     <SvgIcon {...svgProps} viewBox="0 0 20 20">

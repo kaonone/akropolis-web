@@ -7,31 +7,26 @@ import { TokenIconProps } from '../types';
 export function DelphiPoolIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
 
-  const svgIds = React.useMemo(() => [1, 2, 3, 4, 5].map(() => makeRandomID('DelphiPoolIcon')), []);
-  const inactiveSvgIds = React.useMemo(
-    () => [1, 2, 3].map(() => makeRandomID('InactiveDelphiPoolIcon')),
+  const [linearGradientID1, linearGradientID2, radialGradientID, circleID, maskID] = React.useMemo(
+    () => [1, 2, 3, 4, 5].map(() => makeRandomID('DelphiPoolIcon')),
     [],
   );
 
-  const fillColorID = inactive ? inactiveSvgIds[0] : svgIds[0];
-  const fillColor = inactive ? '#FFF' : `url(#${fillColorID})`;
-  const maskID = inactive ? inactiveSvgIds[2] : svgIds[3];
-  const circleID = inactive ? inactiveSvgIds[1] : svgIds[4];
-  const circleFillColorID = inactive ? inactiveSvgIds[0] : svgIds[2];
+  const fillColor = inactive ? '#FFF' : `url(#${radialGradientID})`;
+  const circleFillColorID = inactive ? linearGradientID1 : linearGradientID2;
 
   return (
     <SvgIcon {...svgProps} viewBox="0 0 20 20">
       <defs>
-        <linearGradient id={inactiveSvgIds[0]} x1="50%" x2="50%" y1="0%" y2="100%">
+        <linearGradient id={linearGradientID1} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#181820" />
           <stop offset="100%" stopColor="#0A0A0E" />
         </linearGradient>
-        <circle id={inactiveSvgIds[1]} cx="10.313" cy="10.375" r="9.375" />
       </defs>
 
       <defs>
         <radialGradient
-          id={fillColorID}
+          id={radialGradientID}
           cx="31.236%"
           cy="42.426%"
           r="85.29%"
@@ -42,7 +37,7 @@ export function DelphiPoolIcon(props: TokenIconProps) {
           <stop offset="0%" stopColor="#594AFF" />
           <stop offset="100%" stopColor="#3B2ECE" />
         </radialGradient>
-        <linearGradient id={circleFillColorID} x1="50%" x2="50%" y1="0%" y2="100%">
+        <linearGradient id={linearGradientID2} x1="50%" x2="50%" y1="0%" y2="100%">
           <stop offset="0%" stopColor="#181820" />
           <stop offset="100%" stopColor="#0A0A0E" />
         </linearGradient>

@@ -18,7 +18,7 @@ const tokenIcons: Record<string, CoinComponent> = {
 export function CurrencyIcon({ currency, className, inactive }: Props) {
   const Icon = useMemo(() => {
     return tokenIcons[currency.toLowerCase()];
-  }, [currency, inactive]);
+  }, [currency]);
 
   return Icon ? <Icon className={className} inactive={inactive} /> : null;
 }

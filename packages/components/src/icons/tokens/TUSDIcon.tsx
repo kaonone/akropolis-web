@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
 import { TokenIconProps } from '../types';
@@ -12,7 +12,7 @@ export function TUSDIcon(props: TokenIconProps) {
   return <Icon {...svgProps} />;
 }
 
-function ActiveTUSDIcon(props: TokenIconProps) {
+function ActiveTUSDIcon(props: SvgIconProps) {
   const gradientIds = React.useMemo(() => [1, 2].map(() => makeRandomID('TUSDIcon')), []);
 
   return (
@@ -59,7 +59,7 @@ function ActiveTUSDIcon(props: TokenIconProps) {
   );
 }
 
-function InactiveTUSDIcon(props: TokenIconProps) {
+function InactiveTUSDIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <g fill="none">
