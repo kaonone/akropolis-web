@@ -82,12 +82,12 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
   const handleInputChange = useCallback(
     (nextValue: string) => {
-      const value =
+      const validatedValue =
         allowedMax && new BN(nextValue).gt(new BN(allowedMax))
-          ? new BN(currentValue) 
+          ? new BN(currentValue)
           : new BN(nextValue);
 
-      currentCurrency && onChange(makeAmount(value, currentCurrency));
+      currentCurrency && onChange(makeAmount(validatedValue, currentCurrency));
     },
     [onChange, currentCurrencyUpdatingTrigger],
   );
