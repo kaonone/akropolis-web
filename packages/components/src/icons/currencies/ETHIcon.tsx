@@ -1,9 +1,17 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { makeRandomID } from '../../temp23/makeRandomID';
+import { CurrencyIconProps } from '../types';
+import { WETHIcon } from '../tokens';
 
-function ETHIcon(props: React.ComponentProps<typeof SvgIcon>) {
+function ETHIcon(props: CurrencyIconProps) {
+  const { inactive, ...svgProps } = props;
+
+  return inactive ? <WETHIcon {...props} /> : <ActiveETHIcon {...svgProps} />;
+}
+
+function ActiveETHIcon(props: SvgIconProps) {
   const gradientId = React.useMemo(() => makeRandomID('ETHIcon'), []);
 
   return (

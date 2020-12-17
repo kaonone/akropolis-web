@@ -1,7 +1,16 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-export function BTCIcon(props: React.ComponentProps<typeof SvgIcon>) {
+import { CurrencyIconProps } from '../types';
+import { RenBTCIcon } from '../tokens';
+
+export function BTCIcon(props: CurrencyIconProps) {
+  const { inactive, ...svgProps } = props;
+
+  return inactive ? <RenBTCIcon {...props} /> : <ActiveBTCIcon {...svgProps} />;
+}
+
+function ActiveBTCIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 20 20">
       <defs>
