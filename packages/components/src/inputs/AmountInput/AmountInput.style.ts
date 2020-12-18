@@ -26,7 +26,7 @@ export const useStyles = makeStyles(
     inputAdornedStart: {
       fontSize: 13,
       fontWeight: 'normal',
-      color: theme.palette.text.primary,
+      color: theme.colors.lightGray,
       paddingLeft: 10,
 
       [theme.breakpoints.up(767)]: {
