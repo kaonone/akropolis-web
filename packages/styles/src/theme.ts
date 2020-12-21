@@ -418,6 +418,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
               '&::placeholder': {
                 color: 'rgba(255, 255, 255, 0.5)',
+                opacity: 1,
               },
             },
 

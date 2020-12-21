@@ -42,4 +42,5 @@ export const colors = {
   midnightBlue2: '#373765',
   midnightBlue: '#3b3b7a',
   persimmon: '#FE5A59',
+  lightGray: 'rgba(255, 255, 255, 0.5)',
 };

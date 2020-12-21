@@ -118,7 +118,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     () =>
       disabled && disabledAlert
         ? {
-            startAdornment: <AlertIcon color="secondary" fontSize="small" />,
+            startAdornment: <AlertIcon color="inherit" fontSize="small" />,
             endAdornment: <></>,
             value: disabledAlert,
             classes: {
