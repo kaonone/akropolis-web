@@ -1,9 +1,7 @@
 import * as React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
-import { TokenIconProps } from '../types';
-
-export function crvSBTCIcon(props: TokenIconProps) {
+export function CrvSBTCIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 32 32">
       <defs>
