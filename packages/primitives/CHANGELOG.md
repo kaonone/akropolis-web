@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.15 (2020-12-23)
+
+
+### Bug Fixes
+
+* improve number to Fraction convertation ([f9aad67](https://github.com/akropolisio/akropolis-web/commit/f9aad67d353e90ea51094e74ad560e2933502396))
+
+
+
+
+
 ## 0.6.14 (2020-12-23)
 
 **Note:** Version bump only for package @akropolis-web/primitives

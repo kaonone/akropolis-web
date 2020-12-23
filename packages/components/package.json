@@ -1,6 +1,6 @@
 {
   "name": "@akropolis-web/components",
-  "version": "0.27.14",
+  "version": "0.27.15",
   "description": "Package with shared components",
   "keywords": [
     "ethereum",
@@ -34,8 +34,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@akropolis-web/primitives": "^0.6.14",
-    "@akropolis-web/styles": "^0.16.14",
+    "@akropolis-web/primitives": "^0.6.15",
+    "@akropolis-web/styles": "^0.16.15",
     "@types/mersenne-twister": "^1.1.2",
     "@types/react-copy-to-clipboard": "^4.3.0",
     "color": "^0.11.0",
