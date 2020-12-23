@@ -9,15 +9,16 @@ import { CurrencyIcon } from '../CurrencyIcon/CurrencyIcon';
 export type LiquidityAmountInputProps = Omit<
   AmountInputProps<LiquidityAmount>,
   'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
->;
+> & { withIcon?: boolean };
 
 export function LiquidityAmountInput(props: LiquidityAmountInputProps) {
+  const { withIcon, ...rest } = props;
   return (
     <AmountInput<LiquidityAmount>
-      {...props}
+      {...rest}
       makeAmount={makeAmount}
       getCurrencyIdentifier={getCurrencyIdentifier}
-      getCurrencyLabel={getCurrencyLabel}
+      getCurrencyLabel={withIcon ? getCurrencyLabel : getCurrencyIdentifier}
     />
   );
 }
