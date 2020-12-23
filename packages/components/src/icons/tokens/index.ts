@@ -20,3 +20,8 @@ export { AAVEIcon } from './AAVEIcon';
 export { RENIcon } from './RENIcon';
 export { DelphiPoolIcon } from './DelphiPoolIcon';
 export { WETHIcon } from './WETHIcon';
+export { ThreeCrvIcon } from './ThreeCrvIcon';
+export { CrvSBTCIcon } from './CrvSBTCIcon';
+export { CrvBUSDIcon } from './CrvBUSDIcon';
+export { CrvCOMPIcon } from './CrvCOMPIcon';
+export { YCRVIcon } from './YCRVIcon';
