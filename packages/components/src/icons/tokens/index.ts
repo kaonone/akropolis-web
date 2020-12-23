@@ -24,3 +24,4 @@ export { ThreeCrvIcon } from './ThreeCrvIcon';
 export { CrvSBTCIcon } from './CrvSBTCIcon';
 export { CrvBUSDIcon } from './CrvBUSDIcon';
 export { CrvCOMPIcon } from './CrvCOMPIcon';
+export { YCRVIcon } from './YCRVIcon';
