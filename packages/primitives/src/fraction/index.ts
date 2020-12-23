@@ -1,6 +1,6 @@
 import BN from 'bn.js';
 
-import { getDecimal, bnToBn, IToBN, Decimal } from '../bnHexWei';
+import { getDecimal, bnToBn, IToBN, Decimal, decimalsToWei } from '../bnHexWei';
 
 export type Value = number | string | BN | IToBN | Fraction | IToFraction;
 
@@ -133,6 +133,14 @@ export function toFraction(value: Value): Fraction {
   }
   if (typeof value === 'object' && 'toFraction' in value) {
     return value.toFraction();
+  }
+  if (typeof value === 'number') {
+    const integer = Math.floor(value);
+    const fractional = value - integer;
+
+    return new Fraction(fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'), decimalsToWei(18))
+      .div(1)
+      .add(integer);
   }
   return new Fraction(value);
 }
