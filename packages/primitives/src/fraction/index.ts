@@ -138,9 +138,13 @@ export function toFraction(value: Value): Fraction {
     const integer = Math.floor(value);
     const fractional = value - integer;
 
-    return new Fraction(fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'), decimalsToWei(18))
-      .div(1)
-      .add(integer);
+    if (fractional) {
+      return new Fraction(fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'), decimalsToWei(18))
+        .div(new BN(1))
+        .add(new BN(integer));
+    }
+
+    return new Fraction(new BN(integer));
   }
   return new Fraction(value);
 }
