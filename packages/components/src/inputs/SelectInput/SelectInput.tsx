@@ -15,13 +15,14 @@ import { Arrow } from '../../icons/Arrow';
 import { TextInput } from '../TextInput';
 import { useStyles } from './SelectInput.style';
 
-type Option = {
+export type Option = {
   id: string;
   label: string | JSX.Element;
 };
 
 type OwnProps = {
   options: Option[];
+  disableVariant?: 'text' | 'default';
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
@@ -30,13 +31,19 @@ const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
 
 export function SelectInput(props: SelectInputProps) {
-  const { options, InputProps = {}, SelectProps = {}, ...restProps } = props;
+  const {
+    options,
+    disabled,
+    disableVariant = 'default',
+    InputProps = {},
+    SelectProps = {},
+    ...restProps
+  } = props;
   const { className: inputClassName, ...restInputProps } = InputProps;
   const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
   const classes = useStyles();
   const backgroundColor = useAncestorBackgroundHack();
   const currentWindowHeight = useWindowHeight();
-  const hasSingleOption = options.length <= 1;
 
   const [isMenuOpen, setIsOpen] = useState(false);
   const [toBottomDistance, setToBottomDistance] = useState(0);
@@ -98,10 +105,10 @@ export function SelectInput(props: SelectInputProps) {
       ref={selectInputRef}
       select
       variant="outlined"
-      disabled={hasSingleOption}
+      disabled={disabled}
       className={cn(selectClassName, classes.root, {
         [classes.isOpen]: isMenuOpen,
-        [classes.withSingleOption]: hasSingleOption,
+        [classes.disableVariantText]: disabled && disableVariant === 'text',
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
       })}

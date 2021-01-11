@@ -172,6 +172,8 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           options={currencySelectOptions}
           onChange={handleCurrencyChange}
           value={currentCurrency && getCurrencyIdentifier(currentCurrency)}
+          disableVariant="text"
+          disabled={isSingleOptionSelect}
           InputProps={{ className: classes.selectInput }}
           SelectProps={{
             ...restSelectProps,
