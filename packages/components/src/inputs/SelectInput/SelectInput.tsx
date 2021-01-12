@@ -10,6 +10,7 @@ import cn from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
 import { MenuProps } from '@material-ui/core/Menu';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
+import * as R from 'ramda';
 
 import { Arrow } from '../../icons/Arrow';
 import { TextInput } from '../TextInput';
@@ -22,6 +23,7 @@ type Option = {
 
 type OwnProps = {
   options: Option[];
+  selectAll?: Option;
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
@@ -30,7 +32,16 @@ const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
 
 export function SelectInput(props: SelectInputProps) {
-  const { options, InputProps = {}, SelectProps = {}, ...restProps } = props;
+  const {
+    options,
+    selectAll,
+    value: inputValue,
+    onChange,
+    InputProps = {},
+    SelectProps = {},
+    ...restProps
+  } = props;
+
   const { className: inputClassName, ...restInputProps } = InputProps;
   const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
   const classes = useStyles();
@@ -41,6 +52,7 @@ export function SelectInput(props: SelectInputProps) {
   const [isMenuOpen, setIsOpen] = useState(false);
   const [toBottomDistance, setToBottomDistance] = useState(0);
   const [toTopDistance, setToTopDistance] = useState(0);
+  const [value, setValue] = useState(inputValue);
 
   const selectInputRef = useRef<HTMLDivElement>(null);
   const handleSelectOpen = useCallback(() => {
@@ -92,9 +104,35 @@ export function SelectInput(props: SelectInputProps) {
     };
   }, [hasBottomSpace, hasTopSpace]);
 
+  const handleInputChange = useCallback(
+    event => {
+      if (!selectAll) {
+        onChange && onChange(event);
+        return;
+      }
+
+      const newValue = event.target.value;
+
+      const isAllOptionSelected =
+        ((newValue as string[]).includes(selectAll.id) &&
+          !(value as string[]).includes(selectAll.id)) ||
+        (R.equals(value, [selectAll.id]) && R.equals(newValue, [selectAll.id]));
+
+      if (isAllOptionSelected) {
+        setValue([selectAll.id]);
+        onChange && onChange(event);
+      } else {
+        setValue((newValue as string[]).filter(val => val !== selectAll.id));
+        onChange && onChange(event);
+      }
+    },
+    [selectAll, value],
+  );
+
   return (
     <TextInput
       {...restProps}
+      value={selectAll ? value : inputValue}
       ref={selectInputRef}
       select
       variant="outlined"
@@ -105,6 +143,7 @@ export function SelectInput(props: SelectInputProps) {
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
       })}
+      onChange={handleInputChange}
       InputProps={{
         ...restInputProps,
         className: cn(inputClassName, classes.input),
@@ -138,6 +177,11 @@ export function SelectInput(props: SelectInputProps) {
           </MenuItem>
         );
       })}
+      {selectAll && (
+        <MenuItem key={selectAll.id} value={selectAll.id} className={classes.menuItem}>
+          {selectAll.label}
+        </MenuItem>
+      )}
     </TextInput>
   );
 
