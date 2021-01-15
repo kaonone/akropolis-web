@@ -27,7 +27,7 @@ export const useStyles = makeStyles(
         },
       },
 
-      '&$withSingleOption': {
+      '&$disableVariantText': {
         minWidth: 100,
 
         '& $input': {
@@ -76,10 +76,9 @@ export const useStyles = makeStyles(
       padding: 12,
       fontSize: 12,
       pointerEvents: 'none',
-      transition: '1s',
     },
     isOpen: {},
-    withSingleOption: {},
+    disableVariantText: {},
     hasBottomSpace: {},
     hasTopSpace: {},
     select: {},
