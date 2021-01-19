@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import Grid from '@material-ui/core/Grid';
-import { Token } from '@akropolis-web/primitives';
+import { AllCoinsToken, Token } from '@akropolis-web/primitives';
 import { makeStyles } from '@akropolis-web/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
@@ -21,11 +21,22 @@ export function TokenName({ token, iconSize = 'default', iconProps = {} }: Props
 
   return (
     <Grid container alignItems="center" wrap="nowrap">
-      <TokenIcon
-        tokenAddress={token.address}
-        className={cn(className, classes.icon, getIconSizeClass(iconSize))}
-        {...rest}
-      />
+      {token instanceof AllCoinsToken && token.tokens?.length ? (
+        token.tokens.map(({ address }) => (
+          <TokenIcon
+            key={address}
+            tokenAddress={address}
+            className={cn(className, classes.icon, getIconSizeClass(iconSize))}
+            {...rest}
+          />
+        ))
+      ) : (
+        <TokenIcon
+          tokenAddress={token.address}
+          className={cn(className, classes.icon, getIconSizeClass(iconSize))}
+          {...rest}
+        />
+      )}
       {token.symbol}
     </Grid>
   );
@@ -44,6 +55,10 @@ const useStyles = makeStyles(
   {
     icon: {
       marginRight: 8,
+
+      '& + &': {
+        marginLeft: -16,
+      },
     },
     default: {
       fontSize: 20,
