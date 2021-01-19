@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.27.18 (2021-01-19)
+
+**Note:** Version bump only for package @akropolis-web/components
+
+
+
+
+
 ## 0.27.17 (2021-01-15)
 
 **Note:** Version bump only for package @akropolis-web/components
