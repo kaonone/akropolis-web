@@ -306,6 +306,14 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 boxSizing: 'inherit',
               },
 
+              '*': {
+                transition: defaultTheme.transitions.create([
+                  'background-color',
+                  'border-color',
+                  'color',
+                ]),
+              },
+
               '@media print': {
                 body: {
                   backgroundColor: '#fff',
