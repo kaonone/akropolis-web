@@ -328,6 +328,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiButton: {
+            root: {
+              '& .MuiButton-label': {
+                transition: defaultTheme.transitions.create('color'),
+              },
+            },
+
             endIcon: {
               '&:empty': {
                 display: 'none',
