@@ -268,6 +268,9 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiLink: {
+            root: {
+              transition: defaultTheme.transitions.create(['border-color', 'color']),
+            },
             underlineHover: {
               paddingBottom: 2,
               borderWidth: '0 0 1px 0',
@@ -325,6 +328,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiButton: {
+            root: {
+              '& .MuiButton-label': {
+                transition: defaultTheme.transitions.create('color'),
+              },
+            },
+
             endIcon: {
               '&:empty': {
                 display: 'none',
