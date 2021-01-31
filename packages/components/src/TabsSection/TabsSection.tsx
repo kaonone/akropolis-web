@@ -26,12 +26,24 @@ type Props<T extends React.ElementType> = {
   tabs: TabItem<T>[];
   tabListProps?: Partial<TabListProps>;
   tabComponent?: T;
-  children?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
+  content?: {
+    navigationBar?: {
+      beforeTabs?: React.ReactNode;
+      afterTabs?: React.ReactNode;
+    };
+  };
 };
 
 export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
-  const { tabs, currentValue, children, onChange, tabComponent, tabListProps = {} } = props;
+  const {
+    tabs,
+    currentValue,
+    onChange,
+    tabComponent,
+    tabListProps = {},
+    content = { navigationBar: {} },
+  } = props;
   const isSmallMobile = useBreakpointsMatch({ to: 'mobileMD' });
   const defaultVariant = isSmallMobile ? 'fullWidth' : 'standard';
 
@@ -45,6 +57,7 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
   return (
     <TabContext value={currentValue}>
       <div className={classes.navigationBar}>
+        {content.navigationBar?.beforeTabs}
         <TabList
           {...restTabListProps}
           value={currentValue}
@@ -56,7 +69,7 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
         >
           {tabs.map(tabItem => renderTab(tabItem))}
         </TabList>
-        {children}
+        {content.navigationBar?.afterTabs}
       </div>
       {tabs.map(({ value, renderContent }) => (
         <TabPanel classes={{ root: classes.tabPanel }} value={value} key={value}>
