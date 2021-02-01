@@ -4,11 +4,11 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 import { makeRandomID } from '../../temp23/makeRandomID';
 
-export function CrvSTETHIcon(props: TokenIconProps) {
+export function SteCRVIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
 
   const [linearGradientId1, linearGradientId2] = React.useMemo(
-    () => [1, 2].map(() => makeRandomID('CrvSTETHIcon')),
+    () => [1, 2].map(() => makeRandomID('SteCRVIcon')),
     [],
   );
 
