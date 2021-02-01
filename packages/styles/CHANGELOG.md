@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.16.22 (2021-02-01)
+
+
+### Bug Fixes
+
+* fix calculation bug in number to Fraction converter ([b3e3fb7](https://github.com/akropolisio/akropolis-web/commit/b3e3fb7f57ba9eee0ba3f42094b111d23033e4b3))
+
+
+
+
+
 ## 0.16.21 (2021-02-01)
 
 **Note:** Version bump only for package @akropolis-web/styles
