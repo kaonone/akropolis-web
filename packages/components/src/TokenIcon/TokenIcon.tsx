@@ -37,6 +37,8 @@ const tokenIcons: Record<string, CoinComponent> = {
   crvBUSD: icons.CrvBUSDIcon,
   crvCOMP: icons.CrvCOMPIcon,
   yCRV: icons.YCRVIcon,
+  HEGIC: icons.HEGICIcon,
+  crvSTETH: icons.CrvSTETHIcon,
 };
 
 export function TokenIcon(props: Props & SvgIconProps) {
