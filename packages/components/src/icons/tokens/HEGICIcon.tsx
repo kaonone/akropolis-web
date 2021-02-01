@@ -7,7 +7,7 @@ import { makeRandomID } from '../../temp23/makeRandomID';
 export function HEGICIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
 
-  const [linearGradientId] = React.useMemo(() => [1].map(() => makeRandomID('HEGICIcon')), []);
+  const linearGradientId = React.useMemo(() => makeRandomID('HEGICIcon'), []);
 
   return (
     <SvgIcon {...svgProps} viewBox="0 0 32 32">
