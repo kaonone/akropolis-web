@@ -25,3 +25,5 @@ export { CrvSBTCIcon } from './CrvSBTCIcon';
 export { CrvBUSDIcon } from './CrvBUSDIcon';
 export { CrvCOMPIcon } from './CrvCOMPIcon';
 export { YCRVIcon } from './YCRVIcon';
+export { HEGICIcon } from './HEGICIcon';
+export { SteCRVIcon } from './SteCRVIcon';
