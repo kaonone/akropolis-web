@@ -140,7 +140,7 @@ export function toFraction(value: Value): Fraction {
 
     if (fractional) {
       return new Fraction(fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'), decimalsToWei(18))
-        .div(new BN(1))
+        .sub(new BN(1))
         .add(new BN(integer));
     }
 
