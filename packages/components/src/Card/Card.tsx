@@ -10,7 +10,7 @@ import {
   AncestorBackgroundHackProvider,
 } from '@akropolis-web/styles';
 
-import { ResizeObserverComponent } from './ResizeObserverComponent';
+import { ResizeObserverComponent } from '../ResizeObserverComponent/ResizeObserverComponent';
 
 interface CardProps {
   className?: string;
