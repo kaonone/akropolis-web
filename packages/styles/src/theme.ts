@@ -23,16 +23,11 @@ function getGradients(type: 'dark' | 'light') {
         type === 'dark' ? [colors.bossanova, colors.valhalla] : [colors.snuff, colors.amour],
       ),
     ] as const,
-    button: makeGradient([
-      colors.heliotrope,
-      colors.royalBlue,
-      colors.heliotrope2,
-      colors.heliotrope,
-    ]),
+    button: makeGradient([colors.violetRed, colors.royalBlue3, colors.violetRed, colors.violetRed]),
     outlinedButton: makeGradient([
-      { color: colors.heliotrope, offset: '0%' },
-      { color: colors.royalBlue, offset: '33.3%' },
-      { color: colors.heliotrope, offset: '100%' },
+      { color: colors.violetRed, offset: '0%' },
+      { color: colors.royalBlue3, offset: '33.3%' },
+      { color: colors.violetRed, offset: '100%' },
     ]),
     poolCompositionChart: [
       makeGradient(['#A88BEB', '#F8CEEC']),

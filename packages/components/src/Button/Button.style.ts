@@ -81,7 +81,7 @@ export const useStyles = makeStyles(
 
     outlinedPrimary: {
       borderWidth: 0,
-      backgroundImage: theme.gradients.outlinedButton.linear('to right'),
+      backgroundImage: theme.gradients.outlinedButton.linear('-270deg'),
       backgroundSize: backgroundGradientSize,
       opacity: 0.99,
       color: theme.palette.text.primary,
@@ -129,7 +129,7 @@ export const useStyles = makeStyles(
 
       '&:hover:not(:active), &$focusVisible': {
         border: 'none',
-        color: theme.colors.heliotrope,
+        color: theme.colors.violetRed,
       },
 
       '&:active': {
@@ -143,7 +143,7 @@ export const useStyles = makeStyles(
       color: theme.colors.white,
       marginBottom: 'auto',
       alignSelf: 'center',
-      background: theme.gradients.button.linear('to right'),
+      background: theme.gradients.button.linear('-270deg'),
       backgroundSize: backgroundGradientSize,
       opacity: 0.99,
       transition: 'background-position 1s',
@@ -168,7 +168,7 @@ export const useStyles = makeStyles(
         right: -shadowOffset,
         bottom: -shadowOffset,
         zIndex: '-1',
-        background: theme.gradients.button.linear('to right'),
+        background: theme.gradients.button.linear('-270deg'),
         backgroundSize: backgroundGradientSize,
         filter: 'blur(8px)',
         opacity: 0,
@@ -203,7 +203,7 @@ export const useStyles = makeStyles(
 
     textPrimary: {
       padding: 0,
-      color: theme.colors.heliotrope,
+      color: theme.colors.violetRed,
       minWidth: 'unset',
       minHeight: 'unset',
       justifyContent: 'flex-start',
