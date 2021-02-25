@@ -11,7 +11,7 @@ export { Theme };
 
 function getGradients(type: 'dark' | 'light') {
   return {
-    main: makeGradient([colors.heliotrope, colors.royalBlue]),
+    main: makeGradient([colors.violetRed, colors.royalBlue3]),
     products: [
       makeGradient(
         type === 'dark' ? [colors.jacarta, colors.blueZodiac] : [colors.zumthor2, colors.linkWater],
@@ -23,16 +23,11 @@ function getGradients(type: 'dark' | 'light') {
         type === 'dark' ? [colors.bossanova, colors.valhalla] : [colors.snuff, colors.amour],
       ),
     ] as const,
-    button: makeGradient([
-      colors.heliotrope,
-      colors.royalBlue,
-      colors.heliotrope2,
-      colors.heliotrope,
-    ]),
+    button: makeGradient([colors.violetRed, colors.royalBlue3, colors.violetRed, colors.violetRed]),
     outlinedButton: makeGradient([
-      { color: colors.heliotrope, offset: '0%' },
-      { color: colors.royalBlue, offset: '33.3%' },
-      { color: colors.heliotrope, offset: '100%' },
+      { color: colors.violetRed, offset: '0%' },
+      { color: colors.royalBlue3, offset: '33.3%' },
+      { color: colors.violetRed, offset: '100%' },
     ]),
     poolCompositionChart: [
       makeGradient(['#A88BEB', '#F8CEEC']),
@@ -251,7 +246,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
         palette: type === 'light' ? lightPalette : darkPalette,
         breakpoints: getBreakpoints(breakpoints),
         typography: {
-          fontFamily: ['Helvetica Neue', 'Arial', 'sans-serif'].join(','),
+          fontFamily: ['AvenirNext LT Pro', 'Arial', 'sans-serif'].join(','),
           h6: {
             fontSize: 16,
             fontWeight: 400,
@@ -292,7 +287,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 WebkitFontSmoothing: 'antialiased',
                 MozOsxFontSmoothing: 'grayscale',
                 fontSize: 16,
-                fontFamily: 'helvetica, sans-serif',
+                fontFamily: ['AvenirNext LT Pro', 'Arial', 'sans-serif'].join(','),
               },
 
               body: {
@@ -484,7 +479,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               minHeight: sizes.tabs.height,
               borderRadius: sizes.tabs.height / 2,
               padding: sizes.tabs.indicatorSpace,
-              background: 'linear-gradient(to left, #544cf2, #d93cef)',
+              background: 'linear-gradient(to left, #5346e6, #ef359c)',
 
               '&::before': {
                 content: "''",
@@ -504,7 +499,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               borderRadius:
                 sizes.tabs.height / 2 - sizes.tabs.indicatorSpace - sizes.tabs.borderWidth,
               zIndex: -1,
-              background: 'linear-gradient(to left, #544cf2, #d93cef)',
+              background: 'linear-gradient(to left, #5346e6, #ef359c)',
             },
 
             scroller: {

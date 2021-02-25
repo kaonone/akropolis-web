@@ -30,6 +30,7 @@ export const colors = {
   obsidian: '#0a0a0e',
   purpleHeart: '#6931b6',
   rhino: '#283e64',
+  royalBlue3: '#5346e6',
   royalBlue2: '#594cf2',
   royalBlue: '#544CF2',
   shark: '#191b1f',
@@ -43,4 +44,5 @@ export const colors = {
   midnightBlue: '#3b3b7a',
   persimmon: '#FE5A59',
   lightGray: 'rgba(255, 255, 255, 0.5)',
+  violetRed: '#ef359c',
 };
