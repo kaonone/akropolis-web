@@ -1,1 +1,1 @@
-import '../assets/fonts/HelveticaNeue/stylesheet.css';
+import '../assets/fonts/AvenirNextLTPro/stylesheet.css';
