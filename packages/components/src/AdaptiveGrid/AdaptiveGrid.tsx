@@ -1,17 +1,31 @@
 import React from 'react';
 import cn from 'classnames';
-import Grid, { GridProps, GridSpacing } from '@material-ui/core/Grid';
+import Grid, { GridSpacing, GridTypeMap as MuiGridTypeMap } from '@material-ui/core/Grid';
+import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { useTheme } from '@akropolis-web/styles';
 
 import { useAdapativeSpacing, AdaptiveSpacing } from './useAdaptiveSpacing';
 
-type Props<C extends React.ElementType> = {
-  component?: C;
+type MuiGridTypeProps = Omit<MuiGridTypeMap['props'], 'spacing'> & {
   spacing?: GridSpacing | AdaptiveSpacing;
 };
 
-export function AdaptiveGrid<C extends React.ElementType>(props: GridProps<C, Props<C>>) {
+interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & MuiGridTypeProps;
+  defaultComponent: D;
+  classKey: MuiGridTypeMap['classKey'];
+}
+
+type GridProps<
+  D extends React.ElementType = GridTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<GridTypeMap<P, D>, D>;
+
+export const AdaptiveGrid: OverridableComponent<GridTypeMap> = function ButtonFunc<
+  P = {},
+  D extends React.ElementType = 'div'
+>(props: GridProps<D, P>) {
   const theme = useTheme();
   const breakpointKeys = Object.keys(theme.breakpoints.values);
   const { className, children, spacing: spacingProp, ...rest } = props;
@@ -36,4 +50,4 @@ export function AdaptiveGrid<C extends React.ElementType>(props: GridProps<C, Pr
   function excludeBreakpointProps(restProps: {}, [key, value]: [string, any]) {
     return breakpointKeys.includes(key) ? restProps : { ...restProps, [key]: value };
   }
-}
+};
