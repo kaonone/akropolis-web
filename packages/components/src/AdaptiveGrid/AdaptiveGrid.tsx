@@ -6,13 +6,12 @@ import { useTheme } from '@akropolis-web/styles';
 
 import { useAdapativeSpacing, AdaptiveSpacing } from './useAdaptiveSpacing';
 
-type Props = {
+type Props<C extends React.ElementType> = {
+  component?: C;
   spacing?: GridSpacing | AdaptiveSpacing;
 };
 
-export function AdaptiveGrid<C extends React.ElementType>(
-  props: Props & Omit<GridProps<C, { component?: C }>, 'spacing'>,
-) {
+export function AdaptiveGrid<C extends React.ElementType>(props: GridProps<C, Props<C>>) {
   const theme = useTheme();
   const breakpointKeys = Object.keys(theme.breakpoints.values);
   const { className, children, spacing: spacingProp, ...rest } = props;
