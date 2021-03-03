@@ -22,10 +22,12 @@ type GridProps<
   P = {}
 > = OverrideProps<GridTypeMap<P, D>, D>;
 
-export const AdaptiveGrid: OverridableComponent<GridTypeMap> = function ButtonFunc<
-  P = {},
+export const AdaptiveGrid: OverridableComponent<GridTypeMap> = <
+  P extends {} = {},
   D extends React.ElementType = 'div'
->(props: GridProps<D, P>) {
+>(
+  props: GridProps<D, P>,
+) => {
   const theme = useTheme();
   const breakpointKeys = Object.keys(theme.breakpoints.values);
   const { className, children, spacing: spacingProp, ...rest } = props;
