@@ -553,6 +553,10 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 color: colors.white,
               },
             },
+
+            textColorInherit: {
+              opacity: 1,
+            },
           },
 
           MuiTooltip: {
