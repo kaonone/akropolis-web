@@ -153,6 +153,7 @@ const breakpoints = {
   mobileLG: 640,
   tabletXS: 768,
   tabletSM: 1024,
+  desktopXXS: 1200,
   desktopXS: 1280,
   desktopSM: 1360,
   desktopMD: 1440,
