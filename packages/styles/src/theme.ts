@@ -637,6 +637,8 @@ declare module PackageOverrides {
     desktopSM: true;
     desktopXS: true;
     tabletSM: true;
+    tabletMD: true;
+    tabletLG: true;
     tabletXS: true;
     mobileLG: true;
     mobileMD: true;
