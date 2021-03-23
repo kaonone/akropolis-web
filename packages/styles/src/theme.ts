@@ -1,3 +1,5 @@
+import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
+import { TabPanelClassKey } from '@material-ui/lab/TabPanel';
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
 import { mergeDeepRight } from 'ramda';
 import { Object as O } from 'ts-toolbelt';
@@ -581,17 +583,22 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               margin: '0 8px !important',
             },
           },
-        },
 
-        // TODO: enable @material-ui/lab overrides
-        // @ts-ignore
-        MuiTabPanel: {
-          root: {
-            padding: 0,
+          MuiSkeleton: {
+            root: {
+              backgroundColor: '#20202d',
+            },
           },
+
+          MuiTabPanel: {
+            root: {
+              padding: 0,
+            },
+          },
+
           MuiBackdrop: {
             root: {
-              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              backgroundColor: 'rgba(10, 10, 14, 0.9)',
             },
           },
         },
@@ -667,4 +674,11 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides
     extends O.Merge<TypeBreakpointOverrides, PackageOverrides.TypeBreakpoint, 'deep'> {}
+}
+
+declare module '@material-ui/core/styles/overrides' {
+  export interface ComponentNameToClassKey {
+    MuiSkeleton: SkeletonClassKey;
+    MuiTabPanel: TabPanelClassKey;
+  }
 }
