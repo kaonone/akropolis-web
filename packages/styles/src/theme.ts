@@ -598,7 +598,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiBackdrop: {
             root: {
-              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              backgroundColor: 'rgba(10, 10, 14, 0.9)',
             },
           },
         },
