@@ -15,5 +15,6 @@ export function useOnChangeState<T extends any>(
       effect(valueRef.current, value);
     }
     valueRef.current = value;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 }

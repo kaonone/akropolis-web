@@ -27,10 +27,7 @@ export function calcAvg(...rest: Input[]): Fraction {
     }
 
     return {
-      value: value1
-        .mul(weight1)
-        .add(value2.mul(weight2))
-        .div(fullWeight),
+      value: value1.mul(weight1).add(value2.mul(weight2)).div(fullWeight),
       weight: fullWeight,
     };
   });

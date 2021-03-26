@@ -17,10 +17,7 @@ export function roundWei(
     return bnValue;
   }
 
-  const absFloorRounded = bnValue
-    .abs()
-    .div(multiplier)
-    .mul(multiplier);
+  const absFloorRounded = bnValue.abs().div(multiplier).mul(multiplier);
   const mod = bnValue.sub(absFloorRounded);
 
   const isNeedUpToCeil =

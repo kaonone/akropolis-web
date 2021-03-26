@@ -616,6 +616,7 @@ export interface TypeBackgroundOverrides {}
 
 export interface TypeBreakpointOverrides {}
 
+// eslint-disable-next-line @typescript-eslint/no-namespace, @typescript-eslint/prefer-namespace-keyword
 declare module PackageOverrides {
   interface Theme {
     colors: typeof colors;
@@ -654,6 +655,7 @@ declare module PackageOverrides {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type MergeThemeOptions<A extends object, B extends object> = O.Partial<
   O.Merge<O.Required<A, keyof any, 'deep'>, O.Required<B, keyof any, 'deep'>, 'deep'>,
   'deep'

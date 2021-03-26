@@ -30,7 +30,7 @@ export function useAdapativeSpacing(spacing?: GridSpacing | AdaptiveSpacing) {
     if (isChangedAdaptiveSpacing || gridSpacingBecameAdaptive) {
       console.error('Error: Cannot update spacing prop in AdaptiveGrid. Object must be immutable.');
     }
-  }, [spacingString, adaptiveSpacing]);
+  }, [spacingString, adaptiveSpacing, spacing]);
 
   const sortSpacingByBreakpointValues = useCallback(
     (spacingObject: AdaptiveSpacing) => {
@@ -38,6 +38,7 @@ export function useAdapativeSpacing(spacing?: GridSpacing | AdaptiveSpacing) {
         ([keyA], [keyB]) => breakpoints[keyA] - breakpoints[keyB],
       );
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [R.toString(breakpoints)],
   );
 
@@ -46,6 +47,7 @@ export function useAdapativeSpacing(spacing?: GridSpacing | AdaptiveSpacing) {
     [adaptiveSpacing, sortSpacingByBreakpointValues],
   );
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const breakpointMatches = sortedSpacing.map(([key]) => useBreakpointsMatch({ from: key }));
 
   const currentSpacing = useMemo(() => {
@@ -56,6 +58,7 @@ export function useAdapativeSpacing(spacing?: GridSpacing | AdaptiveSpacing) {
       return spacingValue;
     }
     return spacing;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breakpointMatches.toString(), sortedSpacing.toString(), spacingString]);
 
   return currentSpacing;
