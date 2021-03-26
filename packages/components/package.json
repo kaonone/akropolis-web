@@ -37,6 +37,8 @@
   "dependencies": {
     "@akropolis-web/primitives": "^0.6.30",
     "@akropolis-web/styles": "^0.16.30",
+    "@types/mersenne-twister": "^1.1.2",
+    "@types/react-copy-to-clipboard": "^4.3.0",
     "color": "^0.11.0",
     "mersenne-twister": "^1.1.0",
     "react-copy-to-clipboard": "^5.0.2"
@@ -48,10 +50,8 @@
     "@material-ui/styles": "^4.11.3",
     "@types/bn.js": "^5.1.0",
     "@types/classnames": "^2.2.9",
-    "@types/mersenne-twister": "^1.1.2",
     "@types/ramda": "^0.27.14",
     "@types/react": "^17.0.3",
-    "@types/react-copy-to-clipboard": "^4.3.0",
     "bn.js": "^5.2.0",
     "classnames": "^2.0.0",
     "ramda": "^0.27.1",
