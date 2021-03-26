@@ -55,6 +55,7 @@
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
     // "allowUmdGlobalAccess": true,          /* Allow accessing UMD globals from modules. */
     "resolveJsonModule": true,
+    "skipLibCheck": true,
 
     /* Source Map Options */
     // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
@@ -66,5 +67,5 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true          /* Enables experimental support for emitting type metadata for decorators. */
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
