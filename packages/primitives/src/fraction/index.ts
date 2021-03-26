@@ -31,10 +31,7 @@ export class Fraction implements IToBN {
   public toDecimal(baseDecimals: number, precision: number): Decimal {
     const multiplier = new BN(10).pow(new BN(precision));
     return getDecimal(
-      this.numerator
-        .mul(multiplier)
-        .div(this.denominator)
-        .toString(),
+      this.numerator.mul(multiplier).div(this.denominator).toString(),
       baseDecimals + precision,
       precision,
     );

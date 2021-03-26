@@ -17,7 +17,7 @@ type MuiButtonTypeProps = Omit<MuiButtonTypeMap['props'], 'size'> & {
   minWidthSize?: WidthSize;
 };
 
-interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
+interface ButtonTypeMap<P = Record<string, unknown>, D extends React.ElementType = 'button'> {
   props: P & MuiButtonTypeProps;
   defaultComponent: D;
   classKey: ButtonClassKey;
@@ -25,11 +25,11 @@ interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
 
 export type ButtonProps<
   D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = {}
+  P = Record<string, unknown>
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 
 const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
-  P = {},
+  P = Record<string, unknown>,
   D extends React.ElementType = 'button'
 >(props: ButtonProps<D, P>) {
   const backgroundColor = useAncestorBackgroundHack();

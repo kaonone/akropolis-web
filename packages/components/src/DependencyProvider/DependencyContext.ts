@@ -7,6 +7,7 @@ export type TokenAddresses = Record<TokenSymbol, TokenAddress>;
 
 export const DependencyContext = createContext<DependencyContext | null>(null);
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 export interface DependencyContext {
   supportedTokens: TokenAddresses;
 }

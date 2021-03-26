@@ -36,11 +36,11 @@ function ShortAddress(props: Props) {
         theme.transitions.duration.shorter,
       );
     }
-  }, [tooltipTitle]);
+  }, [theme.transitions.duration.shorter, tooltipTitle]);
 
   const handleTooltipOpen = useCallback(() => {
     clearTimeout(closeTimeout.current);
-  }, [tooltipTitle]);
+  }, []);
 
   const renderGridWithIcon = () => (
     <Grid container alignItems="center" wrap="nowrap" className={classes.root}>

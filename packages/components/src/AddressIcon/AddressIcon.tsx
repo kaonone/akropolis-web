@@ -41,6 +41,7 @@ function jsNumberForAddress(address: string) {
 
 function generateColor(colors: string[], generator: MersenneTwister) {
   // unused variable to keep the order of generation like in original library https://github.com/marcusmolchany/react-jazzicon/blob/2db7299d58892909dc6aafdd0ed8771a3ef644a1/src/Jazzicon.js#L15
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const rand = generator.random();
@@ -51,7 +52,7 @@ function generateColor(colors: string[], generator: MersenneTwister) {
 
 function makeHueShift(colors: string[], generator: MersenneTwister) {
   const amount = generator.random() * 30 - wobble / 2;
-  return colors.map(hex => {
+  return colors.map((hex) => {
     const color = new Color(hex);
     color.rotate(amount);
     return color.hexString();

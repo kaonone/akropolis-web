@@ -11,7 +11,7 @@ type MuiGridTypeProps = Omit<MuiGridTypeMap['props'], 'spacing'> & {
   spacing?: GridSpacing | AdaptiveSpacing;
 };
 
-interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
+interface GridTypeMap<P = Record<string, unknown>, D extends React.ElementType = 'div'> {
   props: P & MuiGridTypeProps;
   defaultComponent: D;
   classKey: MuiGridTypeMap['classKey'];
@@ -19,11 +19,11 @@ interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 type GridProps<
   D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = {}
+  P = Record<string, unknown>
 > = OverrideProps<GridTypeMap<P, D>, D>;
 
 export const AdaptiveGrid: OverridableComponent<GridTypeMap> = <
-  P extends {} = {},
+  P extends Record<string, unknown>,
   D extends React.ElementType = 'div'
 >(
   props: GridProps<D, P>,
@@ -49,7 +49,7 @@ export const AdaptiveGrid: OverridableComponent<GridTypeMap> = <
     </Grid>
   );
 
-  function excludeBreakpointProps(restProps: {}, [key, value]: [string, any]) {
+  function excludeBreakpointProps(restProps: Record<string, unknown>, [key, value]: [string, any]) {
     return breakpointKeys.includes(key) ? restProps : { ...restProps, [key]: value };
   }
 };

@@ -19,7 +19,7 @@ export function DialogContent(props: MuiDialogContentProps) {
 }
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       background: theme.palette.background.paper,
       padding: '40px 10px 20px !important',

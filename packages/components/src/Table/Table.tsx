@@ -83,7 +83,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
   );
 
   const expandedArea: M.ExpandedArea<T, U> | null = (() => {
-    const contentWithRowExpander = columns.find(x => x.cellContent.kind === 'for-row-expander')
+    const contentWithRowExpander = columns.find((x) => x.cellContent.kind === 'for-row-expander')
       ?.cellContent as M.CellContentForRowExpander<T, U> | undefined;
 
     return contentWithRowExpander?.expandedArea || null;
@@ -99,7 +99,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
         },
       ])}
     >
-      {columns.find(x => x.renderTitle) && (
+      {columns.find((x) => x.renderTitle) && (
         <thead>
           <tr>{columns.map(renderTitle)}</tr>
         </thead>
@@ -277,7 +277,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
 
     return (
       <>
-        {adjustedSubtableColumns.find(x => x.renderTitle) ? (
+        {adjustedSubtableColumns.find((x) => x.renderTitle) ? (
           <tr
             key="subtable-header"
             className={cn(classes.subtableRow, getSubtableRowInactiveClass(entryIndex))}
@@ -388,7 +388,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
             cells: [],
             cellsToSkip: 0,
           } as M.RowCellsRendererAccumulator)
-          .cells.map(cell => cell)}
+          .cells.map((cell) => cell)}
       </tr>
     );
   }

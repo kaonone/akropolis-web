@@ -1,7 +1,7 @@
 import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       display: 'flex',
     },

@@ -1,6 +1,6 @@
 import { makeStyles } from '@akropolis-web/styles';
 
-export const useStyles = makeStyles(theme => {
+export const useStyles = makeStyles((theme) => {
   return {
     root: {
       backgroundColor: theme.colors.blackRussian,

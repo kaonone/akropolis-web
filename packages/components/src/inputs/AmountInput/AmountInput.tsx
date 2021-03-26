@@ -59,26 +59,33 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
   const defaultCurrency = currencies[0] as A['currency'] | undefined;
 
-  const currentValue = tokenAmount?.toBN() || new BN(0);
+  const currentValue = useMemo(() => tokenAmount?.toBN() || new BN(0), [tokenAmount]);
   const currentCurrency = tokenAmount?.currency || defaultCurrency;
   const currentDecimals = currentCurrency?.decimals || 0;
 
   const currentCurrencyUpdatingTrigger = useUpdatingTrigger(currentCurrency, (a, b) =>
     Boolean(a && b && a.equals(b)),
   );
-
   const isSingleOptionSelect = Boolean(currencies.length <= 1 && currentCurrency);
 
   // initialize or update value if currencies is not contain current currency
   useEffect(() => {
     const isWrongCurrentCurrency =
-      currentCurrency && !currencies.find(item => item.equals(currentCurrency));
+      currentCurrency && !currencies.find((item) => item.equals(currentCurrency));
 
     if (defaultCurrency && (!tokenAmount || isWrongCurrentCurrency)) {
       // async change is necessary for the correct working of subscriptions in the final-form during the first render
       Promise.resolve().then(() => onChange(makeAmount(currentValue, defaultCurrency)));
     }
-  }, [currentCurrency, currencies]);
+  }, [
+    currentCurrency,
+    currencies,
+    defaultCurrency,
+    tokenAmount,
+    onChange,
+    makeAmount,
+    currentValue,
+  ]);
 
   const handleInputChange = useCallback(
     (nextValue: string) => {
@@ -88,7 +95,15 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
       currentCurrency && onChange(makeAmount(validatedValue, currentCurrency));
     },
-    [onChange, currentCurrencyUpdatingTrigger],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      allowedMax,
+      currentCurrencyUpdatingTrigger,
+      currentValue,
+      currentCurrency,
+      onChange,
+      makeAmount,
+    ],
   );
 
   const handleCurrencyChange = useCallback(
@@ -96,22 +111,22 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
       const nextCurrency = event.target.value;
       const currency =
         getCurrencyIdentifier &&
-        currencies.find(item => getCurrencyIdentifier(item) === nextCurrency);
+        currencies.find((item) => getCurrencyIdentifier(item) === nextCurrency);
 
       currency && onChange(makeAmount(currentValue, currency));
     },
-    [onChange, currencies, currentValue.toString()],
+    [getCurrencyIdentifier, currencies, onChange, makeAmount, currentValue],
   );
 
   const currencySelectOptions = useMemo(
     () =>
       hideCurrencySelect
         ? []
-        : currencies.map(item => ({
+        : currencies.map((item) => ({
             id: getCurrencyIdentifier(item),
             label: getCurrencyLabel(item),
           })),
-    [currencies, hideCurrencySelect],
+    [currencies, getCurrencyIdentifier, getCurrencyLabel, hideCurrencySelect],
   );
 
   const disabledInputProps = useMemo(
@@ -126,7 +141,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
             },
           }
         : {},
-    [disabled, disabledAlert],
+    [classes, disabled, disabledAlert],
   );
 
   return displayVariant === 'table-cell' ? (
@@ -187,7 +202,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
 function useUpdatingTrigger<V>(deps: V, isEquals: (prev: V, cur: V) => boolean) {
   const prevValueRef = useRef<V>();
-  const [updatedDepsTrigger, setUpdatedDepsTrigger] = useState<{}>(() => ({}));
+  const [updatedDepsTrigger, setUpdatedDepsTrigger] = useState<Record<string, never>>(() => ({}));
 
   useEffect(() => {
     const prevDeps = prevValueRef.current;
@@ -196,6 +211,7 @@ function useUpdatingTrigger<V>(deps: V, isEquals: (prev: V, cur: V) => boolean) 
     if (prevDeps && !isEquals(prevDeps, deps)) {
       setUpdatedDepsTrigger({});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deps]);
 
   return updatedDepsTrigger;

@@ -1,11 +1,16 @@
 module.exports = {
   extends: [
     'airbnb-typescript',
+    'airbnb/hooks',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint',
-    'prettier/react',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'react', '@typescript-eslint'],
+  parserOptions: {
+    project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
+    tsconfigRootDir: __dirname,
+  },
   ignorePatterns: ['node_modules/', 'dist/'],
   env: {
     jest: true,
@@ -30,7 +35,9 @@ module.exports = {
     'react/prop-types': 'off',
     'react/no-danger': 'error',
     'react/static-property-placement': 'off',
-    'react/destructuring-assignment': ['error', 'always', { ignoreClassFields: true }],
+    'react/destructuring-assignment': 'off',
+    'react/require-default-props': 'off',
+    'react/display-name': 'off',
     'react/sort-comp': [
       'error',
       {
@@ -82,11 +89,27 @@ module.exports = {
       'error',
       { allowShortCircuit: true, allowTernary: true },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/lines-between-class-members': [
+      'error',
+      'always',
+      { exceptAfterSingleLine: true },
+    ],
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-inferrable-types': ['error', { ignoreParameters: true }],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'enum',
+        format: ['UPPER_CASE'],
+      },
+    ],
     'no-restricted-imports': ['error', '@material-ui/core', '@material-ui/icons'],
     'no-unused-expressions': ['error', { allowShortCircuit: true, allowTernary: true }],
     'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
     'no-dupe-class-members': 'off',
-    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'lines-between-class-members': 'off',
     'no-undef': 'off',
     'consistent-return': 'off',
     'default-case': 'off',

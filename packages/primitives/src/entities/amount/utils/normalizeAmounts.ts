@@ -13,10 +13,10 @@ export function normalizeAmounts<T extends Amount>(
     decimals !== undefined
       ? decimals
       : amounts
-          .map(amount => amount.currency.decimals)
+          .map((amount) => amount.currency.decimals)
           .reduce((max, current) => (current > max ? current : max));
 
-  return amounts.map(amount => {
+  return amounts.map((amount) => {
     const diff = maxDecimal - amount.currency.decimals;
     return {
       decimals: maxDecimal,

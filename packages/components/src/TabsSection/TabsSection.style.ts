@@ -1,7 +1,7 @@
 import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     navigationBar: {
       display: 'flex',
       alignItems: 'flex-start',

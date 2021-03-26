@@ -26,7 +26,7 @@ type Props<T extends React.ElementType> = {
   tabs: TabItem<T>[];
   tabListProps?: Partial<TabListProps>;
   tabComponent?: T;
-  onChange?: (event: React.ChangeEvent<{}>, tab?: string) => void;
+  onChange?: (event: React.ChangeEvent<unknown>, tab?: string) => void;
   content?: {
     navigationBar?: {
       beforeTabs?: React.ReactNode;
@@ -67,7 +67,7 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
             [classes.fullWidth]: variant === 'fullWidth',
           })}
         >
-          {tabs.map(tabItem => renderTab(tabItem))}
+          {tabs.map((tabItem) => renderTab(tabItem))}
         </TabList>
         {content.navigationBar?.afterTabs}
       </div>

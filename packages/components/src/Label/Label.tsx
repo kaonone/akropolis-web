@@ -17,9 +17,19 @@ type Props = {
   withComingSoon?: boolean;
 };
 
-export const Label: React.FC<Props> = props => {
+export const Label: React.FC<Props> = (props) => {
   const { hint, inline, icon, children, withComingSoon, fontSize = 'inherit' } = props;
   const classes = useStyles(props);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleTooltipClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const handleTooltipOpen = useCallback((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    setIsOpen(true);
+    event.preventDefault();
+  }, []);
 
   return (
     <Typography
@@ -39,17 +49,6 @@ export const Label: React.FC<Props> = props => {
   );
 
   function renderTooltip() {
-    const [isOpen, setIsOpen] = React.useState(false);
-
-    const handleTooltipClose = useCallback(() => {
-      setIsOpen(false);
-    }, []);
-
-    const handleTooltipOpen = useCallback((event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-      setIsOpen(true);
-      event.preventDefault();
-    }, []);
-
     return (
       hint && (
         <>
