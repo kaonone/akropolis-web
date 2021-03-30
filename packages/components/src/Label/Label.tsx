@@ -13,12 +13,13 @@ type Props = {
   hint?: React.ReactNode;
   fontSize?: 'inherit' | 'medium' | 'large';
   icon?: React.ReactNode;
+  iconClass?: string;
   inline?: boolean;
   withComingSoon?: boolean;
 };
 
-export const Label: React.FC<Props> = (props) => {
-  const { hint, inline, icon, children, withComingSoon, fontSize = 'inherit' } = props;
+export const Label: React.FC<Props> = props => {
+  const { hint, inline, icon, iconClass, children, withComingSoon, fontSize = 'inherit' } = props;
   const classes = useStyles(props);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -37,7 +38,12 @@ export const Label: React.FC<Props> = (props) => {
       component="h6"
       className={cn(classes.title, classes[fontSize], { [classes.inline]: inline })}
     >
-      {icon && <>{icon}&nbsp;</>}
+      {icon && (
+        <>
+          {icon}
+          &nbsp;
+        </>
+      )}
       {children}
       {renderTooltip()}
       {withComingSoon && (
@@ -65,6 +71,7 @@ export const Label: React.FC<Props> = (props) => {
             >
               <span>
                 <InfoIcon
+                  className={cn(classes.icon, iconClass)}
                   fontSize="small"
                   onMouseOver={handleTooltipOpen}
                   onMouseLeave={handleTooltipClose}
@@ -110,6 +117,15 @@ const useStyles = makeStyles(
 
     hint: {
       fontSize: 12,
+    },
+
+    icon: {
+      fontSize: 18,
+
+      opacity: '50%',
+      '&:hover': {
+        opacity: '100%',
+      },
     },
 
     inherit: {},

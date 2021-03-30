@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import Grid from '@material-ui/core/Grid';
 import { AllCoinsToken, Token } from '@akropolis-web/primitives';
-import { makeStyles } from '@akropolis-web/styles';
+import { makeStyles, useBreakpointsMatch } from '@akropolis-web/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIcon } from '../TokenIcon/TokenIcon';
@@ -13,31 +13,46 @@ type Props = {
   token: Token;
   iconSize?: IconSizes;
   iconProps?: Omit<SvgIconProps, 'fontSize'>;
+  showVestingHint?: boolean;
 };
 
-export function TokenName({ token, iconSize = 'default', iconProps = {} }: Props) {
+export function TokenName({ token, showVestingHint, iconSize = 'default', iconProps = {} }: Props) {
   const classes = useStyles();
   const { className, ...rest } = iconProps;
 
+  const isDesktopXS = useBreakpointsMatch({ from: 'desktopXS' });
+
   return (
     <Grid container alignItems="center" wrap="nowrap">
-      {token instanceof AllCoinsToken && token.tokens?.length ? (
-        token.tokens.map(({ address }) => (
+      <Grid item>
+        {token instanceof AllCoinsToken && token.tokens?.length ? (
+          token.tokens.map(({ address }) => (
+            <TokenIcon
+              key={address}
+              tokenAddress={address}
+              className={cn(className, classes.icon, getIconSizeClass(iconSize))}
+              {...rest}
+            />
+          ))
+        ) : (
           <TokenIcon
-            key={address}
-            tokenAddress={address}
+            tokenAddress={token.address}
             className={cn(className, classes.icon, getIconSizeClass(iconSize))}
             {...rest}
           />
-        ))
-      ) : (
-        <TokenIcon
-          tokenAddress={token.address}
-          className={cn(className, classes.icon, getIconSizeClass(iconSize))}
-          {...rest}
-        />
-      )}
-      {token.symbol}
+        )}
+      </Grid>
+
+      <Grid item container direction={isDesktopXS ? 'row' : 'column'}>
+        <Grid item className={classes.tokenSymbol}>
+          {token.symbol}
+        </Grid>
+        {showVestingHint && (
+          <Grid item className={classes.vesting}>
+            Vesting
+          </Grid>
+        )}
+      </Grid>
     </Grid>
   );
 
@@ -52,7 +67,7 @@ export function TokenName({ token, iconSize = 'default', iconProps = {} }: Props
 }
 
 const useStyles = makeStyles(
-  {
+  theme => ({
     icon: {
       marginRight: 8,
 
@@ -75,6 +90,20 @@ const useStyles = makeStyles(
     inherit: {
       fontSize: 'inherit',
     },
-  },
+    vesting: {
+      padding: '1px 6px 0px',
+      borderRadius: '9.5px',
+      backgroundColor: '#494972',
+      fontSize: 12,
+
+      [theme.breakpoints.up('desktopXS')]: {
+        marginLeft: 4,
+      },
+    },
+    tokenSymbol: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  }),
   { name: 'TokenName' },
 );
