@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import MuiSkeleton, { SkeletonProps, SkeletonTypeMap } from '@material-ui/lab/Skeleton';
 import {
@@ -14,11 +15,14 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
 >(
   props: SkeletonProps<D, P>,
 ) => {
-  const { classes: muiClasses, ...rest } = props;
+  const { classes: muiClasses = {}, ...rest } = props;
+
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
 
-  return <MuiSkeleton classes={{ root: classes.root }} {...rest} />;
+  return (
+    <MuiSkeleton classes={{ ...muiClasses, root: cn(classes.root, muiClasses.root) }} {...rest} />
+  );
 };
 
 const useStyles = makeStyles(

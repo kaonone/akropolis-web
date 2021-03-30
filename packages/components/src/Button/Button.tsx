@@ -41,6 +41,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
       {...rest}
       size={getSizeTypeToDefault(size)}
       classes={{
+        ...muiClasses,
         root: cn(classes.root, muiClasses.root),
         disabled: cn(classes.disabled, muiClasses.disabled),
         focusVisible: cn(classes.focusVisible, muiClasses.focusVisible),
@@ -48,7 +49,6 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
         outlinedPrimary: cn(classes.outlinedPrimary, muiClasses.outlinedPrimary),
         textPrimary: cn(classes.textPrimary, muiClasses.textPrimary),
         ...getSizeClasses(),
-        ...rest.classes,
       }}
       disableRipple
     />
