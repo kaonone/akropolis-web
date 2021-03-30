@@ -31,7 +31,8 @@ export function Card(props: CardProps) {
     if (variant === 'contained') {
       return isActive ? getActiveBackgroundColor(theme) : theme.palette.background.paper;
     }
-    return undefined;
+
+    return null;
   }, [variant, isActive, theme]);
 
   const classes = useStyles({ backgroundColor });
@@ -137,7 +138,7 @@ const useStyles = makeStyles(
       alignItems: 'center',
       height: 30,
       borderRadius: 15,
-      backgroundColor: ({ backgroundColor }: { backgroundColor?: string }) =>
+      backgroundColor: ({ backgroundColor }: { backgroundColor: string | null }) =>
         backgroundColor || 'transparent',
     },
 

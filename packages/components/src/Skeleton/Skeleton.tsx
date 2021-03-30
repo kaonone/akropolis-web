@@ -5,6 +5,7 @@ import {
   useAncestorBackgroundHack,
   ProvidedAncestorBackground,
   makeStyles,
+  lighten,
 } from '@akropolis-web/styles';
 
 export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
@@ -14,8 +15,8 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
   props: SkeletonProps<D, P>,
 ) => {
   const { classes: muiClasses, ...rest } = props;
-  const backgroundColors = useAncestorBackgroundHack();
-  const classes = useStyles(backgroundColors);
+  const backgroundColor = useAncestorBackgroundHack();
+  const classes = useStyles({ backgroundColor });
 
   return <MuiSkeleton classes={{ root: classes.root }} {...rest} />;
 };
@@ -23,8 +24,8 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
 const useStyles = makeStyles(
   () => ({
     root: {
-      backgroundColor: ({ loaderBackgroundColor }: ProvidedAncestorBackground) =>
-        loaderBackgroundColor,
+      backgroundColor: ({ backgroundColor }: ProvidedAncestorBackground) =>
+        lighten(backgroundColor, 0.15),
     },
   }),
   { name: 'Skeleton' },

@@ -42,7 +42,7 @@ export function SelectInput(props: SelectInputProps) {
   const { className: inputClassName, ...restInputProps } = InputProps;
   const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
   const classes = useStyles();
-  const { backgroundColor } = useAncestorBackgroundHack();
+  const backgroundColor = useAncestorBackgroundHack();
   const currentWindowHeight = useWindowHeight();
 
   const [isMenuOpen, setIsOpen] = useState(false);

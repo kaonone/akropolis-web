@@ -1,37 +1,30 @@
 import React, { createContext, useContext } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
-const AncestorBackgroundHackContext = createContext<ProvidedAncestorBackground | null>(null);
+const AncestorBackgroundHackContext = createContext<string | null>(null);
 
-export function useAncestorBackgroundHack(): ProvidedAncestorBackground {
+export function useAncestorBackgroundHack(): string {
   const context = useContext(AncestorBackgroundHackContext);
   const theme = useTheme();
 
-  return (
-    context || {
-      backgroundColor: theme.palette.background.default,
-      loaderBackgroundColor: theme.colors.jaguar,
-    }
-  );
+  return context || theme.palette.background.default;
 }
 
 type Props = {
-  backgroundColor?: string;
-  loaderBackgroundColor?: string;
+  backgroundColor: string | null;
   children: React.ReactNode;
 };
 
 export function AncestorBackgroundHackProvider(props: Props) {
-  const { backgroundColor, loaderBackgroundColor, children } = props;
+  const { backgroundColor, children } = props;
 
   return (
-    <AncestorBackgroundHackContext.Provider value={{ backgroundColor, loaderBackgroundColor }}>
+    <AncestorBackgroundHackContext.Provider value={backgroundColor}>
       {children}
     </AncestorBackgroundHackContext.Provider>
   );
 }
 
 export type ProvidedAncestorBackground = {
-  backgroundColor?: string;
-  loaderBackgroundColor?: string;
+  backgroundColor: string;
 };
