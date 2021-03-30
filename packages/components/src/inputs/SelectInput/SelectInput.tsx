@@ -23,6 +23,7 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
+  outlined?: boolean;
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
@@ -35,6 +36,7 @@ export function SelectInput(props: SelectInputProps) {
     options,
     disabled,
     disableVariant = 'default',
+    outlined = true,
     InputProps = {},
     SelectProps = {},
     ...restProps
@@ -111,6 +113,7 @@ export function SelectInput(props: SelectInputProps) {
         [classes.disableVariantText]: disabled && disableVariant === 'text',
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+        [classes.withoutOutline]: !outlined,
       })}
       InputProps={{
         ...restInputProps,
@@ -128,8 +131,9 @@ export function SelectInput(props: SelectInputProps) {
             className: cn(classes.paper, {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+              [classes.withoutOutline]: !outlined,
             }),
-            style: { backgroundColor },
+            style: { backgroundColor: outlined ? backgroundColor : '#191924' },
           },
           ...menuPositionProps,
         },

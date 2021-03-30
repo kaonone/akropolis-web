@@ -50,7 +50,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
         ...getSizeClasses(),
         ...rest.classes,
       }}
-      disableRipple
+      disableRipple={rest.variant !== 'text'}
     />
   );
 
