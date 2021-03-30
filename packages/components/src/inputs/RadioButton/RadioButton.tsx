@@ -26,8 +26,8 @@ type NormalizedProps = {
 function RadioButton(props: Props) {
   const { formHelperTextProps, radioProps, other } = normalizeProps(props);
   const { label, helperText } = other;
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const backgroundColors = useAncestorBackgroundHack();
+  const classes = useStyles(backgroundColors);
 
   return (
     <>

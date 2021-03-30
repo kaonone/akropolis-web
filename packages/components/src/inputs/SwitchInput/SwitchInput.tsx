@@ -29,8 +29,8 @@ function SwitchInput(props: Props) {
   const { formControlProps, formHelperTextProps, switchProps, other } = normalizeProps(props);
   const { label, helperText } = other;
 
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const backgroundColors = useAncestorBackgroundHack();
+  const classes = useStyles(backgroundColors);
 
   return (
     <FormControl {...formControlProps}>

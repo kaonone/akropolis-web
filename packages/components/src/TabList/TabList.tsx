@@ -6,8 +6,8 @@ import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 import { useStyles } from './TabList.style';
 
 export function TabList(props: MuiTabListProps) {
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const backgroundColors = useAncestorBackgroundHack();
+  const classes = useStyles(backgroundColors);
 
   return (
     <MuiTabList

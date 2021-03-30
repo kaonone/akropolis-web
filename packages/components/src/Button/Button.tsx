@@ -32,8 +32,8 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
   P = Record<string, unknown>,
   D extends React.ElementType = 'button'
 >(props: ButtonProps<D, P>) {
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const backgroundColors = useAncestorBackgroundHack();
+  const classes = useStyles(backgroundColors);
   const { classes: muiClasses = {}, size, minWidthSize = 'default', ...rest } = props;
 
   return (
