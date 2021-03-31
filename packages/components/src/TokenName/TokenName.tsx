@@ -13,10 +13,10 @@ type Props = {
   token: Token;
   iconSize?: IconSizes;
   iconProps?: Omit<SvgIconProps, 'fontSize'>;
-  showVestingHint?: boolean;
+  badge?: string;
 };
 
-export function TokenName({ token, showVestingHint, iconSize = 'default', iconProps = {} }: Props) {
+export function TokenName({ token, badge, iconSize = 'default', iconProps = {} }: Props) {
   const classes = useStyles();
   const { className, ...rest } = iconProps;
 
@@ -47,9 +47,9 @@ export function TokenName({ token, showVestingHint, iconSize = 'default', iconPr
         <Grid item className={classes.tokenSymbol}>
           {token.symbol}
         </Grid>
-        {showVestingHint && (
-          <Grid item className={classes.vesting}>
-            Vesting
+        {badge && (
+          <Grid item className={classes.badge}>
+            {badge}
           </Grid>
         )}
       </Grid>
@@ -67,7 +67,7 @@ export function TokenName({ token, showVestingHint, iconSize = 'default', iconPr
 }
 
 const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     icon: {
       marginRight: 8,
 
@@ -90,7 +90,7 @@ const useStyles = makeStyles(
     inherit: {
       fontSize: 'inherit',
     },
-    vesting: {
+    badge: {
       padding: '1px 6px 0px',
       borderRadius: '9.5px',
       backgroundColor: '#494972',
