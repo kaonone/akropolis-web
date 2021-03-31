@@ -128,12 +128,13 @@ export function SelectInput(props: SelectInputProps) {
           ...menuProps,
           PaperProps: {
             variant: 'outlined',
-            className: cn(classes.paper, {
+            ...menuProps?.PaperProps,
+            className: cn(classes.paper, menuProps?.PaperProps?.className, {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
               [classes.withoutOutline]: !outlined,
             }),
-            style: { backgroundColor: outlined ? backgroundColor : '#191924' },
+            style: { backgroundColor, ...menuProps?.PaperProps?.style },
           },
           ...menuPositionProps,
         },
