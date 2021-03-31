@@ -1,4 +1,4 @@
-import { makeStyles } from '@akropolis-web/styles';
+import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -47,15 +47,6 @@ export const useStyles = makeStyles(
       '&$withoutOutline': {
         verticalAlign: 'baseline',
 
-        '& $input': {
-          minHeight: 0,
-          borderColor: 'transparent',
-        },
-
-        '& .MuiSelect-root': {
-          padding: '0 20px 0 0',
-        },
-
         '& $arrowIcon': {
           padding: 0,
         },
@@ -74,6 +65,7 @@ export const useStyles = makeStyles(
       fontSize: 12,
       borderColor: theme.colors.darkMist,
       borderRadius: 6,
+      backgroundColor: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
 
       '&$hasBottomSpace': {
         borderRadius: '0 0 6px 6px',

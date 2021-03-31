@@ -23,7 +23,7 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
-  outlined?: boolean;
+  variant?: 'standard' | 'outlined';
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
@@ -36,15 +36,15 @@ export function SelectInput(props: SelectInputProps) {
     options,
     disabled,
     disableVariant = 'default',
-    outlined = true,
+    variant = 'outlined',
     InputProps = {},
     SelectProps = {},
     ...restProps
   } = props;
   const { className: inputClassName, ...restInputProps } = InputProps;
   const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
-  const classes = useStyles();
   const backgroundColor = useAncestorBackgroundHack();
+  const classes = useStyles({ backgroundColor });
   const currentWindowHeight = useWindowHeight();
 
   const [isMenuOpen, setIsOpen] = useState(false);
@@ -106,14 +106,14 @@ export function SelectInput(props: SelectInputProps) {
       {...restProps}
       ref={selectInputRef}
       select
-      variant="outlined"
+      variant={variant}
       disabled={disabled}
       className={cn(selectClassName, classes.root, {
         [classes.isOpen]: isMenuOpen,
         [classes.disableVariantText]: disabled && disableVariant === 'text',
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-        [classes.withoutOutline]: !outlined,
+        [classes.withoutOutline]: variant === 'standard',
       })}
       InputProps={{
         ...restInputProps,
@@ -132,9 +132,8 @@ export function SelectInput(props: SelectInputProps) {
             className: cn(classes.paper, menuProps?.PaperProps?.className, {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-              [classes.withoutOutline]: !outlined,
+              [classes.withoutOutline]: variant === 'standard',
             }),
-            style: { backgroundColor, ...menuProps?.PaperProps?.style },
           },
           ...menuPositionProps,
         },

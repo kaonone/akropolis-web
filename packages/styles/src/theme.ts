@@ -397,6 +397,24 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             },
           },
 
+          MuiInput: {
+            underline: {
+              minHeight: 0,
+
+              '&:before': {
+                display: 'none',
+              },
+
+              '&:after': {
+                display: 'none',
+              },
+
+              '& $input.MuiSelect-select': {
+                padding: '0 20px 0 0',
+              },
+            },
+          },
+
           MuiOutlinedInput: {
             root: {
               borderColor: colors.darkMist,
@@ -657,8 +675,8 @@ declare module PackageOverrides {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type MergeThemeOptions<A extends object, B extends object> = O.Partial<
-  O.Merge<O.Required<A, keyof any, 'deep'>, O.Required<B, keyof any, 'deep'>, 'deep'>,
-  'deep'
+O.Merge<O.Required<A, keyof any, 'deep'>, O.Required<B, keyof any, 'deep'>, 'deep'>,
+'deep'
 >;
 
 declare module '@material-ui/core/styles/createMuiTheme' {
