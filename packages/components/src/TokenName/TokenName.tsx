@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import Grid from '@material-ui/core/Grid';
 import { AllCoinsToken, Token } from '@akropolis-web/primitives';
-import { makeStyles, useBreakpointsMatch } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIcon } from '../TokenIcon/TokenIcon';
@@ -19,8 +19,6 @@ type Props = {
 export function TokenName({ token, badge, iconSize = 'default', iconProps = {} }: Props) {
   const classes = useStyles();
   const { className, ...rest } = iconProps;
-
-  const isDesktopXS = useBreakpointsMatch({ from: 'desktopXS' });
 
   return (
     <Grid container alignItems="center" wrap="nowrap">
@@ -43,7 +41,7 @@ export function TokenName({ token, badge, iconSize = 'default', iconProps = {} }
         )}
       </Grid>
 
-      <Grid item container direction={isDesktopXS ? 'row' : 'column'}>
+      <Grid item container>
         <Grid item className={classes.tokenSymbol}>
           {token.symbol}
         </Grid>
@@ -67,7 +65,7 @@ export function TokenName({ token, badge, iconSize = 'default', iconProps = {} }
 }
 
 const useStyles = makeStyles(
-  (theme) => ({
+  () => ({
     icon: {
       marginRight: 8,
 
@@ -95,14 +93,11 @@ const useStyles = makeStyles(
       borderRadius: '9.5px',
       backgroundColor: '#494972',
       fontSize: 12,
-
-      [theme.breakpoints.up('desktopXS')]: {
-        marginLeft: 4,
-      },
     },
     tokenSymbol: {
       display: 'flex',
       alignItems: 'center',
+      marginRight: 4,
     },
   }),
   { name: 'TokenName' },
