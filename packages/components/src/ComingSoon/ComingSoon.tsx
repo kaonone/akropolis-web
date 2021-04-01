@@ -23,7 +23,7 @@ export function ComingSoon(props: Props) {
 }
 
 const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     root: {
       display: 'flex',
       alignItems: 'center',

@@ -18,7 +18,7 @@ type Props = {
   withComingSoon?: boolean;
 };
 
-export const Label: React.FC<Props> = (props) => {
+export const Label: React.FC<Props> = props => {
   const { hint, inline, icon, iconClass, children, withComingSoon, fontSize = 'inherit' } = props;
   const classes = useStyles(props);
   const [isOpen, setIsOpen] = React.useState(false);

@@ -1,7 +1,7 @@
 import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  (theme) => {
+  theme => {
     const crossRowBorderStyleForFirstCell = {
       borderImage: `linear-gradient(to right, transparent 50px, ${theme.colors.jaguar} 50px) 1 / 0 0 1 0`,
       border: '1px solid',

@@ -5,7 +5,7 @@ const borderOffset = 5;
 const buttonSize = thumbSize + borderOffset * 2;
 
 export const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     icon: {
       position: 'relative',
       borderRadius: '50%',

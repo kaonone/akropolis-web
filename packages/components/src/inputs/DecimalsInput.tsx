@@ -42,7 +42,7 @@ function DecimalsInput(props: Props) {
   useOnChangeState(
     baseDecimals,
     (prev, cur) => prev !== cur,
-    (prevBaseDecimals) => {
+    prevBaseDecimals => {
       const decimalsDiff = prevBaseDecimals ? new BN(baseDecimals - prevBaseDecimals) : new BN(0);
       if (decimalsDiff.eqn(0)) {
         return;

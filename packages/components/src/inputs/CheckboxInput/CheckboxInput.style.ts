@@ -4,7 +4,7 @@ const checkboxSize = 20;
 const borderRadius = 4;
 
 export const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     root: {
       '&$checked': {
         color: theme.palette.text.primary,
