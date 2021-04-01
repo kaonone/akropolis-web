@@ -50,7 +50,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
         textPrimary: cn(classes.textPrimary, muiClasses.textPrimary),
         ...getSizeClasses(),
       }}
-      disableRipple
+      disableRipple={rest.variant !== 'text'}
     />
   );
 
