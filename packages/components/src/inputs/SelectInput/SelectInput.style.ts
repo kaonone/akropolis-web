@@ -1,7 +1,7 @@
 import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  theme => ({
+  (theme) => ({
     root: {
       minWidth: 129,
       fontSize: 12,
