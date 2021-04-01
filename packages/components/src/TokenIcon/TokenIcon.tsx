@@ -49,7 +49,7 @@ export function TokenIcon(props: Props & SvgIconProps) {
 
   const Icon = useMemo(() => {
     const tokenSymbol = Object.keys(supportedTokens).find(
-      (key) => supportedTokens[key].toLowerCase() === tokenAddress.toLowerCase(),
+      key => supportedTokens[key].toLowerCase() === tokenAddress.toLowerCase(),
     );
 
     return tokenSymbol && tokenIcons[tokenSymbol];

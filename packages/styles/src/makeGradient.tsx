@@ -23,7 +23,7 @@ interface SvgGradientDirection {
 export function makeGradient(points: Array<GradientPoint | Color>): Gradient {
   return {
     points: points.map(toGradientPoint),
-    linear: (sideOrCorner) => getLinearGradient(points, sideOrCorner),
+    linear: sideOrCorner => getLinearGradient(points, sideOrCorner),
     svgLinear: (id, direction) => getSvgGradient(id, points, direction),
   };
 }

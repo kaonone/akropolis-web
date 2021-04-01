@@ -52,7 +52,7 @@ function generateColor(colors: string[], generator: MersenneTwister) {
 
 function makeHueShift(colors: string[], generator: MersenneTwister) {
   const amount = generator.random() * 30 - wobble / 2;
-  return colors.map((hex) => {
+  return colors.map(hex => {
     const color = new Color(hex);
     color.rotate(amount);
     return color.hexString();

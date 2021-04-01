@@ -71,7 +71,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
   // initialize or update value if currencies is not contain current currency
   useEffect(() => {
     const isWrongCurrentCurrency =
-      currentCurrency && !currencies.find((item) => item.equals(currentCurrency));
+      currentCurrency && !currencies.find(item => item.equals(currentCurrency));
 
     if (defaultCurrency && (!tokenAmount || isWrongCurrentCurrency)) {
       // async change is necessary for the correct working of subscriptions in the final-form during the first render
@@ -111,7 +111,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
       const nextCurrency = event.target.value;
       const currency =
         getCurrencyIdentifier &&
-        currencies.find((item) => getCurrencyIdentifier(item) === nextCurrency);
+        currencies.find(item => getCurrencyIdentifier(item) === nextCurrency);
 
       currency && onChange(makeAmount(currentValue, currency));
     },
@@ -122,7 +122,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     () =>
       hideCurrencySelect
         ? []
-        : currencies.map((item) => ({
+        : currencies.map(item => ({
             id: getCurrencyIdentifier(item),
             label: getCurrencyLabel(item),
           })),

@@ -67,7 +67,7 @@ export function TabsSection<T extends React.ElementType = DefaultTabComponent>(p
             [classes.fullWidth]: variant === 'fullWidth',
           })}
         >
-          {tabs.map((tabItem) => renderTab(tabItem))}
+          {tabs.map(tabItem => renderTab(tabItem))}
         </TabList>
         {content.navigationBar?.afterTabs}
       </div>

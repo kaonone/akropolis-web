@@ -10,7 +10,7 @@ type Props = {
   onToggle(newValue: boolean): void;
 };
 
-export const RowExpander: React.FC<Props> = (props) => {
+export const RowExpander: React.FC<Props> = props => {
   const { expanded, onToggle } = props;
 
   const classes = useStyles();

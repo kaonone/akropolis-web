@@ -13,7 +13,7 @@ const heightTabletXS = 4.5;
 const largeHeightTabletXS = 6;
 
 export const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     root: {
       textTransform: 'none',
       fontWeight: 400,

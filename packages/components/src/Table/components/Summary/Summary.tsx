@@ -7,7 +7,7 @@ type Props = {
   summary: Omit<M.Summary, 'className'>;
 };
 
-export const Summary: React.FC<Props> = (props) => {
+export const Summary: React.FC<Props> = props => {
   const {
     summary: { renderLabel, renderValue },
   } = props;

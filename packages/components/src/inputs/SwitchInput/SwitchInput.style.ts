@@ -6,7 +6,7 @@ const controlWidth = 34;
 const borderRadius = 24;
 
 export const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     root: {
       width: controlWidth,
       height: thumbSize + 2 * borderOffset,

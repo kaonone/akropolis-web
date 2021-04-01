@@ -59,7 +59,7 @@ export function Card(props: CardProps) {
 
           {icons && (
             <ResizeObserverComponent>
-              {(size) => (
+              {size => (
                 <div className={classes.icons}>
                   {icons.map((icon, index) => (
                     <div
