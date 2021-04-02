@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@akropolis-web/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { TooltipClassKey } from '@material-ui/core/Tooltip/Tooltip';
 
 import { ComingSoon } from '../ComingSoon/ComingSoon';
 import { InfoIcon } from '../icons';
@@ -13,13 +14,26 @@ type Props = {
   hint?: React.ReactNode;
   fontSize?: 'inherit' | 'medium' | 'large';
   icon?: React.ReactNode;
-  iconClass?: string;
+  classes?: {
+    tooltipClasses?: Partial<Record<TooltipClassKey, string>>;
+    root?: string;
+    tooltipIcon?: string;
+    comingSoon?: string;
+  };
   inline?: boolean;
   withComingSoon?: boolean;
 };
 
 export const Label: React.FC<Props> = props => {
-  const { hint, inline, icon, iconClass, children, withComingSoon, fontSize = 'inherit' } = props;
+  const {
+    hint,
+    inline,
+    icon,
+    classes: propsClasses,
+    children,
+    withComingSoon,
+    fontSize = 'inherit',
+  } = props;
   const classes = useStyles(props);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -36,7 +50,9 @@ export const Label: React.FC<Props> = props => {
     <Typography
       variant="h6"
       component="h6"
-      className={cn(classes.title, classes[fontSize], { [classes.inline]: inline })}
+      className={cn(propsClasses?.root, classes.title, classes[fontSize], {
+        [classes.inline]: inline,
+      })}
     >
       {icon && (
         <>
@@ -47,7 +63,7 @@ export const Label: React.FC<Props> = props => {
       {children}
       {renderTooltip()}
       {withComingSoon && (
-        <span className={classes.comingSoonLabel}>
+        <span className={cn(propsClasses?.comingSoon, classes.comingSoonLabel)}>
           <ComingSoon variant="label" />
         </span>
       )}
@@ -61,6 +77,7 @@ export const Label: React.FC<Props> = props => {
           &nbsp;
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <Tooltip
+              classes={propsClasses?.tooltipClasses}
               onClose={handleTooltipClose}
               open={isOpen}
               disableFocusListener
@@ -69,15 +86,13 @@ export const Label: React.FC<Props> = props => {
               title={<div className={classes.hint}>{hint}</div>}
               placement="right"
             >
-              <span>
-                <InfoIcon
-                  className={cn(classes.icon, iconClass)}
-                  fontSize="small"
-                  onMouseOver={handleTooltipOpen}
-                  onMouseLeave={handleTooltipClose}
-                  onClick={handleTooltipOpen}
-                />
-              </span>
+              <InfoIcon
+                className={cn(propsClasses?.tooltipIcon, classes.icon)}
+                fontSize="small"
+                onMouseOver={handleTooltipOpen}
+                onMouseLeave={handleTooltipClose}
+                onClick={handleTooltipOpen}
+              />
             </Tooltip>
           </ClickAwayListener>
         </>
