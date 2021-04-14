@@ -17,6 +17,7 @@ type Props<T, U> = {
   rowPadding?: M.RowPaddingSize;
   titlePadding?: M.RowPaddingSize;
   indentFromHeader?: M.RowPaddingSize;
+  rowClassNames?: M.RowWithClassName;
   divideBy?: (entry: T, entryIndex: number, entries: T[]) => boolean;
 };
 
@@ -70,6 +71,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     titlePadding = 'medium',
     indentFromHeader,
     divideBy,
+    rowClassNames,
   } = props;
 
   const [rowToExpanded, setRowToExpanded] = React.useState<RowToExpandedState>(() =>
@@ -101,7 +103,9 @@ export function Table<T, U = null>(props: Props<T, U>) {
     >
       {columns.find(x => x.renderTitle) && (
         <thead>
-          <tr>{columns.map(renderTitle)}</tr>
+          <tr className={cn(rowClassNames?.className, rowClassNames?.headerRowClassName)}>
+            {columns.map(renderTitle)}
+          </tr>
         </thead>
       )}
       <tbody className={cn(getPaddingFromTitleClass(indentFromHeader))}>
@@ -280,7 +284,12 @@ export function Table<T, U = null>(props: Props<T, U>) {
         {adjustedSubtableColumns.find(x => x.renderTitle) ? (
           <tr
             key="subtable-header"
-            className={cn(classes.subtableRow, getSubtableRowInactiveClass(entryIndex))}
+            className={cn(
+              classes.subtableRow,
+              getSubtableRowInactiveClass(entryIndex),
+              rowClassNames?.className,
+              rowClassNames?.subHeaderRowClassName,
+            )}
           >
             {adjustedSubtableColumns.map(renderSubtableHeader)}
           </tr>
@@ -321,14 +330,18 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return (
       <tr
         key={subtableEntryIndex}
-        className={cn([
-          classes.subtableRow,
-          getSubtableRowInactiveClass(entryIndex),
-          {
-            [classes.lastSubtableRow]: last,
-            [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
-          },
-        ])}
+        className={cn(
+          [
+            classes.subtableRow,
+            getSubtableRowInactiveClass(entryIndex),
+            {
+              [classes.lastSubtableRow]: last,
+              [getSubtablePaddingFromTitleClass(paddingFromTitle)]: first,
+            },
+          ],
+          rowClassNames?.className,
+          rowClassNames?.subRowClassName,
+        )}
       >
         {subtableColumns.map(makeSubtableCellRenderer(subtableEntry, entryIndex, subtableEntries))}
       </tr>
@@ -375,13 +388,17 @@ export function Table<T, U = null>(props: Props<T, U>) {
     return (
       <tr
         key={entryIndex}
-        className={cn({
-          [classes.rowBeforeSummary]: beforeSummary,
-          [classes.rowWithExpandedContent]: rowToExpanded[entryIndex],
-          [classes.divideDown]: divideBy?.(entry, entryIndex, entries),
-          [classes.divideUp]:
-            entryIndex > 0 && divideBy?.(entries[entryIndex - 1], entryIndex - 1, entries),
-        })}
+        className={cn(
+          {
+            [classes.rowBeforeSummary]: beforeSummary,
+            [classes.rowWithExpandedContent]: rowToExpanded[entryIndex],
+            [classes.divideDown]: divideBy?.(entry, entryIndex, entries),
+            [classes.divideUp]:
+              entryIndex > 0 && divideBy?.(entries[entryIndex - 1], entryIndex - 1, entries),
+          },
+          rowClassNames?.className,
+          rowClassNames?.entryRowClassName,
+        )}
       >
         {columns
           .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, entryIndex), {

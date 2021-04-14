@@ -10,6 +10,14 @@ export type VerticalAlignProperty = 'center' | 'top' | 'bottom';
 
 export type ColSpanProperty = number | 'end' | undefined;
 
+export type RowWithClassName = {
+  className?: string;
+  entryRowClassName?: string;
+  subRowClassName?: string;
+  headerRowClassName?: string;
+  subHeaderRowClassName?: string;
+};
+
 export type ColumnWithClassName<T> = {
   className?: string | ((entry: T, entryIndex: number, entries: T[]) => string);
 };
