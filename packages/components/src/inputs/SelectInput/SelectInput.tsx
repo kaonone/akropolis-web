@@ -133,6 +133,7 @@ export function SelectInput(props: SelectInputProps) {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
               [classes.withoutOutline]: variant === 'standard',
+              [classes.withCheckmark]: variant === 'standard' || restSelectProps.multiple,
             }),
           },
           ...menuPositionProps,
