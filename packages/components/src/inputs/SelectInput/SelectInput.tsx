@@ -48,8 +48,6 @@ export function SelectInput(props: SelectInputProps) {
   const currentWindowHeight = useWindowHeight();
 
   const [isMenuOpen, setIsOpen] = useState(false);
-  const [toBottomDistance, setToBottomDistance] = useState(0);
-  const [toTopDistance, setToTopDistance] = useState(0);
 
   const selectInputRef = useRef<HTMLDivElement>(null);
   const handleSelectOpen = useCallback(() => {
@@ -60,15 +58,12 @@ export function SelectInput(props: SelectInputProps) {
     setIsOpen(false);
   }, []);
 
-  useEffect(() => {
-    const inputRect = selectInputRef.current?.getBoundingClientRect();
+  const inputRect = selectInputRef.current?.getBoundingClientRect();
 
-    if (inputRect) {
-      const { bottom, top } = inputRect;
-      setToBottomDistance(currentWindowHeight - bottom - MENU_SHIFT_HEIGHT);
-      setToTopDistance(top - MENU_SHIFT_HEIGHT);
-    }
-  }, [currentWindowHeight]);
+  const toBottomDistance = inputRect
+    ? currentWindowHeight - inputRect.bottom - MENU_SHIFT_HEIGHT
+    : 0;
+  const toTopDistance = inputRect ? inputRect.top - MENU_SHIFT_HEIGHT : 0;
 
   const selectHeight =
     Number(selectInputRef.current?.offsetHeight) * options.length + MENU_PADDINGS_HEIGHT;
