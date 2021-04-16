@@ -74,7 +74,6 @@ export const useStyles = makeStyles(
 
       '&$hasTopSpace': {
         borderRadius: '6px 6px 0 0',
-        borderBottom: 'none',
       },
 
       '&$withCheckmark': {
@@ -99,7 +98,7 @@ export const useStyles = makeStyles(
         },
 
         '&$hasTopSpace': {
-          marginBottom: 10,
+          marginTop: -10,
           borderRadius: 6,
           borderBottom: '1px solid #40404b',
         },

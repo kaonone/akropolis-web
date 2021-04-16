@@ -68,7 +68,7 @@ export function SelectInput(props: SelectInputProps) {
       setToBottomDistance(currentWindowHeight - bottom - MENU_SHIFT_HEIGHT);
       setToTopDistance(top - MENU_SHIFT_HEIGHT);
     }
-  }, [currentWindowHeight]);
+  }, [currentWindowHeight, isMenuOpen]);
 
   const selectHeight =
     Number(selectInputRef.current?.offsetHeight) * options.length + MENU_PADDINGS_HEIGHT;
