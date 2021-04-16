@@ -1,6 +1,6 @@
 {
   "name": "@akropolis-web/primitives",
-  "version": "0.6.35",
+  "version": "0.6.36",
   "description": "Abstractions used across Akropolis web services.",
   "keywords": [
     "ethereum",
