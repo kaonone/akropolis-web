@@ -7,6 +7,7 @@ export * from './theme';
 export * from './colors';
 export * from './WithDarkTheme';
 export * from './ancestorBackgroundHack';
+export * from './types';
 export { makeGradient } from './makeGradient';
 export { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
 export { useBreakpointsMatch } from './useBreakpointsMatch';

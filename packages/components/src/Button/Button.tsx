@@ -1,37 +1,29 @@
 import * as React from 'react';
 import cn from 'classnames';
 import MuiButton, { ButtonTypeMap as MuiButtonTypeMap } from '@material-ui/core/Button';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
+import { OverrideProps } from '@material-ui/core/OverridableComponent';
+import { useAncestorBackgroundHack, OverrideTypeMap } from '@akropolis-web/styles';
 
 import { useStyles } from './Button.style';
-
-type ButtonClassKey = keyof ReturnType<typeof useStyles>;
 
 type ButtonSizes = 'medium' | 'large' | 'small' | 'extra-small';
 
 type WidthSize = 'default' | 'none';
 
-type MuiButtonTypeProps = Omit<MuiButtonTypeMap['props'], 'size'> & {
+type OwnProps = {
   size?: ButtonSizes;
   minWidthSize?: WidthSize;
 };
 
-interface ButtonTypeMap<P = Record<string, unknown>, D extends React.ElementType = 'button'> {
-  props: P & MuiButtonTypeProps;
-  defaultComponent: D;
-  classKey: ButtonClassKey;
-}
+type ButtonTypeMap = OverrideTypeMap<MuiButtonTypeMap, OwnProps>;
 
-export type ButtonProps<
-  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
-  P = Record<string, unknown>
-> = OverrideProps<ButtonTypeMap<P, D>, D>;
+type ButtonProps<
+  D extends React.ElementType = MuiButtonTypeMap['defaultComponent']
+> = OverrideProps<ButtonTypeMap, D> & { component?: D };
 
-const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
-  P = Record<string, unknown>,
-  D extends React.ElementType = 'button'
->(props: ButtonProps<D, P>) {
+function Button<D extends React.ElementType = MuiButtonTypeMap['defaultComponent']>(
+  props: ButtonProps<D>,
+) {
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
   const { classes: muiClasses = {}, size, minWidthSize = 'default', ...rest } = props;
@@ -79,7 +71,7 @@ const Button: OverridableComponent<ButtonTypeMap> = function ButtonFunc<
         return classes.defaultMinWidth;
     }
   }
-};
+}
 
 function getSizeTypeToDefault(size: ButtonSizes | undefined) {
   switch (size) {
@@ -93,4 +85,4 @@ function getSizeTypeToDefault(size: ButtonSizes | undefined) {
   }
 }
 
-export { Button };
+export { Button, ButtonProps, ButtonTypeMap };
