@@ -11,7 +11,7 @@ export { default as Divider } from '@material-ui/core/Divider';
 export { default as TabContext } from '@material-ui/lab/TabContext';
 
 export { Table };
-export { Button, ButtonProps } from './Button/Button';
+export { Button, ButtonProps, ButtonTypeMap } from './Button/Button';
 export { Tab, TabProps } from './Tab/Tab';
 export { TabList } from './TabList/TabList';
 export { TabsSection } from './TabsSection/TabsSection';
@@ -27,7 +27,7 @@ export { TokensIcons } from './TokensIcons/TokensIcons';
 export { DependencyProvider } from './DependencyProvider/DependencyProvider';
 export { HiddenSvgDefs } from './HiddenSvgDefs/HiddenSvgDefs';
 export { DialogContent } from './DialogContent/DialogContent';
-export { AdaptiveGrid as Grid } from './AdaptiveGrid/AdaptiveGrid';
+export { AdaptiveGrid as Grid, GridProps, GridTypeMap } from './AdaptiveGrid/AdaptiveGrid';
 export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 export { ResizeObserverComponent } from './ResizeObserverComponent/ResizeObserverComponent';
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';

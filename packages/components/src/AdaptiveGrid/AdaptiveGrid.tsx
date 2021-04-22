@@ -1,33 +1,26 @@
 import React from 'react';
 import cn from 'classnames';
 import Grid, { GridSpacing, GridTypeMap as MuiGridTypeMap } from '@material-ui/core/Grid';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
+import { OverrideProps } from '@material-ui/core/OverridableComponent';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
-import { useTheme } from '@akropolis-web/styles';
+import { useTheme, OverrideTypeMap } from '@akropolis-web/styles';
 
 import { useAdapativeSpacing, AdaptiveSpacing } from './useAdaptiveSpacing';
 
-type MuiGridTypeProps = Omit<MuiGridTypeMap['props'], 'spacing'> & {
+type OwnProps = {
   spacing?: GridSpacing | AdaptiveSpacing;
 };
 
-interface GridTypeMap<P = Record<string, unknown>, D extends React.ElementType = 'div'> {
-  props: P & MuiGridTypeProps;
-  defaultComponent: D;
-  classKey: MuiGridTypeMap['classKey'];
-}
+type GridTypeMap = OverrideTypeMap<MuiGridTypeMap, OwnProps>;
 
-type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
-  P = Record<string, unknown>
-> = OverrideProps<GridTypeMap<P, D>, D>;
+type GridProps<D extends React.ElementType = MuiGridTypeMap['defaultComponent']> = OverrideProps<
+  GridTypeMap,
+  D
+> & { component?: D };
 
-export const AdaptiveGrid: OverridableComponent<GridTypeMap> = <
-  P extends Record<string, unknown>,
-  D extends React.ElementType = 'div'
->(
-  props: GridProps<D, P>,
-) => {
+function AdaptiveGrid<D extends React.ElementType = MuiGridTypeMap['defaultComponent']>(
+  props: GridProps<D>,
+) {
   const theme = useTheme();
   const breakpointKeys = Object.keys(theme.breakpoints.values);
   const { className, children, spacing: spacingProp, ...rest } = props;
@@ -52,4 +45,6 @@ export const AdaptiveGrid: OverridableComponent<GridTypeMap> = <
   function excludeBreakpointProps(restProps: Record<string, unknown>, [key, value]: [string, any]) {
     return breakpointKeys.includes(key) ? restProps : { ...restProps, [key]: value };
   }
-};
+}
+
+export { AdaptiveGrid, GridProps, GridTypeMap };
