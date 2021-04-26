@@ -2,6 +2,7 @@ import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import { TokenIconProps } from '../types';
+import { makeRandomID } from '../../temp23/makeRandomID';
 
 export function CRVIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
@@ -28,86 +29,118 @@ function InactiveCRVIcon(props: SvgIconProps) {
 }
 
 function ActiveCRVIcon(props: SvgIconProps) {
+  const gradientIds = React.useMemo(
+    () => [1, 2, 3, 4, 5, 6].map(() => makeRandomID('CRVIcon')),
+    [],
+  );
+
   return (
-    <SvgIcon {...props} viewBox="0 0 23 25">
+    <SvgIcon {...props} viewBox="0 0 32 32">
       <defs>
-        <linearGradient id="8hdwfmk96a" x1="58.266%" x2="64.017%" y1="53.988%" y2="74.084%">
-          <stop offset="0%" stopColor="#F2E62B" />
-          <stop offset="48.648%" stopColor="#B1FF46" />
-          <stop offset="100%" stopColor="#05A2FB" />
+        <linearGradient
+          x1="58.2660023%"
+          y1="53.9877105%"
+          x2="64.0169252%"
+          y2="74.0838674%"
+          id={gradientIds[0]}
+        >
+          <stop stopColor="#F2E62B" offset="0%" />
+          <stop stopColor="#B1FF46" offset="48.6481565%" />
+          <stop stopColor="#05A2FB" offset="100%" />
         </linearGradient>
-        <linearGradient id="08q3n6clxb" x1="45.095%" x2="50%" y1="27.882%" y2="67.517%">
-          <stop offset="0%" stopColor="maroon" />
-          <stop offset="18.742%" stopColor="#FA0F00" />
-          <stop offset="43.093%" stopColor="#FFCD0C" />
-          <stop offset="100%" stopColor="#EEEB32" />
+        <linearGradient
+          x1="45.0951087%"
+          y1="27.8821778%"
+          x2="50%"
+          y2="67.5173339%"
+          id={gradientIds[1]}
+        >
+          <stop stopColor="#800000" offset="0%" />
+          <stop stopColor="#FA0F00" offset="18.7423576%" />
+          <stop stopColor="#FFCD0C" offset="43.0928911%" />
+          <stop stopColor="#EEEB32" offset="100%" />
         </linearGradient>
-        <linearGradient id="gt7ib41wsc" x1="33.933%" x2="26.653%" y1="24.733%" y2="61.578%">
-          <stop offset="0%" stopColor="#FF9800" />
-          <stop offset="55.769%" stopColor="#E4FF13" />
-          <stop offset="100%" stopColor="#50FFA7" />
+        <linearGradient
+          x1="33.9331595%"
+          y1="24.7327615%"
+          x2="26.6530302%"
+          y2="61.5783185%"
+          id={gradientIds[2]}
+        >
+          <stop stopColor="#FF9800" offset="0%" />
+          <stop stopColor="#E4FF13" offset="55.7691538%" />
+          <stop stopColor="#50FFA7" offset="100%" />
         </linearGradient>
-        <linearGradient id="mbndaqsx8d" x1="60.825%" x2="50%" y1="-11.07%" y2="100%">
-          <stop offset="0%" stopColor="#FA1000" />
-          <stop offset="0%" stopColor="#FA1000" />
-          <stop offset="17.007%" stopColor="maroon" />
-          <stop offset="39.062%" stopColor="#FA1801" />
-          <stop offset="54.442%" stopColor="#F67A08" />
-          <stop offset="62.733%" stopColor="#B1FF46" />
-          <stop offset="75.379%" stopColor="#75FF82" />
-          <stop offset="85.4%" stopColor="#05A2FB" />
-          <stop offset="100%" stopColor="#1212EE" />
+        <linearGradient x1="60.8253255%" y1="-11.0703355%" x2="50%" y2="100%" id={gradientIds[3]}>
+          <stop stopColor="#FA1000" offset="0%" />
+          <stop stopColor="#FA1000" offset="0%" />
+          <stop stopColor="#800000" offset="17.007102%" />
+          <stop stopColor="#FA1801" offset="39.0616555%" />
+          <stop stopColor="#F67A08" offset="54.4421756%" />
+          <stop stopColor="#B1FF46" offset="62.73309%" />
+          <stop stopColor="#75FF82" offset="75.3792682%" />
+          <stop stopColor="#05A2FB" offset="85.3998375%" />
+          <stop stopColor="#1212EE" offset="100%" />
         </linearGradient>
-        <linearGradient id="s4k8x0orfe" x1="40.754%" x2="29.998%" y1="8.651%" y2="78.218%">
-          <stop offset="0%" stopColor="#FA2401" />
-          <stop offset="42.869%" stopColor="#F5DF22" />
-          <stop offset="77.418%" stopColor="#00E4F8" />
-          <stop offset="100%" stopColor="#0010FF" />
+        <linearGradient
+          x1="40.7539593%"
+          y1="8.65073208%"
+          x2="29.998155%"
+          y2="78.218339%"
+          id={gradientIds[4]}
+        >
+          <stop stopColor="#FA2401" offset="0%" />
+          <stop stopColor="#F5DF22" offset="42.8688999%" />
+          <stop stopColor="#00E4F8" offset="77.4181047%" />
+          <stop stopColor="#0010FF" offset="100%" />
         </linearGradient>
-        <linearGradient id="tdoryhe7hf" x1="50%" x2="50.659%" y1="-35.457%" y2="95.225%">
-          <stop offset=".022%" stopColor="#F76D08" />
-          <stop offset="33.814%" stopColor="#F1E62B" />
-          <stop offset="50.699%" stopColor="#75F583" />
-          <stop offset="69.543%" stopColor="#00E0FB" />
-          <stop offset="100%" stopColor="#0023FF" />
+        <linearGradient
+          x1="50%"
+          y1="-35.4571096%"
+          x2="50.6590533%"
+          y2="95.2246082%"
+          id={gradientIds[5]}
+        >
+          <stop stopColor="#F76D08" offset="0.0218531469%" />
+          <stop stopColor="#F1E62B" offset="33.8142605%" />
+          <stop stopColor="#75F583" offset="50.6985216%" />
+          <stop stopColor="#00E0FB" offset="69.542734%" />
+          <stop stopColor="#0023FF" offset="100%" />
         </linearGradient>
       </defs>
-      <g fill="none" fillRule="evenodd">
-        <g>
-          <g>
-            <g transform="translate(-377 -449) translate(372 445) translate(5.328 4.8)">
-              <path
-                fill="url(#8hdwfmk96a)"
-                d="M5.233 1.882c3.591-2.162 16.803 4.27 16.61 8.48-.192 4.21-2.3 4.851-3.967 5.306-1.666.455-6.913 1.435-7.192 2.193-.28.759-1.158 4.524-3.96 4.04-2.804-.484-5.137-5.776-5.314-9.52-.177-3.743.232-8.336 3.823-10.499z"
-              />
-              <path
-                fill="url(#08q3n6clxb)"
-                d="M5.233 1.882C8.538-.108 19.85 4.488 21.586 9.184c.15.407-.242.768-.689 1.042-1.437.88-2.985 1.104-4.651 1.56-1.666.454-6.914 1.434-7.193 2.193-.279.758-7.466 2.146-7.643-1.597-.177-3.744.232-8.337 3.823-10.5z"
-              />
-              <path
-                fill="url(#gt7ib41wsc)"
-                d="M10.624 11.428c0-1.375-.133-2.396-.401-3.063-.402-1.002.023-2.58.856-2.85.833-.272 2.854.895 4.64 1.662 1.788.768 3.068 1.749 2.644 2.476-.423.727-2.549 1.213-3.508 1.356-.64.096-2.05.236-4.231.419z"
-              />
-              <path
-                fill="url(#mbndaqsx8d)"
-                d="M7.22 22.204c2.436-.578 3.647-4.691 3.647-10.372 0-2.084-.898-5.471-1.493-7.368-.642-2.044 2.03-2.252 1.65-2.362-1.517-.439-2.267-.796-3.826-.784-3.165.024-6.188 4.274-5.855 10.777.332 6.503 3.44 10.687 5.876 10.11z"
-                transform="rotate(-4 6.19 11.787)"
-              />
-              <path
-                fill="url(#s4k8x0orfe)"
-                d="M7.347 22.206c1.936-.46 3.103-3.15 3.501-7.085.047-.458.436-3.761-.238-6.39-.022-.09-.251 1.328-.797 2.474-.545 1.145-1.312 1.932-1.418 1.95-1.874.294-2.874-.364-4.61-1.159-1.84-.842-.195-9.135-1.299-6.519-.741 1.758-1.113 4.002-1.016 6.62.245 6.562 3.44 10.687 5.877 10.109z"
-                transform="rotate(-4 6.229 13.614)"
-              />
-              <ellipse
-                cx="5.607"
-                cy="15.726"
-                fill="url(#tdoryhe7hf)"
-                rx="3.165"
-                ry="5.011"
-                transform="rotate(-12 5.607 15.726)"
-              />
-            </g>
-          </g>
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g fillRule="nonzero">
+          <rect fill="#0A0A0E" opacity="0" x="5.552e-07" y="0" width="32" height="32" />
+          <path
+            d="M10.5612531,6.68228042 C14.1521644,4.51957256 27.3641946,10.9521509 27.1714726,15.1619454 C26.9787506,19.3717398 24.8703226,20.0130462 23.2043136,20.4677795 C21.5383048,20.9225126 16.2905648,21.902579 16.0115898,22.661109 C15.7326147,23.4196387 14.8543957,27.1850877 12.0512636,26.7012026 C9.2481315,26.2173176 6.91473045,20.9254235 6.73786915,17.1815429 C6.56100784,13.4376622 6.9703417,8.84498827 10.5612531,6.68228042 Z"
+            fill={`url(#${gradientIds[0]})`}
+          />
+          <path
+            d="M10.5612531,6.68228042 C13.865852,4.69201069 25.177485,9.28815974 26.9140862,13.9841662 C27.0645464,14.3910309 26.6717997,14.7524411 26.2250109,15.0261605 C24.7884045,15.9062793 23.2398194,16.1304446 21.5738106,16.5851779 C19.9078018,17.0399112 14.6600617,18.0199776 14.3810866,18.7785074 C14.1021115,19.5370371 6.91473045,20.9254235 6.73786915,17.1815429 C6.56100784,13.4376622 6.9703417,8.84498827 10.5612531,6.68228042 Z"
+            fill={`url(#${gradientIds[1]})`}
+          />
+          <path
+            d="M15.9515792,16.2280024 C15.9521304,14.8531048 15.8185002,13.8319601 15.5506883,13.1645682 C15.1489706,12.1634804 15.5744498,10.5856509 16.4070264,10.3145056 C17.2396032,10.0433602 19.2606941,11.2096629 21.0476011,11.9771781 C22.8345083,12.7446932 24.1145246,13.7256 23.6913674,14.4529342 C23.2682102,15.1802684 21.1419808,15.6656262 20.1827614,15.8092653 C19.5432819,15.9050247 18.1328877,16.0446037 15.9515792,16.2280024 Z"
+            fill={`url(#${gradientIds[2]})`}
+          />
+          <path
+            d="M12.5473655,27.0041445 C14.9842774,26.4262763 16.1948971,22.3127018 16.1948971,16.6324421 C16.1948971,14.5479179 15.2972893,11.1609493 14.7016779,9.26366508 C14.060247,7.22042604 16.732596,7.01180013 16.3515061,6.90164901 C14.8349258,6.46329296 14.0844955,6.10598436 12.5258611,6.11793856 C9.36123961,6.14213496 6.33833345,10.3924409 6.67072614,16.8953197 C7.00311885,23.3981986 10.1104536,27.5820127 12.5473655,27.0041445 Z"
+            fill={`url(#${gradientIds[3]})`}
+            transform="rotate(-4.000000)"
+          />
+          <path
+            d="M12.6748931,27.0058576 C14.6110809,26.5467267 15.778316,23.8559971 16.1762453,19.9206358 C16.2225629,19.4625733 16.6119611,16.1596422 15.9384247,13.5306321 C15.9155997,13.4415391 15.6866061,14.8588694 15.1410642,16.0045477 C14.5955223,17.1502261 13.8292467,17.9373998 13.7225119,17.9542109 C11.848605,18.2493571 10.8487963,17.5910792 9.11304857,16.7961448 C7.27331726,15.9535881 8.91802595,7.66081988 7.81427073,10.2773026 C7.07285921,12.0348393 6.7005335,14.2789042 6.79825377,16.8970328 C7.04318956,23.4593704 10.2379812,27.5837257 12.6748931,27.0058576 Z"
+            fill={`url(#${gradientIds[4]})`}
+            transform="rotate(-4.000000) "
+          />
+          <ellipse
+            fill={`url(#${gradientIds[5]})`}
+            transform="rotate(-12.000000)"
+            cx="10.9347569"
+            cy="20.5258462"
+            rx="3.16462149"
+            ry="5.01065069"
+          />
         </g>
       </g>
     </SvgIcon>
