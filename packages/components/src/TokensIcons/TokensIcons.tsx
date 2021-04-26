@@ -1,23 +1,30 @@
 import * as React from 'react';
 import { Token } from '@akropolis-web/primitives';
 import { makeStyles } from '@akropolis-web/styles';
+import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import cn from 'classnames';
 
 import { TokenIcon } from '../TokenIcon/TokenIcon';
 
 type Props = {
   tokens: Token[];
+  iconsProps?: SvgIconProps;
+  classes?: {
+    root?: string;
+    iconWrapper?: string;
+  };
 };
 
 export function TokensIcons(props: Props) {
   const classes = useStyles();
-  const { tokens } = props;
+  const { tokens, iconsProps, classes: propsClasses } = props;
 
   return (
-    <div className={classes.root}>
+    <div className={cn(propsClasses?.root, classes.root)}>
       {tokens.map(({ address }) => {
         return (
-          <div className={classes.icon} key={address}>
-            <TokenIcon tokenAddress={address} />
+          <div className={cn(propsClasses?.iconWrapper, classes.iconWrapper)} key={address}>
+            <TokenIcon {...iconsProps} tokenAddress={address} />
           </div>
         );
       })}
@@ -30,7 +37,7 @@ const useStyles = makeStyles(
     root: {
       display: 'flex',
     },
-    icon: {
+    iconWrapper: {
       '& + &': {
         marginLeft: -7,
       },
