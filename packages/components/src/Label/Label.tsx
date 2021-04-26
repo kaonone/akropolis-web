@@ -16,9 +16,9 @@ type Props = {
   icon?: React.ReactNode;
   classes?: {
     tooltipClasses?: Partial<Record<TooltipClassKey, string>>;
-    root?: string;
+    title?: string;
     tooltipIcon?: string;
-    comingSoon?: string;
+    comingSoonLabel?: string;
   };
   inline?: boolean;
   withComingSoon?: boolean;
@@ -50,7 +50,7 @@ export const Label: React.FC<Props> = props => {
     <Typography
       variant="h6"
       component="h6"
-      className={cn(propsClasses?.root, classes.title, classes[fontSize], {
+      className={cn(propsClasses?.title, classes.title, classes[fontSize], {
         [classes.inline]: inline,
       })}
     >
@@ -63,7 +63,7 @@ export const Label: React.FC<Props> = props => {
       {children}
       {renderTooltip()}
       {withComingSoon && (
-        <span className={cn(propsClasses?.comingSoon, classes.comingSoonLabel)}>
+        <span className={cn(propsClasses?.comingSoonLabel, classes.comingSoonLabel)}>
           <ComingSoon variant="label" />
         </span>
       )}
@@ -87,7 +87,7 @@ export const Label: React.FC<Props> = props => {
               placement="right"
             >
               <InfoIcon
-                className={cn(propsClasses?.tooltipIcon, classes.icon)}
+                className={cn(propsClasses?.tooltipIcon, classes.tooltipIcon)}
                 fontSize="small"
                 onMouseOver={handleTooltipOpen}
                 onMouseLeave={handleTooltipClose}
@@ -134,7 +134,7 @@ const useStyles = makeStyles(
       fontSize: 12,
     },
 
-    icon: {
+    tooltipIcon: {
       fontSize: '1.125em',
 
       opacity: '50%',
