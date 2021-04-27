@@ -86,13 +86,15 @@ export const Label: React.FC<Props> = props => {
               title={<div className={classes.hint}>{hint}</div>}
               placement="right"
             >
-              <InfoIcon
-                className={cn(propsClasses?.tooltipIcon, classes.tooltipIcon)}
-                fontSize="small"
-                onMouseOver={handleTooltipOpen}
-                onMouseLeave={handleTooltipClose}
-                onClick={handleTooltipOpen}
-              />
+              <span>
+                <InfoIcon
+                  className={cn(propsClasses?.tooltipIcon, classes.tooltipIcon)}
+                  fontSize="small"
+                  onMouseOver={handleTooltipOpen}
+                  onMouseLeave={handleTooltipClose}
+                  onClick={handleTooltipOpen}
+                />
+              </span>
             </Tooltip>
           </ClickAwayListener>
         </>
