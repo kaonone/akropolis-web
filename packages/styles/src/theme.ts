@@ -619,6 +619,31 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               backgroundColor: 'rgba(10, 10, 14, 0.9)',
             },
           },
+
+          MuiDialog: {
+            paper: {
+              '& .MuiPickersToolbar-toolbar': {
+                background: 'linear-gradient(to left, #5346e6, #ef359c)',
+              },
+
+              '& .MuiPickersDay-current': {
+                color: '#d93cef',
+              },
+
+              '& .MuiPickersYear-yearSelected, .MuiPickersYear-root:focus': {
+                color: '#d93cef',
+              },
+
+              '& .MuiPickersDay-daySelected, .MuiPickersDay-daySelected.MuiPickersDay-current': {
+                color: '#fff',
+                background: 'linear-gradient(to left, #5346e6, #ef359c)',
+              },
+
+              '& .MuiPickersModal-withAdditionalAction .MuiButton-textPrimary': {
+                color: '#d93cef',
+              },
+            },
+          },
         },
       },
       overrides || {},
