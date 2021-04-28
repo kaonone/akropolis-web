@@ -278,6 +278,13 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           },
 
           MuiPickersDay: {
+            day: {
+              '& .MuiTypography-body2': {
+                marginTop: 1,
+                lineHeight: 1,
+              },
+            },
+
             current: {
               color: '#d93cef',
             },
