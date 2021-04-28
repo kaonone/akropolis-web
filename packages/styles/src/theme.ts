@@ -1,6 +1,7 @@
 import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
 import { TabPanelClassKey } from '@material-ui/lab/TabPanel';
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
 import { mergeDeepRight } from 'ramda';
 import { Object as O } from 'ts-toolbelt';
 
@@ -263,29 +264,38 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiPaper: {
             root: {
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
+            },
+          },
 
-              '& .MuiPickersBasePicker-container': {
-                '& .MuiTypography-h4': {
-                  fontSize: 16,
-                },
+          MuiPickersToolbar: {
+            toolbar: {
+              height: 80,
 
-                '& .MuiToolbar-root': {
-                  height: 80,
-                },
+              '& .MuiTypography-h4': {
+                fontSize: 16,
               },
+            },
+          },
 
-              '& .MuiPickersDay-current': {
+          MuiPickersDay: {
+            current: {
+              color: '#d93cef',
+            },
+
+            daySelected: {
+              color: '#fff',
+              background: 'linear-gradient(to left, #5346e6, #ef359c)',
+            },
+          },
+
+          MuiPickersYear: {
+            root: {
+              '&:focus': {
                 color: '#d93cef',
               },
-
-              '& .MuiPickersYear-yearSelected, .MuiPickersYear-root:focus': {
-                color: '#d93cef',
-              },
-
-              '& .MuiPickersDay-daySelected, .MuiPickersDay-daySelected.MuiPickersDay-current': {
-                color: '#fff',
-                background: 'linear-gradient(to left, #5346e6, #ef359c)',
-              },
+            },
+            yearSelected: {
+              color: '#d93cef',
             },
           },
 
@@ -723,5 +733,8 @@ declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
     MuiSkeleton: SkeletonClassKey;
     MuiTabPanel: TabPanelClassKey;
+    MuiPickersToolbar: MuiPickersOverrides['MuiPickersToolbar'];
+    MuiPickersDay: MuiPickersOverrides['MuiPickersDay'];
+    MuiPickersYear: MuiPickersOverrides['MuiPickersYear'];
   }
 }
