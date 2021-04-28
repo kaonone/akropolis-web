@@ -1,12 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
-import { TabTypeMap } from '@material-ui/core/Tab';
+import Tab, { TabTypeMap } from '@material-ui/core/Tab';
 import { TabListProps } from '@material-ui/lab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabPanel from '@material-ui/lab/TabPanel';
 import { useBreakpointsMatch } from '@akropolis-web/styles';
 
-import { Tab } from '../Tab/Tab';
 import { TabList } from '../TabList/TabList';
 import { useStyles } from './TabsSection.style';
 

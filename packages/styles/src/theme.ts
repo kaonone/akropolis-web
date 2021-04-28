@@ -541,6 +541,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               position: 'relative',
               overflow: 'visible',
               minHeight: 'unset',
+              minWidth: 'unset !important',
               textTransform: 'unset',
               fontSize: 'inherit',
               fontWeight: 300,
