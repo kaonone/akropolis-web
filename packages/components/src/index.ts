@@ -9,10 +9,10 @@ export { default as IconButton } from '@material-ui/core/IconButton';
 export { default as Link, LinkProps } from '@material-ui/core/Link';
 export { default as Divider } from '@material-ui/core/Divider';
 export { default as TabContext } from '@material-ui/lab/TabContext';
+export { default as Tab, TabProps } from '@material-ui/core/Tab';
 
 export { Table };
 export { Button, ButtonProps, ButtonTypeMap } from './Button/Button';
-export { Tab, TabProps } from './Tab/Tab';
 export { TabList } from './TabList/TabList';
 export { TabsSection } from './TabsSection/TabsSection';
 export { Metric } from './Metric/Metric';
