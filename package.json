@@ -65,6 +65,7 @@
     "commitizen": "^4.0.3",
     "conventional-changelog-cli": "^2.0.28",
     "cz-conventional-changelog": "^3.0.2",
+    "date-fns": "^2.21.1",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.1.0",
