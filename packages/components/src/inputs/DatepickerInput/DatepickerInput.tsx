@@ -6,8 +6,13 @@ import cn from 'classnames';
 import { useStyles } from './DatepickerInput.style';
 import { HistoryIcon } from '../../icons';
 
-type Props = React.ComponentProps<typeof KeyboardDatePicker> & {
-  iconClassName: string;
+type KeyboardDatePickerProps = React.ComponentProps<typeof KeyboardDatePicker>;
+
+type Props = Omit<KeyboardDatePickerProps, 'KeyboardButtonProps'> & {
+  iconClassName?: string;
+  KeyboardButtonProps: KeyboardDatePickerProps['KeyboardButtonProps'] & {
+    'aria-label': string;
+  };
 };
 
 function DatepickerInput(props: Props) {
@@ -19,13 +24,9 @@ function DatepickerInput(props: Props) {
       <KeyboardDatePicker
         className={cn(classes.root, className)}
         format="MM/dd/yyyy"
-        KeyboardButtonProps={{
-          'aria-label': 'change date',
-        }}
         keyboardIcon={<HistoryIcon className={cn(classes.datePickerIcon, iconClassName)} />}
         variant="inline"
         invalidDateMessage="Enter correct date"
-        disableFuture
         autoOk
         {...restProps}
       />

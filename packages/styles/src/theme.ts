@@ -740,8 +740,8 @@ declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
     MuiSkeleton: SkeletonClassKey;
     MuiTabPanel: TabPanelClassKey;
-    MuiPickersToolbar: MuiPickersOverrides['MuiPickersToolbar'];
-    MuiPickersDay: MuiPickersOverrides['MuiPickersDay'];
-    MuiPickersYear: MuiPickersOverrides['MuiPickersYear'];
+    MuiPickersToolbar: Required<MuiPickersOverrides>['MuiPickersToolbar'];
+    MuiPickersDay: Required<MuiPickersOverrides>['MuiPickersDay'];
+    MuiPickersYear: Required<MuiPickersOverrides>['MuiPickersYear'];
   }
 }
