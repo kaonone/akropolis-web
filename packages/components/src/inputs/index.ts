@@ -9,3 +9,4 @@ export { SelectInput, Option as SelectOption } from './SelectInput/SelectInput';
 export { AmountInput, AmountInputProps } from './AmountInput/AmountInput';
 export { LiquidityAmountInput, LiquidityAmountInputProps } from './LiquidityAmountInput';
 export { TokenAmountInput, TokenAmountInputProps } from './TokenAmountInput';
+export { DatepickerInput } from './DatepickerInput/DatepickerInput';

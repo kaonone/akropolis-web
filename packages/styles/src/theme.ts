@@ -1,6 +1,7 @@
 import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
 import { TabPanelClassKey } from '@material-ui/lab/TabPanel';
 import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
 import { mergeDeepRight } from 'ramda';
 import { Object as O } from 'ts-toolbelt';
 
@@ -263,6 +264,45 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiPaper: {
             root: {
               transition: defaultTheme.transitions.create(['background-color', 'box-shadow']),
+            },
+          },
+
+          MuiPickersToolbar: {
+            toolbar: {
+              height: 80,
+
+              '& .MuiTypography-h4': {
+                fontSize: 16,
+              },
+            },
+          },
+
+          MuiPickersDay: {
+            day: {
+              '& .MuiTypography-body2': {
+                marginTop: 1,
+                lineHeight: 1,
+              },
+            },
+
+            current: {
+              color: '#d93cef',
+            },
+
+            daySelected: {
+              color: '#fff',
+              background: 'linear-gradient(to left, #5346e6, #ef359c)',
+            },
+          },
+
+          MuiPickersYear: {
+            root: {
+              '&:focus': {
+                color: '#d93cef',
+              },
+            },
+            yearSelected: {
+              color: '#d93cef',
             },
           },
 
@@ -701,5 +741,8 @@ declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
     MuiSkeleton: SkeletonClassKey;
     MuiTabPanel: TabPanelClassKey;
+    MuiPickersToolbar: Required<MuiPickersOverrides>['MuiPickersToolbar'];
+    MuiPickersDay: Required<MuiPickersOverrides>['MuiPickersDay'];
+    MuiPickersYear: Required<MuiPickersOverrides>['MuiPickersYear'];
   }
 }
