@@ -1,13 +1,18 @@
 import React, { useMemo } from 'react';
 import { makeStyles } from '@akropolis-web/styles';
+import { Network } from '@akropolis-web/primitives';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import cn from 'classnames';
 
 import * as icons from '../icons/tokens';
 import { AddressIcon } from '../AddressIcon/AddressIcon';
 import { useDependencyContext } from '../DependencyProvider';
+import { NetworkIcon } from '../NetworkIcon/NetworkIcon';
 
 type Props = {
   tokenAddress: string;
+  network?: Network;
+  networkIconProps?: SvgIconProps;
   inactive?: boolean;
 };
 
@@ -42,7 +47,7 @@ const tokenIcons: Record<string, CoinComponent> = {
 };
 
 export function TokenIcon(props: Props & SvgIconProps) {
-  const { tokenAddress, inactive, ...rest } = props;
+  const { tokenAddress, network, networkIconProps, inactive, ...rest } = props;
 
   const classes = useStyles();
   const { supportedTokens } = useDependencyContext();
@@ -56,10 +61,26 @@ export function TokenIcon(props: Props & SvgIconProps) {
   }, [tokenAddress, supportedTokens]);
 
   return Icon ? (
-    <Icon {...rest} inactive={inactive} />
+    <div className={classes.iconContainer}>
+      <Icon {...rest} inactive={inactive} />
+      {network && (
+        <NetworkIcon
+          {...networkIconProps}
+          network={network}
+          className={cn(networkIconProps?.className, classes.networkIcon)}
+        />
+      )}
+    </div>
   ) : (
-    <div className={classes.addressIcon}>
+    <div className={cn(classes.iconContainer, classes.addressIcon)}>
       <AddressIcon address={tokenAddress} {...rest} />
+      {network && (
+        <NetworkIcon
+          {...networkIconProps}
+          network={network}
+          className={cn(networkIconProps?.className, classes.networkIcon)}
+        />
+      )}
     </div>
   );
 }
@@ -68,6 +89,15 @@ const useStyles = makeStyles(
   {
     addressIcon: {
       display: 'inline-flex',
+    },
+    iconContainer: {
+      position: 'relative',
+    },
+    networkIcon: {
+      position: 'absolute',
+      fontSize: '0.45em',
+      top: '-50%',
+      right: '-50%',
     },
   },
   { name: 'TokenIcon' },
