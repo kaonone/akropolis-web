@@ -31,6 +31,7 @@ export { AdaptiveGrid as Grid, GridProps, GridTypeMap } from './AdaptiveGrid/Ada
 export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 export { ResizeObserverComponent } from './ResizeObserverComponent/ResizeObserverComponent';
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
+export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 
 export * from './inputs';
 export * from './icons';

@@ -95,9 +95,9 @@ const useStyles = makeStyles(
     },
     networkIcon: {
       position: 'absolute',
-      fontSize: '0.45em',
-      top: '-50%',
-      right: '-50%',
+      fontSize: '0.534em',
+      top: '-20%',
+      right: '-20%',
     },
   },
   { name: 'TokenIcon' },
