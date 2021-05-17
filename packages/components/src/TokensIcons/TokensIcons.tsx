@@ -13,25 +13,18 @@ type Props = {
     root?: string;
     iconWrapper?: string;
   };
-  showNetwork?: boolean;
-  networkIconProps?: SvgIconProps;
 };
 
 export function TokensIcons(props: Props) {
   const classes = useStyles();
-  const { tokens, iconsProps, classes: propsClasses, networkIconProps, showNetwork } = props;
+  const { tokens, iconsProps, classes: propsClasses } = props;
 
   return (
     <div className={cn(propsClasses?.root, classes.root)}>
-      {tokens.map(({ address, network }) => {
+      {tokens.map(({ address }) => {
         return (
           <div className={cn(propsClasses?.iconWrapper, classes.iconWrapper)} key={address}>
-            <TokenIcon
-              {...iconsProps}
-              network={showNetwork ? network : undefined}
-              networkIconProps={networkIconProps}
-              tokenAddress={address}
-            />
+            <TokenIcon {...iconsProps} tokenAddress={address} />
           </div>
         );
       })}
