@@ -3,6 +3,7 @@ import { makeStyles } from '@akropolis-web/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import * as icons from '../icons/tokens';
+import * as currencyIcons from '../icons/currencies';
 import { AddressIcon } from '../AddressIcon/AddressIcon';
 import { useDependencyContext } from '../DependencyProvider';
 
@@ -39,6 +40,7 @@ const tokenIcons: Record<string, CoinComponent> = {
   yCRV: icons.YCRVIcon,
   HEGIC: icons.HEGICIcon,
   steCRV: icons.SteCRVIcon,
+  BTCB: currencyIcons.BTCIcon,
 };
 
 export function TokenIcon(props: Props & SvgIconProps) {
