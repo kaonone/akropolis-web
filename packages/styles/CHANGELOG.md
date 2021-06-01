@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.16.46 (2021-06-01)
+
+
+### Bug Fixes
+
+* take formControlProps in RadioGroupInput ([5b512a7](https://github.com/akropolisio/akropolis-web/commit/5b512a7abf4889eb1a8546b9b8b541576cde7a0e))
+
+
+
+
+
 ## 0.16.45 (2021-05-26)
 
 **Note:** Version bump only for package @akropolis-web/styles
