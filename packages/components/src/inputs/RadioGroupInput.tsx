@@ -9,6 +9,7 @@ type Props = RadioGroupProps &
   Pick<FormControlProps, 'error' | 'required' | 'fullWidth'> & {
     label?: React.ReactNode;
     helperText?: React.ReactNode;
+    formControlProps?: Omit<FormControlProps, 'error' | 'required' | 'fullWidth'>;
     formLabelProps?: FormLabelProps;
     formHelperTextProps?: FormHelperTextProps;
   };
@@ -49,6 +50,7 @@ function normalizeProps(props: Props): NormalizedProps {
     helperText = null,
     required,
     label,
+    formControlProps: fcProps = null,
     formLabelProps = null,
     formHelperTextProps = null,
     fullWidth,
@@ -58,7 +60,7 @@ function normalizeProps(props: Props): NormalizedProps {
   const radioGroupProps: A.Equals<RadioGroupProps, typeof rest> extends B.True
     ? RadioGroupProps
     : unknown = rest;
-  const formControlProps: FormControlProps = { error, required, fullWidth };
+  const formControlProps: FormControlProps = { error, required, fullWidth, ...fcProps };
 
   return {
     formHelperTextProps,
