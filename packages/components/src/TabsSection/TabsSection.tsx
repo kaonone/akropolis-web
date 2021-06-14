@@ -5,6 +5,7 @@ import { TabListProps } from '@material-ui/lab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabPanel from '@material-ui/lab/TabPanel';
 import { useBreakpointsMatch, withStyles, WithStyles } from '@akropolis-web/styles';
+import { ClassKeyOfStyles, StyledComponentProps } from '@material-ui/styles';
 
 import { TabList } from '../TabList/TabList';
 import { styles } from './TabsSection.style';
@@ -21,7 +22,7 @@ type TabContent = {
 type TabItem<T extends React.ElementType> = Omit<React.ComponentProps<T>, keyof TabContent> &
   TabContent;
 
-interface Props<T extends React.ElementType> extends WithStyles<typeof styles> {
+type Props<T extends React.ElementType> = {
   currentValue: string;
   tabs: TabItem<T>[];
   tabListProps?: Partial<TabListProps>;
@@ -33,10 +34,10 @@ interface Props<T extends React.ElementType> extends WithStyles<typeof styles> {
       afterTabs?: React.ReactNode;
     };
   };
-}
+};
 
 const TabsSectionComponent = withStyles(styles, { name: 'TabsSection' })(
-  (props: Props<React.ElementType>) => {
+  (props: Props<React.ElementType> & WithStyles<typeof styles>) => {
     const {
       tabs,
       currentValue,
@@ -95,6 +96,8 @@ const TabsSectionComponent = withStyles(styles, { name: 'TabsSection' })(
   },
 );
 
-export function TabsSection<T extends React.ElementType = DefaultTabComponent>(props: Props<T>) {
+export function TabsSection<T extends React.ElementType = DefaultTabComponent>(
+  props: Props<T> & StyledComponentProps<ClassKeyOfStyles<typeof styles>>,
+) {
   return <TabsSectionComponent {...props} />;
 }
