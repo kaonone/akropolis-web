@@ -1,7 +1,7 @@
-import { makeStyles } from '@akropolis-web/styles';
+import { createStyles, Theme } from '@akropolis-web/styles';
 
-export const useStyles = makeStyles(
-  theme => ({
+export const styles = (theme: Theme) =>
+  createStyles({
     navigationBar: {
       display: 'flex',
       alignItems: 'flex-start',
@@ -30,6 +30,4 @@ export const useStyles = makeStyles(
       padding: 0,
     },
     fullWidth: {},
-  }),
-  { name: 'TabsSection' },
-);
+  });
