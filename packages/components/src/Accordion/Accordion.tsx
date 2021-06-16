@@ -78,9 +78,10 @@ const useStyles = makeStyles(
     expandIcon: {
       margin: '12px 0',
       fontSize: 16,
+      transform: 'rotate(-90deg)',
 
       '&$expanded': {
-        transform: 'rotate(-90deg)',
+        transform: 'rotate(0deg)',
       },
     },
 

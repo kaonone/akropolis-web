@@ -676,6 +676,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
             rounded: {
               borderRadius: '6px !important',
+              overflow: 'hidden',
             },
           },
         },
