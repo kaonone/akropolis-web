@@ -660,6 +660,24 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               backgroundColor: 'rgba(10, 10, 14, 0.9)',
             },
           },
+
+          MuiAccordion: {
+            root: {
+              boxShadow: 'none',
+
+              '&$expanded': {
+                margin: 0,
+              },
+
+              '&:before': {
+                display: 'none',
+              },
+            },
+
+            rounded: {
+              borderRadius: '6px !important',
+            },
+          },
         },
       },
       overrides || {},
