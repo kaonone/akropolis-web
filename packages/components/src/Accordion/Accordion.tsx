@@ -9,14 +9,25 @@ import { attachStaticFields } from '../temp23/utils/react';
 import { Arrow } from '../icons/Arrow';
 
 function AccordionComponent(props: React.ComponentProps<typeof MuiAccordion>) {
-  const { children, ...rest } = props;
+  const classes = useStyles();
+  const { classes: muiClasses = {}, ...rest } = props;
 
-  return <MuiAccordion {...rest}>{children}</MuiAccordion>;
+  return (
+    <MuiAccordion
+      classes={{
+        ...muiClasses,
+        root: cn(classes.root, muiClasses.root),
+        rounded: cn(classes.rounded, muiClasses.rounded),
+        expanded: cn(classes.expanded, muiClasses.expanded),
+      }}
+      {...rest}
+    />
+  );
 }
 
 function Summary(props: React.ComponentProps<typeof MuiAccordionSummary>) {
   const classes = useStyles();
-  const { classes: muiClasses = {}, children, ...rest } = props;
+  const { classes: muiClasses = {}, ...rest } = props;
 
   return (
     <MuiAccordionSummary
@@ -25,27 +36,23 @@ function Summary(props: React.ComponentProps<typeof MuiAccordionSummary>) {
         ...muiClasses,
         root: cn(classes.summary, muiClasses.root),
         content: cn(classes.summaryContent, muiClasses.content),
-        expanded: cn(classes.expanded, muiClasses.expanded),
+        expanded: cn(classes.summaryExpanded, muiClasses.expanded),
         expandIcon: cn(classes.expandIcon, muiClasses.expandIcon),
       }}
       {...rest}
-    >
-      {children}
-    </MuiAccordionSummary>
+    />
   );
 }
 
 function Details(props: React.ComponentProps<typeof MuiAccordionDetails>) {
   const classes = useStyles();
-  const { classes: muiClasses = {}, children, ...rest } = props;
+  const { classes: muiClasses = {}, ...rest } = props;
 
   return (
     <MuiAccordionDetails
       classes={{ ...muiClasses, root: cn(classes.details, muiClasses.root) }}
       {...rest}
-    >
-      {children}
-    </MuiAccordionDetails>
+    />
   );
 }
 
@@ -56,6 +63,23 @@ export const Accordion = attachStaticFields(AccordionComponent, {
 
 const useStyles = makeStyles(
   () => ({
+    root: {
+      boxShadow: 'none',
+
+      '&$expanded': {
+        margin: 0,
+      },
+
+      '&:before': {
+        display: 'none',
+      },
+    },
+
+    rounded: {
+      borderRadius: '6px !important',
+      overflow: 'hidden',
+    },
+
     summary: {
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
@@ -70,7 +94,7 @@ const useStyles = makeStyles(
         margin: '20px 0',
       },
 
-      '&, &$expanded': {
+      '&, &$summaryExpanded': {
         margin: '20px 0',
       },
     },
@@ -80,7 +104,7 @@ const useStyles = makeStyles(
       fontSize: 16,
       transform: 'rotate(-90deg)',
 
-      '&$expanded': {
+      '&$summaryExpanded': {
         transform: 'rotate(0deg)',
       },
     },
@@ -91,6 +115,7 @@ const useStyles = makeStyles(
     },
 
     expanded: {},
+    summaryExpanded: {},
   }),
   { name: 'Accordion' },
 );
