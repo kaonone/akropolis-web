@@ -32,6 +32,7 @@ export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 export { ResizeObserverComponent } from './ResizeObserverComponent/ResizeObserverComponent';
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
 export { NetworkIcon } from './NetworkIcon/NetworkIcon';
+export { Accordion } from './Accordion/Accordion';
 
 export * from './inputs';
 export * from './icons';
