@@ -310,7 +310,20 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             root: {
               transition: defaultTheme.transitions.create(['border-color', 'color']),
             },
+
             underlineHover: {
+              paddingBottom: 2,
+              borderWidth: '0 0 1px 0',
+              borderStyle: 'solid',
+              borderColor: 'transparent',
+
+              '&:hover': {
+                textDecoration: 'none',
+                borderColor: 'currentColor',
+              },
+            },
+
+            underlineAlways: {
               paddingBottom: 2,
               borderWidth: '0 0 1px 0',
               borderStyle: 'solid',
@@ -471,6 +484,10 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
               '&$error': {
                 borderColor: '#643d3d',
+              },
+
+              '&$colorSecondary': {
+                borderColor: colors.stormGray,
               },
             },
 

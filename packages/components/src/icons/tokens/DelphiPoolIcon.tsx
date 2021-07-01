@@ -7,23 +7,15 @@ import { TokenIconProps } from '../types';
 export function DelphiPoolIcon(props: TokenIconProps) {
   const { inactive, ...svgProps } = props;
 
-  const [linearGradientID1, linearGradientID2, radialGradientID, circleID, maskID] = React.useMemo(
+  const [radialGradientID, circleID, maskID] = React.useMemo(
     () => [1, 2, 3, 4, 5].map(() => makeRandomID('DelphiPoolIcon')),
     [],
   );
 
   const fillColor = inactive ? '#FFF' : `url(#${radialGradientID})`;
-  const circleFillColorID = inactive ? linearGradientID1 : linearGradientID2;
 
   return (
     <SvgIcon {...svgProps} viewBox="0 0 20 20">
-      <defs>
-        <linearGradient id={linearGradientID1} x1="50%" x2="50%" y1="0%" y2="100%">
-          <stop offset="0%" stopColor="#181820" />
-          <stop offset="100%" stopColor="#0A0A0E" />
-        </linearGradient>
-      </defs>
-
       <defs>
         <radialGradient
           id={radialGradientID}
@@ -37,10 +29,6 @@ export function DelphiPoolIcon(props: TokenIconProps) {
           <stop offset="0%" stopColor="#594AFF" />
           <stop offset="100%" stopColor="#3B2ECE" />
         </radialGradient>
-        <linearGradient id={linearGradientID2} x1="50%" x2="50%" y1="0%" y2="100%">
-          <stop offset="0%" stopColor="#181820" />
-          <stop offset="100%" stopColor="#0A0A0E" />
-        </linearGradient>
         <circle id={circleID} cx="10.313" cy="10.375" r="9.375" />
       </defs>
 
@@ -49,17 +37,16 @@ export function DelphiPoolIcon(props: TokenIconProps) {
         <path
           fill={fillColor}
           stroke="#0A0A0E"
-          strokeWidth=".5"
+          strokeWidth=".1"
           d="M10.022 4.245c1.98 0 4.235-1.071 5.27-1.653 1.035-.583 2.876-.486 2.876.8 0 1.113-.356 2.202.197 2.917.086.11.175.987.228 1.136.27.752.27 2.235 0 3.562s-4.324 4.386-8.467 4.386c-4.143 0-8.087-2.26-8.087-4.393 0-2.134-.1-3.014-.1-3.7 0-.687-1.149-3.14.1-4.406 1.248-1.266 3.494.64 4.32.846.826.207 1.683.505 3.663.505z"
         />
         <mask id={maskID} fill="#fff">
           <use xlinkHref={`#${circleID}`} />
         </mask>
-        <use fill={`url(#${circleFillColorID})`} xlinkHref={`#${circleID}`} />
         <path
           fill={fillColor}
           stroke="#0A0A0E"
-          strokeWidth=".5"
+          strokeWidth=".1"
           d="M10.022 4.245c1.98 0 4.235-1.071 5.27-1.653 1.035-.583 2.876-.486 2.876.8 0 1.182-.401 2.337.311 3.046.063.062.133.12.214.175.999.682 2.245 2.081 2.62 4.611.374 2.53-1.547 5.304-1.837 5.545-.15.124-4.986 3.266-9.35 3.231-4.106-.033-7.76-3.232-7.76-3.43 0-.407-2.225-.669-2.36-4.217C-.128 8.805 1.94 7.986 1.94 7.3c0-.687-1.149-3.14.1-4.406 1.248-1.266 3.494.64 4.32.846.826.207 1.683.505 3.663.505z"
           mask={`url(#${maskID})`}
         />
