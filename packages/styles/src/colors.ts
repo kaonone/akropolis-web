@@ -45,4 +45,5 @@ export const colors = {
   persimmon: '#FE5A59',
   lightGray: 'rgba(255, 255, 255, 0.5)',
   violetRed: '#ef359c',
+  stormGray: '#75758b',
 };
