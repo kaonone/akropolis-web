@@ -1,7 +1,7 @@
 import * as React from 'react';
 import FormControl, { FormControlProps } from '@material-ui/core/FormControl';
 import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelperText';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import { A, B } from 'ts-toolbelt';
 import { useAncestorBackgroundHack } from '@akropolis-web/styles';
@@ -14,11 +14,13 @@ type Props = CheckboxProps &
     label: React.ReactNode;
     helperText?: React.ReactNode;
     formHelperTextProps?: FormHelperTextProps;
+    formControlLabelProps?: Omit<FormControlLabelProps, 'label' | 'control'>;
   };
 
 interface NormalizedProps {
   checkboxProps: CheckboxProps;
   formControlProps: FormControlProps;
+  formControlLabelProps: Omit<FormControlLabelProps, 'label' | 'control'> | null;
   formHelperTextProps: FormHelperTextProps | null;
   other: {
     label: React.ReactNode | null;
@@ -27,7 +29,13 @@ interface NormalizedProps {
 }
 
 function CheckboxInput(props: Props) {
-  const { formControlProps, formHelperTextProps, checkboxProps, other } = normalizeProps(props);
+  const {
+    formControlProps,
+    formControlLabelProps,
+    formHelperTextProps,
+    checkboxProps,
+    other,
+  } = normalizeProps(props);
   const { label, helperText } = other;
 
   const backgroundColor = useAncestorBackgroundHack();
@@ -36,6 +44,7 @@ function CheckboxInput(props: Props) {
   return (
     <FormControl {...formControlProps}>
       <FormControlLabel
+        {...formControlLabelProps}
         control={
           <Checkbox
             {...checkboxProps}
@@ -69,7 +78,15 @@ function CheckboxInput(props: Props) {
 }
 
 function normalizeProps(props: Props): NormalizedProps {
-  const { error, helperText = null, label, formHelperTextProps = null, fullWidth, ...rest } = props;
+  const {
+    error,
+    helperText = null,
+    label,
+    formHelperTextProps = null,
+    formControlLabelProps = null,
+    fullWidth,
+    ...rest
+  } = props;
 
   const checkboxProps: A.Equals<CheckboxProps, typeof rest> extends B.True
     ? CheckboxProps
@@ -78,6 +95,7 @@ function normalizeProps(props: Props): NormalizedProps {
 
   return {
     formHelperTextProps,
+    formControlLabelProps,
     formControlProps,
     checkboxProps,
     other: { label, helperText },
