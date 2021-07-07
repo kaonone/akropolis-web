@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.53 (2021-07-07)
+
+
+### Bug Fixes
+
+* [DD-2531] fix DelphiPoolIcon vertical aligning ([c6a895d](https://github.com/akropolisio/akropolis-web/commit/c6a895d38092d1f7653646cb186a4a5627282f83))
+
+
+
+
+
 ## 0.6.52 (2021-07-06)
 
 **Note:** Version bump only for package @akropolis-web/primitives
