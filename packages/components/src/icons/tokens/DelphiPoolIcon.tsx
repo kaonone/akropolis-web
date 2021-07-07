@@ -32,7 +32,7 @@ export function DelphiPoolIcon(props: TokenIconProps) {
         <circle id={circleID} cx="10.313" cy="10.375" r="9.375" />
       </defs>
 
-      <g fill="none" fillRule="evenodd">
+      <g fill="none" fillRule="evenodd" transform="translate(0, -1.5)">
         <path d="M0 0H20V20H0z" />
         <path
           fill={fillColor}
