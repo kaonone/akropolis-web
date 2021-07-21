@@ -28,3 +28,4 @@ export { YCRVIcon } from './YCRVIcon';
 export { HEGICIcon } from './HEGICIcon';
 export { SteCRVIcon } from './SteCRVIcon';
 export { YveCRVIcon } from './YveCRVIcon';
+export { CrvIBIcon } from './CrvIBIcon';
