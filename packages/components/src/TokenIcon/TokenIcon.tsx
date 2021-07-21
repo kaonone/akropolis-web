@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { makeStyles } from '@akropolis-web/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 import * as icons from '../icons/tokens';
@@ -42,12 +41,12 @@ const tokenIcons: Record<string, CoinComponent> = {
   steCRV: icons.SteCRVIcon,
   BTCB: currencyIcons.BTCIcon,
   yveCRV: icons.YveCRVIcon,
+  crvIB: icons.CrvIBIcon,
 };
 
 export function TokenIcon(props: Props & SvgIconProps) {
   const { tokenAddress, inactive, ...rest } = props;
 
-  const classes = useStyles();
   const { supportedTokens } = useDependencyContext();
 
   const Icon = useMemo(() => {
@@ -61,17 +60,6 @@ export function TokenIcon(props: Props & SvgIconProps) {
   return Icon ? (
     <Icon {...rest} inactive={inactive} />
   ) : (
-    <div className={classes.addressIcon}>
-      <AddressIcon address={tokenAddress} {...rest} />
-    </div>
+    <AddressIcon {...rest} address={tokenAddress} />
   );
 }
-
-const useStyles = makeStyles(
-  {
-    addressIcon: {
-      display: 'inline-flex',
-    },
-  },
-  { name: 'TokenIcon' },
-);
