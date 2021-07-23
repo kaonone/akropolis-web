@@ -4,7 +4,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { TokenIconProps } from '../types';
 import { makeRandomID } from '../../temp23/makeRandomID';
 
-export function TriCryptoIcon(props: TokenIconProps) {
+export function CrvTricryptoIcon(props: TokenIconProps) {
   const gradientIds = React.useMemo(
     () => [1, 2, 3, 4, 5, 6].map(() => makeRandomID('TriCryptoIcon')),
     [],
