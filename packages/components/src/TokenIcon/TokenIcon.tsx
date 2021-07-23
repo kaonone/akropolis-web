@@ -42,6 +42,7 @@ const tokenIcons: Record<string, CoinComponent> = {
   BTCB: currencyIcons.BTCIcon,
   yveCRV: icons.YveCRVIcon,
   crvIB: icons.CrvIBIcon,
+  TriCrypto: icons.TriCryptoIcon,
 };
 
 export function TokenIcon(props: Props & SvgIconProps) {
