@@ -116,7 +116,7 @@ function DecimalsInput(props: Props) {
       InputProps={{
         endAdornment: maxValue && (
           <Button disabled={disabled} onClick={handleMaxButtonClick} className={classes.maxButton}>
-            MAX
+            Max
           </Button>
         ),
         ...InputProps,
@@ -127,7 +127,7 @@ function DecimalsInput(props: Props) {
 
 const useStyles = makeStyles(() => ({
   maxButton: {
-    fontSize: 10,
+    fontSize: 12,
     padding: 11,
     minWidth: 'unset',
   },
