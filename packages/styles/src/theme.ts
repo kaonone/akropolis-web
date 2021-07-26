@@ -471,6 +471,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiOutlinedInput: {
             root: {
               borderColor: colors.darkMist,
+              backgroundColor: colors.cinder,
               borderRadius: 6,
               minHeight: 36,
 
@@ -636,6 +637,10 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
             textColorInherit: {
               opacity: 1,
+
+              '&$disabled': {
+                opacity: 0.2,
+              },
             },
           },
 

@@ -59,6 +59,7 @@ export const useStyles = makeStyles(
       },
     },
     input: {
+      backgroundColor: 'transparent',
       fontSize: 'inherit',
     },
     paper: {
