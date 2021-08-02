@@ -504,6 +504,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
                 color: 'rgba(255, 255, 255, 0.5)',
                 opacity: 1,
               },
+
+              '&$disabled': {
+                '&::placeholder': {
+                  color: 'rgba(255, 255, 255, 0.3)',
+                },
+              },
             },
 
             notchedOutline: {
