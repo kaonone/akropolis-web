@@ -15,7 +15,7 @@ export const useStyles = makeStyles(
       background: theme.gradients.main.linear('to right'),
 
       '&$colorSecondary': {
-        background: '#fff',
+        background: 'rgba(255, 255, 255, 0.5)',
 
         '&$iconChecked:after': {
           background: '#fff',
