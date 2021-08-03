@@ -14,6 +14,14 @@ export const useStyles = makeStyles(
       padding: borderOffset,
       background: theme.gradients.main.linear('to right'),
 
+      '&$colorSecondary': {
+        background: 'rgba(255, 255, 255, 0.5)',
+
+        '&$iconChecked:after': {
+          background: '#fff',
+        },
+      },
+
       '&:before': {
         content: "''",
         display: 'block',
@@ -39,6 +47,8 @@ export const useStyles = makeStyles(
         background: theme.gradients.main.linear('to right'),
       },
     },
+
+    colorSecondary: {},
   }),
   { name: 'RadioButton' },
 );

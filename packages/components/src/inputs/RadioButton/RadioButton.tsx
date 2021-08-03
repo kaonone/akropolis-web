@@ -35,8 +35,20 @@ function RadioButton(props: Props) {
         control={
           <Radio
             {...radioProps}
-            checkedIcon={<span className={cn(classes.icon, classes.iconChecked)} />}
-            icon={<span className={classes.icon} />}
+            checkedIcon={
+              <span
+                className={cn(classes.icon, classes.iconChecked, {
+                  [classes.colorSecondary]: radioProps.color === 'secondary',
+                })}
+              />
+            }
+            icon={
+              <span
+                className={cn(classes.icon, {
+                  [classes.colorSecondary]: radioProps.color === 'secondary',
+                })}
+              />
+            }
           />
         }
         label={label}
