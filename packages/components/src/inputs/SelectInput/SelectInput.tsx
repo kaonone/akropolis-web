@@ -23,10 +23,10 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
-  variant?: 'standard' | 'outlined';
+  variant?: 'standard' | 'outlined' | 'filled';
 };
 
-type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
+type SelectInputProps = OwnProps & Omit<ComponentPropsWithoutRef<typeof TextInput>, 'variant'>;
 
 const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
@@ -108,16 +108,19 @@ export function SelectInput(props: SelectInputProps) {
       select
       variant={variant}
       disabled={disabled}
-      className={cn(selectClassName, classes.root, {
+      className={cn(classes.root, selectClassName, {
         [classes.isOpen]: isMenuOpen,
         [classes.disableVariantText]: disabled && disableVariant === 'text',
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-        [classes.withoutOutline]: variant === 'standard',
+        [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
+        [classes.filled]: variant === 'filled',
       })}
       InputProps={{
         ...restInputProps,
-        className: cn(inputClassName, classes.input),
+        className: cn(classes.input, inputClassName, {
+          [classes.filled]: variant === 'filled',
+        }),
       }}
       SelectProps={{
         ...restSelectProps,
@@ -132,8 +135,9 @@ export function SelectInput(props: SelectInputProps) {
             className: cn(classes.paper, menuProps?.PaperProps?.className, {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-              [classes.withoutOutline]: variant === 'standard',
-              [classes.withCheckmark]: variant === 'standard' || restSelectProps.multiple,
+              [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
+              [classes.withCheckmark]:
+                variant === 'standard' || variant === 'filled' || restSelectProps.multiple,
             }),
           },
           ...menuPositionProps,
