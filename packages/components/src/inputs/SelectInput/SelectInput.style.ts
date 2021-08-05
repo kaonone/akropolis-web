@@ -109,6 +109,12 @@ export const useStyles = makeStyles(
           borderRadius: 6,
           borderBottom: '1px solid #40404b',
         },
+
+        '&$filled': {
+          borderColor: 'rgba(255, 255, 255, 0.1)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        },
       },
 
       [theme.breakpoints.up('tabletSM')]: {

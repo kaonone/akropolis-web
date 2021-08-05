@@ -138,6 +138,7 @@ export function SelectInput(props: SelectInputProps) {
               [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
               [classes.withCheckmark]:
                 variant === 'standard' || variant === 'filled' || restSelectProps.multiple,
+              [classes.filled]: variant === 'filled',
             }),
           },
           ...menuPositionProps,
