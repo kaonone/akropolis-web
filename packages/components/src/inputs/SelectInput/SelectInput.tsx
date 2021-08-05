@@ -26,7 +26,7 @@ type OwnProps = {
   variant?: 'standard' | 'outlined' | 'filled';
 };
 
-type SelectInputProps = OwnProps & Omit<ComponentPropsWithoutRef<typeof TextInput>, 'variant'>;
+type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
 
 const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
