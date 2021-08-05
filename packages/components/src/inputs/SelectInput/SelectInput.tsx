@@ -23,7 +23,6 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
-  variant?: 'standard' | 'outlined';
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
@@ -108,16 +107,19 @@ export function SelectInput(props: SelectInputProps) {
       select
       variant={variant}
       disabled={disabled}
-      className={cn(selectClassName, classes.root, {
+      className={cn(classes.root, selectClassName, {
         [classes.isOpen]: isMenuOpen,
         [classes.disableVariantText]: disabled && disableVariant === 'text',
         [classes.hasBottomSpace]: hasBottomSpace,
         [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-        [classes.withoutOutline]: variant === 'standard',
+        [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
+        [classes.filled]: variant === 'filled',
       })}
       InputProps={{
         ...restInputProps,
-        className: cn(inputClassName, classes.input),
+        className: cn(classes.input, inputClassName, {
+          [classes.filled]: variant === 'filled',
+        }),
       }}
       SelectProps={{
         ...restSelectProps,
@@ -132,8 +134,10 @@ export function SelectInput(props: SelectInputProps) {
             className: cn(classes.paper, menuProps?.PaperProps?.className, {
               [classes.hasBottomSpace]: hasBottomSpace,
               [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
-              [classes.withoutOutline]: variant === 'standard',
-              [classes.withCheckmark]: variant === 'standard' || restSelectProps.multiple,
+              [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
+              [classes.withCheckmark]:
+                variant === 'standard' || variant === 'filled' || restSelectProps.multiple,
+              [classes.filled]: variant === 'filled',
             }),
           },
           ...menuPositionProps,

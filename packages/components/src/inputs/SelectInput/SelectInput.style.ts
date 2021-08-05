@@ -50,17 +50,21 @@ export const useStyles = makeStyles(
         '& $arrowIcon': {
           padding: 0,
         },
+      },
 
-        '&$isOpen': {
-          '& $arrowIcon': {
-            transform: 'rotate(0deg)',
-          },
+      '&$withoutOutline$filled': {
+        '& $arrowIcon': {
+          padding: 12,
         },
       },
     },
     input: {
       backgroundColor: 'transparent',
       fontSize: 'inherit',
+
+      '&$filled': {
+        backgroundColor: '#191924',
+      },
     },
     paper: {
       fontSize: 12,
@@ -78,6 +82,8 @@ export const useStyles = makeStyles(
       },
 
       '&$withCheckmark': {
+        backgroundColor: theme.colors.blackRussian,
+
         '& $menuItem': {
           paddingRight: 34,
         },
@@ -103,6 +109,12 @@ export const useStyles = makeStyles(
           borderRadius: 6,
           borderBottom: '1px solid #40404b',
         },
+
+        '&$filled': {
+          borderColor: 'rgba(255, 255, 255, 0.1)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        },
       },
 
       [theme.breakpoints.up('tabletSM')]: {
@@ -117,14 +129,16 @@ export const useStyles = makeStyles(
       position: 'absolute',
       right: 0,
       padding: 12,
-      fontSize: 12,
+      fontSize: 14,
       pointerEvents: 'none',
     },
+
     isOpen: {},
     disableVariantText: {},
     hasBottomSpace: {},
     hasTopSpace: {},
     withoutOutline: {},
+    filled: {},
     withCheckmark: {},
     select: {},
   }),

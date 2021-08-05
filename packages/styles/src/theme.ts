@@ -518,6 +518,28 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             },
           },
 
+          MuiFilledInput: {
+            underline: {
+              minHeight: 0,
+
+              '&:before': {
+                display: 'none',
+              },
+
+              '&:after': {
+                display: 'none',
+              },
+
+              '& $input.MuiSelect-select': {
+                padding: '10px 22px 10px 16px',
+              },
+            },
+
+            root: {
+              borderRadius: 6,
+            },
+          },
+
           MuiFormHelperText: {
             root: {
               fontWeight: 300,
@@ -553,6 +575,16 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
               '&:hover:not($disabled)': {
                 backgroundColor: colors.blackRussian,
+              },
+            },
+
+            filled: {
+              '&$select:focus': {
+                backgroundColor: 'transparent',
+              },
+
+              '&:hover:not($disabled)': {
+                backgroundColor: 'transparent',
               },
             },
           },
