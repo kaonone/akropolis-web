@@ -23,7 +23,6 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
-  variant?: 'standard' | 'outlined' | 'filled';
 };
 
 type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
