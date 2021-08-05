@@ -30,6 +30,7 @@ export { DialogContent } from './DialogContent/DialogContent';
 export { AdaptiveGrid as Grid, GridProps, GridTypeMap } from './AdaptiveGrid/AdaptiveGrid';
 export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 export { ResizeObserverComponent } from './ResizeObserverComponent/ResizeObserverComponent';
+export { ResizeObserverPolyfill } from './ResizeObserverComponent/ResizeObserverPolyfill';
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
 export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 export { Accordion } from './Accordion/Accordion';
