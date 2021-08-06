@@ -1,8 +1,6 @@
 import React from 'react';
 import { createStyles, withStyles } from '@material-ui/styles';
 
-import { ResizeObserverPolyfill } from './ResizeObserverPolyfill';
-
 type Size = 'full' | 'compressed';
 type ClsNames = keyof typeof styles;
 
@@ -15,7 +13,7 @@ type State = {
   size: Size;
 };
 
-export class ResizeObserver extends React.PureComponent<Props, State> {
+export class ResizeObserverContainer extends React.PureComponent<Props, State> {
   public state: State = {
     size: 'full',
   };
@@ -31,18 +29,16 @@ export class ResizeObserver extends React.PureComponent<Props, State> {
     }
   };
 
-  private observer = (window as any).ResizeObserver
-    ? new (window as any).ResizeObserver(this.handleResize)
-    : new ResizeObserverPolyfill(this.handleResize);
+  private observer = new (window as any).ResizeObserver(this.handleResize);
 
   private ref = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
-    this.observer.observe(this.ref.current);
+    this.ref.current && this.observer.observe(this.ref.current);
   }
 
   componentWillUnmount() {
-    this.observer.unobserve(this.ref.current);
+    this.ref.current && this.observer.unobserve(this.ref.current);
   }
 
   public render() {
@@ -74,4 +70,4 @@ const styles = createStyles({
   },
 });
 
-export const ResizeObserverComponent = withStyles(styles)(ResizeObserver);
+export const ResizeObserverComponent = withStyles(styles)(ResizeObserverContainer);
