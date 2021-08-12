@@ -11,6 +11,7 @@ export interface IToFraction {
 export class Fraction implements IToBN {
   public readonly numerator: BN;
   public readonly denominator: BN;
+  static NA: Fraction = new Fraction(0, 0);
 
   constructor(
     numerator: string | number | BN | IToBN,
@@ -102,6 +103,10 @@ export class Fraction implements IToBN {
 
   isNeg() {
     return this.numerator.isNeg();
+  }
+
+  isNA() {
+    return this === Fraction.NA || (this.numerator.isZero() && this.denominator.isZero());
   }
 
   toNumber() {

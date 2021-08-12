@@ -61,6 +61,10 @@ export abstract class Amount<C extends ICurrency = ICurrency> implements IToBN, 
     return this.value.isNeg();
   }
 
+  public isNA(): boolean {
+    return this.value.isNA();
+  }
+
   public eq(value: this): boolean {
     return this.eqValues(value) && this.currency.equals(value.currency);
   }
