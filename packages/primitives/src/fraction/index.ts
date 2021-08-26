@@ -4,44 +4,27 @@ import { getDecimal, bnToBn, IToBN, Decimal, decimalsToWei } from '../bnHexWei';
 
 export type Value = number | string | BN | IToBN | Fraction | IToFraction;
 
-type FractionDiv = {
-  numerator: BN;
-  denominator: BN;
-  originalNumerator: BN;
-  originalDenominator: BN;
-};
-
 export interface IToFraction {
   toFraction(): Fraction;
 }
 
-const MINIMUM_DECIMALS_ACCURACY = 50;
-const MAXIMUM_NUMBER_LENGTH = 50;
-
 export class Fraction implements IToBN {
+  static decimalsAccuracy = 18;
+  static maximumNumeratorBytes = 416;
+
   public readonly numerator: BN;
   public readonly denominator: BN;
-  private toFraction: (value: Value) => Fraction;
 
   constructor(
     numerator: string | number | BN | IToBN,
     denominator: string | number | BN | IToBN = new BN(1),
-    private disableRound: boolean = false,
   ) {
-    this.toFraction = (value: Value) => toFraction(value, this.disableRound);
-
-    if (this.disableRound) {
-      this.numerator = bnToBn(numerator);
-      this.denominator = bnToBn(denominator);
-    } else {
-      const {
-        numerator: roundedNumerator,
-        denominator: roundedDenominator,
-      } = this.getRoundedFraction(bnToBn(numerator), bnToBn(denominator));
-
-      this.numerator = roundedNumerator;
-      this.denominator = roundedDenominator;
-    }
+    const [roundedNumerator, roundedDenominator] = this.round(
+      bnToBn(numerator),
+      bnToBn(denominator),
+    );
+    this.numerator = roundedNumerator;
+    this.denominator = roundedDenominator;
   }
 
   static isFraction(value: unknown): value is Fraction {
@@ -62,73 +45,62 @@ export class Fraction implements IToBN {
   }
 
   add(value: Value) {
-    const { denominator, numerator } = this.toFraction(value);
+    const { denominator, numerator } = toFraction(value);
     return new Fraction(
       this.numerator.mul(denominator).add(numerator.mul(this.denominator)),
       this.denominator.mul(denominator),
-      this.disableRound,
     );
   }
 
   sub(value: Value) {
-    const { denominator, numerator } = this.toFraction(value);
-
+    const { denominator, numerator } = toFraction(value);
     return new Fraction(
       this.numerator.mul(denominator).sub(numerator.mul(this.denominator)),
       this.denominator.mul(denominator),
-      this.disableRound,
     );
   }
 
   div(value: Value) {
-    const { denominator, numerator } = this.toFraction(value);
-    return new Fraction(
-      this.numerator.mul(denominator),
-      this.denominator.mul(numerator),
-      this.disableRound,
-    );
+    const { denominator, numerator } = toFraction(value);
+    return new Fraction(this.numerator.mul(denominator), this.denominator.mul(numerator));
   }
 
   mul(value: Value) {
-    const { denominator, numerator } = this.toFraction(value);
-    return new Fraction(
-      this.numerator.mul(numerator),
-      this.denominator.mul(denominator),
-      this.disableRound,
-    );
+    const { denominator, numerator } = toFraction(value);
+    return new Fraction(this.numerator.mul(numerator), this.denominator.mul(denominator));
   }
 
   eq(value: Value): boolean {
-    return this.toBN().eq(this.toFraction(value).toBN());
+    return this.toBN().eq(toFraction(value).toBN());
   }
 
   gt(value: Value): boolean {
-    const { denominator, numerator } = this.toFraction(value);
+    const { denominator, numerator } = toFraction(value);
     return this.numerator.mul(denominator).gt(numerator.mul(this.denominator));
   }
 
   lt(value: Value): boolean {
-    const { denominator, numerator } = this.toFraction(value);
+    const { denominator, numerator } = toFraction(value);
     return this.numerator.mul(denominator).lt(numerator.mul(this.denominator));
   }
 
   lte(value: Value): boolean {
-    const { denominator, numerator } = this.toFraction(value);
+    const { denominator, numerator } = toFraction(value);
     return this.numerator.mul(denominator).lte(numerator.mul(this.denominator));
   }
 
   gte(value: Value): boolean {
-    const { denominator, numerator } = this.toFraction(value);
+    const { denominator, numerator } = toFraction(value);
     return this.numerator.mul(denominator).gte(numerator.mul(this.denominator));
   }
 
   abs(): Fraction {
-    return new Fraction(this.numerator.abs(), this.denominator.abs(), this.disableRound);
+    return new Fraction(this.numerator.abs(), this.denominator.abs());
   }
 
   pow(rawPower: BN | IToBN | number) {
     const power = bnToBn(rawPower);
-    return new Fraction(this.numerator.pow(power), this.denominator.pow(power), this.disableRound);
+    return new Fraction(this.numerator.pow(power), this.denominator.pow(power));
   }
 
   isZero() {
@@ -144,7 +116,7 @@ export class Fraction implements IToBN {
   }
 
   toString() {
-    const fractionalPrecisionMultiplier = new BN(10).pow(new BN(20));
+    const fractionalPrecisionMultiplier = new BN(10).pow(new BN(Fraction.decimalsAccuracy));
 
     const integer = this.numerator.div(this.denominator);
     const remainder = this.numerator.sub(this.denominator.mul(integer));
@@ -162,73 +134,20 @@ export class Fraction implements IToBN {
     return this.toNumber();
   }
 
-  private getRoundedFraction(numerator: BN, denominator: BN) {
-    const numeratorLength = numerator.toString().length;
-    const denominatorLength = denominator.toString().length;
-    const numeratorDegreeDiff = numeratorLength - MAXIMUM_NUMBER_LENGTH;
-    const denominatorDegreeDiff = denominatorLength - MAXIMUM_NUMBER_LENGTH;
-
-    if (numeratorLength <= denominatorLength && numeratorDegreeDiff > 0) {
-      const numberToDiv = decimalsToWei(numeratorDegreeDiff);
-      return { numerator: numerator.div(numberToDiv), denominator: denominator.div(numberToDiv) };
+  // eslint-disable-next-line class-methods-use-this
+  round(numerator: BN, denominator: BN) {
+    if (numerator.byteLength() < Fraction.maximumNumeratorBytes) {
+      return [numerator, denominator];
     }
 
-    if (denominatorDegreeDiff > 0) {
-      return this.reduceFractionByDenominator({
-        numerator,
-        denominator,
-        originalNumerator: numerator,
-        originalDenominator: denominator,
-      });
-    }
-
-    return {
-      numerator,
-      denominator,
-    };
-  }
-
-  private reduceFractionByDenominator({
-    numerator,
-    denominator,
-    originalNumerator,
-    originalDenominator,
-  }: FractionDiv): FractionDiv {
-    const roundDegree = (denominator.toString().length - MAXIMUM_NUMBER_LENGTH) / 10;
-    const roundDegreeDecimals = decimalsToWei(roundDegree > 5 ? roundDegree : 5);
-
-    const roundedFraction = new Fraction(
-      numerator.div(roundDegreeDecimals),
-      denominator.div(roundDegreeDecimals),
-      true,
-    );
-
-    const noNeedToRound =
-      new Fraction(originalNumerator, originalDenominator, true)
-        .sub(roundedFraction)
-        .abs()
-        .gt(new Fraction(1, decimalsToWei(MINIMUM_DECIMALS_ACCURACY), true)) ||
-      roundedFraction.denominator.toString().length <= MAXIMUM_NUMBER_LENGTH;
-
-    if (noNeedToRound) {
-      return {
-        numerator,
-        denominator,
-        originalNumerator,
-        originalDenominator,
-      };
-    }
-
-    return this.reduceFractionByDenominator({
-      numerator: roundedFraction.numerator,
-      denominator: roundedFraction.denominator,
-      originalNumerator,
-      originalDenominator,
-    });
+    return [
+      numerator.mul(decimalsToWei(Fraction.decimalsAccuracy)).div(denominator),
+      decimalsToWei(Fraction.decimalsAccuracy),
+    ];
   }
 }
 
-export function toFraction(value: Value, disableRound?: boolean): Fraction {
+export function toFraction(value: Value): Fraction {
   if (value instanceof Fraction) {
     return value;
   }
@@ -240,16 +159,12 @@ export function toFraction(value: Value, disableRound?: boolean): Fraction {
     const fractional = value - integer;
 
     if (fractional) {
-      return new Fraction(
-        fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'),
-        decimalsToWei(18),
-        disableRound,
-      )
+      return new Fraction(fractional.toFixed(18).replace(/0\.(\d+)/, '1$1'), decimalsToWei(18))
         .sub(new BN(1))
         .add(new BN(integer));
     }
 
-    return new Fraction(new BN(integer), 0, disableRound);
+    return new Fraction(new BN(integer));
   }
-  return new Fraction(value, 0, disableRound);
+  return new Fraction(value);
 }
