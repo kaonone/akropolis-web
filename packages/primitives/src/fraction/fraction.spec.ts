@@ -9,39 +9,58 @@ type Operation = {
   num: string;
 };
 
+function setDefaultFractionOptions() {
+  setFractionOptions(96, 18);
+}
+
+function setFractionOptions(maxBytes: number, accuracy: number) {
+  Fraction.maxWordsInNumerator = maxBytes;
+  Fraction.decimalsAccuracy = accuracy;
+}
+
 describe('Test equality and calculation time', (): void => {
-  const operationsList = generateOperationsList(10000);
+  setDefaultFractionOptions();
+
+  const operationsList = generateOperationsList(5000);
   const originalFraction = new Fraction(decimalsToWei(18));
 
   const roundedFractionAfterOperations = makeOperationsOnFraction(originalFraction, operationsList);
 
-  Fraction.maximumNumeratorBytes = Infinity;
+  setFractionOptions(Infinity, 18);
 
   const originalFractionAfterOperations = makeOperationsOnFraction(
     originalFraction,
     operationsList,
   );
 
-  it(`rounded number length should be equal original`, (): void => {
-    expect(roundedFractionAfterOperations.numerator.byteLength()).toBeLessThanOrEqual(
+  setDefaultFractionOptions();
+
+  it(`rounded number length should be less original`, (): void => {
+    expect(roundedFractionAfterOperations.numerator.byteLength()).toBeLessThan(
       originalFractionAfterOperations.numerator.byteLength(),
     );
   });
-  it(`rounded number should be equal original`, (): void => {
-    expect(roundedFractionAfterOperations.eq(originalFractionAfterOperations)).toBeTruthy();
+
+  it(`rounding should be enough accurate`, (): void => {
+    setFractionOptions(Infinity, 18);
+
+    const original = originalFractionAfterOperations.toBN();
+    const rounded = roundedFractionAfterOperations.toBN();
+
+    const allowedError = new Fraction(1).div(decimalsToWei(50));
+    const currentError = new Fraction(original).sub(rounded).div(original).abs();
+
+    setDefaultFractionOptions();
+
+    expect(currentError.lte(allowedError)).toBeTruthy();
   });
 });
 
 function generateOperationsList(number: number) {
   const array = Array(number)
-    .fill({})
-    .map(() => ({ op: operations[getRandom(0, 3)], num: getRandomNumber(getRandom(5, 28)) }));
-
-  operations.forEach(
-    op =>
-      !array.find(value => value.op === op) &&
-      array.push({ op, num: getRandomNumber(getRandom(5, 28)) }),
-  );
+    .fill(null)
+    .map(() => ({ op: operations[getRandom(0, 4)], num: getRandomNumber(getRandom(10, 25)) }))
+    .filter(({ op }) => !!op);
 
   return array;
 }
@@ -52,8 +71,9 @@ function makeOperationsOnFraction(fraction: Fraction, operationsList: Operation[
 
 function getRandomNumber(countNumbers: number): string {
   return Array(countNumbers)
-    .fill('')
-    .reduce<string>(sum => `${sum}${Math.floor(Math.random() * 10)}`, '');
+    .fill(null)
+    .map(() => `${getRandom(0, 10)}`)
+    .join('');
 }
 
 function getRandom(min: number, max: number) {

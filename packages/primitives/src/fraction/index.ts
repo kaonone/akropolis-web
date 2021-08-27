@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import BN from 'bn.js';
 
 import { getDecimal, bnToBn, IToBN, Decimal, decimalsToWei } from '../bnHexWei';
@@ -10,7 +11,7 @@ export interface IToFraction {
 
 export class Fraction implements IToBN {
   static decimalsAccuracy = 18;
-  static maximumNumeratorBytes = 416;
+  static maxWordsInNumerator = 96;
 
   public readonly numerator: BN;
   public readonly denominator: BN;
@@ -136,7 +137,7 @@ export class Fraction implements IToBN {
 
   // eslint-disable-next-line class-methods-use-this
   round(numerator: BN, denominator: BN) {
-    if (numerator.byteLength() < Fraction.maximumNumeratorBytes) {
+    if ((numerator as any).length <= Fraction.maxWordsInNumerator) {
       return [numerator, denominator];
     }
 
