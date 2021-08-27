@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import BN from 'bn.js';
 
 import { getDecimal, bnToBn, IToBN, Decimal, decimalsToWei } from '../bnHexWei';
@@ -9,6 +10,9 @@ export interface IToFraction {
 }
 
 export class Fraction implements IToBN {
+  static decimalsAccuracy = 18;
+  static maxWordsInNumerator = 96;
+
   public readonly numerator: BN;
   public readonly denominator: BN;
 
@@ -16,8 +20,12 @@ export class Fraction implements IToBN {
     numerator: string | number | BN | IToBN,
     denominator: string | number | BN | IToBN = new BN(1),
   ) {
-    this.numerator = bnToBn(numerator);
-    this.denominator = bnToBn(denominator);
+    const [roundedNumerator, roundedDenominator] = this.round(
+      bnToBn(numerator),
+      bnToBn(denominator),
+    );
+    this.numerator = roundedNumerator;
+    this.denominator = roundedDenominator;
   }
 
   static isFraction(value: unknown): value is Fraction {
@@ -105,7 +113,11 @@ export class Fraction implements IToBN {
   }
 
   toNumber() {
-    const fractionalPrecisionMultiplier = new BN(10).pow(new BN(20));
+    return parseFloat(this.toString());
+  }
+
+  toString() {
+    const fractionalPrecisionMultiplier = new BN(10).pow(new BN(Fraction.decimalsAccuracy));
 
     const integer = this.numerator.div(this.denominator);
     const remainder = this.numerator.sub(this.denominator.mul(integer));
@@ -116,11 +128,23 @@ export class Fraction implements IToBN {
       .toString()
       .slice(1); // remove the first digit to take a fraction with padding 100023 -> 00023
 
-    return parseFloat(`${integer}.${fractional}`);
+    return `${integer}.${fractional}`;
   }
 
   valueOf() {
     return this.toNumber();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  round(numerator: BN, denominator: BN) {
+    if ((numerator as any).length <= Fraction.maxWordsInNumerator) {
+      return [numerator, denominator];
+    }
+
+    return [
+      numerator.mul(decimalsToWei(Fraction.decimalsAccuracy)).div(denominator),
+      decimalsToWei(Fraction.decimalsAccuracy),
+    ];
   }
 }
 
