@@ -8,8 +8,6 @@ export { default as Typography, TypographyProps } from '@material-ui/core/Typogr
 export { default as IconButton } from '@material-ui/core/IconButton';
 export { default as Link, LinkProps } from '@material-ui/core/Link';
 export { default as Divider } from '@material-ui/core/Divider';
-export { default as TabContext } from '@material-ui/lab/TabContext';
-export { default as Tab, TabProps } from '@material-ui/core/Tab';
 
 export { Table };
 export { Button, ButtonProps, ButtonTypeMap } from './Button/Button';
@@ -34,6 +32,7 @@ export { ResizeObserverPolyfill } from './ResizeObserverPolyfill/ResizeObserverP
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
 export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 export { Accordion } from './Accordion/Accordion';
+export { TabContext } from './TabContext/TabContext';
 
 export * from './inputs';
 export * from './icons';
