@@ -3,6 +3,5 @@ node_modules
 .vscode
 lib
 coverage
-packages/*/dist
 packages/*/temp
 ./lerna-debug.log

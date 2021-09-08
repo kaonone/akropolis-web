@@ -1,0 +1,1 @@
+export declare const useStyles: (props?: any) => Record<"root" | "tableCell" | "tableCellForInput" | "decimalInputWrapper" | "withCurrencySelect" | "inputAdornedStart" | "select" | "selectInput" | "selectRoot" | "decimalInput", string>;

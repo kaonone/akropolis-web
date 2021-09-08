@@ -1,0 +1,1 @@
+export declare const useStyles: (props?: any) => Record<"root" | "disabled" | "sizeExtraSmall" | "sizeSmall" | "sizeLarge" | "outlinedPrimary" | "containedPrimary" | "textPrimary" | "focusVisible" | "defaultMinWidth" | "@keyframes animate", string>;
