@@ -33,6 +33,7 @@ export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
 export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 export { Accordion } from './Accordion/Accordion';
 export { TabContext } from './TabContext/TabContext';
+export { Tab } from './Tab/Tab';
 
 export * from './inputs';
 export * from './icons';
