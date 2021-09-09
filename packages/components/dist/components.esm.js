@@ -4298,6 +4298,7 @@ function TabList(props) {
     ref: leftScrollButtonRef,
     className: classes.leftScrollButton
   }), React__default.createElement(TabList$1, Object.assign({}, props, {
+    component: "div",
     ScrollButtonComponent: CustomTabScrollButton,
     TabScrollButtonProps: {
       classes: {
