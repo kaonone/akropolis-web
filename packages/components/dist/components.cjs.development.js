@@ -5617,43 +5617,6 @@ function TabContext(props) {
   }, React__default.createElement(TabContext$1, Object.assign({}, rest)));
 }
 
-function CloseIcon(props) {
-  var gradientId = React.useMemo(function () {
-    return makeRandomID('CloseIcon');
-  }, []);
-  return React.createElement(SvgIcon, Object.assign({}, props, {
-    viewBox: "0 0 14 14"
-  }), React.createElement("defs", null, React.createElement("linearGradient", {
-    x1: "50%",
-    y1: "0%",
-    x2: "50%",
-    y2: "100%",
-    id: gradientId
-  }, React.createElement("stop", {
-    stopColor: "#574CF2",
-    offset: "0%"
-  }), React.createElement("stop", {
-    stopColor: "#4236D0",
-    offset: "100%"
-  }))), React.createElement("g", {
-    fill: "none",
-    fillRule: "evenodd"
-  }, React.createElement("g", {
-    transform: "translate(1 1)",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, React.createElement("circle", {
-    stroke: "#0A0A0E",
-    fill: "url(#" + gradientId + ")",
-    cx: "6",
-    cy: "6",
-    r: "6"
-  }), React.createElement("path", {
-    stroke: "#FFF",
-    d: "m4.052 3.908 3.897 3.898M4.05 7.806l3.898-3.898"
-  }))));
-}
-
 var sizes$1 = {
   tabs: {
     height: 36,
@@ -5706,40 +5669,15 @@ var getBaseOverrides$1 = function getBaseOverrides(theme) {
 };
 
 var getDefaultVariantOverrides$1 = function getDefaultVariantOverrides(theme) {
-  var _$withCloseButtonInd, _icon;
-
-  return R.mergeDeepRight(getBaseOverrides$1(theme), {
-    root: {
-      position: 'relative',
-      '&$withCloseButtonIndent': (_$withCloseButtonInd = {
-        paddingRight: 13
-      }, _$withCloseButtonInd[theme.breakpoints.up('tabletXS')] = {
-        paddingRight: 10
-      }, _$withCloseButtonInd)
-    },
-    iconButton: {
-      position: 'absolute',
-      right: 0,
-      top: '50%',
-      transform: 'translateY(-50%)'
-    },
-    icon: (_icon = {
-      fontSize: 16
-    }, _icon[theme.breakpoints.up('tabletXS')] = {
-      fontSize: 13
-    }, _icon),
-    withCloseButtonIndent: {}
-  });
+  return getBaseOverrides$1(theme);
 };
 
 var getMinimalisticVariantOverrides$1 = function getMinimalisticVariantOverrides(theme) {
   var _tabRoot2;
 
   return R.mergeDeepRight(getDefaultVariantOverrides$1(theme), {
-    root: {
-      lineHeight: 1
-    },
     tabRoot: (_tabRoot2 = {
+      lineHeight: 1,
       padding: theme.spacing(0.2, 1)
     }, _tabRoot2[theme.breakpoints.up('mobileMD')] = {
       padding: theme.spacing(0.25, 1)
@@ -5759,33 +5697,17 @@ var useMinimalisticStyles$1 = /*#__PURE__*/styles$2.makeStyles(function (theme) 
 });
 
 function Tab(props) {
-  var _cn;
-
-  var onClose = props.onClose,
-      selected = props.selected,
-      rest = _objectWithoutPropertiesLoose(props, ["onClose", "selected"]);
-
   var useStyles = useGetVariantStyles({
     "default": useDefaultStyles$1,
     minimalistic: useMinimalisticStyles$1
   });
   var classes = useStyles();
-  return React__default.createElement("div", {
-    className: cn(classes.root, (_cn = {}, _cn[classes.withCloseButtonIndent] = onClose, _cn))
-  }, React__default.createElement(Tab$1, Object.assign({}, rest, {
+  return React__default.createElement(Tab$1, Object.assign({}, props, {
     classes: {
       root: classes.tabRoot,
       textColorInherit: classes.textColorInherit
     }
-  })), onClose && selected && React__default.createElement(IconButton, {
-    className: classes.iconButton,
-    size: "small",
-    key: "close",
-    "aria-label": "close",
-    onClick: onClose
-  }, React__default.createElement(CloseIcon, {
-    className: classes.icon
-  })));
+  }));
 }
 
 var makeNumberInput = /*#__PURE__*/R.memoizeWith(R.toString, function (ownProps) {

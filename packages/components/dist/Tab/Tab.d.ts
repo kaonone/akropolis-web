@@ -1,6 +1,2 @@
 import { TabProps } from '@material-ui/core/Tab';
-declare type Props = TabProps & {
-    onClose?: () => void;
-};
-export declare function Tab(props: Props): JSX.Element;
-export {};
+export declare function Tab(props: TabProps): JSX.Element;
