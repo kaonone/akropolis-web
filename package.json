@@ -1,6 +1,5 @@
 {
   "name": "akropolis-web",
-  "version": "0.1.1",
   "description": "Code shared between Akropolis web services.",
   "scripts": {
     "clean": "lerna clean --yes && lerna exec -- rm -rf dist/ && rm -rf node_modules",

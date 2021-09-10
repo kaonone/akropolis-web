@@ -8,7 +8,7 @@ import TabScrollButton, { TabScrollButtonProps } from '@material-ui/core/TabScro
 import { useGetVariantStyles } from '../TabContext/TabsVariantContext';
 import { useDefaultStyles, useMinimalisticStyles } from './TabList.style';
 
-export function TabList(props: MuiTabListProps) {
+export function TabList<T extends React.ElementType = 'div'>(props: MuiTabListProps<T>) {
   const backgroundColor = useAncestorBackgroundHack();
 
   const useStyles = useGetVariantStyles({

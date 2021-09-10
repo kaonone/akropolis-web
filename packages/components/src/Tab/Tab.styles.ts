@@ -59,43 +59,12 @@ const getBaseOverrides = (theme: Theme) =>
     },
   } as const);
 
-const getDefaultVariantOverrides = (theme: Theme) =>
-  R.mergeDeepRight(getBaseOverrides(theme), {
-    root: {
-      position: 'relative',
-
-      '&$withCloseButtonIndent': {
-        paddingRight: 13,
-        [theme.breakpoints.up('tabletXS')]: {
-          paddingRight: 10,
-        },
-      },
-    },
-
-    iconButton: {
-      position: 'absolute',
-      right: 0,
-      top: '50%',
-      transform: 'translateY(-50%)',
-    },
-
-    icon: {
-      fontSize: 16,
-      [theme.breakpoints.up('tabletXS')]: {
-        fontSize: 13,
-      },
-    },
-
-    withCloseButtonIndent: {},
-  } as const);
+const getDefaultVariantOverrides = (theme: Theme) => getBaseOverrides(theme);
 
 const getMinimalisticVariantOverrides = (theme: Theme) =>
   R.mergeDeepRight(getDefaultVariantOverrides(theme), {
-    root: {
-      lineHeight: 1,
-    } as any,
-
     tabRoot: {
+      lineHeight: 1,
       padding: theme.spacing(0.2, 1),
 
       [theme.breakpoints.up('mobileMD')]: {
