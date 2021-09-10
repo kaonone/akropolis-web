@@ -5681,6 +5681,10 @@ var getMinimalisticVariantOverrides$1 = function getMinimalisticVariantOverrides
       padding: theme.spacing(0.2, 1)
     }, _tabRoot2[theme.breakpoints.up('mobileMD')] = {
       padding: theme.spacing(0.25, 1)
+    }, _tabRoot2['&:not($selected)'] = {
+      '& + &::after': {
+        display: 'none'
+      }
     }, _tabRoot2)
   });
 };

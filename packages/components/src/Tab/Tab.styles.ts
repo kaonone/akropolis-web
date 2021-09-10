@@ -70,6 +70,12 @@ const getMinimalisticVariantOverrides = (theme: Theme) =>
       [theme.breakpoints.up('mobileMD')]: {
         padding: theme.spacing(0.25, 1),
       },
+
+      '&:not($selected)': {
+        '& + &::after': {
+          display: 'none',
+        },
+      },
     } as any,
   } as const);
 
