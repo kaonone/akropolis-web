@@ -1,11 +1,14 @@
 import React, { useState, useCallback, useRef } from 'react';
+import cn from 'classnames';
 import Tooltip from '@material-ui/core/Tooltip';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import { useTheme } from '@akropolis-web/styles';
+import IconButton from '@material-ui/core/IconButton';
 
 import { getShortAddress } from '../temp23/getShortAddress';
+import { CopyIcon } from '../icons/CopyIcon';
 import { AddressIcon } from '../AddressIcon/AddressIcon';
 import { useStyles } from './ShortAddress.style';
 
@@ -13,10 +16,11 @@ type Props = {
   address: string;
   disableCopy?: boolean;
   withIcon?: boolean;
+  variant?: 'filled' | 'text';
 };
 
 function ShortAddress(props: Props) {
-  const { address, disableCopy, withIcon } = props;
+  const { address, disableCopy, withIcon, variant = 'text' } = props;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -42,41 +46,41 @@ function ShortAddress(props: Props) {
     clearTimeout(closeTimeout.current);
   }, []);
 
-  const renderGridWithIcon = () => (
+  const renderAddress = () => (
+    <span className={cn(classes.shortAddress, { [classes.variantFilled]: variant === 'filled' })}>
+      {shortAddress}
+    </span>
+  );
+
+  return (
     <Grid container alignItems="center" wrap="nowrap" className={classes.root}>
       {withIcon && (
         <Grid item>
-          <Avatar className={classes.icon}>
+          <Avatar className={classes.addressIcon}>
             <AddressIcon address={address} fontSize="inherit" />
           </Avatar>
         </Grid>
       )}
-      <Grid item>
-        {disableCopy ? (
-          renderAddress()
-        ) : (
-          <CopyToClipboard text={address} onCopy={handleCopy}>
-            {renderAddress()}
-          </CopyToClipboard>
-        )}
-      </Grid>
+      <Grid item>{renderAddress()}</Grid>
+      {!disableCopy && (
+        <Grid item className={classes.copyItem}>
+          <Tooltip
+            title={tooltipTitle}
+            onClose={handleTooltipClose}
+            onOpen={handleTooltipOpen}
+            placement="bottom"
+          >
+            <IconButton className={classes.copyButton}>
+              <CopyToClipboard onCopy={handleCopy} text={address}>
+                <div className={classes.copyIcon}>
+                  <CopyIcon fontSize="inherit" />
+                </div>
+              </CopyToClipboard>
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      )}
     </Grid>
-  );
-
-  const renderAddress = () => <span className={classes.shortAddress}>{shortAddress}</span>;
-
-  return disableCopy ? (
-    renderGridWithIcon()
-  ) : (
-    <Tooltip
-      className={classes.tooltip}
-      title={tooltipTitle}
-      onClose={handleTooltipClose}
-      onOpen={handleTooltipOpen}
-      placement="bottom"
-    >
-      {renderGridWithIcon()}
-    </Tooltip>
   );
 }
 
