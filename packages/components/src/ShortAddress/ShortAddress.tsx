@@ -69,8 +69,9 @@ function ShortAddress(props: Props) {
             onClose={handleTooltipClose}
             onOpen={handleTooltipOpen}
             placement="bottom"
+            enterTouchDelay={0}
           >
-            <IconButton className={classes.copyButton}>
+            <IconButton className={classes.copyButton} onTouchStart={handleCopy}>
               <CopyToClipboard onCopy={handleCopy} text={address}>
                 <div className={classes.copyIcon}>
                   <CopyIcon fontSize="inherit" />
