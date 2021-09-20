@@ -24,13 +24,13 @@ function ShortAddress(props: Props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [tooltipTitle, setTooltipTitle] = useState<'copy' | 'copied!'>('copy');
+  const [tooltipTitle, setTooltipTitle] = useState<'copy' | 'copied'>('copy');
   const closeTimeout = useRef(0);
 
   const shortAddress = getShortAddress(address);
 
   const handleCopy = useCallback(() => {
-    setTooltipTitle('copied!');
+    setTooltipTitle('copied');
   }, []);
 
   const handleTooltipClose = useCallback(() => {
@@ -70,12 +70,13 @@ function ShortAddress(props: Props) {
             onOpen={handleTooltipOpen}
             placement="bottom"
             enterTouchDelay={0}
+            classes={{
+              tooltip: classes.tooltip,
+            }}
           >
             <IconButton className={classes.copyButton} onTouchStart={handleCopy}>
               <CopyToClipboard onCopy={handleCopy} text={address}>
-                <div className={classes.copyIcon}>
-                  <CopyIcon fontSize="inherit" />
-                </div>
+                <CopyIcon fontSize="inherit" />
               </CopyToClipboard>
             </IconButton>
           </Tooltip>

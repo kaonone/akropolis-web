@@ -3,7 +3,7 @@ import { makeStyles } from '@akropolis-web/styles';
 export const useStyles = makeStyles(() => {
   return {
     root: {
-      width: 'min-content',
+      display: 'inline-flex',
     },
     shortAddress: {
       fontSize: 'inherit',
@@ -27,14 +27,22 @@ export const useStyles = makeStyles(() => {
       alignItems: 'center',
     },
     copyButton: {
-      padding: 8,
-      margin: -8,
-    },
-    copyIcon: {
       fontSize: 16,
       padding: 5,
       borderRadius: 6,
       backgroundColor: '#494972',
+
+      '&:hover': {
+        backgroundColor: '#57577c',
+      },
+
+      '& .MuiTouchRipple-root span': {
+        transform: 'scale(1.5)',
+      },
+    },
+    tooltip: {
+      padding: 8,
+      textTransform: 'capitalize',
     },
     variantFilled: {},
   };
