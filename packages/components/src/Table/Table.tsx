@@ -19,7 +19,7 @@ type Props<T, U> = {
   indentFromHeader?: M.RowPaddingSize;
   rowClassNames?: M.RowWithClassName<T>;
   divideBy?: (entry: T, entryIndex: number, entries: T[]) => boolean;
-  onCellClick?: (entry: T, entryIndex: number, entries: T[]) => void;
+  onEntryRowClick?: (entry: T, entryIndex: number, entries: T[]) => void;
 };
 
 type RowToExpandedState = Record<number, boolean>;
@@ -72,7 +72,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
     titlePadding = 'medium',
     indentFromHeader,
     divideBy,
-    onCellClick,
+    onEntryRowClick,
     rowClassNames,
   } = props;
 
@@ -401,7 +401,7 @@ export function Table<T, U = null>(props: Props<T, U>) {
           rowClassNames?.className,
           getClassName({ className: rowClassNames?.entryRowClassName }, entry, entryIndex, entries),
         )}
-        onClick={() => onCellClick && onCellClick(entry, entryIndex, entries)}
+        onClick={() => onEntryRowClick && onEntryRowClick(entry, entryIndex, entries)}
       >
         {columns
           .reduce<M.RowCellsRendererAccumulator>(makeRowCellsRenderer(entry, entryIndex), {
