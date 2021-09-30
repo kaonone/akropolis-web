@@ -470,13 +470,13 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiOutlinedInput: {
             root: {
-              borderColor: colors.darkMist,
-              backgroundColor: colors.cinder,
+              borderColor: colors.obsidian,
+              backgroundColor: '#2b2b3a',
               borderRadius: 6,
               minHeight: 36,
 
               '&$focused': {
-                background: colors.blackRussian,
+                background: '#3A3A50',
               },
 
               '&$disabled': {
@@ -529,14 +529,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               '&:after': {
                 display: 'none',
               },
-
-              '& $input.MuiSelect-select': {
-                padding: '10px 22px 10px 16px',
-              },
             },
 
             root: {
               borderRadius: 6,
+              borderTopLeftRadius: 6,
+              borderTopRightRadius: 6,
             },
           },
 
@@ -568,17 +566,11 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiSelect: {
             root: {
               overflow: 'hidden',
-
-              '&$select:focus': {
-                backgroundColor: colors.blackRussian,
-              },
-
-              '&:hover:not($disabled)': {
-                backgroundColor: colors.blackRussian,
-              },
             },
 
             filled: {
+              padding: '8px 11px',
+
               '&$select:focus': {
                 backgroundColor: 'transparent',
               },
