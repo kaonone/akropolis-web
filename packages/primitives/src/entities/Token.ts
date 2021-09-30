@@ -1,9 +1,8 @@
 import { IBrand, isEqualHex } from '../bnHexWei';
 import { ICurrency } from './Currency';
+import { Network } from './types';
 
 const uniqType = Symbol('Token');
-
-export type Network = 'eth' | 'bsc';
 
 export class Token implements ICurrency, IBrand {
   public _type: typeof uniqType = uniqType;
