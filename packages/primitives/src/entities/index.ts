@@ -5,3 +5,4 @@ export * from './TokenAmount';
 export * from './PercentAmount';
 export * from './LiquidityAmount';
 export * from './AllCoinsToken';
+export * from './types';
