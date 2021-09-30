@@ -1,12 +1,11 @@
 import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { Network } from '@akropolis-web/primitives';
 
 import { BSCIcon } from '../icons/BSCIcon';
 import { ETHIcon } from '../icons/currencies';
 
 type Props = React.ComponentProps<typeof SvgIcon> & {
-  network: Network;
+  network: 'bsc' | 'eth';
 };
 
 export function NetworkIcon(props: Props): JSX.Element {
@@ -16,7 +15,6 @@ export function NetworkIcon(props: Props): JSX.Element {
     case 'bsc':
       return <BSCIcon {...rest} />;
     case 'eth':
-    default:
       return <ETHIcon {...rest} />;
   }
 }
