@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.16.70 (2021-09-30)
+
+**Note:** Version bump only for package @akropolis-web/styles
+
+
+
+
+
 ## 0.16.69 (2021-09-29)
 
 **Note:** Version bump only for package @akropolis-web/styles
