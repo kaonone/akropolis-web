@@ -32,6 +32,8 @@ export const useStyles = makeStyles(
 
         '& $input': {
           borderColor: 'transparent',
+          backgroundColor: 'transparent',
+          backgroundImage: 'none',
           color: '#fff',
         },
 
@@ -59,11 +61,11 @@ export const useStyles = makeStyles(
       },
     },
     input: {
-      backgroundColor: 'transparent',
       fontSize: 'inherit',
 
       '&$filled': {
-        backgroundColor: '#191924',
+        border: 'solid 1px #0a0a0e',
+        backgroundImage: 'linear-gradient(to bottom, #3b3b51, #1e1e28)',
       },
     },
     paper: {

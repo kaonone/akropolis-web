@@ -40,6 +40,7 @@ export const useStyles = makeStyles(
       marginLeft: -1,
     },
     selectInput: {
+      backgroundImage: 'linear-gradient(to bottom, #3b3b51, #1e1e28)',
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
     },

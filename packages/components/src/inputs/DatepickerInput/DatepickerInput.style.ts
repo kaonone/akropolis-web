@@ -1,11 +1,12 @@
-import { makeStyles } from '@akropolis-web/styles';
+import { colors, makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
   () => ({
     root: {
       padding: '1px 0px 1px 8px',
-      border: '1px solid #40404b',
+      border: `1px solid ${colors.obsidian}`,
       borderRadius: 6,
+      backgroundColor: '#2b2b3a',
 
       '& .MuiInputBase-input': {
         padding: '6px 0',
