@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import cn from 'classnames';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import MuiSkeleton, { SkeletonProps, SkeletonTypeMap } from '@material-ui/lab/Skeleton';
@@ -7,6 +7,7 @@ import {
   ProvidedAncestorBackground,
   makeStyles,
   lighten,
+  useTheme,
 } from '@akropolis-web/styles';
 
 type WithRoundedBorders = {
@@ -22,8 +23,19 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
   props: SkeletonProps<D, P> & WithRoundedBorders,
 ) => {
   const { classes: muiClasses = {}, variant, borderRadius, ...rest } = props;
+  const theme = useTheme();
+  const ancestorBackground = useAncestorBackgroundHack();
 
-  const backgroundColor = useAncestorBackgroundHack();
+  const backgroundColor = useMemo(() => {
+    const skeletonColorsMap = {
+      [theme.palette.background.default]: theme.palette.background.paperLight,
+      [theme.palette.background.paper]: theme.palette.background.paperLight,
+      [theme.palette.background.paperSecondary]: theme.palette.background.paperLight,
+    };
+
+    return skeletonColorsMap[ancestorBackground] || lighten(ancestorBackground, 0.1);
+  }, [ancestorBackground, theme]);
+
   const classes = useStyles({
     backgroundColor,
     borderRadius,
@@ -41,7 +53,7 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
 const useStyles = makeStyles(
   () => ({
     root: {
-      backgroundColor: ({ backgroundColor }: StylesProps) => lighten(backgroundColor, 0.1),
+      backgroundColor: ({ backgroundColor }: StylesProps) => backgroundColor,
       borderRadius: ({ borderRadius }: StylesProps) => borderRadius,
     },
   }),

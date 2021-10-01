@@ -194,6 +194,7 @@ const lightPalette = {
     default: colors.athensGray,
     paper: colors.white,
     paperSecondary: colors.white,
+    paperLight: colors.white,
   },
   type: 'light' as const,
 };
@@ -222,6 +223,7 @@ export const darkPalette = {
     default: colors.obsidian,
     paper: colors.cinder,
     paperSecondary: colors.darkBlueMagenta,
+    paperLight: colors.jaguar,
   },
   type: 'dark' as const,
 };
@@ -748,6 +750,7 @@ declare module PackageOverrides {
     hint: string;
     tableHeader: string;
     paperSecondary: string;
+    paperLight: string;
   }
 
   interface TypeBreakpoint {
