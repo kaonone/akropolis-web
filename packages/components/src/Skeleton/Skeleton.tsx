@@ -9,8 +9,6 @@ import {
   lighten,
 } from '@akropolis-web/styles';
 
-const DEFAULT_BORDER_RADIUS = 6;
-
 type WithRoundedBorders = {
   borderRadius?: number;
 };
@@ -28,7 +26,7 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({
     backgroundColor,
-    borderRadius: borderRadius || (variant === 'rect' ? DEFAULT_BORDER_RADIUS : undefined),
+    borderRadius,
   });
 
   return (
@@ -43,7 +41,7 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
 const useStyles = makeStyles(
   () => ({
     root: {
-      backgroundColor: ({ backgroundColor }: StylesProps) => lighten(backgroundColor, 0.15),
+      backgroundColor: ({ backgroundColor }: StylesProps) => lighten(backgroundColor, 0.1),
       borderRadius: ({ borderRadius }: StylesProps) => borderRadius,
     },
   }),
