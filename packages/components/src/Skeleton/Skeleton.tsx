@@ -32,7 +32,11 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
   });
 
   return (
-    <MuiSkeleton classes={{ ...muiClasses, root: cn(classes.root, muiClasses.root) }} {...rest} />
+    <MuiSkeleton
+      classes={{ ...muiClasses, root: cn(classes.root, muiClasses.root) }}
+      variant={variant}
+      {...rest}
+    />
   );
 };
 
