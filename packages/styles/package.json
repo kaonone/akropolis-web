@@ -1,6 +1,6 @@
 {
   "name": "@akropolis-web/styles",
-  "version": "0.16.71",
+  "version": "0.16.72",
   "description": "Package with shared css-related stuff like colors, fonts, themes, etc.",
   "keywords": [
     "ethereum",
