@@ -698,6 +698,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiSkeleton: {
             root: {
               backgroundColor: '#20202d',
+              borderRadius: 6,
             },
           },
 
