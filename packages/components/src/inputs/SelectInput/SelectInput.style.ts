@@ -12,12 +12,12 @@ export const useStyles = makeStyles(
       },
 
       '&$isOpen': {
-        '&$hasBottomSpace $input': {
+        '&$hasBottomSpace $input:not($filled)': {
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
         },
 
-        '&$hasTopSpace $input': {
+        '&$hasTopSpace $input:not($filled)': {
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
         },
