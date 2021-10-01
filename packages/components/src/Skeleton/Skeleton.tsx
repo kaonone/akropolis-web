@@ -12,7 +12,7 @@ import {
 const DEFAULT_BORDER_RADIUS = 6;
 
 type WithRoundedBorders = {
-  borderRadius?: number | 'default';
+  borderRadius?: number;
 };
 
 type StylesProps = ProvidedAncestorBackground & WithRoundedBorders;
@@ -23,10 +23,13 @@ export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
 >(
   props: SkeletonProps<D, P> & WithRoundedBorders,
 ) => {
-  const { classes: muiClasses = {}, borderRadius, ...rest } = props;
+  const { classes: muiClasses = {}, variant, borderRadius, ...rest } = props;
 
   const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor, borderRadius });
+  const classes = useStyles({
+    backgroundColor,
+    borderRadius: borderRadius || (variant === 'rect' ? DEFAULT_BORDER_RADIUS : undefined),
+  });
 
   return (
     <MuiSkeleton classes={{ ...muiClasses, root: cn(classes.root, muiClasses.root) }} {...rest} />
@@ -37,21 +40,10 @@ const useStyles = makeStyles(
   () => ({
     root: {
       backgroundColor: ({ backgroundColor }: StylesProps) => lighten(backgroundColor, 0.15),
-      borderRadius: ({ borderRadius }: StylesProps) => getBorderRadius(borderRadius),
+      borderRadius: ({ borderRadius }: StylesProps) => borderRadius,
     },
   }),
   { name: 'Skeleton' },
 );
-
-function getBorderRadius(borderRadius: StylesProps['borderRadius']) {
-  switch (typeof borderRadius) {
-    case 'undefined':
-      return 'unset';
-    case 'string':
-      return DEFAULT_BORDER_RADIUS;
-    case 'number':
-      return `${borderRadius}px`;
-  }
-}
 
 export { SkeletonProps };
