@@ -9,11 +9,11 @@ import React, {
 import BN from 'bn.js';
 import cn from 'classnames';
 import { Amount, IToBN } from '@akropolis-web/primitives';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { SelectInput } from '../SelectInput/SelectInput';
 import { TextInput } from '../TextInput';
 import { DecimalsInput } from '../DecimalsInput';
-import { AlertIcon } from '../../icons';
 import { useStyles } from './AmountInput.style';
 
 interface IOwnProps<A extends Amount> {
@@ -22,8 +22,6 @@ interface IOwnProps<A extends Amount> {
   maxValue?: BN | IToBN;
   allowedMax?: BN;
   hideCurrencySelect?: boolean;
-  displayVariant?: 'default' | 'table-cell';
-  disabledAlert?: string;
   onChange: (value: A) => void;
   makeAmount(value: BN, currency: A['currency']): A;
   getCurrencyIdentifier(currency: A['currency']): string;
@@ -43,16 +41,16 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     disabled,
     currencies,
     hideCurrencySelect,
-    displayVariant = 'default',
-    disabledAlert,
     InputProps = {},
     SelectProps = {},
     makeAmount,
     getCurrencyIdentifier,
     getCurrencyLabel,
+    FormHelperTextProps,
+    helperText,
+    error,
     ...restInputProps
   } = props;
-  const { className: selectClassName, ...restSelectProps } = SelectProps;
   const classes = useStyles();
 
   const tokenAmount = value || null;
@@ -129,30 +127,17 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     [currencies, getCurrencyIdentifier, getCurrencyLabel, hideCurrencySelect],
   );
 
-  const disabledInputProps = useMemo(
-    () =>
-      disabled && disabledAlert
-        ? {
-            startAdornment: <AlertIcon color="inherit" fontSize="small" />,
-            endAdornment: <></>,
-            value: disabledAlert,
-            classes: {
-              inputAdornedStart: classes.inputAdornedStart,
-            },
-          }
-        : {},
-    [classes, disabled, disabledAlert],
-  );
-
-  return displayVariant === 'table-cell' ? (
-    <>
-      <td className={cn(classes.tableCell, classes.tableCellForInput)}>{renderDecimalInput()}</td>
-      {!hideCurrencySelect && <td className={classes.tableCell}>{renderSelectInput()}</td>}
-    </>
-  ) : (
-    <div className={classes.root}>
-      {renderDecimalInput()}
-      {!hideCurrencySelect && renderSelectInput()}
+  return (
+    <div>
+      <div className={classes.inputs}>
+        {renderDecimalInput()}
+        {!hideCurrencySelect && renderSelectInput()}
+      </div>
+      {helperText && (
+        <FormHelperText variant="standard" error={error} {...FormHelperTextProps}>
+          {helperText}
+        </FormHelperText>
+      )}
     </div>
   );
 
@@ -172,7 +157,6 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           disabled={disabled}
           InputProps={{
             className: classes.decimalInput,
-            ...disabledInputProps,
             ...InputProps,
           }}
         />
@@ -190,10 +174,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           disableVariant="text"
           disabled={isSingleOptionSelect}
           InputProps={{ className: classes.selectInput }}
-          SelectProps={{
-            ...restSelectProps,
-            className: cn(classes.selectRoot, selectClassName),
-          }}
+          SelectProps={SelectProps}
         />
       </div>
     );
