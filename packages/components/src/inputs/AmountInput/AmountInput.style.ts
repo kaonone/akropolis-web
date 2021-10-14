@@ -1,16 +1,9 @@
 import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  theme => ({
-    root: {
+  () => ({
+    inputs: {
       display: 'flex',
-    },
-    tableCell: {
-      border: 'none',
-      padding: 0,
-    },
-    tableCellForInput: {
-      width: '100%',
     },
     decimalInputWrapper: {
       flexGrow: 1,
@@ -23,16 +16,6 @@ export const useStyles = makeStyles(
         borderBottomRightRadius: 0,
       },
     },
-    inputAdornedStart: {
-      fontSize: 13,
-      fontWeight: 'normal',
-      color: theme.colors.lightGray,
-      paddingLeft: 10,
-
-      [theme.breakpoints.up(767)]: {
-        fontSize: 12,
-      },
-    },
     select: {
       flexShrink: 0,
 
@@ -43,11 +26,6 @@ export const useStyles = makeStyles(
       backgroundImage: 'linear-gradient(to bottom, #3b3b51, #1e1e28)',
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
-    },
-    selectRoot: {
-      '$tableCell &': {
-        minWidth: 'unset',
-      },
     },
     decimalInput: {},
   }),
