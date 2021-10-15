@@ -28,7 +28,7 @@ export const useStyles = makeStyles(
       },
 
       '&$disableVariantText': {
-        minWidth: 100,
+        minWidth: 'auto',
 
         '& $input': {
           borderColor: 'transparent',
