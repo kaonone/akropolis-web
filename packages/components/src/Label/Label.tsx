@@ -8,7 +8,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { TooltipClassKey } from '@material-ui/core/Tooltip/Tooltip';
 
 import { ComingSoon } from '../ComingSoon/ComingSoon';
-import { InfoIcon } from '../icons';
+import { InfoIcon } from '../icons/InfoIcon';
 
 type Props = {
   hint?: React.ReactNode;

@@ -10,9 +10,7 @@
   "author": "Akropolis",
   "homepage": "https://github.com/akropolisio/akropolis-web/tree/master/packages/components#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "module": "dist/components.esm.js",
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],
@@ -22,7 +20,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "rollup -c",
     "test": "jest -c ../../jest.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc --noEmit --pretty",
     "lint:autofix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
