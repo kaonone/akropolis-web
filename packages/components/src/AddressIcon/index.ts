@@ -1,0 +1,1 @@
+export { AddressIcon } from './AddressIcon';

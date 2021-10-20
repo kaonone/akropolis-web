@@ -1,6 +1,6 @@
 {
   "name": "@akropolis-web/components",
-  "version": "0.27.77",
+  "version": "0.27.78",
   "description": "Package with shared components",
   "keywords": [
     "ethereum",
@@ -10,9 +10,7 @@
   "author": "Akropolis",
   "homepage": "https://github.com/akropolisio/akropolis-web/tree/master/packages/components#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "module": "dist/components.esm.js",
+  "main": "./dist/index.js",
   "files": [
     "dist"
   ],
@@ -21,8 +19,8 @@
     "url": "git+https://github.com/akropolisio/akropolis-web.git"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
+    "start": "rollup -c -w",
+    "build": "rollup -c",
     "test": "jest -c ../../jest.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc --noEmit --pretty",
     "lint:autofix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -35,8 +33,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@akropolis-web/primitives": "^0.6.77",
-    "@akropolis-web/styles": "^0.16.77",
+    "@akropolis-web/primitives": "^0.6.78",
+    "@akropolis-web/styles": "^0.16.78",
     "@date-io/date-fns": "^1.3.13",
     "@types/mersenne-twister": "^1.1.2",
     "@types/react-copy-to-clipboard": "^4.3.0",
@@ -46,7 +44,8 @@
     "react-copy-to-clipboard": "^5.0.2"
   },
   "devDependencies": {
-    "@material-ui/pickers": "^3.3.10"
+    "@material-ui/pickers": "^3.3.10",
+    "rollup-watch": "^4.3.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
