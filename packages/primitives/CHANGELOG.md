@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.77 (2021-10-20)
+
+**Note:** Version bump only for package @akropolis-web/primitives
+
+
+
+
+
 ## 0.6.76 (2021-10-15)
 
 **Note:** Version bump only for package @akropolis-web/primitives
