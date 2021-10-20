@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 
-import { getFiles } from '../../getFiles';
+import { getInputFiles } from '../../getInputFiles';
 
 import pkg from './package.json';
 
@@ -9,7 +9,7 @@ const extensions = ['.ts', '.tsx'];
 const excludeExtensions = ['.d.ts', '.style.ts'];
 
 export default {
-  input: ['./src/index.ts', ...getFiles('./src', extensions, excludeExtensions)],
+  input: ['./src/index.ts', ...getInputFiles('./src', extensions, excludeExtensions)],
   output: {
     dir: 'dist',
     format: 'esm',

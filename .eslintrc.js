@@ -11,7 +11,7 @@ module.exports = {
     project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
     tsconfigRootDir: __dirname,
   },
-  ignorePatterns: ['node_modules/', 'dist/', '*.config.js', 'getFiles.js'],
+  ignorePatterns: ['node_modules/', 'dist/', '*.config.js', 'getInputFiles.js'],
   env: {
     jest: true,
     browser: true,

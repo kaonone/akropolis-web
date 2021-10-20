@@ -21,8 +21,6 @@ export { ResizeObserverPolyfill } from './ResizeObserverPolyfill/ResizeObserverP
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
 export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 export { Accordion } from './Accordion/Accordion';
-export { ShouldBeHere } from './ShouldBeHere/ShouldBeHere';
-export { MustBeNotHere } from './MustBeNotHere/MustBeNotHere';
 export { ButtonBase, ButtonBaseProps } from './ButtonBase';
 export { Link, LinkProps } from './Link';
 export { Typography, TypographyProps } from './Typography';

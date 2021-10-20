@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export const getFiles = (entry, extensions = [], excludeExtensions = []) => {
+export const getInputFiles = (entry, extensions = [], excludeExtensions = []) => {
   let fileNames = [];
   const dirs = fs.readdirSync(entry);
 
@@ -8,7 +8,7 @@ export const getFiles = (entry, extensions = [], excludeExtensions = []) => {
     const path = `${entry}/${dir}`;
 
     if (fs.lstatSync(path).isDirectory()) {
-      fileNames = [...fileNames, ...getFiles(path, extensions, excludeExtensions)];
+      fileNames = [...fileNames, ...getInputFiles(path, extensions, excludeExtensions)];
 
       return;
     }
