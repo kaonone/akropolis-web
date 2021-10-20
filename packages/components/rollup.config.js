@@ -25,4 +25,7 @@ export default {
       declarationDir: 'dist',
     }),
   ],
+  watch: {
+    exclude: ['node_modules/**'],
+  },
 };

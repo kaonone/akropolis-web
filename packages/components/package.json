@@ -19,7 +19,7 @@
     "url": "git+https://github.com/akropolisio/akropolis-web.git"
   },
   "scripts": {
-    "start": "tsdx watch",
+    "start": "rollup -c -w",
     "build": "rollup -c",
     "test": "jest -c ../../jest.config.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx && tsc --noEmit --pretty",
@@ -44,7 +44,8 @@
     "react-copy-to-clipboard": "^5.0.2"
   },
   "devDependencies": {
-    "@material-ui/pickers": "^3.3.10"
+    "@material-ui/pickers": "^3.3.10",
+    "rollup-watch": "^4.3.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",

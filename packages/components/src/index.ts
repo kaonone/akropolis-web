@@ -43,5 +43,3 @@ export {
 } from './LiquidityAmountInput/LiquidityAmountInput';
 export { TokenAmountInput, TokenAmountInputProps } from './TokenAmountInput/TokenAmountInput';
 export { DatepickerInput } from './DatepickerInput/DatepickerInput';
-
-export * from './icons';
