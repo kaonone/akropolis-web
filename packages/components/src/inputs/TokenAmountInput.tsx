@@ -1,40 +1,40 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import BN from 'bn.js';
-import Grid from '@material-ui/core/Grid';
-import { TokenAmount, Token, AllCoinsToken } from '@akropolis-web/primitives';
+import { TokenAmount, Token } from '@akropolis-web/primitives';
 
-import { TokensIcons } from '../TokensIcons/TokensIcons';
-import { TokenName } from '../TokenName/TokenName';
 import { AmountInput, AmountInputProps } from './AmountInput/AmountInput';
+
+type TokenName = (props: {
+  token: Token;
+  iconSize?: 'small' | 'inherit' | 'default' | 'large' | 'extra-large';
+  iconProps?: {
+    image: {
+      src: string;
+      height: number;
+      width: number;
+      blurDataURL?: string;
+    };
+    alt?: string;
+    className?: string;
+  };
+  badge?: string;
+}) => JSX.Element;
 
 export type TokenAmountInputProps = Omit<
   AmountInputProps<TokenAmount>,
   'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
 > & {
-  allowSelectAllToken?: boolean;
   getCurrencyLabel?: AmountInputProps<TokenAmount>['getCurrencyLabel'];
+  TokenName: TokenName;
 };
 
 export function TokenAmountInput(props: TokenAmountInputProps) {
-  const {
-    allowSelectAllToken,
-    currencies,
-    getCurrencyLabel: customGetCurrencyLabel,
-    ...rest
-  } = props;
-
-  const tokens = useMemo(
-    () =>
-      allowSelectAllToken && currencies.length > 1
-        ? [...currencies, new AllCoinsToken(currencies)]
-        : currencies,
-    [allowSelectAllToken, currencies],
-  );
+  const { currencies, TokenName, getCurrencyLabel: customGetCurrencyLabel, ...rest } = props;
 
   return (
     <AmountInput<TokenAmount>
       {...rest}
-      currencies={tokens}
+      currencies={currencies}
       makeAmount={makeAmount}
       getCurrencyIdentifier={getCurrencyIdentifier}
       getCurrencyLabel={customGetCurrencyLabel || getCurrencyLabel}
@@ -42,15 +42,7 @@ export function TokenAmountInput(props: TokenAmountInputProps) {
   );
 
   function getCurrencyLabel(currency: Token) {
-    return currency instanceof AllCoinsToken && currency.tokens ? (
-      <Grid container alignItems="center" wrap="nowrap">
-        <TokensIcons tokens={currency.tokens} />
-        &nbsp;
-        {currency.symbol}
-      </Grid>
-    ) : (
-      <TokenName token={currency} />
-    );
+    return <TokenName token={currency} />;
   }
 }
 
