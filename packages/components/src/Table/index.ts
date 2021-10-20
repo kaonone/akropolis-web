@@ -1,4 +1,3 @@
-import * as models from './models';
+import * as Table from './moduleImport';
 
-export { models };
-export { Table as Component } from './Table';
+export { Table };

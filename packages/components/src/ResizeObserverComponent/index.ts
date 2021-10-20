@@ -1,0 +1,1 @@
+export { ResizeObserverComponent } from './ResizeObserverComponent';

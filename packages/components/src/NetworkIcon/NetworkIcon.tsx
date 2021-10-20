@@ -2,7 +2,7 @@ import * as React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 import { BSCIcon } from '../icons/BSCIcon';
-import { ETHIcon } from '../icons/currencies';
+import { ETHIcon } from '../icons/currencies/ETHIcon';
 
 type Props = React.ComponentProps<typeof SvgIcon> & {
   network: 'bsc' | 'eth';
