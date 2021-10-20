@@ -10,10 +10,18 @@ import { AmountInput, AmountInputProps } from './AmountInput/AmountInput';
 export type TokenAmountInputProps = Omit<
   AmountInputProps<TokenAmount>,
   'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
-> & { allowSelectAllToken?: boolean };
+> & {
+  allowSelectAllToken?: boolean;
+  getCurrencyLabel?: AmountInputProps<TokenAmount>['getCurrencyLabel'];
+};
 
 export function TokenAmountInput(props: TokenAmountInputProps) {
-  const { allowSelectAllToken, currencies, ...rest } = props;
+  const {
+    allowSelectAllToken,
+    currencies,
+    getCurrencyLabel: customGetCurrencyLabel,
+    ...rest
+  } = props;
 
   const tokens = useMemo(
     () =>
@@ -29,7 +37,7 @@ export function TokenAmountInput(props: TokenAmountInputProps) {
       currencies={tokens}
       makeAmount={makeAmount}
       getCurrencyIdentifier={getCurrencyIdentifier}
-      getCurrencyLabel={getCurrencyLabel}
+      getCurrencyLabel={customGetCurrencyLabel || getCurrencyLabel}
     />
   );
 
