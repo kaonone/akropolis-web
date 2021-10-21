@@ -4,32 +4,15 @@ import { TokenAmount, Token } from '@akropolis-web/primitives';
 
 import { AmountInput, AmountInputProps } from '../AmountInput/AmountInput';
 
-type TokenName = (props: {
-  token: Token;
-  iconSize?: 'small' | 'inherit' | 'default' | 'large' | 'extra-large';
-  iconProps?: {
-    image: {
-      src: string;
-      height: number;
-      width: number;
-      blurDataURL?: string;
-    };
-    alt?: string;
-    className?: string;
-  };
-  badge?: string;
-}) => JSX.Element;
-
 export type TokenAmountInputProps = Omit<
   AmountInputProps<TokenAmount>,
   'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
 > & {
   getCurrencyLabel?: AmountInputProps<TokenAmount>['getCurrencyLabel'];
-  TokenName: TokenName;
 };
 
 export function TokenAmountInput(props: TokenAmountInputProps) {
-  const { currencies, TokenName, getCurrencyLabel: customGetCurrencyLabel, ...rest } = props;
+  const { currencies, getCurrencyLabel: customGetCurrencyLabel, ...rest } = props;
 
   return (
     <AmountInput<TokenAmount>
@@ -42,7 +25,7 @@ export function TokenAmountInput(props: TokenAmountInputProps) {
   );
 
   function getCurrencyLabel(currency: Token) {
-    return <TokenName token={currency} />;
+    return currency.symbol;
   }
 }
 
