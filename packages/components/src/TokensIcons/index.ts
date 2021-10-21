@@ -1,1 +1,0 @@
-export { TokensIcons } from './TokensIcons';
