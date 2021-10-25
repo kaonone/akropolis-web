@@ -1,1 +1,0 @@
-export { NetworkIcon } from './NetworkIcon';

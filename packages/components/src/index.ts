@@ -15,7 +15,6 @@ export { CurrencyIcon } from './CurrencyIcon/CurrencyIcon';
 export { ResizeObserverComponent } from './ResizeObserverComponent/ResizeObserverComponent';
 export { ResizeObserverPolyfill } from './ResizeObserverPolyfill/ResizeObserverPolyfill';
 export { Skeleton, SkeletonProps } from './Skeleton/Skeleton';
-export { NetworkIcon } from './NetworkIcon/NetworkIcon';
 export { Accordion } from './Accordion/Accordion';
 export { ButtonBase, ButtonBaseProps } from './ButtonBase';
 export { Link, LinkProps } from './Link';
