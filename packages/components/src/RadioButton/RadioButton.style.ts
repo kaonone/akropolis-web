@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
 const thumbSize = 10;
 const borderOffset = 5;
@@ -12,26 +12,43 @@ export const useStyles = makeStyles(
       width: buttonSize,
       height: buttonSize,
       padding: borderOffset,
-      background: theme.gradients.main.linear('to right'),
 
       '&$colorSecondary': {
-        background: 'rgba(255, 255, 255, 0.5)',
+        '&:before': {
+          border: '1px solid rgba(255, 255, 255, 0.5)',
+          background: 'none',
+          mask: 'none',
+        },
 
         '&$iconChecked:after': {
           background: '#fff',
         },
       },
 
+      '$disabled &': {
+        '&:before': {
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          background: 'none',
+          mask: 'none',
+        },
+      },
+
       '&:before': {
         content: "''",
-        display: 'block',
         position: 'absolute',
-        borderRadius: '50%',
-        top: 1,
-        right: 1,
-        bottom: 1,
-        left: 1,
-        background: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        borderRadius: 'inherit',
+        border: '1px solid transparent',
+        background: theme.gradients.main.linear('to right'),
+        backgroundOrigin: 'border-box',
+        '-webkit-mask-composite': 'xor',
+        '-webkit-mask': 'linear-gradient(red 0 0) padding-box, linear-gradient(red 0 0)',
+        '&': {
+          mask: 'linear-gradient(red 0 0) padding-box exclude, linear-gradient(red 0 0)',
+        },
       },
     },
 
@@ -49,6 +66,7 @@ export const useStyles = makeStyles(
     },
 
     colorSecondary: {},
+    disabled: {},
   }),
   { name: 'RadioButton' },
 );

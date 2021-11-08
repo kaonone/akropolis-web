@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
 const checkboxSize = 20;
 const borderRadius = 4;
@@ -16,24 +16,31 @@ export const useStyles = makeStyles(
       position: 'relative',
       width: checkboxSize,
       height: checkboxSize,
-      background: theme.gradients.main.linear('to right'),
 
       '&:before': {
-        display: 'block',
         content: "''",
         position: 'absolute',
-        top: 1,
-        right: 1,
-        bottom: 1,
-        left: 1,
-        borderRadius: borderRadius - 1,
-        background: ({ backgroundColor }: ProvidedAncestorBackground) =>
-          backgroundColor || theme.palette.background.paper,
-        transition: theme.transitions.create('opacity'),
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        borderRadius: 'inherit',
+        border: '1px solid transparent',
+        background: theme.gradients.main.linear('to right'),
+        backgroundOrigin: 'border-box',
+        '-webkit-mask-composite': 'xor',
+        '-webkit-mask': 'linear-gradient(red 0 0) padding-box, linear-gradient(red 0 0)',
+        '&': {
+          mask: 'linear-gradient(red 0 0) padding-box exclude, linear-gradient(red 0 0)',
+        },
       },
 
       '$disabled &': {
         background: 'rgba(255, 255, 255, 0.1)',
+
+        '&:before': {
+          opacity: 0,
+        },
       },
 
       '$checked &': {
@@ -41,10 +48,6 @@ export const useStyles = makeStyles(
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 14,
-
-        '&:before': {
-          opacity: 0,
-        },
       },
     },
 

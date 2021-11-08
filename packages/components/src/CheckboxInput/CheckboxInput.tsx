@@ -4,7 +4,6 @@ import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelpe
 import FormControlLabel, { FormControlLabelProps } from '@material-ui/core/FormControlLabel';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import { A, B } from 'ts-toolbelt';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { CheckmarkIcon } from '../icons/CheckmarkIcon';
 import { useStyles } from './CheckboxInput.style';
@@ -38,8 +37,7 @@ function CheckboxInput(props: Props) {
   } = normalizeProps(props);
   const { label, helperText } = other;
 
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const classes = useStyles();
 
   return (
     <FormControl {...formControlProps}>

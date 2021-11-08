@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
 const shadowOffset = 3;
 const largeShadowOffset = 3;
@@ -80,50 +80,43 @@ export const useStyles = makeStyles(
     },
 
     outlinedPrimary: {
-      borderWidth: 0,
-      backgroundImage: theme.gradients.outlinedButton.linear('-270deg'),
-      backgroundSize: backgroundGradientSize,
+      border: 'none',
+      background: 'none',
       opacity: 0.99,
       color: theme.palette.text.primary,
-      transition: 'background-position 1s',
 
       '&$disabled': {
-        background: `rgba(255, 255, 255, 0.2)`,
+        border: '1px solid rgba(255, 255, 255, 0.2)',
         color: `rgba(255, 255, 255, 0.5)`,
-        border: 'none',
+
+        '&:before': {
+          opacity: 0,
+        },
 
         '&:hover:not(:active), &$focusVisible': {
-          background: `rgba(255, 255, 255, 0.2)`,
+          border: '1px solid rgba(255, 255, 255, 0.2)',
           color: `rgba(255, 255, 255, 0.5)`,
-          border: 'none',
         },
       },
 
       '&:before': {
         zIndex: -1,
-        display: 'block',
-        // tslint:disable-next-line: quotemark
         content: "''",
         position: 'absolute',
-        top: 1,
-        right: 1,
-        bottom: 1,
-        left: 1,
-        backgroundColor: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
-        transition: theme.transitions.create(['opacity', 'background-color']),
-
-        borderRadius: theme.spacing(heightTabletXS / 2) - 1,
-
-        '$sizeExtraSmall&': {
-          borderRadius: theme.spacing(smallHeightTabletXS / 2) - 1,
-        },
-
-        '$sizeSmall&': {
-          borderRadius: theme.spacing(smallHeightTabletXS / 2) - 1,
-        },
-
-        '$sizeLarge&': {
-          borderRadius: theme.spacing(largeHeightTabletXS / 2) - 1,
+        opacity: 1,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        backgroundImage: theme.gradients.outlinedButton.linear('-270deg'),
+        backgroundSize: backgroundGradientSize,
+        borderRadius: 'inherit',
+        border: '1px solid transparent',
+        transition: 'background-position 1s',
+        '-webkit-mask-composite': 'xor',
+        '-webkit-mask': 'linear-gradient(red 0 0) padding-box, linear-gradient(red 0 0)',
+        '&': {
+          mask: 'linear-gradient(red 0 0) padding-box exclude, linear-gradient(red 0 0)',
         },
       },
 
@@ -134,7 +127,10 @@ export const useStyles = makeStyles(
 
       '&:active': {
         border: 'none',
-        backgroundPosition: '50%',
+
+        '&:before': {
+          backgroundPosition: '50%',
+        },
       },
     },
 

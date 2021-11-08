@@ -594,16 +594,22 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               minHeight: sizes.tabs.height,
               borderRadius: sizes.tabs.height / 2,
               padding: sizes.tabs.indicatorSpace,
-              background: 'linear-gradient(to left, #5346e6, #ef359c)',
 
               '&::before': {
                 content: "''",
                 position: 'absolute',
-                top: 1,
-                left: 1,
-                right: 1,
-                bottom: 1,
-                borderRadius: sizes.tabs.height / 2,
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                borderRadius: 'inherit',
+                border: '1px solid transparent',
+                background: 'linear-gradient(to left, #5346e6, #ef359c) border-box',
+                '-webkit-mask-composite': 'xor',
+                '-webkit-mask': 'linear-gradient(red 0 0) padding-box, linear-gradient(red 0 0)',
+                '&': {
+                  mask: 'linear-gradient(red 0 0) padding-box exclude, linear-gradient(red 0 0)',
+                },
               },
             },
 

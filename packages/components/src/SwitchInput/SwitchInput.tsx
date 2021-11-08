@@ -4,7 +4,6 @@ import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelpe
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch, { SwitchProps } from '@material-ui/core/Switch';
 import { A, B } from 'ts-toolbelt';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { useStyles } from './SwitchInput.style';
 
@@ -29,8 +28,7 @@ function SwitchInput(props: Props) {
   const { formControlProps, formHelperTextProps, switchProps, other } = normalizeProps(props);
   const { label, helperText } = other;
 
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const classes = useStyles();
 
   return (
     <FormControl {...formControlProps}>

@@ -4,7 +4,6 @@ import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelpe
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio, { RadioProps } from '@material-ui/core/Radio';
 import { A, B } from 'ts-toolbelt';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { useStyles } from './RadioButton.style';
 
@@ -26,15 +25,19 @@ type NormalizedProps = {
 function RadioButton(props: Props) {
   const { formHelperTextProps, radioProps, other } = normalizeProps(props);
   const { label, helperText } = other;
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const { classes: muiClasses, ...rest } = radioProps;
+  const classes = useStyles();
 
   return (
     <>
       <FormControlLabel
         control={
           <Radio
-            {...radioProps}
+            {...rest}
+            classes={{
+              ...muiClasses,
+              disabled: cn(classes.disabled, muiClasses?.disabled),
+            }}
             checkedIcon={
               <span
                 className={cn(classes.icon, classes.iconChecked, {

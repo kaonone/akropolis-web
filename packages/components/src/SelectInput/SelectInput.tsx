@@ -9,7 +9,6 @@ import React, {
 import cn from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
 import { MenuProps } from '@material-ui/core/Menu';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
 
 import { Arrow } from '../icons/Arrow';
 import { TextInput } from '../TextInput';
@@ -42,8 +41,7 @@ export function SelectInput(props: SelectInputProps) {
   } = props;
   const { className: inputClassName, ...restInputProps } = InputProps;
   const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const classes = useStyles();
   const currentWindowHeight = useWindowHeight();
 
   const [isMenuOpen, setIsOpen] = useState(false);

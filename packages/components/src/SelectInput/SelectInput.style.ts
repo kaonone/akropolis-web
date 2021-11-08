@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -70,9 +70,9 @@ export const useStyles = makeStyles(
     },
     paper: {
       fontSize: 12,
-      borderColor: theme.colors.darkMist,
       borderRadius: 6,
-      backgroundColor: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
+      borderColor: theme.colors.darkMist,
+      backgroundColor: theme.colors.blackRussian,
 
       '&$hasBottomSpace': {
         borderRadius: '0 0 6px 6px',
@@ -84,8 +84,6 @@ export const useStyles = makeStyles(
       },
 
       '&$withCheckmark': {
-        backgroundColor: theme.colors.blackRussian,
-
         '& $menuItem': {
           paddingRight: 34,
         },

@@ -2,7 +2,7 @@ import * as React from 'react';
 import cn from 'classnames';
 import MuiButton, { ButtonTypeMap as MuiButtonTypeMap } from '@material-ui/core/Button';
 import { OverrideProps } from '@material-ui/core/OverridableComponent';
-import { useAncestorBackgroundHack, OverrideTypeMap } from '@akropolis-web/styles';
+import { OverrideTypeMap } from '@akropolis-web/styles';
 
 import { useStyles } from './Button.style';
 
@@ -24,8 +24,7 @@ type ButtonProps<
 function Button<D extends React.ElementType = MuiButtonTypeMap['defaultComponent']>(
   props: ButtonProps<D>,
 ) {
-  const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const classes = useStyles();
   const { classes: muiClasses = {}, size, minWidthSize = 'default', ...rest } = props;
 
   return (

@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles } from '@akropolis-web/styles';
 
 const thumbSize = 14;
 const borderOffset = 3;
@@ -20,10 +20,6 @@ export const useStyles = makeStyles(
 
       '&$checked': {
         transform: 'translateX(14px)',
-
-        '& + $track, & + $track:after, & $thumb:after': {
-          opacity: 1,
-        },
       },
 
       '&$disabled': {
@@ -37,7 +33,6 @@ export const useStyles = makeStyles(
       background: theme.colors.independence,
 
       '&:after': {
-        display: 'block',
         content: "''",
         position: 'absolute',
         borderRadius: '50%',
@@ -48,32 +43,20 @@ export const useStyles = makeStyles(
         opacity: 0,
         background: theme.gradients.main.linear('to right'),
         transition: theme.transitions.create(['opacity']),
+
+        '$checked &': {
+          opacity: 1,
+        },
       },
     },
     track: {
-      borderRadius,
-      border: 'none',
       position: 'relative',
+      borderRadius,
+      border: `1px solid ${theme.colors.independence}`,
+      background: 'none',
       opacity: 1,
-      background: theme.colors.independence,
-      zIndex: 0,
-
-      '&:before': {
-        zIndex: 1,
-        display: 'block',
-        content: "''",
-        position: 'absolute',
-        top: 1,
-        right: 1,
-        bottom: 1,
-        left: 1,
-        borderRadius,
-        background: ({ backgroundColor }: ProvidedAncestorBackground) => backgroundColor,
-      },
 
       '&:after': {
-        zIndex: 0,
-        display: 'block',
         content: "''",
         position: 'absolute',
         top: 0,
@@ -81,9 +64,26 @@ export const useStyles = makeStyles(
         right: 0,
         bottom: 0,
         opacity: 0,
-        borderRadius,
-        background: theme.gradients.main.linear('to right'),
         transition: theme.transitions.create(['opacity']),
+        borderRadius,
+        border: '1px solid transparent',
+        background: theme.gradients.main.linear('to right'),
+        backgroundOrigin: 'border-box',
+        '-webkit-mask-composite': 'xor',
+        '-webkit-mask': 'linear-gradient(red 0 0) padding-box, linear-gradient(red 0 0)',
+        '&': {
+          mask: 'linear-gradient(red 0 0) padding-box exclude, linear-gradient(red 0 0)',
+        },
+
+        '$checked + &': {
+          opacity: 1,
+        },
+      },
+
+      '$switchBase$checked + &': {
+        border: 'none',
+        background: 'none',
+        opacity: 1,
       },
 
       '$disabled + &': {
