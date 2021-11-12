@@ -66,6 +66,18 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
   );
   const isSingleOptionSelect = Boolean(currencies.length <= 1 && currentCurrency);
 
+  // update value if currencies is not contain current currency
+  useEffect(() => {
+    const isWrongCurrentCurrency =
+      currentCurrency && !currencies.find(item => item.equals(currentCurrency));
+    const defaultCurrency = currencies[0];
+
+    if (defaultCurrency && isWrongCurrentCurrency) {
+      // async change is necessary for the correct working of subscriptions in the final-form during the first render
+      Promise.resolve().then(() => onChange(makeAmount(currentValue, defaultCurrency)));
+    }
+  }, [currentCurrency, currencies, tokenAmount, onChange, makeAmount, currentValue]);
+
   const handleInputChange = useCallback(
     (nextValue: string) => {
       const nextValueInBN = new BN(nextValue);
