@@ -6,13 +6,19 @@ import { AmountInput, AmountInputProps } from '../AmountInput/AmountInput';
 
 export type TokenAmountInputProps = Omit<
   AmountInputProps<TokenAmount>,
-  'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
+  'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel' | 'renderSelectOnUnpicked'
 > & {
   getCurrencyLabel?: AmountInputProps<TokenAmount>['getCurrencyLabel'];
+  renderSelectOnUnpicked?: AmountInputProps<TokenAmount>['renderSelectOnUnpicked'];
 };
 
 export function TokenAmountInput(props: TokenAmountInputProps) {
-  const { currencies, getCurrencyLabel: customGetCurrencyLabel, ...rest } = props;
+  const {
+    currencies,
+    getCurrencyLabel: customGetCurrencyLabel,
+    renderSelectOnUnpicked: customRenderSelectOnUnpicked,
+    ...rest
+  } = props;
 
   return (
     <AmountInput<TokenAmount>
@@ -21,6 +27,7 @@ export function TokenAmountInput(props: TokenAmountInputProps) {
       makeAmount={makeAmount}
       getCurrencyIdentifier={getCurrencyIdentifier}
       getCurrencyLabel={customGetCurrencyLabel || getCurrencyLabel}
+      renderSelectOnUnpicked={customRenderSelectOnUnpicked || renderSelectOnUnpicked}
     />
   );
 
@@ -35,4 +42,8 @@ function getCurrencyIdentifier(currency: Token) {
 
 function makeAmount(value: BN, currency: Token) {
   return new TokenAmount(value, currency);
+}
+
+function renderSelectOnUnpicked() {
+  return 'Select a token';
 }

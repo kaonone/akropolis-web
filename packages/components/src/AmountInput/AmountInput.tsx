@@ -26,6 +26,7 @@ interface IOwnProps<A extends Amount> {
   makeAmount(value: BN, currency: A['currency']): A;
   getCurrencyIdentifier(currency: A['currency']): string;
   getCurrencyLabel(currency: A['currency']): JSX.Element | string;
+  renderSelectOnUnpicked?: () => React.ReactNode;
 }
 
 export type AmountInputProps<A extends Amount> = IOwnProps<A> &
@@ -49,16 +50,15 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     FormHelperTextProps,
     helperText,
     error,
+    renderSelectOnUnpicked,
     ...restInputProps
   } = props;
   const classes = useStyles();
 
   const tokenAmount = value || null;
 
-  const defaultCurrency = currencies[0] as A['currency'] | undefined;
-
   const currentValue = useMemo(() => tokenAmount?.toBN() || new BN(0), [tokenAmount]);
-  const currentCurrency = tokenAmount?.currency || defaultCurrency;
+  const currentCurrency = tokenAmount?.currency;
   const currentDecimals = currentCurrency?.decimals || 0;
 
   const currentCurrencyUpdatingTrigger = useUpdatingTrigger(currentCurrency, (a, b) =>
@@ -66,24 +66,17 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
   );
   const isSingleOptionSelect = Boolean(currencies.length <= 1 && currentCurrency);
 
-  // initialize or update value if currencies is not contain current currency
+  // update value if currencies is not contain current currency
   useEffect(() => {
     const isWrongCurrentCurrency =
       currentCurrency && !currencies.find(item => item.equals(currentCurrency));
+    const defaultCurrency = currencies[0];
 
-    if (defaultCurrency && (!tokenAmount || isWrongCurrentCurrency)) {
+    if (defaultCurrency && isWrongCurrentCurrency) {
       // async change is necessary for the correct working of subscriptions in the final-form during the first render
       Promise.resolve().then(() => onChange(makeAmount(currentValue, defaultCurrency)));
     }
-  }, [
-    currentCurrency,
-    currencies,
-    defaultCurrency,
-    tokenAmount,
-    onChange,
-    makeAmount,
-    currentValue,
-  ]);
+  }, [currentCurrency, currencies, onChange, makeAmount, currentValue]);
 
   const handleInputChange = useCallback(
     (nextValue: string) => {
@@ -170,11 +163,15 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
         <SelectInput
           options={currencySelectOptions}
           onChange={handleCurrencyChange}
-          value={currentCurrency && getCurrencyIdentifier(currentCurrency)}
+          value={(currentCurrency && getCurrencyIdentifier(currentCurrency)) || ''}
           disableVariant="text"
           disabled={isSingleOptionSelect}
           InputProps={{ className: classes.selectInput }}
-          SelectProps={SelectProps}
+          SelectProps={{
+            displayEmpty: true,
+            ...(!currentCurrency && { renderValue: renderSelectOnUnpicked }),
+            ...SelectProps,
+          }}
         />
       </div>
     );

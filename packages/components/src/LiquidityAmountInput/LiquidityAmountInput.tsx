@@ -8,16 +8,26 @@ import { CurrencyIcon } from '../CurrencyIcon/CurrencyIcon';
 
 export type LiquidityAmountInputProps = Omit<
   AmountInputProps<LiquidityAmount>,
-  'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel'
->;
+  'makeAmount' | 'getCurrencyIdentifier' | 'getCurrencyLabel' | 'renderSelectOnUnpicked'
+> & {
+  getCurrencyLabel?: AmountInputProps<LiquidityAmount>['getCurrencyLabel'];
+  renderSelectOnUnpicked?: AmountInputProps<LiquidityAmount>['renderSelectOnUnpicked'];
+};
 
 export function LiquidityAmountInput(props: LiquidityAmountInputProps) {
+  const {
+    getCurrencyLabel: customGetCurrencyLabel,
+    renderSelectOnUnpicked: customRenderSelectOnUnpicked,
+    ...rest
+  } = props;
+
   return (
     <AmountInput<LiquidityAmount>
-      {...props}
+      {...rest}
       makeAmount={makeAmount}
       getCurrencyIdentifier={getCurrencyIdentifier}
-      getCurrencyLabel={getCurrencyLabel}
+      getCurrencyLabel={customGetCurrencyLabel || getCurrencyLabel}
+      renderSelectOnUnpicked={customRenderSelectOnUnpicked || renderSelectOnUnpicked}
     />
   );
 }
@@ -42,4 +52,8 @@ function getCurrencyLabel(currency: Currency) {
 
 function makeAmount(value: BN, currency: Currency) {
   return new LiquidityAmount(value, currency);
+}
+
+function renderSelectOnUnpicked() {
+  return 'Select Currency';
 }
