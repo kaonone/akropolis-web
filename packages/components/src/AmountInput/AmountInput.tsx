@@ -76,7 +76,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
       // async change is necessary for the correct working of subscriptions in the final-form during the first render
       Promise.resolve().then(() => onChange(makeAmount(currentValue, defaultCurrency)));
     }
-  }, [currentCurrency, currencies, tokenAmount, onChange, makeAmount, currentValue]);
+  }, [currentCurrency, currencies, onChange, makeAmount, currentValue]);
 
   const handleInputChange = useCallback(
     (nextValue: string) => {
