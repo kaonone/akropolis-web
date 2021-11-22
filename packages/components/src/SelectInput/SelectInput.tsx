@@ -41,7 +41,13 @@ export function SelectInput(props: SelectInputProps) {
     ...restProps
   } = props;
   const { className: inputClassName, ...restInputProps } = InputProps;
-  const { className: selectClassName, MenuProps: menuProps, ...restSelectProps } = SelectProps;
+  const {
+    className: selectClassName,
+    classes: selectClasses,
+    MenuProps: menuProps,
+    IconComponent,
+    ...restSelectProps
+  } = SelectProps;
   const backgroundColor = useAncestorBackgroundHack();
   const classes = useStyles({ backgroundColor });
   const currentWindowHeight = useWindowHeight();
@@ -124,7 +130,8 @@ export function SelectInput(props: SelectInputProps) {
       SelectProps={{
         ...restSelectProps,
         classes: {
-          select: classes.select,
+          ...selectClasses,
+          select: cn(classes.select, selectClasses?.select),
         },
         MenuProps: {
           ...menuProps,
@@ -142,7 +149,7 @@ export function SelectInput(props: SelectInputProps) {
           },
           ...menuPositionProps,
         },
-        IconComponent: renderArrowIcon,
+        IconComponent: IconComponent || renderArrowIcon,
         onOpen: handleSelectOpen,
         onClose: handleSelectClose,
       }}
@@ -159,7 +166,7 @@ export function SelectInput(props: SelectInputProps) {
 
   function renderArrowIcon() {
     return (
-      <div className={classes.arrowIcon}>
+      <div className={cn(classes.arrowIcon, selectClasses?.icon)}>
         <Arrow fontSize="inherit" />
       </div>
     );
