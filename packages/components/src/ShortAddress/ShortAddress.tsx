@@ -17,10 +17,14 @@ type Props = {
   disableCopy?: boolean;
   withIcon?: boolean;
   variant?: 'filled' | 'text';
+  classes?: {
+    shortAddress?: string;
+    copyButton?: string;
+  };
 };
 
 function ShortAddress(props: Props) {
-  const { address, disableCopy, withIcon, variant = 'text' } = props;
+  const { address, disableCopy, withIcon, classes: classNames, variant = 'text' } = props;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -47,7 +51,15 @@ function ShortAddress(props: Props) {
   }, []);
 
   const renderAddress = () => (
-    <span className={cn(classes.shortAddress, { [classes.variantFilled]: variant === 'filled' })}>
+    <span
+      className={cn(
+        classes.shortAddress,
+        {
+          [classes.variantFilled]: variant === 'filled',
+        },
+        classNames?.shortAddress,
+      )}
+    >
       {shortAddress}
     </span>
   );
@@ -74,7 +86,10 @@ function ShortAddress(props: Props) {
               tooltip: classes.tooltip,
             }}
           >
-            <IconButton className={classes.copyButton} onTouchStart={handleCopy}>
+            <IconButton
+              className={cn(classes.copyButton, classNames?.copyButton)}
+              onTouchStart={handleCopy}
+            >
               <CopyToClipboard onCopy={handleCopy} text={address}>
                 <CopyIcon fontSize="inherit" />
               </CopyToClipboard>
