@@ -4,7 +4,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import { useTheme } from '@akropolis-web/styles';
+import { useTheme, getOverriddenClasses, OverriddenClasses } from '@akropolis-web/styles';
 import IconButton from '@material-ui/core/IconButton';
 
 import { getShortAddress } from '../temp23/getShortAddress';
@@ -17,11 +17,14 @@ type Props = {
   disableCopy?: boolean;
   withIcon?: boolean;
   variant?: 'filled' | 'text';
+  classes?: OverriddenClasses<typeof useStyles>;
 };
 
 function ShortAddress(props: Props) {
-  const { address, disableCopy, withIcon, variant = 'text' } = props;
-  const classes = useStyles();
+  const { address, disableCopy, withIcon, classes: overriddenClasses, variant = 'text' } = props;
+  const rawClasses = useStyles();
+  const classes = getOverriddenClasses(rawClasses, overriddenClasses);
+
   const theme = useTheme();
 
   const [tooltipTitle, setTooltipTitle] = useState<'copy' | 'copied'>('copy');
