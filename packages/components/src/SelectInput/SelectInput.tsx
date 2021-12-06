@@ -9,7 +9,11 @@ import React, {
 import cn from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
 import { MenuProps } from '@material-ui/core/Menu';
-import { useAncestorBackgroundHack } from '@akropolis-web/styles';
+import {
+  getOverriddenClasses,
+  OverriddenClasses,
+  useAncestorBackgroundHack,
+} from '@akropolis-web/styles';
 
 import { Arrow } from '../icons/Arrow';
 import { TextInput } from '../TextInput';
@@ -23,9 +27,10 @@ export type Option = {
 type OwnProps = {
   options: Option[];
   disableVariant?: 'text' | 'default';
+  classes?: OverriddenClasses<typeof useStyles>;
 };
 
-type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
+export type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
 
 const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
@@ -36,6 +41,7 @@ export function SelectInput(props: SelectInputProps) {
     disabled,
     disableVariant = 'default',
     variant = 'outlined',
+    classes: overriddenClasses,
     InputProps = {},
     SelectProps = {},
     ...restProps
@@ -49,7 +55,8 @@ export function SelectInput(props: SelectInputProps) {
     ...restSelectProps
   } = SelectProps;
   const backgroundColor = useAncestorBackgroundHack();
-  const classes = useStyles({ backgroundColor });
+  const rawClasses = useStyles({ backgroundColor });
+  const classes = getOverriddenClasses(rawClasses, overriddenClasses);
   const currentWindowHeight = useWindowHeight();
 
   const [isMenuOpen, setIsOpen] = useState(false);
