@@ -11,7 +11,7 @@ import cn from 'classnames';
 import { Amount, IToBN } from '@akropolis-web/primitives';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import { SelectInput } from '../SelectInput/SelectInput';
+import { SelectInput, SelectInputProps as SelectInputPropsType } from '../SelectInput/SelectInput';
 import { TextInput } from '../TextInput';
 import { DecimalsInput } from '../DecimalsInput/DecimalsInput';
 import { useStyles } from './AmountInput.style';
@@ -22,6 +22,7 @@ interface IOwnProps<A extends Amount> {
   maxValue?: BN | IToBN;
   allowedMax?: BN;
   hideCurrencySelect?: boolean;
+  SelectInputProps?: Pick<SelectInputPropsType, 'classes'>;
   onChange: (value: A) => void;
   makeAmount(value: BN, currency: A['currency']): A;
   getCurrencyIdentifier(currency: A['currency']): string;
@@ -42,6 +43,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     disabled,
     currencies,
     hideCurrencySelect,
+    SelectInputProps = {},
     InputProps = {},
     SelectProps = {},
     makeAmount,
@@ -172,6 +174,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
             ...(!currentCurrency && { renderValue: renderSelectOnUnpicked }),
             ...SelectProps,
           }}
+          {...SelectInputProps}
         />
       </div>
     );
