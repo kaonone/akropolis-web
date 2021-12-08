@@ -4,7 +4,6 @@ import { makeStyles } from '@akropolis-web/styles';
 import { IToBN, fromBaseUnit, toBaseUnit } from '@akropolis-web/primitives';
 
 import { Button } from '../Button/Button';
-import { useOnChangeState } from '../temp23/utils/react';
 import { TextInput } from '../TextInput';
 
 interface OwnProps {
@@ -38,24 +37,6 @@ function DecimalsInput(props: Props) {
   }, [needToShowEmpty, value]);
 
   useEffect(() => setSuffix(''), [value, baseDecimals]);
-
-  useOnChangeState(
-    baseDecimals,
-    (prev, cur) => prev !== cur,
-    prevBaseDecimals => {
-      const decimalsDiff = prevBaseDecimals ? new BN(baseDecimals - prevBaseDecimals) : new BN(0);
-      if (decimalsDiff.eqn(0)) {
-        return;
-      }
-
-      const decimalCorrectionFactor = new BN(10).pow(decimalsDiff);
-      const adjustedValue = decimalsDiff.gtn(0)
-        ? new BN(value).mul(decimalCorrectionFactor)
-        : new BN(value).div(decimalCorrectionFactor);
-
-      onChange(adjustedValue.toString());
-    },
-  );
 
   const amount = useMemo(() => value && fromBaseUnit(value, baseDecimals) + suffix, [
     value,

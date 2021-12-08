@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import BN from 'bn.js';
 import cn from 'classnames';
-import { Amount, IToBN } from '@akropolis-web/primitives';
+import { Amount, decimalsToWei, IToBN } from '@akropolis-web/primitives';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import { SelectInput, SelectInputProps as SelectInputPropsType } from '../SelectInput/SelectInput';
@@ -76,7 +76,12 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
     if (defaultCurrency && isWrongCurrentCurrency) {
       // async change is necessary for the correct working of subscriptions in the final-form during the first render
-      Promise.resolve().then(() => onChange(makeAmount(currentValue, defaultCurrency)));
+      const nextValue = getNormalizedValue(
+        currentValue,
+        currentCurrency?.decimals || defaultCurrency.decimals,
+        defaultCurrency.decimals,
+      );
+      Promise.resolve().then(() => onChange(makeAmount(nextValue, defaultCurrency)));
     }
   }, [currentCurrency, currencies, onChange, makeAmount, currentValue]);
 
@@ -101,14 +106,28 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
 
   const handleCurrencyChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const nextCurrency = event.target.value;
-      const currency =
-        getCurrencyIdentifier &&
-        currencies.find(item => getCurrencyIdentifier(item) === nextCurrency);
+      const currency = event.target.value;
+      const nextCurrency =
+        getCurrencyIdentifier && currencies.find(item => getCurrencyIdentifier(item) === currency);
 
-      currency && onChange(makeAmount(currentValue, currency));
+      if (!nextCurrency) return;
+
+      const nextValue = getNormalizedValue(
+        currentValue,
+        currentCurrency?.decimals || nextCurrency.decimals,
+        nextCurrency.decimals,
+      );
+
+      onChange(makeAmount(nextValue, nextCurrency));
     },
-    [getCurrencyIdentifier, currencies, onChange, makeAmount, currentValue],
+    [
+      getCurrencyIdentifier,
+      currencies,
+      currentCurrency?.decimals,
+      onChange,
+      makeAmount,
+      currentValue,
+    ],
   );
 
   const currencySelectOptions = useMemo(
@@ -179,6 +198,16 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
       </div>
     );
   }
+}
+
+function getNormalizedValue(value: BN, prevDecimals: number, nextDecimals: number) {
+  if (prevDecimals === nextDecimals) {
+    return value;
+  }
+
+  return prevDecimals > nextDecimals
+    ? value.div(decimalsToWei(prevDecimals - nextDecimals))
+    : value.mul(decimalsToWei(nextDecimals - prevDecimals));
 }
 
 function useUpdatingTrigger<V>(deps: V, isEquals: (prev: V, cur: V) => boolean) {
