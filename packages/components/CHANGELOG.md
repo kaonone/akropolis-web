@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.27.85 (2021-12-08)
+
+
+### Bug Fixes
+
+* move value normalization from DecimalsInput to AmountInput ([a5d5a94](https://github.com/akropolisio/akropolis-web/commit/a5d5a948e2ce71d8df2f71d2481d0a432a80398c))
+
+
+
+
+
 ## 0.27.84 (2021-12-06)
 
 **Note:** Version bump only for package @akropolis-web/components
