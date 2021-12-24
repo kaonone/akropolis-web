@@ -22,6 +22,7 @@ import { useStyles } from './SelectInput.style';
 export type Option = {
   id: string;
   label: string | JSX.Element;
+  disabled?: boolean;
 };
 
 type OwnProps = {
@@ -161,9 +162,9 @@ export function SelectInput(props: SelectInputProps) {
         onClose: handleSelectClose,
       }}
     >
-      {options.map(({ id, label }) => {
+      {options.map(({ id, label, disabled: disabledOption }) => {
         return (
-          <MenuItem key={id} value={id} className={classes.menuItem}>
+          <MenuItem key={id} value={id} disabled={disabledOption} className={classes.menuItem}>
             {label}
           </MenuItem>
         );
