@@ -55,7 +55,7 @@ function makeHueShift(colors: string[], generator: MersenneTwister) {
   return colors.map(hex => {
     const color = new Color(hex);
     color.rotate(amount);
-    return color.hexString();
+    return color.hex();
   });
 }
 
