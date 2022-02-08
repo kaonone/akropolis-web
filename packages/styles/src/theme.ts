@@ -192,8 +192,8 @@ const lightPalette = {
   background: {
     hint: colors.charade,
     default: colors.athensGray,
-    paper: colors.white,
-    paperSecondary: colors.white,
+    paper: colors.athensGray,
+    paperSecondary: colors.athensGray,
     paperLight: colors.white,
   },
   type: 'light' as const,
@@ -559,11 +559,11 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '10px 9px',
 
               '&$selected, &$selected:hover': {
-                backgroundColor: colors.blackRussian,
+                backgroundColor: type === 'light' ? colors.white : colors.blackRussian,
               },
 
               '&:hover': {
-                backgroundColor: colors.darkMist,
+                backgroundColor: type === 'light' ? colors.athensGray : colors.darkMist,
               },
             },
           },
@@ -682,9 +682,10 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiTooltip: {
             tooltip: {
               padding: '15px',
-              border: '1px solid #373740',
+              border: `1px solid ${type === 'light' ? 'rgba(10, 10, 14, 0.2)' : '#373740'}`,
               borderRadius: '6px',
-              backgroundColor: colors.blackRussian,
+              backgroundColor: type === 'light' ? colors.white : colors.blackRussian,
+              color: type === 'light' ? colors.obsidian : '#fff',
             },
             tooltipPlacementTop: {
               margin: '8px 0 !important',
