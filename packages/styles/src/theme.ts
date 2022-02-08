@@ -15,6 +15,7 @@ export { Theme };
 function getGradients(type: 'dark' | 'light') {
   return {
     main: makeGradient([colors.violetRed, colors.royalBlue3]),
+    secondary: makeGradient([colors.mauvelous, colors.violetRedLight]),
     products: [
       makeGradient(
         type === 'dark' ? [colors.jacarta, colors.blueZodiac] : [colors.zumthor2, colors.linkWater],
