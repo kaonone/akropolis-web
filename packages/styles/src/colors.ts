@@ -46,4 +46,6 @@ export const colors = {
   lightGray: 'rgba(255, 255, 255, 0.5)',
   violetRed: '#ef359c',
   stormGray: '#75758b',
+  mauvelous: '#EE7FBD',
+  violetRedLight: '#EE379C',
 };
