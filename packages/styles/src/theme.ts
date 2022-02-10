@@ -1,6 +1,6 @@
 import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
 import { TabPanelClassKey } from '@material-ui/lab/TabPanel';
-import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { createMuiTheme, darken, Theme, ThemeOptions } from '@material-ui/core/styles';
 import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
 import { mergeDeepRight } from 'ramda';
 import { Object as O } from 'ts-toolbelt';
@@ -9,6 +9,8 @@ import { colors } from './colors';
 import { makeGradient } from './makeGradient';
 import { generateGridSpacingOverrides } from './generateGridSpacingOverrides';
 import { getBreakpoints } from './getBreakpoints';
+
+import { rgba } from '.';
 
 export { Theme };
 
@@ -273,9 +275,18 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
           MuiPickersToolbar: {
             toolbar: {
               height: 80,
+              backgroundColor: type === 'light' ? colors.white : colors.black,
 
               '& .MuiTypography-h4': {
                 fontSize: 16,
+              },
+
+              '& .MuiPickersToolbarText-toolbarTxt.MuiTypography-subtitle1': {
+                color: type === 'light' ? rgba(colors.obsidian, 0.54) : rgba(colors.white, 0.54),
+              },
+
+              '& .MuiPickersToolbarText-toolbarTxt.MuiTypography-h4': {
+                color: type === 'light' ? colors.obsidian : colors.white,
               },
             },
           },
@@ -473,13 +484,13 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
 
           MuiOutlinedInput: {
             root: {
-              borderColor: colors.obsidian,
-              backgroundColor: '#2b2b3a',
+              borderColor: type === 'light' ? colors.darkMist : colors.obsidian,
+              backgroundColor: type === 'light' ? 'transparent' : colors.charadeLight,
               borderRadius: 6,
               minHeight: 36,
 
               '&$focused': {
-                background: '#3A3A50',
+                background: type === 'light' ? darken(colors.athensGray, 0.1) : '#3A3A50',
               },
 
               '&$disabled': {
@@ -504,7 +515,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '8px 11px',
 
               '&::placeholder': {
-                color: 'rgba(255, 255, 255, 0.5)',
+                color: type === 'light' ? rgba(colors.obsidian, 0.5) : rgba(colors.white, 0.5),
                 opacity: 1,
               },
 

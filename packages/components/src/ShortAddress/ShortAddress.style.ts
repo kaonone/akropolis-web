@@ -1,6 +1,6 @@
 import { makeStyles } from '@akropolis-web/styles';
 
-export const useStyles = makeStyles(() => {
+export const useStyles = makeStyles(theme => {
   return {
     root: {
       display: 'inline-flex',
@@ -13,7 +13,7 @@ export const useStyles = makeStyles(() => {
         display: 'inline-block',
         padding: '1px 8px 1px 6px',
         borderRadius: 6,
-        backgroundColor: '#494972',
+        backgroundColor: theme.colors.mulledWine,
       },
     },
     addressIcon: {
@@ -30,7 +30,7 @@ export const useStyles = makeStyles(() => {
       fontSize: 16,
       padding: 5,
       borderRadius: 6,
-      backgroundColor: '#494972',
+      backgroundColor: theme.colors.mulledWine,
 
       '&:hover': {
         backgroundColor: '#57577c',
