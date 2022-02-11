@@ -585,12 +585,14 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               overflow: 'hidden',
             },
 
-            filled: {
-              padding: '8px 11px',
-
-              '&$select:focus': {
+            select: {
+              '&:focus': {
                 backgroundColor: 'transparent',
               },
+            },
+
+            filled: {
+              padding: '8px 11px',
 
               '&:hover:not($disabled)': {
                 backgroundColor: 'transparent',

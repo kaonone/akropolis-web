@@ -50,4 +50,4 @@ export const colors = {
   violetRedLight: '#EE379C',
   charadeLight: '#2b2b3a',
   mulledWine: '#494972',
-};
+} as const;

@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles, ProvidedAncestorBackground, rgba } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
   theme => ({
@@ -106,22 +106,44 @@ export const useStyles = makeStyles(
       },
 
       '&$withoutOutline': {
+        borderColor:
+          theme.palette.type === 'light' ? rgba(theme.colors.obsidian, 0.2) : theme.colors.darkMist,
+
         '&$hasBottomSpace': {
           marginTop: 10,
           borderRadius: 6,
-          borderTop: '1px solid #40404b',
+          borderTop: `1px solid ${
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.2)
+              : theme.colors.darkMist
+          }`,
         },
 
         '&$hasTopSpace': {
           marginTop: -10,
           borderRadius: 6,
-          borderBottom: '1px solid #40404b',
+          borderBottom: `1px solid ${
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.2)
+              : theme.colors.darkMist
+          }`,
         },
 
         '&$filled': {
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          borderColor:
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.2)
+              : rgba(theme.colors.white, 0.1),
+          borderTop: `1px solid ${
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.2)
+              : rgba(theme.colors.white, 0.1)
+          }`,
+          borderBottom: `1px solid ${
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.2)
+              : rgba(theme.colors.white, 0.1)
+          }`,
         },
       },
 
