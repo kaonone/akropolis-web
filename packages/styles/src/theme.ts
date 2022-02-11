@@ -456,6 +456,12 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
             },
           },
 
+          MuiDialog: {
+            paper: {
+              boxShadow: 'none',
+            },
+          },
+
           MuiDialogTitle: {
             root: {
               fontSize: '1.375rem',
