@@ -104,7 +104,7 @@ export const Label: React.FC<Props> = props => {
 };
 
 const useStyles = makeStyles(
-  () => ({
+  theme => ({
     title: {
       display: 'flex',
       alignItems: 'center',
@@ -139,7 +139,8 @@ const useStyles = makeStyles(
     tooltipIcon: {
       fontSize: '1.125em',
 
-      opacity: '50%',
+      opacity: theme.palette.type === 'light' ? 0.25 : 0.5,
+
       '&:hover': {
         opacity: '100%',
       },

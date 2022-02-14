@@ -48,4 +48,6 @@ export const colors = {
   stormGray: '#75758b',
   mauvelous: '#EE7FBD',
   violetRedLight: '#EE379C',
-};
+  charadeLight: '#2b2b3a',
+  mulledWine: '#494972',
+} as const;

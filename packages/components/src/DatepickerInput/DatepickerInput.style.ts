@@ -1,15 +1,15 @@
 import { colors, makeStyles } from '@akropolis-web/styles';
 
 export const useStyles = makeStyles(
-  () => ({
+  theme => ({
     root: {
       padding: '1px 0px 1px 8px',
-      border: `1px solid ${colors.obsidian}`,
+      border: `1px solid ${theme.palette.type === 'light' ? colors.darkMist : colors.obsidian}`,
       borderRadius: 6,
-      backgroundColor: '#2b2b3a',
+      backgroundColor: theme.palette.type === 'light' ? 'transparent' : colors.charadeLight,
 
       '& .MuiInputBase-input': {
-        padding: '6px 0',
+        padding: '7px 0',
       },
 
       '& .MuiIconButton-root': {
