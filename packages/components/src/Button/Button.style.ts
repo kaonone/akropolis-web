@@ -1,4 +1,4 @@
-import { makeStyles, ProvidedAncestorBackground } from '@akropolis-web/styles';
+import { makeStyles, ProvidedAncestorBackground, rgba } from '@akropolis-web/styles';
 
 const shadowOffset = 3;
 const largeShadowOffset = 3;
@@ -149,12 +149,24 @@ export const useStyles = makeStyles(
       transition: 'background-position 1s',
 
       '&$disabled': {
-        background: `rgba(255, 255, 255, 0.1)`,
-        color: `rgba(255, 255, 255, 0.5)`,
+        background:
+          theme.palette.type === 'light'
+            ? rgba(theme.colors.alto, 0.5)
+            : rgba(theme.colors.white, 0.1),
+        color:
+          theme.palette.type === 'light'
+            ? rgba(theme.colors.obsidian, 0.5)
+            : rgba(theme.colors.white, 0.5),
 
         '&:hover:not(:active), &$focusVisible': {
-          background: `rgba(255, 255, 255, 0.1)`,
-          color: `rgba(255, 255, 255, 0.5)`,
+          background:
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.alto, 0.5)
+              : rgba(theme.colors.white, 0.1),
+          color:
+            theme.palette.type === 'light'
+              ? rgba(theme.colors.obsidian, 0.5)
+              : rgba(theme.colors.white, 0.5),
         },
       },
 
