@@ -34,7 +34,7 @@ export const useStyles = makeStyles(
           borderColor: 'transparent',
           backgroundColor: 'transparent',
           backgroundImage: 'none',
-          color: '#fff',
+          color: theme.palette.type === 'light' ? theme.colors.obsidian : theme.colors.white,
         },
 
         '& $select': {
