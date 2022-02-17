@@ -4,6 +4,7 @@
 export const colors = {
   amour: '#f8e6f2',
   athensGray: '#eff1f5',
+  athensGrayLight: '#e0e3e9',
   black: '#000',
   blackRussian: '#191924',
   blueChalk: '#e7e3fe',
@@ -50,4 +51,5 @@ export const colors = {
   violetRedLight: '#EE379C',
   charadeLight: '#2b2b3a',
   mulledWine: '#494972',
+  alto: '#d8d8d8',
 } as const;

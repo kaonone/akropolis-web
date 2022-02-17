@@ -193,7 +193,7 @@ const lightPalette = {
     main: colors.persimmon,
   },
   background: {
-    hint: colors.charade,
+    hint: colors.athensGrayLight,
     default: colors.athensGray,
     paper: colors.athensGray,
     paperSecondary: colors.athensGray,
