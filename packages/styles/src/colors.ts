@@ -52,4 +52,5 @@ export const colors = {
   charadeLight: '#2b2b3a',
   mulledWine: '#494972',
   alto: '#d8d8d8',
+  cadetBlue: '#afb7c7',
 } as const;

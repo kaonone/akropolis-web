@@ -1,4 +1,5 @@
 import { makeStyles } from '@akropolis-web/styles';
+import { lighten } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => {
   return {
@@ -7,13 +8,14 @@ export const useStyles = makeStyles(theme => {
     },
     shortAddress: {
       fontSize: 'inherit',
-      color: 'inherit',
+      color: theme.colors.white,
 
       '&$variantFilled': {
         display: 'inline-block',
         padding: '1px 8px 1px 6px',
         borderRadius: 6,
-        backgroundColor: theme.colors.mulledWine,
+        backgroundColor:
+          theme.palette.type === 'light' ? theme.colors.cadetBlue : theme.colors.mulledWine,
       },
     },
     addressIcon: {
@@ -30,10 +32,12 @@ export const useStyles = makeStyles(theme => {
       fontSize: 16,
       padding: 5,
       borderRadius: 6,
-      backgroundColor: theme.colors.mulledWine,
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.colors.cadetBlue : theme.colors.mulledWine,
 
       '&:hover': {
-        backgroundColor: '#57577c',
+        backgroundColor:
+          theme.palette.type === 'light' ? lighten(theme.colors.cadetBlue, 0.2) : '#57577c',
       },
 
       '& .MuiTouchRipple-root span': {
