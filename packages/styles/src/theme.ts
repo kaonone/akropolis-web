@@ -187,7 +187,7 @@ const lightPalette = {
     contrastText: colors.electricViolet,
   },
   text: {
-    primary: colors.black,
+    primary: colors.obsidian,
   },
   error: {
     main: colors.persimmon,
@@ -198,6 +198,22 @@ const lightPalette = {
     paper: colors.athensGray,
     paperSecondary: colors.athensGray,
     paperLight: colors.white,
+    paperExtraLight: colors.white,
+    amountField: colors.athensGray,
+    containedButton: colors.white,
+    warning: colors.athensGray,
+    card: colors.white,
+    productCard: colors.white,
+    tokenBadge: colors.athensGray,
+    body: colors.athensGray,
+    modal: colors.athensGrayDark,
+    poolAddress: colors.cadetBlue,
+  },
+  border: {
+    primary: rgba(colors.obsidian, 0.2),
+    secondary: rgba(colors.obsidian, 0.2),
+    accent: colors.white,
+    badgeBorder: rgba(colors.obsidian, 0.2),
   },
   type: 'light' as const,
 };
@@ -227,6 +243,22 @@ export const darkPalette = {
     paper: colors.cinder,
     paperSecondary: colors.darkBlueMagenta,
     paperLight: colors.jaguar,
+    paperExtraLight: colors.cinder,
+    amountField: colors.charadeLight,
+    containedButton: colors.blackRussian,
+    warning: colors.blackRussian,
+    card: colors.steelGray,
+    productCard: colors.darkSpace,
+    tokenBadge: colors.mulledWine,
+    body: colors.obsidian,
+    modal: colors.darkBlueMagenta,
+    poolAddress: colors.mulledWine,
+  },
+  border: {
+    primary: colors.obsidian,
+    secondary: colors.darkMist,
+    accent: colors.obsidian,
+    badgeBorder: colors.mulledWine,
   },
   type: 'dark' as const,
 };
@@ -247,13 +279,15 @@ export const lightTheme = getTheme('light');
 export const darkTheme = getTheme('dark');
 
 export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Theme {
+  const palette = type === 'light' ? lightPalette : darkPalette;
+
   return createMuiTheme(
     mergeDeepRight<ThemeOptions, ThemeOptions>(
       {
         colors,
         gradients: getGradients(type),
         tokensPalette,
-        palette: type === 'light' ? lightPalette : darkPalette,
+        palette,
         breakpoints: getBreakpoints(breakpoints),
         typography: {
           fontFamily: ['AvenirNext LT Pro', 'Arial', 'sans-serif'].join(','),
@@ -282,11 +316,11 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               },
 
               '& .MuiPickersToolbarText-toolbarTxt.MuiTypography-subtitle1': {
-                color: type === 'light' ? rgba(colors.obsidian, 0.54) : rgba(colors.white, 0.54),
+                color: rgba(palette.text.primary, 0.54),
               },
 
               '& .MuiPickersToolbarText-toolbarTxt.MuiTypography-h4': {
-                color: type === 'light' ? colors.obsidian : colors.white,
+                color: palette.text.primary,
               },
             },
           },
@@ -521,7 +555,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '8px 11px',
 
               '&::placeholder': {
-                color: type === 'light' ? rgba(colors.obsidian, 0.5) : rgba(colors.white, 0.5),
+                color: rgba(palette.text.primary, 0.5),
                 opacity: 1,
               },
 
@@ -577,7 +611,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '10px 9px',
 
               '&$selected, &$selected:hover': {
-                backgroundColor: type === 'light' ? colors.white : colors.blackRussian,
+                backgroundColor: palette.background.containedButton,
               },
 
               '&:hover': {
@@ -704,7 +738,7 @@ export function getTheme(type: 'light' | 'dark', overrides?: ThemeOptions): Them
               padding: '15px',
               border: `1px solid ${type === 'light' ? 'rgba(10, 10, 14, 0.2)' : '#373740'}`,
               borderRadius: '6px',
-              backgroundColor: type === 'light' ? colors.white : colors.blackRussian,
+              backgroundColor: palette.background.containedButton,
               color: type === 'light' ? colors.obsidian : '#fff',
             },
             tooltipPlacementTop: {
@@ -776,6 +810,25 @@ declare module PackageOverrides {
     tableHeader: string;
     paperSecondary: string;
     paperLight: string;
+    paperExtraLight: string;
+    amountField: string;
+    containedButton: string;
+    warning: string;
+    card: string;
+    productCard: string;
+    tokenBadge: string;
+    body: string;
+    modal: string;
+    poolAddress: string;
+  }
+
+  interface PaletteOptions {
+    border: {
+      primary: string;
+      secondary: string;
+      accent: string;
+      badgeBorder: string;
+    };
   }
 
   interface TypeBreakpoint {
@@ -811,6 +864,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 declare module '@material-ui/core/styles/createPalette' {
   interface TypeBackground
     extends O.Merge<TypeBackgroundOverrides, PackageOverrides.TypeBackground, 'deep'> {}
+
+  interface Palette extends PackageOverrides.PaletteOptions {}
 }
 
 declare module '@material-ui/core/styles/createBreakpoints' {

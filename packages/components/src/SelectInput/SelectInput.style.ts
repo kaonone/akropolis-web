@@ -34,7 +34,7 @@ export const useStyles = makeStyles(
           borderColor: 'transparent',
           backgroundColor: 'transparent',
           backgroundImage: 'none',
-          color: theme.palette.type === 'light' ? theme.colors.obsidian : theme.colors.white,
+          color: theme.palette.text.primary,
         },
 
         '& $select': {
@@ -88,8 +88,7 @@ export const useStyles = makeStyles(
       },
 
       '&$withCheckmark': {
-        backgroundColor:
-          theme.palette.type === 'light' ? theme.colors.white : theme.colors.blackRussian,
+        backgroundColor: theme.palette.background.containedButton,
 
         '& $menuItem': {
           paddingRight: 34,
@@ -106,44 +105,24 @@ export const useStyles = makeStyles(
       },
 
       '&$withoutOutline': {
-        borderColor:
-          theme.palette.type === 'light' ? rgba(theme.colors.obsidian, 0.2) : theme.colors.darkMist,
+        borderColor: theme.palette.border.secondary,
 
         '&$hasBottomSpace': {
           marginTop: 10,
           borderRadius: 6,
-          borderTop: `1px solid ${
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.2)
-              : theme.colors.darkMist
-          }`,
+          borderTop: `1px solid ${theme.palette.border.secondary}`,
         },
 
         '&$hasTopSpace': {
           marginTop: -10,
           borderRadius: 6,
-          borderBottom: `1px solid ${
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.2)
-              : theme.colors.darkMist
-          }`,
+          borderBottom: `1px solid ${theme.palette.border.secondary}`,
         },
 
         '&$filled': {
-          borderColor:
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.2)
-              : rgba(theme.colors.white, 0.1),
-          borderTop: `1px solid ${
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.2)
-              : rgba(theme.colors.white, 0.1)
-          }`,
-          borderBottom: `1px solid ${
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.2)
-              : rgba(theme.colors.white, 0.1)
-          }`,
+          borderColor: rgba(theme.palette.text.primary, 0.2),
+          borderTop: `1px solid ${rgba(theme.palette.text.primary, 0.2)}`,
+          borderBottom: `1px solid ${rgba(theme.palette.text.primary, 0.2)}`,
         },
       },
 

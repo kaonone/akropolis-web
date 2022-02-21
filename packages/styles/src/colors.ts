@@ -53,4 +53,6 @@ export const colors = {
   mulledWine: '#494972',
   alto: '#d8d8d8',
   cadetBlue: '#afb7c7',
+  athensGrayDark: '#e9ebef',
+  steelGray: '#212131',
 } as const;

@@ -14,8 +14,7 @@ export const useStyles = makeStyles(theme => {
         display: 'inline-block',
         padding: '1px 8px 1px 6px',
         borderRadius: 6,
-        backgroundColor:
-          theme.palette.type === 'light' ? theme.colors.cadetBlue : theme.colors.mulledWine,
+        backgroundColor: theme.palette.background.poolAddress,
       },
     },
     addressIcon: {
@@ -32,8 +31,7 @@ export const useStyles = makeStyles(theme => {
       fontSize: 16,
       padding: 5,
       borderRadius: 6,
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.colors.cadetBlue : theme.colors.mulledWine,
+      backgroundColor: theme.palette.background.poolAddress,
 
       '&:hover': {
         backgroundColor:
