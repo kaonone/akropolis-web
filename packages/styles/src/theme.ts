@@ -199,15 +199,13 @@ const lightPalette = {
     paperSecondary: colors.athensGray,
     paperLight: colors.white,
     paperExtraLight: colors.white,
-    amountField: colors.athensGray,
     containedButton: colors.white,
     warning: colors.athensGray,
     card: colors.white,
-    productCard: colors.white,
-    tokenBadge: colors.athensGray,
-    body: colors.athensGray,
+    cardSecondary: colors.white,
     modal: colors.athensGrayDark,
-    poolAddress: colors.cadetBlue,
+    badge: colors.cadetBlue,
+    badgeSecondary: colors.athensGray,
   },
   border: {
     primary: rgba(colors.obsidian, 0.2),
@@ -244,15 +242,13 @@ export const darkPalette = {
     paperSecondary: colors.darkBlueMagenta,
     paperLight: colors.jaguar,
     paperExtraLight: colors.cinder,
-    amountField: colors.charadeLight,
     containedButton: colors.blackRussian,
     warning: colors.blackRussian,
     card: colors.steelGray,
-    productCard: colors.darkSpace,
-    tokenBadge: colors.mulledWine,
-    body: colors.obsidian,
+    cardSecondary: colors.darkSpace,
     modal: colors.darkBlueMagenta,
-    poolAddress: colors.mulledWine,
+    badge: colors.mulledWine,
+    badgeSecondary: colors.mulledWine,
   },
   border: {
     primary: colors.obsidian,
@@ -811,15 +807,13 @@ declare module PackageOverrides {
     paperSecondary: string;
     paperLight: string;
     paperExtraLight: string;
-    amountField: string;
     containedButton: string;
     warning: string;
     card: string;
-    productCard: string;
-    tokenBadge: string;
-    body: string;
+    cardSecondary: string;
     modal: string;
-    poolAddress: string;
+    badge: string;
+    badgeSecondary: string;
   }
 
   interface PaletteOptions {
