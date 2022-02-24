@@ -153,20 +153,14 @@ export const useStyles = makeStyles(
           theme.palette.type === 'light'
             ? rgba(theme.colors.alto, 0.5)
             : rgba(theme.colors.white, 0.1),
-        color:
-          theme.palette.type === 'light'
-            ? rgba(theme.colors.obsidian, 0.5)
-            : rgba(theme.colors.white, 0.5),
+        color: rgba(theme.palette.text.primary, 0.5),
 
         '&:hover:not(:active), &$focusVisible': {
           background:
             theme.palette.type === 'light'
               ? rgba(theme.colors.alto, 0.5)
               : rgba(theme.colors.white, 0.1),
-          color:
-            theme.palette.type === 'light'
-              ? rgba(theme.colors.obsidian, 0.5)
-              : rgba(theme.colors.white, 0.5),
+          color: rgba(theme.palette.text.primary, 0.5),
         },
       },
 
