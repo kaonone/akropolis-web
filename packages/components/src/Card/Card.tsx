@@ -152,7 +152,6 @@ const useStyles = makeStyles(
       padding: theme.spacing(0.25, 1.25, 0.25, 0),
       fontSize: theme.spacing(2),
       lineHeight: 1,
-      color: theme.colors.white,
 
       [theme.breakpoints.up('tabletXS')]: {
         fontSize: theme.spacing(1.5),

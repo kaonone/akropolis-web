@@ -6,7 +6,7 @@ import { getInputFiles } from '../../getInputFiles';
 import pkg from './package.json';
 
 const extensions = ['.ts', '.tsx'];
-const excludeExtensions = ['.d.ts', '.style.ts'];
+const excludeExtensions = ['.d.ts', '.style.ts', '.stories.tsx'];
 
 export default {
   input: ['./src/index.ts', ...getInputFiles('./src', extensions, excludeExtensions)],
@@ -21,6 +21,7 @@ export default {
   plugins: [
     commonjs(),
     typescript({
+      tsconfig: './tsconfig.json',
       declaration: true,
       declarationDir: 'dist',
     }),
