@@ -12,11 +12,27 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop: any) =>
-        !/^ref|innerRef|inputRef|component|tabIndex|component|style$/.test(prop.name) &&
-        (prop.parent
-          ? /@material-ui/.test(prop.parent.fileName) || !/node_modules/.test(prop.parent.fileName)
-          : true),
+      propFilter: (prop: any) => {
+        const propsToOmit = [
+          'component',
+          'htmlColor',
+          'innerRef',
+          'ref',
+          'shapeRendering',
+          'style',
+          'tabIndex',
+          'titleAccess',
+          'viewBox',
+          'id',
+        ];
+        return (
+          !propsToOmit.includes(prop.name) &&
+          (prop.parent
+            ? /@material-ui/.test(prop.parent.fileName) ||
+              !/node_modules/.test(prop.parent.fileName)
+            : true)
+        );
+      },
       compilerOptions: {
         allowSyntheticDefaultImports: false,
       },

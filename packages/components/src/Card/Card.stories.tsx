@@ -11,12 +11,14 @@ const MetaData: ComponentMeta<typeof Card> = {
   component: Card,
   args: {
     label: 'Card label',
+    labelIcon: 'on',
+    icons: 'on' as any,
+    variant: 'outlined',
   },
   argTypes: {
-    variant: { defaultValue: 'outlined', table: { defaultValue: { summary: 'outlined' } } },
+    variant: { table: { defaultValue: { summary: 'outlined' } } },
     label: { control: { type: 'text' } },
     labelIcon: {
-      defaultValue: 'on',
       options: ['on', 'off'],
       mapping: {
         on: <AKROIcon fontSize="inherit" />,
@@ -24,7 +26,6 @@ const MetaData: ComponentMeta<typeof Card> = {
       },
     },
     icons: {
-      defaultValue: 'on',
       options: ['on', 'off'],
       mapping: {
         on: [

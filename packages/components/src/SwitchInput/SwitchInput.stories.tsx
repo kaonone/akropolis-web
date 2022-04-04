@@ -2,18 +2,18 @@
 import React, { useEffect, useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { CheckboxInput } from './CheckboxInput';
+import { SwitchInput } from './SwitchInput';
 
-const MetaData: ComponentMeta<typeof CheckboxInput> = {
-  title: 'CheckboxInput',
-  component: CheckboxInput,
+const MetaData: ComponentMeta<typeof SwitchInput> = {
+  title: 'SwitchInput',
+  component: SwitchInput,
   parameters: {
     controls: {
       exclude: ['icon', 'checkedIcon', 'classes', 'action'],
     },
   },
   args: {
-    label: 'Checkbox label',
+    label: 'SwitchInput label',
     size: 'medium',
   },
   argTypes: {
@@ -23,13 +23,13 @@ const MetaData: ComponentMeta<typeof CheckboxInput> = {
   },
 };
 
-const Template: ComponentStory<typeof CheckboxInput> = args => {
+const Template: ComponentStory<typeof SwitchInput> = args => {
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     args.checked !== undefined && setChecked(args.checked);
   }, [args.checked]);
 
-  return <CheckboxInput {...args} checked={checked} onChange={(_, v) => setChecked(v)} />;
+  return <SwitchInput {...args} checked={checked} onChange={(_, v) => setChecked(v)} />;
 };
 
 export const WithLabel = Template.bind({});

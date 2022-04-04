@@ -11,14 +11,16 @@ const MetaData: ComponentMeta<typeof Accordion> = {
     Summary: Accordion.Summary,
     Details: Accordion.Details,
   },
+  args: {
+    elevation: 1,
+    variant: 'elevation',
+  },
   argTypes: {
     elevation: {
-      defaultValue: 1,
       table: { defaultValue: { summary: '1' } },
       control: { type: 'number', min: 0, max: 24 },
     },
     variant: {
-      defaultValue: 'elevation',
       table: { defaultValue: { summary: 'elevation' } },
     },
   },

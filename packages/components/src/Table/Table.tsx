@@ -8,7 +8,7 @@ import * as views from './components';
 import * as M from './models';
 import { SubtableColumn } from './models';
 
-type Props<T, U> = {
+export type Props<T, U> = {
   entries: T[];
   columns: Array<M.Column<T, U>>;
   withStripes?: boolean;

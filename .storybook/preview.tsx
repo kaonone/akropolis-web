@@ -6,7 +6,14 @@ import { darkTheme, lightTheme } from '@akropolis-web/styles';
 
 import '@akropolis-web/styles/assets/fonts/AvenirNextLTPro/stylesheet.css';
 
-import { customThemeControl, customViewports, makeEnhancer } from './utils';
+import {
+  customThemeControl,
+  customViewports,
+  makeEnhancer,
+  withBooleanType,
+  withControlFalse,
+  withDefaultType,
+} from './utils';
 
 export const parameters: ProjectAnnotations['parameters'] = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -28,35 +35,36 @@ export const globalTypes: ProjectAnnotations['globalTypes'] = {
   theme: customThemeControl,
 };
 
+export const argsEnhancers: ProjectAnnotations['argsEnhancers'] = [
+  context => makeEnhancer(context, withDefaultType, 'default')(context.initialArgs),
+  context => makeEnhancer(context, withBooleanType, false)(context.initialArgs),
+];
+
 export const argTypesEnhancers: ProjectAnnotations['argTypesEnhancers'] = [
-  makeEnhancer(
-    (_, key) =>
-      key === 'classes' || key === 'children' || /classname/i.test(key) || /^on[A-Z]/.test(key),
-    argType => ({ control: false, ...argType }),
-  ),
-  makeEnhancer(
-    ({ type }) => type?.name === 'enum' && type.value.includes('default'),
-    argType => ({
-      ...argType,
-      defaultValue: 'default',
-      table: { ...argType.table, defaultValue: { summary: 'default' } },
-    }),
-  ),
-  makeEnhancer(
-    ({ type }) => type?.name === 'boolean',
-    argType => ({
-      ...argType,
-      defaultValue: false,
-      table: { ...argType.table, defaultValue: { summary: 'false' } },
-    }),
-  ),
+  context => makeEnhancer(context, withControlFalse, { control: false })(context.argTypes),
+  context =>
+    makeEnhancer(context, withDefaultType, {
+      table: { defaultValue: { summary: 'default' } },
+    })(context.argTypes),
+  context =>
+    makeEnhancer(context, withBooleanType, {
+      table: { defaultValue: { summary: 'false' } },
+    })(context.argTypes),
 ];
 
 export const decorators: DecoratorFn[] = [
-  (Story, context) => (
-    <ThemeProvider theme={context.globals.theme === 'light' ? lightTheme : darkTheme}>
-      <CssBaseline />
-      <Story {...context} />
-    </ThemeProvider>
-  ),
+  (Story, context) => {
+    const theme = context.globals.theme === 'light' ? lightTheme : darkTheme;
+    const styleContent = `.docs-story {
+      background-color: ${theme.palette.background.body}
+    }`;
+
+    return (
+      <ThemeProvider theme={theme}>
+        <style>{styleContent}</style>
+        <CssBaseline />
+        <Story {...context} />
+      </ThemeProvider>
+    );
+  },
 ];

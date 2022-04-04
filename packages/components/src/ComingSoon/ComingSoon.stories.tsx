@@ -8,7 +8,7 @@ const MetaData: ComponentMeta<typeof ComingSoon> = {
   title: 'ComingSoon',
   component: ComingSoon,
   argTypes: {
-    text: { defaultValue: 'Coming soon', table: { defaultValue: { summary: 'Coming soon' } } },
+    text: { table: { defaultValue: { summary: 'Coming soon' } } },
   },
 };
 

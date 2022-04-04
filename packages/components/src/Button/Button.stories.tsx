@@ -15,10 +15,11 @@ const MetaData: ComponentMeta<typeof Button> = {
     children: 'Button',
     startIcon: 'off',
     endIcon: 'off',
+    variant: 'text',
   },
   argTypes: {
     action: { table: { disable: true } },
-    variant: { defaultValue: 'text', table: { defaultValue: { summary: 'text' } } },
+    variant: { table: { defaultValue: { summary: 'text' } } },
     children: {
       control: {
         type: 'text',

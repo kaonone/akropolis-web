@@ -16,7 +16,7 @@ type WithRoundedBorders = {
 
 type StylesProps = ProvidedAncestorBackground & WithRoundedBorders;
 
-export const Skeleton: OverridableComponent<SkeletonTypeMap> = <
+export const Skeleton: OverridableComponent<SkeletonTypeMap<WithRoundedBorders>> = <
   P extends Record<string, unknown>,
   D extends React.ElementType = 'span'
 >(
