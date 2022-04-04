@@ -1,14 +1,14 @@
 import React from 'react';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary, { AccordionSummaryProps } from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails, { AccordionDetailsProps } from '@material-ui/core/AccordionDetails';
+import MuiAccordion, { AccordionProps } from '@material-ui/core/Accordion';
 import { makeStyles } from '@akropolis-web/styles';
 import cn from 'classnames';
 
 import { attachStaticFields } from '../temp23/utils/react';
 import { Arrow } from '../icons/Arrow';
 
-function AccordionComponent(props: React.ComponentProps<typeof MuiAccordion>) {
+function AccordionComponent(props: AccordionProps) {
   const classes = useStyles();
   const { classes: muiClasses = {}, ...rest } = props;
 
@@ -25,7 +25,7 @@ function AccordionComponent(props: React.ComponentProps<typeof MuiAccordion>) {
   );
 }
 
-function Summary(props: React.ComponentProps<typeof MuiAccordionSummary>) {
+function Summary(props: AccordionSummaryProps) {
   const classes = useStyles();
   const { classes: muiClasses = {}, ...rest } = props;
 
@@ -44,7 +44,7 @@ function Summary(props: React.ComponentProps<typeof MuiAccordionSummary>) {
   );
 }
 
-function Details(props: React.ComponentProps<typeof MuiAccordionDetails>) {
+function Details(props: AccordionDetailsProps) {
   const classes = useStyles();
   const { classes: muiClasses = {}, ...rest } = props;
 

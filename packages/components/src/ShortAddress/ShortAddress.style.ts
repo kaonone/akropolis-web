@@ -8,9 +8,9 @@ export const useStyles = makeStyles(theme => {
     },
     shortAddress: {
       fontSize: 'inherit',
-      color: theme.colors.white,
 
       '&$variantFilled': {
+        color: theme.colors.white,
         display: 'inline-block',
         padding: '1px 8px 1px 6px',
         borderRadius: 6,

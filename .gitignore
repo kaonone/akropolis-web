@@ -6,3 +6,4 @@ coverage
 packages/*/dist
 packages/*/temp
 ./lerna-debug.log
+yarn-error.log
