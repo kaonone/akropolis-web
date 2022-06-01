@@ -72,7 +72,7 @@ export class Fraction implements IToBN {
   }
 
   eq(value: Value): boolean {
-    return this.toBN().eq(toFraction(value).toBN());
+    return this.toString() === toFraction(value).toString();
   }
 
   gt(value: Value): boolean {
