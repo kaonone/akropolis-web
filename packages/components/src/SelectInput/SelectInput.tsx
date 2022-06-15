@@ -1,14 +1,7 @@
-import React, {
-  ComponentPropsWithoutRef,
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { ComponentPropsWithoutRef, useState, useCallback, useRef, useEffect } from 'react';
 import cn from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
-import { MenuProps } from '@material-ui/core/Menu';
+import type { PopoverOrigin } from '@material-ui/core/Popover';
 import {
   getOverriddenClasses,
   OverriddenClasses,
@@ -26,19 +19,19 @@ export type Option = {
 };
 
 type OwnProps = {
-  options: Option[];
+  options?: Option[];
   disableVariant?: 'text' | 'default';
   classes?: OverriddenClasses<typeof useStyles>;
 };
 
 export type SelectInputProps = OwnProps & ComponentPropsWithoutRef<typeof TextInput>;
 
-const MENU_PADDINGS_HEIGHT = 15;
 const MENU_SHIFT_HEIGHT = 20;
 
 export function SelectInput(props: SelectInputProps) {
   const {
     options,
+    children,
     disabled,
     disableVariant = 'default',
     variant = 'outlined',
@@ -58,13 +51,17 @@ export function SelectInput(props: SelectInputProps) {
   const backgroundColor = useAncestorBackgroundHack();
   const rawClasses = useStyles({ backgroundColor });
   const classes = getOverriddenClasses(rawClasses, overriddenClasses);
+
   const currentWindowHeight = useWindowHeight();
+  const [anchorVerticalOrigin, setAnchorVerticalOrigin] = useState<PopoverOrigin['vertical']>(
+    'bottom',
+  );
 
   const [isMenuOpen, setIsOpen] = useState(false);
-  const [toBottomDistance, setToBottomDistance] = useState(0);
-  const [toTopDistance, setToTopDistance] = useState(0);
 
   const selectInputRef = useRef<HTMLDivElement>(null);
+  const menuListRef = useRef<HTMLUListElement>(null);
+
   const handleSelectOpen = useCallback(() => {
     setIsOpen(true);
   }, []);
@@ -74,45 +71,20 @@ export function SelectInput(props: SelectInputProps) {
   }, []);
 
   useEffect(() => {
-    const inputRect = selectInputRef.current?.getBoundingClientRect();
-
-    if (inputRect) {
-      const { bottom, top } = inputRect;
-      setToBottomDistance(currentWindowHeight - bottom - MENU_SHIFT_HEIGHT);
-      setToTopDistance(top - MENU_SHIFT_HEIGHT);
+    const selectInputRect = selectInputRef.current?.getBoundingClientRect();
+    const menuPaperRect = menuListRef.current?.parentElement?.getBoundingClientRect();
+    if (!selectInputRect || !menuPaperRect) {
+      return;
     }
+
+    const toBottomDistance = currentWindowHeight - selectInputRect.bottom - MENU_SHIFT_HEIGHT;
+    const toTopDistance = selectInputRect.top - MENU_SHIFT_HEIGHT;
+
+    const hasBottomSpace = toBottomDistance > menuPaperRect.height;
+    const hasTopSpace = toTopDistance > menuPaperRect.height;
+
+    setAnchorVerticalOrigin((hasBottomSpace && 'bottom') || (hasTopSpace && 'top') || 'center');
   }, [currentWindowHeight, isMenuOpen]);
-
-  const selectHeight =
-    Number(selectInputRef.current?.offsetHeight) * options.length + MENU_PADDINGS_HEIGHT;
-  const hasBottomSpace = toBottomDistance > selectHeight;
-  const hasTopSpace = toTopDistance > selectHeight;
-
-  const menuPositionProps = useMemo<Partial<MenuProps>>(() => {
-    function getVerticalPosition(type: 'anchor' | 'transform') {
-      if (hasBottomSpace) {
-        return type === 'anchor' ? 'bottom' : 'top';
-      }
-      if (hasTopSpace) {
-        return type === 'anchor' ? 'top' : 'bottom';
-      }
-
-      return 'center';
-    }
-
-    return {
-      elevation: 0,
-      anchorOrigin: {
-        vertical: getVerticalPosition('anchor'),
-        horizontal: 'center',
-      },
-      transformOrigin: {
-        vertical: getVerticalPosition('transform'),
-        horizontal: 'center',
-      },
-      getContentAnchorEl: null,
-    };
-  }, [hasBottomSpace, hasTopSpace]);
 
   return (
     <TextInput
@@ -124,8 +96,8 @@ export function SelectInput(props: SelectInputProps) {
       className={cn(classes.root, selectClassName, {
         [classes.isOpen]: isMenuOpen,
         [classes.disableVariantText]: disabled && disableVariant === 'text',
-        [classes.hasBottomSpace]: hasBottomSpace,
-        [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+        [classes.hasBottomSpace]: anchorVerticalOrigin === 'bottom',
+        [classes.hasTopSpace]: anchorVerticalOrigin === 'top',
         [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
         [classes.filled]: variant === 'filled',
       })}
@@ -143,32 +115,48 @@ export function SelectInput(props: SelectInputProps) {
         },
         MenuProps: {
           ...menuProps,
+          MenuListProps: {
+            ...menuProps?.MenuListProps,
+            ref: menuListRef,
+          },
           PaperProps: {
             variant: 'outlined',
             ...menuProps?.PaperProps,
             className: cn(classes.paper, menuProps?.PaperProps?.className, {
-              [classes.hasBottomSpace]: hasBottomSpace,
-              [classes.hasTopSpace]: !hasBottomSpace && hasTopSpace,
+              [classes.hasBottomSpace]: anchorVerticalOrigin === 'bottom',
+              [classes.hasTopSpace]: anchorVerticalOrigin === 'top',
               [classes.withoutOutline]: variant === 'standard' || variant === 'filled',
               [classes.withCheckmark]:
                 variant === 'standard' || variant === 'filled' || restSelectProps.multiple,
               [classes.filled]: variant === 'filled',
             }),
           },
-          ...menuPositionProps,
+          elevation: 0,
+          anchorOrigin: {
+            vertical: anchorVerticalOrigin,
+            horizontal: 'center',
+          },
+          transformOrigin: {
+            vertical:
+              (anchorVerticalOrigin === 'top' && 'bottom') ||
+              (anchorVerticalOrigin === 'bottom' && 'top') ||
+              'center',
+            horizontal: 'center',
+          },
+          getContentAnchorEl: null,
         },
         IconComponent: IconComponent || renderArrowIcon,
         onOpen: handleSelectOpen,
         onClose: handleSelectClose,
       }}
     >
-      {options.map(({ id, label, disabled: disabledOption }) => {
-        return (
-          <MenuItem key={id} value={id} disabled={disabledOption} className={classes.menuItem}>
-            {label}
-          </MenuItem>
-        );
-      })}
+      {options
+        ? options.map(({ id, label, disabled: disabledOption }) => (
+            <MenuItem key={id} value={id} disabled={disabledOption} className={classes.menuItem}>
+              {label}
+            </MenuItem>
+          ))
+        : children}
     </TextInput>
   );
 
