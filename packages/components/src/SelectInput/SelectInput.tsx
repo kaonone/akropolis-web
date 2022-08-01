@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, useState, useCallback, useRef, useEffect } from 'react';
 import cn from 'classnames';
 import MenuItem from '@material-ui/core/MenuItem';
-import type { PopoverOrigin } from '@material-ui/core/Popover';
+import { PopoverOrigin } from '@material-ui/core/Popover';
 import {
   getOverriddenClasses,
   OverriddenClasses,
