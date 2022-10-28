@@ -36,9 +36,9 @@ export function makeFormattedBalance({
 
   return {
     formatted: [
+      negativeSign,
       startSymbol,
       startSpace,
-      negativeSign,
       integer,
       decimalSeparator,
       fractional,
@@ -49,9 +49,9 @@ export function makeFormattedBalance({
       .join('')
       .trim(),
     detailed: {
+      negativeSign,
       startSymbol,
       startSpace,
-      negativeSign,
       integer,
       decimalSeparator,
       fractional,
