@@ -1,6 +1,7 @@
 import BN from 'bn.js';
 
 import { formatBalance, FormattedBalance } from '../bnHexWei';
+import { SiPrecision } from '../bnHexWei/format/balance/types';
 import { Value } from '../fraction';
 import { Amount } from './amount';
 import { Currency } from './Currency';
@@ -23,6 +24,7 @@ export class PercentAmount extends Amount<Currency> {
     precision: number = 2,
     withSymbol = true,
     withSI?: boolean,
+    siPrecision?: SiPrecision,
   ): FormattedBalance {
     const multiplier = new BN(10).pow(new BN(precision));
     const value = this.toFraction().mul(multiplier);
@@ -34,6 +36,7 @@ export class PercentAmount extends Amount<Currency> {
       baseDecimals: precision,
       precision,
       symbolPosition: 'end',
+      siPrecision,
     });
   }
 }

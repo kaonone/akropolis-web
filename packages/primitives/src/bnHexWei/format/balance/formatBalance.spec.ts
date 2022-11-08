@@ -292,4 +292,30 @@ describe.only('formatBalance with SI', (): void => {
       }).formatted,
     ).toEqual('12,345.67B Unit');
   });
+
+  it('formats 123,456,789,000 (decimals=3) with SI precision', (): void => {
+    expect(
+      formatBalance({
+        withSI: true,
+        siPrecision: 'thousand',
+        amountInBaseUnits: TESTVAL,
+        baseDecimals: 3,
+        tokenSymbol: 'Unit',
+        precision: 0,
+      }).formatted,
+    ).toEqual('123,456K Unit');
+  });
+
+  it('formats 123,456,789,000 * 1000 (decimals=3) with SI precision', (): void => {
+    expect(
+      formatBalance({
+        withSI: true,
+        siPrecision: 'thousand',
+        amountInBaseUnits: TESTVAL.muln(1000),
+        baseDecimals: 3,
+        tokenSymbol: 'Unit',
+        precision: 0,
+      }).formatted,
+    ).toEqual('123,456,789K Unit');
+  });
 });

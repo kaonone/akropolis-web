@@ -30,3 +30,5 @@ export type SymbolPosition = StartSymbolPosition | EndSymbolPosition;
 export function isStartPosition(value: SymbolPosition): value is StartSymbolPosition {
   return (startPositions as Readonly<SymbolPosition[]>).includes(value);
 }
+
+export type SiPrecision = 'thousand' | 'million' | 'billion';

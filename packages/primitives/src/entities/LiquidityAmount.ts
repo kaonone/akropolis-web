@@ -1,4 +1,5 @@
 import { formatBalance, FormattedBalance } from '../bnHexWei';
+import { SiPrecision } from '../bnHexWei/format/balance/types';
 import { Value } from '../fraction';
 import { Amount } from './amount';
 import { Currency } from './Currency';
@@ -29,6 +30,7 @@ export class LiquidityAmount extends Amount<Currency> {
     precision: number = this.defaultPrecision,
     withSymbol = true,
     withSI?: boolean,
+    siPrecision?: SiPrecision,
   ): FormattedBalance {
     return formatBalance({
       withSI,
@@ -37,6 +39,7 @@ export class LiquidityAmount extends Amount<Currency> {
       baseDecimals: this.currency.decimals,
       precision,
       symbolPosition: this.defaultSymbolPosition,
+      siPrecision,
     });
   }
 }
