@@ -3,7 +3,7 @@ import BN from 'bn.js';
 import { IToBN } from '../../types';
 import { getDecimal, bnToBn } from '../../utils';
 import { makeFormattedBalance } from './makeFormattedBalance';
-import { FormattedBalance, FormattingVariant, SI, SymbolPosition } from './types';
+import { FormattedBalance, FormattingVariant, SI, SiPrecision, SymbolPosition } from './types';
 
 interface IFormatBalanceOptions {
   amountInBaseUnits: string | BN | IToBN;
@@ -13,6 +13,7 @@ interface IFormatBalanceOptions {
   variant?: FormattingVariant;
   symbolPosition?: SymbolPosition;
   withSI?: boolean;
+  siPrecision?: SiPrecision;
 }
 
 export function formatBalance({
@@ -23,6 +24,7 @@ export function formatBalance({
   variant = 'default',
   symbolPosition = 'end-space',
   withSI = false,
+  siPrecision,
 }: IFormatBalanceOptions): FormattedBalance {
   const balanceString = bnToBn(amountInBaseUnits).toString();
 
@@ -38,7 +40,7 @@ export function formatBalance({
 
   const { fractional, integer } = getDecimal(balanceString, baseDecimals, precision);
 
-  const si = withSI ? calcSI(integer) : null;
+  const si = withSI ? calcSI(integer, siPrecision) : null;
 
   if (!si) {
     return makeFormattedBalance({
@@ -66,15 +68,16 @@ export function formatBalance({
   });
 }
 
-export function calcSI(baseNumber: string) {
+export function calcSI(baseNumber: string, siPrecision?: SiPrecision) {
   const digit = baseNumber.length;
+  if (siPrecision) return precisions[siPrecision];
   if (digit > 9) return precisions.billion;
   if (digit > 6) return precisions.million;
   if (digit > 3) return precisions.thousand;
   return null;
 }
 
-export const precisions: Record<string, SI> = {
+export const precisions: Record<SiPrecision, SI> = {
   thousand: {
     power: 3,
     value: 'K',
