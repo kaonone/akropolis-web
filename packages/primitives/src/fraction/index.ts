@@ -156,6 +156,10 @@ export function toFraction(value: Value): Fraction {
     return value.toFraction();
   }
   if (typeof value === 'number') {
+    if (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER) {
+      return toFraction(value.toString());
+    }
+
     const integer = Math.floor(value);
     const fractional = value - integer;
 
@@ -164,8 +168,26 @@ export function toFraction(value: Value): Fraction {
         .sub(new BN(1))
         .add(new BN(integer));
     }
-
-    return new Fraction(new BN(integer));
   }
+
+  if (typeof value === 'string') {
+    const numberRegexp = /^(?<sign>[+-]?)(?=\d|\.\d)(?<integer>\d*)(?:\.(?<fractional>\d*))?(?:[eE](?<exponent_sign>[+-]?)(?<power>\d+))?$/;
+    const { groups } = value.match(numberRegexp) || {};
+    if (!groups) {
+      return new Fraction(value);
+    }
+    const { sign, integer, fractional, exponent_sign, power } = groups;
+
+    let fraction = fractional
+      ? new Fraction(fractional, '1'.padEnd(fractional.length + 1, '0')).add(new BN(integer || '0'))
+      : new Fraction(new BN(integer || '0'));
+
+    fraction = sign === '-' ? fraction.mul(-1) : fraction;
+
+    return exponent_sign === '-'
+      ? fraction.div(decimalsToWei(Number(power) ?? 0))
+      : fraction.mul(decimalsToWei(Number(power) ?? 0));
+  }
+
   return new Fraction(value);
 }
