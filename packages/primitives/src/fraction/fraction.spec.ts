@@ -1,6 +1,6 @@
 import { decimalsToWei } from '../bnHexWei';
 
-import { Fraction } from '.';
+import { Fraction, toFraction, Value } from '.';
 
 const operations = ['add', 'sub', 'div', 'mul'] as const;
 
@@ -55,6 +55,38 @@ describe('Test equality and calculation time', (): void => {
 
     expect(currentError.lte(allowedError)).toBeTruthy();
   });
+});
+
+describe('Test toFraction helper', () => {
+  const makeTest = (
+    message: string,
+    testCases: [value: Value, expected: string, precision?: number][],
+  ) =>
+    testCases.map(([value, expected, precision = 0]) =>
+      it(`${message}: ${value}`, () => {
+        const { integer, fractional } = toFraction(value).toDecimal(0, precision);
+        expect(`${integer}${fractional ? `.${fractional}` : ''}`).toEqual(expected);
+      }),
+    );
+
+  makeTest('should convert strings with exponential numbers', [
+    ['123e1', '1230'],
+    ['123E1', '1230'],
+    ['123e+1', '1230'],
+    ['123e-30', '0.000000000000000000000000000123', 30],
+    ['0.123e30', '123000000000000000000000000000'],
+    ['0.123e-1', '0.0123', 4],
+    ['.123e-1', '0.0123', 4],
+    ['-123e30', '-123000000000000000000000000000000'],
+  ]);
+
+  makeTest('should convert fractional strings', [
+    ['1234567891011121314.1234567891011121314', '1234567891011121314.1234567891011121314', 19],
+    ['.1234567', '0.1234567', 7],
+    ['-.1234567', '-0.1234567', 7],
+    ['-12.1234567', '-12.1234567', 7],
+    ['+123.', '123.0', 1],
+  ]);
 });
 
 function generateOperationsList(number: number) {
