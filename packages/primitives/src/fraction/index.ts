@@ -109,7 +109,13 @@ export class Fraction implements IToBN {
   }
 
   isNeg() {
-    return this.numerator.isNeg();
+    if (this.numerator.isNeg() && this.denominator.isNeg()) {
+      return false;
+    }
+    if (this.numerator.isNeg() || this.denominator.isNeg()) {
+      return true;
+    }
+    return false;
   }
 
   toNumber() {
@@ -119,16 +125,19 @@ export class Fraction implements IToBN {
   toString() {
     const fractionalPrecisionMultiplier = new BN(10).pow(new BN(Fraction.decimalsAccuracy));
 
-    const integer = this.numerator.div(this.denominator);
-    const remainder = this.numerator.sub(this.denominator.mul(integer));
+    const isNeg = this.isNeg();
+    const absFraction = this.abs();
+
+    const integer = absFraction.numerator.div(absFraction.denominator);
+    const remainder = absFraction.numerator.sub(absFraction.denominator.mul(integer));
     const fractional = remainder
-      .add(this.denominator) // add one denominator so that after division we get result: `fractionalPrecisionMultiplier + fractional = 100023` (1.00023 without fractionalPrecisionMultiplier multiplying)
+      .add(absFraction.denominator) // add one denominator so that after division we get result: `fractionalPrecisionMultiplier + fractional = 100023` (1.00023 without fractionalPrecisionMultiplier multiplying)
       .mul(fractionalPrecisionMultiplier)
-      .div(this.denominator)
+      .div(absFraction.denominator)
       .toString()
       .slice(1); // remove the first digit to take a fraction with padding 100023 -> 00023
 
-    return `${integer}.${fractional}`;
+    return `${isNeg ? '-' : ''}${integer.toString()}.${fractional}`;
   }
 
   valueOf() {
