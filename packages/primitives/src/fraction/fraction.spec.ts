@@ -18,6 +18,27 @@ function setFractionOptions(maxBytes: number, accuracy: number) {
   Fraction.decimalsAccuracy = accuracy;
 }
 
+describe('Test Fraction', (): void => {
+  it('test isNeg', () => {
+    expect(new Fraction('100', '200').isNeg()).toEqual(false);
+    expect(new Fraction('-100', '200').isNeg()).toEqual(true);
+    expect(new Fraction('100', '-200').isNeg()).toEqual(true);
+    expect(new Fraction('-100', '-200').isNeg()).toEqual(false);
+  });
+  it('test toString', () => {
+    expect(new Fraction('100', '200').toString()).toEqual('0.500000000000000000');
+    expect(new Fraction('-100', '200').toString()).toEqual('-0.500000000000000000');
+    expect(new Fraction('100', '-200').toString()).toEqual('-0.500000000000000000');
+    expect(new Fraction('-100', '-200').toString()).toEqual('0.500000000000000000');
+  });
+  it('test toNumber', () => {
+    expect(new Fraction('100', '200').toNumber()).toEqual(0.5);
+    expect(new Fraction('-100', '200').toNumber()).toEqual(-0.5);
+    expect(new Fraction('100', '-200').toNumber()).toEqual(-0.5);
+    expect(new Fraction('-100', '-200').toNumber()).toEqual(0.5);
+  });
+});
+
 describe('Test equality and calculation time', (): void => {
   setDefaultFractionOptions();
 
