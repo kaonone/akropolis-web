@@ -109,13 +109,7 @@ export class Fraction implements IToBN {
   }
 
   isNeg() {
-    if (this.numerator.isNeg() && this.denominator.isNeg()) {
-      return false;
-    }
-    if (this.numerator.isNeg() || this.denominator.isNeg()) {
-      return true;
-    }
-    return false;
+    return this.numerator.isNeg() !== this.denominator.isNeg();
   }
 
   toNumber() {
