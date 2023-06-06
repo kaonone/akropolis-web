@@ -29,12 +29,13 @@ function DecimalsInput(props: Props) {
     ...restInputProps
   } = props;
 
+  const isEmptyValue = useMemo(() => !value || value === '0', [value]);
   const [suffix, setSuffix] = useState('');
-  const [needToShowEmpty, setNeedToShowEmpty] = useState(() => !value || value === '0');
+  const [needToShowEmpty, setNeedToShowEmpty] = useState(() => isEmptyValue);
 
   useEffect(() => {
-    needToShowEmpty && value && value !== '0' && setNeedToShowEmpty(false);
-  }, [needToShowEmpty, value]);
+    needToShowEmpty !== isEmptyValue && setNeedToShowEmpty(isEmptyValue);
+  }, [needToShowEmpty, isEmptyValue]);
 
   useEffect(() => setSuffix(''), [value, baseDecimals]);
 
