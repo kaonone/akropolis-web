@@ -28,6 +28,7 @@ interface IOwnProps<A extends Amount> {
   getCurrencyIdentifier(currency: A['currency']): string;
   getCurrencyLabel(currency: A['currency']): JSX.Element | string;
   renderSelectOnUnpicked?: () => React.ReactNode;
+  resetInputState?: boolean;
 }
 
 export type AmountInputProps<A extends Amount> = IOwnProps<A> &
@@ -53,6 +54,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
     helperText,
     error,
     renderSelectOnUnpicked,
+    resetInputState,
     ...restInputProps
   } = props;
   const classes = useStyles();
@@ -169,6 +171,7 @@ export function AmountInput<A extends Amount>(props: AmountInputProps<A>) {
           maxValue={maxValue}
           onChange={handleInputChange}
           disabled={disabled}
+          resetInputState={resetInputState}
           InputProps={{
             className: classes.decimalInput,
             ...InputProps,
