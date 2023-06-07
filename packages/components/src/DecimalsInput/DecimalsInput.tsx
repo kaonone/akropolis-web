@@ -12,6 +12,7 @@ interface OwnProps {
   value: string;
   maxValue?: BN | IToBN;
   onChange: (value: string) => void;
+  resetInputState?: boolean;
 }
 
 type Props = OwnProps & Omit<ComponentPropsWithoutRef<typeof TextInput>, 'onChange'>;
@@ -26,16 +27,16 @@ function DecimalsInput(props: Props) {
     baseUnitName,
     disabled,
     InputProps,
+    resetInputState,
     ...restInputProps
   } = props;
 
-  const isEmptyValue = useMemo(() => !value || value === '0', [value]);
   const [suffix, setSuffix] = useState('');
-  const [needToShowEmpty, setNeedToShowEmpty] = useState(() => isEmptyValue);
+  const [needToShowEmpty, setNeedToShowEmpty] = useState(() => !value || value === '0');
 
   useEffect(() => {
-    needToShowEmpty !== isEmptyValue && setNeedToShowEmpty(isEmptyValue);
-  }, [needToShowEmpty, isEmptyValue]);
+    needToShowEmpty && value && value !== '0' && setNeedToShowEmpty(false);
+  }, [needToShowEmpty, value]);
 
   useEffect(() => setSuffix(''), [value, baseDecimals]);
 
@@ -91,7 +92,7 @@ function DecimalsInput(props: Props) {
     <TextInput
       {...restInputProps}
       disabled={disabled}
-      value={needToShowEmpty ? '' : amount}
+      value={needToShowEmpty || resetInputState ? '' : amount}
       variant="outlined"
       fullWidth
       onChange={handleInputChange}
